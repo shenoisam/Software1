@@ -58,12 +58,14 @@ Katie
 8. Diagnosis
 9. Billing
 
-
+Alejandro
 10. Signing up for patient
-11. View schedule
-12. Exporting data (file sharing)
-13. Referral letter
-14. Request information from another doctor
+11. Request information from another doctor
+12. View schedule
+
+
+13. Exporting data (file sharing)
+14. Referral letter
 15. Provider notes
 
 Sam
