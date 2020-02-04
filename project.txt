@@ -39,23 +39,33 @@ Non Functional Requirements:
 
 
 Use Cases:
+
+John
 1. Log in
    - credential verification
    - user panel redirect
    - sign out
 2. Schedule patient
 3. Initial visit (record info)
+
+Matthew
 4. Visit patient
 5. Order tests
 6. Patient lookup
+
+Katie
 7. Patient prescribe
 8. Diagnosis
 9. Billing
+
+Alejandro
 10. Signing up for patient
-11. View schedule
-12. Exporting data (file sharing)
-13. Referral letter
-14. Request information from another doctor
+11. Request information from another doctor
+12. View schedule
+
+
+13. Exporting data (file sharing)
+14. Referral letter
 15. Provider notes
 
 Sam
@@ -70,12 +80,16 @@ Sam
 
 
 
+Extra assignments to complete:
+John & Matthew - SSD + operations
+Sam - Domain Models
+Jordan - UI Sketches
+Alejandro - Requirement + proofreading
+Katie - Website
 
 
-
-
-
-
+----Complete---
+analysis
 
 
 
