@@ -80,14 +80,14 @@ Sam
 
 Extra assignments to complete:
 John & Matthew - SSD + operations
-Sam - Domain Models & analysis
+Sam - Domain Models
 Jordan - UI Sketches
 Alejandro - Requirement + proofreading
 Katie - Website
 
 
-
-
+----Complete---
+analysis
 
 
 
