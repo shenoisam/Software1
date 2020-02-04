@@ -1,0 +1,19 @@
+body {
+    
+}
+
+h1 {
+   color: #339933;
+   border-style: solid;
+   border-width: medium;
+   height: 40px;
+   margin-bottom: 20px;
+}
+
+head {
+    border-width: thin;
+}
+
+p {
+  font-family: "Times New Roman", Times, serif;
+}
