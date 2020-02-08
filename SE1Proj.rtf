@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww16940\viewh10900\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Patient Prescribe\
+ID: \
+Scope: C-Share application\
+Level: User goal\
+Primary Actor: Doctor\
+Stakeholders and Interests:\
+ - Doctor: Wants to correctly prescribe the patient\'92s ailment and provide an adequate prescription and can easily input the information in the system\
+Preconditions: Patient has been prescribed \
+ - Patient: Wants medication to correct their ailment and to be given the prescription for their medication\
+ - Insurance: Wants a record of the medication described for easy taxing and payment services between the doctor\'92s office, the patient and themselves\
+Success Guarantee (or Postconditions): Medication is saved on system, patient has medication prescription \
+Main Success Scenario (or Basic Flow):\
+1. Doctor determines prescription\
+2. Electronic prescription is created\
+3. Doctor stores details of prescription on patients file\
+4. System stores electronic prescription\
+5. Prescription is added to patients file\
+6. System prints out receipt or sends to corresponding pharmacy\
+\
+Extensions (or Alternative Flows):\
+*a. Anytime system fails:\
+	1. Data is stored on paper to later be input to the system\
+	2. System is restart by IT\
+	3. System reconstructs to prior state\
+		3a. If system detects anomalies in system, sends message to doctor and corresponding 		IT office\
+1a. Patient does not receive prescription from diagnosis\
+	1. A prescription is not created\
+2a. Electronic prescription does not generate\
+	1. Doctor closes system and restarts it\
+	2. Doctor reenters credentials and tries again\
+		2a. If system still refuses to work, prior system state is loaded and necessary departments are notified\
+3a. Patients file won\'92t open\
+	1. Doctor closes system and restarts it\
+	2. If system still doesn\'92t work notify necessary departments\
+		2a. Store data on paper until system works correctly\
+4a. System is unable to store electronic prescription correctly\
+	1. System state is saved\
+	2. Doctor is notified of error\
+	3. Doctor notifies correct department \
+		3a. Data is saved on paper until system can save correctly\
+5a. System stores patient data in wrong patient file\
+	1. System alerts doctor and IT of error\
+	2. Data is saved but removed from incorrect file\
+	3. Doctor reenters data or saves it on paper\
+6a. Prescription is unable to be shared with pharmacy\
+	1. System lets doctor know error\
+	2. System restarts but saves current state\
+		2a. Doctor\'92s office manually calls in prescription if system is down for time being\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Diagnosis\
+ID: \
+Scope: C-Share application\
+Level: User goal\
+Primary Actor: Doctor\
+Stakeholders and Interests:\
+ - Doctor: Wants to correctly diagnose patient. Wants easy entry for the system for the diagnosis to the correct patient. \
+ - Patient: Wants a correct diagnosis and a record of said diagnosis.\
+ - Insurance: Wants record of the diagnosis and details necessary for covering the patient\'92s fees.\
+Preconditions: Patient has told doctor ailment and given doctor necessary details\
+Success Guarantee (or Postconditions): Patient\'92s ailment is saved. Diagnosis is recorded. \
+Main Success Scenario (or Basic Flow):\
+1. Doctor diagnoses patient\
+2. Doctor opens patient\'92s file\
+3. System creates new diagnosis for patient\
+4. Doctor enters patient\'92s diagnosis \
+5. System saves and stores diagnosis in patient folder and in other necessary files\
+\
+Extensions (or Alternative Flows):\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 *a. At any time, System fails:\
+	1. Doctor restarts system\
+	2. System reconstructs former state\
+		2a. System detects anomaly\
+			1. Error is reported to doctor and IT and enters a clean state\
+			2. Doctor creates new diagnosis\
+2a. Patients file is unable to open \
+	1. Doctor restarts system\
+	2. System reports error and continues in clean state\
+2b. Doctor does not have permission to access file\
+	1. \
+4a. Patient has additional ailments and requires more than one diagnosis\
+	1. Doctor creates multiple diagnoses \
+	2. System records multiple diagnoses and stores data under same visit\
+5a. Patient requests copy of diagnosis\
+	1. System provides available information \
+	2. Doctor prints or sends the information to the patient in a secure way\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Billing\
+ID: \
+Scope: C-Share application\
+Level: User goal\
+Primary Actor: \
+Stakeholders and Interests:\
+ - Doctor\'92s office: Wants to send out correct billing to patient, insurance and other necessary parties and to receive correct monetary compensation.\
+ - Patient: Wants the bill for fees not paid by insurance and details of services provided.\
+ - Insurance: Wants details of service provided and total cost for the patient. Wants to easily pay the doctor\'92s office.\
+ - Government taxing: Wants record of the services rendered and the total cost. Wants to collect tax from total sale.\
+Preconditions: Patient has been provided service\
+Success Guarantee (or Postconditions): Receipt is generated. Fees to all necessary parties are paid. Billing is correctly processed and recorded in the necessary systems. Taxing is recorded and paid. Payment authorization approvals are properly recorded.\
+Main Success Scenario (or Basic Flow):\
+1. Total cost for service rendered is calculated\
+2. Services rendered are included on bill with cost\
+3. Day by which bill must be payed is included\
+4. Bill is sent to necessary parties (i.e. insurance, government taxing, patient)\
+5. System records payments made\
+\
+Extensions (or Alternative Flows):\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 *a. If system fails:\
+	1. System is restarted\
+	2. System reconstructs to prior state\
+		2a. If there is an error, system reports and records it and then continues with a clean 		state \
+1a. Invalid values are entered\
+	1. System signals error and rejects entry\
+	2. Office accountant responses to error\
+		2a. Data for charging is saved in human readable format\
+			1. Office accountant manually enters data\
+			2. System recalculates and displays results\
+		2b. Necessary data is not saved\
+			1. Accountant reports error\
+			2. Operation is put on hold until correct data is recovered\
+2a. Services rendered are not available\
+	1. System reports error\
+	2. Accountant responds to erros\
+		2a. Services are locatable\
+			1. Account enters data by hand\
+		2b. Services are not locatable\
+			1. Accountant reports error \
+			2. Operation halted until correct data is recovered\
+3a. Patient receives payment extension for extenuating circumstances\
+	1. The extension is noted on the bill\
+	2. The extension is saved in the system and reported to other necessary services (insurance, 	government taxing)\
+4a. Bill is unable to be sent due to extenuating system errors\
+	1. System reports error\
+	2. Necessary attendant (i.e. office accountant) manually sends data\
+\
+\
+}
