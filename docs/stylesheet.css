@@ -2,13 +2,13 @@ title {
     float: center;
 }
 
-h1 {
+/*h1 {
    color: #339933;
    border-style: solid;
    border-width: medium;
    height: 40px;
    margin-bottom: 20px;
-}
+}*/
 
 head {
     border-width: thin;
@@ -17,6 +17,13 @@ head {
 
 h1 {
     font-family: "Times New Roman", Times, serif;
+    /*width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;*/
 }
 
 h2 {
