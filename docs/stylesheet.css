@@ -1,24 +1,9 @@
-/*h1 {
-   color: #339933;
-   border-style: solid;
-   border-width: medium;
-   height: 40px;
-   margin-bottom: 20px;
-}*/
-
 head {
     border-width: thin;
 }
 
 h1 {
     font-family: "Times New Roman", Times, serif;
-    /*width: 200px;
-    height: 200px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -100px;*/
 }
 
 h2 {
@@ -51,9 +36,6 @@ nav ul li {
     position: absolute;
     background-color: #669999;
     float: left;
-    /*float: left;
-    list-style: none;
-    position: relative;*/
 }
 
 nav ul li a {
@@ -69,33 +51,3 @@ nav ul li a {
 nav ul li a:hover {
     background-color: green;
 }
-
-/*
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-  border-right: 1px solid #bbb;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-}
-
-li:last-child {
-  border-right: none;
-}*/
