@@ -1,3 +1,0 @@
-- fix Gantt diagram so that weeks can be seen 
-- Add doctor note to diagram 
-- 
