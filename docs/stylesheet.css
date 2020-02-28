@@ -1,1 +1,7 @@
+.top-buffer { 
+    margin-top:20px; 
+}
 
+.col-md-6:first-child {
+  background-color: blue;
+}
