@@ -9,7 +9,8 @@
 
 # For now lets run a sample script in the test folder 
 
-./src/test/testscript.sh 
+dirPath=$(pwd)
+$dirPath/code/src/test/testscript.sh 
 
 
 # Check to see if the last result worked properly
