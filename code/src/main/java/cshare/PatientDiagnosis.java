@@ -34,14 +34,6 @@ public class PatientDiagnosis {
 	public void setName(String name) {
 		Name = name;
 	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 	
 
 }
