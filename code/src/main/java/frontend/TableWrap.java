@@ -49,7 +49,7 @@ public class TableWrap extends JPanel {
 		
 		
 		String workingDir = System.getProperty("user.dir");
-		try (BufferedReader reader = new BufferedReader(new FileReader(workingDir+"/src/cshareStuff/data.csv"))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(workingDir+"/src/main/java/frontend/data.csv"))) {
 			String line = reader.readLine();
 			colNames = line.split(",");
 			//System.out.println(colNames[0] + " " + colNames[1] + " " + colNames[2] + " " + colNames[3] + " " + colNames[4] + " " + colNames[5]);
@@ -161,7 +161,7 @@ public class TableWrap extends JPanel {
 	public void rewriteFile() {
 		String workingDir = System.getProperty("user.dir");
 		BufferedWriter writer = null;
-		Path path = Paths.get(workingDir+"/src/cshareStuff/data.csv");
+		Path path = Paths.get(workingDir+"/src/main/java/frontend/data.csv");
 		try {
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
