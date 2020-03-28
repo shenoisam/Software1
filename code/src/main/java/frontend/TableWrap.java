@@ -82,17 +82,22 @@ public class TableWrap extends JPanel {
 		        String lastName = temp[1];
 		        
 		        // Date of visit
+		        // Date month starts with 0, January = 0
 		        String dateOfVisit = temp[2];
+		        Calendar calendarVisit = Calendar.getInstance(); 
 				int year = Integer.parseInt(dateOfVisit.substring(0, 4));
 				dateOfVisit = temp[2];
 				int month = Integer.parseInt(dateOfVisit.substring(4, 6));
 				dateOfVisit = temp[2];
 				int day = Integer.parseInt(dateOfVisit.substring(6));
-				Date dateVisit = new Date(year, month, day);
+				calendarVisit.set(Calendar.MONTH, month); 
+				calendarVisit.set(Calendar.DATE, day); 
+				calendarVisit.set(Calendar.YEAR, year); 
+				Date dateVisit = calendarVisit.getTime();
 				
 				String sentTheBill = temp[3];
 				boolean billSent = false;
-				if (sentTheBill.compareTo("false") == 1) {
+				if (sentTheBill.compareTo("false") != 0) {
 					billSent = true;
 				}
 				
@@ -103,7 +108,7 @@ public class TableWrap extends JPanel {
 				int BillDay = 0;
 				Calendar c1 = Calendar.getInstance(); 
 				Date billSendDay = null;
-				if (BillSendDate.compareTo("n/a") == 1) {
+				if (BillSendDate.compareTo("n/a") != 0) {
 					BillYear = Integer.parseInt(BillSendDate.substring(0, 4));
 					BillSendDate = temp[4];
 					BillMonth = Integer.parseInt(BillSendDate.substring(4,6));
@@ -117,6 +122,10 @@ public class TableWrap extends JPanel {
 				
 				
 				boolean billPaid = false;
+				String billWasPaidStr = temp[5];
+				if (billWasPaidStr.compareTo("false") != 0) {
+					billPaid = true;
+				}
 				
 				ScheduleData schedule = new ScheduleData(firstName, lastName, dateVisit, 
 										billSent, billSendDay, billPaid);
@@ -147,8 +156,8 @@ public class TableWrap extends JPanel {
 					data[i][4] = "n/a";
 				}
 				else {
-					String dateBillSent = new SimpleDateFormat("yyyy-MM-dd").format(billSendDate);
-					data[i][4] = dateBillSent;
+					//String dateBillSent = new SimpleDateFormat("yyyy-MM-dd").format(billSendDate);
+					data[i][4] = billSendDate;
 				}
 				if(holder.isBillPaid()) {
 					data[i][5] = "yes";
