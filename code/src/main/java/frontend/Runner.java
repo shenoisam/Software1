@@ -64,8 +64,9 @@ public class Runner {
 		JTextArea aboutPatient = new JTextArea();
 		aboutPatient.setText("About the patient goes here, get from database?");
 		
-		middleOfScreen.add(table);
-		middleOfScreen.add(aboutPatient);
+		middleOfScreen.add(table, BorderLayout.CENTER);
+		
+		middleOfScreen.add(aboutPatient, BorderLayout.CENTER);
 		
 		frame.getContentPane().add(middleOfScreen);
 		
