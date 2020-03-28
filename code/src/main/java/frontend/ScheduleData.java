@@ -13,9 +13,9 @@ public class ScheduleData {
 	ScheduleData() {
 		FirstName = "";
 		LastName = "";
-		DateOfVisit = new Date(2020, 03, 07);
+		DateOfVisit = null;
 		BillSent = false;
-		DateBillSent = new Date(2020, 03, 07);
+		DateBillSent = null;
 		BillPaid = false;
 	}
 	

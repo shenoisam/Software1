@@ -102,18 +102,19 @@ public class TableWrap extends JPanel {
 				int BillMonth = 0;
 				int BillDay = 0;
 				Calendar c1 = Calendar.getInstance(); 
-				
+				Date billSendDay = null;
 				if (BillSendDate.compareTo("n/a") == 1) {
 					BillYear = Integer.parseInt(BillSendDate.substring(0, 4));
 					BillSendDate = temp[4];
 					BillMonth = Integer.parseInt(BillSendDate.substring(4,6));
 					BillSendDate = temp[4];
 					BillDay = Integer.parseInt(BillSendDate.substring(6));
+					c1.set(Calendar.MONTH, BillMonth); 
+			        c1.set(Calendar.DATE, BillDay); 
+			        c1.set(Calendar.YEAR, BillYear); 
+			        billSendDay = c1.getTime();
 				}
-				c1.set(Calendar.MONTH, BillMonth); 
-		        c1.set(Calendar.DATE, BillDay); 
-		        c1.set(Calendar.YEAR, BillYear); 
-				Date billSendDay = c1.getTime();
+				
 				
 				boolean billPaid = false;
 				
@@ -127,8 +128,7 @@ public class TableWrap extends JPanel {
 			cal.set(Calendar.MONTH, 0); 
 	        cal.set(Calendar.DATE, 0); 
 	        cal.set(Calendar.YEAR, 0); 
-	        Date compareDate = cal.getTime();
-			System.out.println(compareDate);
+			//System.out.println(compareDate);
 			data = new Object[row][colNames.length];
 			for (int i = 0; i < row; i++) {
 				ScheduleData holder = dataVec.get(i);
@@ -142,12 +142,12 @@ public class TableWrap extends JPanel {
 					data[i][3] = "no";
 				}
 				Date billSendDate = holder.getDateBillSent();
-				String dateBillSent = new SimpleDateFormat("yyyy-MM-dd").format(billSendDate);
-				String compareDateBill = new SimpleDateFormat("yyyy-MM-dd").format(compareDate);
-				if (dateBillSent.compareTo(compareDateBill) == 0) {
+				//String compareDateBill = new SimpleDateFormat("yyyy-MM-dd").format(compareDate);
+				if (billSendDate == null) {
 					data[i][4] = "n/a";
 				}
 				else {
+					String dateBillSent = new SimpleDateFormat("yyyy-MM-dd").format(billSendDate);
 					data[i][4] = dateBillSent;
 				}
 				if(holder.isBillPaid()) {
