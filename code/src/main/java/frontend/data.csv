@@ -1,3 +1,4 @@
 First, Last, Date, BillSent, BillSendDate, BillPaid
-John, Doe, 20200321, false, false, false
+John, Doe, 20200321, false, n/a, false
 Erica, Jones, 20200418, true, 20201023, false
+Jane, Smith, 20200529, true, 20200207, true
