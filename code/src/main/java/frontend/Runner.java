@@ -48,7 +48,8 @@ public class Runner {
 	private static void createAndShowGUI() {
 		JFrame frame = new JFrame("EHR Staff Homescreen");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 500);
+		frame.setPreferredSize(new Dimension(1000,650));
+		frame.setBounds(240,100,1000,650);
 		
 		// Can't figure this out yet...
 		/*JTextArea StaffName = new JTextArea();
@@ -64,9 +65,9 @@ public class Runner {
 		JTextArea aboutPatient = new JTextArea();
 		aboutPatient.setText("About the patient goes here, get from database?");
 		
-		middleOfScreen.add(table, BorderLayout.CENTER);
+		middleOfScreen.add(table);
 		
-		middleOfScreen.add(aboutPatient, BorderLayout.CENTER);
+		middleOfScreen.add(aboutPatient);
 		
 		frame.getContentPane().add(middleOfScreen);
 		
