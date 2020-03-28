@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
@@ -102,7 +103,7 @@ public class TableWrap extends JPanel {
 				int BillDay = 0;
 				Calendar c1 = Calendar.getInstance(); 
 				
-				if (BillSendDate.compareTo("false") == 1) {
+				if (BillSendDate.compareTo("n/a") == 1) {
 					BillYear = Integer.parseInt(BillSendDate.substring(0, 4));
 					BillSendDate = temp[4];
 					BillMonth = Integer.parseInt(BillSendDate.substring(4,6));
@@ -121,7 +122,12 @@ public class TableWrap extends JPanel {
 				dataVec.add(schedule);
 				row++;
 			}
-			Date compareDate = new Date(0, 0, 0);
+			
+			Calendar cal = Calendar.getInstance(); 
+			cal.set(Calendar.MONTH, 0); 
+	        cal.set(Calendar.DATE, 0); 
+	        cal.set(Calendar.YEAR, 0); 
+	        Date compareDate = cal.getTime();
 			System.out.println(compareDate);
 			data = new Object[row][colNames.length];
 			for (int i = 0; i < row; i++) {
@@ -136,11 +142,13 @@ public class TableWrap extends JPanel {
 					data[i][3] = "no";
 				}
 				Date billSendDate = holder.getDateBillSent();
-				if (billSendDate.compareTo(compareDate) == 0) {
+				String dateBillSent = new SimpleDateFormat("yyyy-MM-dd").format(billSendDate);
+				String compareDateBill = new SimpleDateFormat("yyyy-MM-dd").format(compareDate);
+				if (dateBillSent.compareTo(compareDateBill) == 0) {
 					data[i][4] = "n/a";
 				}
 				else {
-					data[i][4] = holder.getDateBillSent();
+					data[i][4] = dateBillSent;
 				}
 				if(holder.isBillPaid()) {
 					data[i][5] = "yes";
