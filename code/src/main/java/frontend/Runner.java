@@ -45,18 +45,14 @@ public class Runner {
         pane.add(panel, BorderLayout.WEST);
  
     }
-	private static void createAndShowGUI() {
-		JFrame frame = new JFrame("EHR Staff Homescreen");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(1000,650));
-		frame.setBounds(240,100,1000,650);
-		
-		// Can't figure this out yet...
+    private static void staffHomeScreen(Container pane) {
+    	
+    	// Can't figure this out yet...
 		/*JTextArea StaffName = new JTextArea();
 		StaffName.setText("Staff Name Here");
 		frame.getContentPane().add(StaffName, BorderLayout.CENTER);*/
-		
-		JPanel middleOfScreen = new JPanel();
+
+    	JPanel middleOfScreen = new JPanel();
 		middleOfScreen.setLayout(new BoxLayout(middleOfScreen, BoxLayout.Y_AXIS)); 
 		
 		TableWrap table = new TableWrap();
@@ -69,9 +65,21 @@ public class Runner {
 		
 		middleOfScreen.add(aboutPatient);
 		
-		frame.getContentPane().add(middleOfScreen);
+		pane.add(middleOfScreen);
 		
-		buttonAdder(frame.getContentPane());
+		buttonAdder(pane);
+    }
+	private static void createAndShowGUI() {
+		JFrame frame = new JFrame("Login");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(1000,650));
+		frame.setBounds(240,100,1000,650);
+		
+		staffHomeScreen(frame.getContentPane());
+		frame.setTitle("EHR Staff Homescreen");
+		
+		
+		
 		
 		frame.pack();
 		frame.setVisible(true);
