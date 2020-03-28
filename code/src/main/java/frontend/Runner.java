@@ -72,6 +72,7 @@ public class Runner {
 		
 		buttonAdder(frame.getContentPane());
 		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
