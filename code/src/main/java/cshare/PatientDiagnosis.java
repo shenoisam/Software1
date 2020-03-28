@@ -35,6 +35,7 @@ public class PatientDiagnosis {
 		Name = name;
 	}
 
+
 	public Date getDate() {
 		return DiagnosisDate;
 	}
