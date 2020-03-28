@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 import static java.nio.file.StandardCopyOption.*;
@@ -70,24 +71,23 @@ public class TableWrap extends JPanel {
 				
 				//System.out.println("LINE " + line);
 				
-				System.out.println(temp.length);
+				//System.out.println(temp.length);
 		        for(int i = 0; i < 6; i++) {
 		        	//System.out.println(temp[i]);
 		        	temp[i] = temp[i].replaceAll("\\s", "");
 		        	//System.out.println(temp[i]);
 		        }
+		        // Last name
 		        String lastName = temp[1];
-		        String year = temp[2];
-		        //System.out.println(year.length());
-		        year = year.substring(0, 4);
-				int yearInt = Integer.parseInt(year);
-				String month = temp[2];
-				month = month.substring(4, 6);
-				int monthInt = Integer.parseInt(month);
-				String day = temp[2];
-				day = day.substring(6);
-				int dayInt = Integer.parseInt(day);
-				Date dateVisit = new Date(yearInt, monthInt, dayInt);
+		        
+		        // Date of visit
+		        String dateOfVisit = temp[2];
+				int year = Integer.parseInt(dateOfVisit.substring(0, 4));
+				dateOfVisit = temp[2];
+				int month = Integer.parseInt(dateOfVisit.substring(4, 6));
+				dateOfVisit = temp[2];
+				int day = Integer.parseInt(dateOfVisit.substring(6));
+				Date dateVisit = new Date(year, month, day);
 				
 				String sentTheBill = temp[3];
 				boolean billSent = false;
@@ -95,32 +95,34 @@ public class TableWrap extends JPanel {
 					billSent = true;
 				}
 				
+				// Date stuff is still weird...
 				String BillSendDate = temp[4];
 				int BillYear = 0;
 				int BillMonth = 0;
 				int BillDay = 0;
-				if (BillSendDate.compareTo("false") == 1) {
+				Calendar c1 = Calendar.getInstance(); 
 				
+				if (BillSendDate.compareTo("false") == 1) {
 					BillYear = Integer.parseInt(BillSendDate.substring(0, 4));
 					BillSendDate = temp[4];
 					BillMonth = Integer.parseInt(BillSendDate.substring(4,6));
 					BillSendDate = temp[4];
 					BillDay = Integer.parseInt(BillSendDate.substring(6));
 				}
-				
-				Date billSendDay = new Date(BillYear, BillMonth, BillDay);
+				c1.set(Calendar.MONTH, BillMonth); 
+		        c1.set(Calendar.DATE, BillDay); 
+		        c1.set(Calendar.YEAR, BillYear); 
+				Date billSendDay = c1.getTime();
 				
 				boolean billPaid = false;
 				
-				//System.out.println("Uhhh");
-				//System.out.println("Uhhh");
 				ScheduleData schedule = new ScheduleData(firstName, lastName, dateVisit, 
 										billSent, billSendDay, billPaid);
 				dataVec.add(schedule);
-				//System.out.println();
 				row++;
-				//System.out.println("At least we're here?");
 			}
+			Date compareDate = new Date(0, 0, 0);
+			System.out.println(compareDate);
 			data = new Object[row][colNames.length];
 			for (int i = 0; i < row; i++) {
 				ScheduleData holder = dataVec.get(i);
@@ -133,14 +135,19 @@ public class TableWrap extends JPanel {
 				else {
 					data[i][3] = "no";
 				}
-				data[i][4] = holder.getDateBillSent();
+				Date billSendDate = holder.getDateBillSent();
+				if (billSendDate.compareTo(compareDate) == 0) {
+					data[i][4] = "n/a";
+				}
+				else {
+					data[i][4] = holder.getDateBillSent();
+				}
 				if(holder.isBillPaid()) {
 					data[i][5] = "yes";
 				}
 				else {
 					data[i][5] = "no";
 				}
-				//data[i][2] = holder.getTitle();
 			}
 			rowCount = row;
 			colCount = 6;
@@ -180,9 +187,7 @@ public class TableWrap extends JPanel {
 					//String fileName = f.getCanonicalPath();
 					//System.out.println("PATH: " + fileName);
 					//Path p = Paths.get(fileName);
-					//Path pather = 
 					Files.createFile(p);
-					//System.out.println("llllll");
 					
 					writer = new BufferedWriter(new FileWriter(f));
 					//System.out.println(table.getRowCount() + " " + table.getColumnCount());
