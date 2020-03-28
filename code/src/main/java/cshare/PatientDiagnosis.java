@@ -36,11 +36,11 @@ public class PatientDiagnosis {
 	}
 
 	public Date getDate() {
-		return date;
+		return DiagnosisDate;
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		this.DiagnosisDate = date;
 	}
 	
 
