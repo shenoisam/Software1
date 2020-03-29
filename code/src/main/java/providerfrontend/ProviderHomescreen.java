@@ -51,7 +51,7 @@ public class ProviderHomescreen {
       pane.add(sidePanel, BorderLayout.WEST);
    }
 
-   private static void topBarStaff(Container pane) {
+   private static void topBarProviderHomescreen(Container pane) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();
       topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
@@ -165,7 +165,7 @@ public class ProviderHomescreen {
 
       pane.add(appointmentList);
    }
-
+  
    static void createAndShowProviderHomescreen() {
       // creating the frame for the screen
       JFrame frame = new JFrame("Provider Homescreen");
@@ -173,7 +173,7 @@ public class ProviderHomescreen {
       frame.setPreferredSize(new Dimension(750, 500));
 
       // creating the panes within the screen
-      topBarStaff(frame.getContentPane());
+      topBarProviderHomescreen(frame.getContentPane());
       sideBarWithCalander(frame.getContentPane());
       listOfAppointments(frame.getContentPane());
 
