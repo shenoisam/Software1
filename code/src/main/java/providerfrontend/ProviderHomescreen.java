@@ -166,7 +166,7 @@ public class ProviderHomescreen {
       pane.add(appointmentList);
    }
   
-   static void createAndShowProviderHomescreen() {
+   public void createAndShowProviderHomescreen() {
       // creating the frame for the screen
       JFrame frame = new JFrame("Provider Homescreen");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

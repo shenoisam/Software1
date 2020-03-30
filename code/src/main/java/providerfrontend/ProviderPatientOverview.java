@@ -282,7 +282,7 @@ public class ProviderPatientOverview {
       pane.add(patientInformation);
    }
    
-   static void createAndShowProviderPatientOverview() {
+   public void createAndShowProviderPatientOverview() {
       // creating the frame for the screen
       JFrame frame = new JFrame("Provider Patient Overview");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
