@@ -10,8 +10,11 @@ public class ProviderRunner {
            /*ProviderHomescreen p = new ProviderHomescreen();
            p.createAndShowProviderHomescreen();*/
            
-           ProviderPatientVisit p = new ProviderPatientVisit();
-           p.createAndShowProviderPatientVisit();
+           /*ProviderPatientVisit p = new ProviderPatientVisit();
+           p.createAndShowProviderPatientVisit();*/
+           
+           ProviderPrescribeView p = new ProviderPrescribeView();
+           p.createAndShowProviderPrescribeView();
         }
       });
 
