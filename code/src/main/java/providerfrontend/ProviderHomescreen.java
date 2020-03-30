@@ -168,7 +168,7 @@ public class ProviderHomescreen {
   
    public void createAndShowProviderHomescreen() {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Provider Homescreen");
+      JFrame frame = new JFrame("Home");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
 

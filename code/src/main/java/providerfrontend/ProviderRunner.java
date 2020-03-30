@@ -5,7 +5,7 @@ public class ProviderRunner {
       javax.swing.SwingUtilities.invokeLater(new Runnable() {
         public void run() {
            /*ProviderPatientOverview p = new ProviderPatientOverview();
-           ProviderPatientOverview.createAndShowProviderPatientOverview();*/
+           p.createAndShowProviderPatientOverview();*/
            
            /*ProviderHomescreen p = new ProviderHomescreen();
            p.createAndShowProviderHomescreen();*/
@@ -15,6 +15,9 @@ public class ProviderRunner {
            
            ProviderPrescribeView p = new ProviderPrescribeView();
            p.createAndShowProviderPrescribeView();
+           
+           /*ProviderRequestTestView p = new ProviderRequestTestView();
+           p.createAndShowProviderRequestTestView();*/
         }
       });
 
