@@ -18,9 +18,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ProviderHomescreen {
+public class ProviderHomescreen extends ProviderFrontend{
 
-   private static void sideBarWithCalander(Container pane) {
+   public ProviderHomescreen(ProviderRunner p) {
+		super(p);
+		// TODO Auto-generated constructor stub
+	}
+
+private static void sideBarWithCalander(Container pane) {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
       sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
@@ -61,11 +66,7 @@ public class ProviderHomescreen {
       
       // creating the buttonPanel with the Home and Logout buttons
       JPanel buttonPanel = new JPanel();
-      JButton button = new JButton("Home");
-      buttonPanel.setLayout(new BorderLayout());
-      buttonPanel.add(button, BorderLayout.WEST);
-      button = new JButton("Logout");
-      buttonPanel.add(button, BorderLayout.EAST);
+      topBarMenuItems(buttonPanel);
       topPanel.add(buttonPanel);
       
       // creating the panel with the staff's name
@@ -171,11 +172,12 @@ public class ProviderHomescreen {
       pane.add(appointmentList);
    }
   
-   public void createAndShowProviderHomescreen() {
+   public void createAndShowGUI(JFrame frame) {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Home");
+      /*JFrame frame = new JFrame("Home");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
+      */
 
       // creating the panes within the screen
       topBarProviderHomescreen(frame.getContentPane());
@@ -183,7 +185,7 @@ public class ProviderHomescreen {
       listOfAppointments(frame.getContentPane());
 
       // allowing the contents of the screen to be seen
-      frame.pack();
-      frame.setVisible(true);
+      //frame.pack();
+      //frame.setVisible(true);
    }
 }
