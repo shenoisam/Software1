@@ -7,9 +7,18 @@ public class TestOrder {
 	private String TestName; 
 	private Date DateOrdered; 
 	private String PatientID; 
+	private Test test;
 
 	public TestOrder() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Test getTest() {
+		return test;
+	}
+
+	public void setTest(Test test) {
+		this.test = test;
 	}
 
 	public String getDoctorID() {
