@@ -27,16 +27,21 @@ public class ProviderHomescreen {
       
       // creating the button panel to organize the location of the buttons
       JPanel buttonPanel = new JPanel();
-      buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+      buttonPanel.setLayout(new GridLayout(3,1));
+      buttonPanel.setMaximumSize(new Dimension(600,400));
       JButton button = new JButton("Today's Schedule");
       buttonPanel.add(button);
       button = new JButton("View All My Patients");
       buttonPanel.add(button);
+      button = new JButton("This one is used just blank");
+      button.setVisible(false);
+      buttonPanel.add(button);
       sidePanel.add(buttonPanel);
 
-      // creating and adding an invisible pane to push down the calendar
-      JPanel invisible = new JPanel();
-      sidePanel.add(invisible);
+
+      // creating and adding an invisible pane to push down the calander
+      sidePanel.add(new JPanel());
+
       
       // creating the calendar
       JPanel cPanel = new JPanel();
@@ -51,7 +56,7 @@ public class ProviderHomescreen {
       pane.add(sidePanel, BorderLayout.WEST);
    }
 
-   private static void topBarStaff(Container pane) {
+   private static void topBarProviderHomescreen(Container pane) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();
       topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
@@ -71,9 +76,11 @@ public class ProviderHomescreen {
       namePanel.setPreferredSize(new Dimension(500, 50));
       namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
       JLabel welcome = new JLabel("Welcome, ");
+      welcome.setFont(welcome.getFont().deriveFont(25f));
       namePanel.add(welcome);
       JLabel staffName = new JLabel();
       staffName.setText("Provider's Name");
+      staffName.setFont(staffName.getFont().deriveFont(25f));
       namePanel.add(staffName);
       
       // creating and adding an invisible panel to push out the appointment times
@@ -165,15 +172,15 @@ public class ProviderHomescreen {
 
       pane.add(appointmentList);
    }
-
-   static void createAndShowProviderHomescreen() {
+  
+   public void createAndShowProviderHomescreen() {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Provider Homescreen");
+      JFrame frame = new JFrame("Home");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
 
       // creating the panes within the screen
-      topBarStaff(frame.getContentPane());
+      topBarProviderHomescreen(frame.getContentPane());
       sideBarWithCalander(frame.getContentPane());
       listOfAppointments(frame.getContentPane());
 

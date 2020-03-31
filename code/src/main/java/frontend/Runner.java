@@ -56,19 +56,25 @@ public class Runner {
         pane.add(panel, BorderLayout.WEST);
  
     }
+
     static JFrame frame;
-	private static void createAndShowGUI() {
+	private static void createAndShowGUI1() {
 		/*JFrame*/ frame = new JFrame("EHR Staff Homescreen");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setSize(500, 500);
 		frame.setPreferredSize(new Dimension(800, 500));
-		
+	}
 		// Can't figure this out yet...
+
+    private static void staffHomeScreen(Container pane) {
+    	
+    	// Can't figure this out yet...
+
 		/*JTextArea StaffName = new JTextArea();
 		StaffName.setText("Staff Name Here");
 		frame.getContentPane().add(StaffName, BorderLayout.CENTER);*/
-		
-		JPanel middleOfScreen = new JPanel();
+
+    	JPanel middleOfScreen = new JPanel();
 		middleOfScreen.setLayout(new BoxLayout(middleOfScreen, BoxLayout.Y_AXIS)); 
 		
 		TableWrap table = new TableWrap();
@@ -77,13 +83,25 @@ public class Runner {
 		JTextArea aboutPatient = new JTextArea();
 		aboutPatient.setText("About the patient goes here, get from database?");
 		
-		middleOfScreen.add(table, BorderLayout.CENTER);
+		middleOfScreen.add(table);
 		
-		middleOfScreen.add(aboutPatient, BorderLayout.CENTER);
+		middleOfScreen.add(aboutPatient);
 		
-		frame.getContentPane().add(middleOfScreen);
+		pane.add(middleOfScreen);
 		
-		buttonAdder(frame.getContentPane());
+		buttonAdder(pane);
+    }
+	private static void createAndShowGUI() {
+		JFrame frame = new JFrame("Login");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(1000,650));
+		frame.setBounds(240,100,1000,650);
+		
+		staffHomeScreen(frame.getContentPane());
+		frame.setTitle("EHR Staff Homescreen");
+		
+		
+		
 		
 		
 		frame.pack();
@@ -93,7 +111,7 @@ public class Runner {
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				createAndShowGUI();
+				createAndShowGUI1();
 			}
 		});
 
