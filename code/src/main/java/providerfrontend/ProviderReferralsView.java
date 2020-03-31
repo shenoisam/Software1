@@ -1,7 +1,3 @@
-/*
- * This class is used to implement the Provider Patient Visit veiw
- * Call createAndShowProviderPatientVisit() to generate the GUI
- */
 package providerfrontend;
 
 import java.awt.BorderLayout;
@@ -13,22 +9,22 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SpringLayout;
 
-public class ProviderPatientVisit {
+public class ProviderReferralsView {
    private static void providerSideBar(Container pane) {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
       sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
       sidePanel.setBorder(BorderFactory.createTitledBorder(""));
-
+      
       // creating the button panel to organize the location of the buttons
       JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -45,11 +41,11 @@ public class ProviderPatientVisit {
       button = new JButton("Referrals");
       buttonPanel.add(button);
       sidePanel.add(buttonPanel);
-
+      
       // adding the side panel to the layout
       pane.add(sidePanel, BorderLayout.WEST);
    }
-
+   
    private static void topBarPatientInformation(Container pane) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();
@@ -129,112 +125,128 @@ public class ProviderPatientVisit {
       // adding the top Panel to the contianer that was passed in to the function
       pane.add(topPanel, BorderLayout.NORTH);
    }
-
-   public void patientVisitPanel(Container pane) {
-      // creating the panel to store the whole visit
-      JPanel visitPanel = new JPanel();
-      visitPanel.setLayout(new GridLayout(2, 2));
-
-      // creating the panel to store the cheif complaint
-      JPanel chiefComplaint = new JPanel();
-      chiefComplaint.setBorder(BorderFactory.createTitledBorder("Chief Complaint"));
-
-      // creating the complaints text area
-      JTextArea complaints = new JTextArea(6, 21);
-      complaints.setText("Patient complains of insomina and eye pain");
-      complaints.setEditable(true);
-      complaints.setLineWrap(true);
-
-      // creating a scroll pane for the complaints
-      JScrollPane scroll = new JScrollPane(complaints);
+   
+   public void patientReferralPanel(Container pane) {
+      // creating the main referral panel
+      JPanel referralPanel = new JPanel();
+      referralPanel.setLayout(new GridLayout(1,2));
+      
+      // creating the left hand side of the page 
+      JPanel leftPanel = new JPanel();
+      leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+      
+      // creating the specality section
+      JPanel specialtyPanel = new JPanel();
+      specialtyPanel.setBorder(BorderFactory.createTitledBorder("Specialty"));
+      JComboBox specalites = new JComboBox(new Object[] { "", "Radiology", "Obstetrics & Gynecology", "Cardiovascular", "Anesthesiology", "Orthopaedic Surgery", "Ophthalmology", "Dermatology", "Pediatrics" });
+      specialtyPanel.add(specalites);
+      leftPanel.add(specialtyPanel);
+      
+      // creating the provider section
+      JPanel providerPanel = new JPanel();
+      providerPanel.setBorder(BorderFactory.createTitledBorder("Provider"));
+      JComboBox providers = new JComboBox(new Object[] { "", "Dr. Mickey Mouse", "Dr. Minnie Mouse", "Dr. Goofy", "Dr. Donald Duck", "Dr. Daffy Duck", "Dr. Pluto"});
+      providerPanel.add(providers);
+      
+      // adding the provider panel to the left panel
+      leftPanel.add(providerPanel);
+      
+      // creating the additional notes section
+      JPanel notes = new JPanel();
+      notes.setBorder(BorderFactory.createTitledBorder("Additional Notes"));
+      notes.setLayout(new BoxLayout(notes, BoxLayout.Y_AXIS));
+      
+      // creating the notes entered text area
+      JTextArea notesEntered = new JTextArea(4, 10);
+      notesEntered.setText("");
+      notesEntered.setEditable(true);
+      notesEntered.setLineWrap(true);
+      JScrollPane scroll = new JScrollPane(notesEntered);
       scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+      notes.add(scroll);
+      
+      // adding the notes to the notes and submit section
+      leftPanel.add(notes);
+      
+      // adding the left panel to the main panel veiw
+      referralPanel.add(leftPanel);
+      
+      // creating the right hand side of the page 
+      JPanel rightPanel = new JPanel();
+      rightPanel.setLayout(new GridLayout(2,1));
+      
+      // creating reason for referral panel
+      JPanel reason = new JPanel();
+      reason.setBorder(BorderFactory.createTitledBorder("Reason For Referral"));
+      reason.setLayout(new BoxLayout(reason, BoxLayout.Y_AXIS));
+      
+      // creating check boxes for each diagnosis option
+      JCheckBox daignosis1 = new JCheckBox("Daignosis 1");
+      daignosis1.setSelected(false);
+      reason.add(daignosis1);
 
-      // adding the scroll bar to the complaints panel
-      chiefComplaint.add(scroll);
+      JCheckBox daignosis2 = new JCheckBox("Daignosis 2");
+      daignosis2.setSelected(false);
+      reason.add(daignosis2);
 
-      // adding the chief complaint pane to the main visit pane
-      visitPanel.add(chiefComplaint);
+      JCheckBox daignosis3 = new JCheckBox("Daignosis 3");
+      daignosis3.setSelected(false);
+      reason.add(daignosis3);
 
-      // creating the form for vitals
-      JPanel vitals = new JPanel(new SpringLayout());
-      vitals.setBorder(BorderFactory.createTitledBorder("Vitals"));
+      JCheckBox daignosis4 = new JCheckBox("Daignosis 4");
+      daignosis4.setSelected(false);
+      reason.add(daignosis4);
+      
+      JCheckBox other = new JCheckBox("Other (input reason below)");
+      other.setSelected(false);
+      reason.add(other);
+      JTextArea otherReason = new JTextArea(1, 5);
+      otherReason.setEditable(true);
+      reason.add(otherReason);
+      
+      // adding invisible panels for formating
+      reason.add(new JPanel());
+      reason.add(new JPanel());
+      reason.add(new JPanel());
+      reason.add(new JPanel());
 
-      // create the form and place the labels
-      String[] labels = { "Body Temp: ", "Pulse Rate: ", "Respiration Rate: ", "Blood Pressure: " };
-      int numPairs = labels.length;
-      for (int i = 0; i < numPairs; i++) {
-         JLabel l = new JLabel(labels[i], JLabel.TRAILING);
-         vitals.add(l);
-         JTextField textField = new JTextField(10);
-         l.setLabelFor(textField);
-         vitals.add(textField);
-      }
+      // adding the reason for referral to the right panel
+      rightPanel.add(reason);
+      
+      // creating the refer button
+      JPanel refferButtonPanel = new JPanel();
+      refferButtonPanel.setLayout(new BoxLayout(refferButtonPanel, BoxLayout.LINE_AXIS));
+      refferButtonPanel.add(new JPanel());
+      refferButtonPanel.add(new JButton("Refer"));
+      refferButtonPanel.add(new JPanel());
+      
+      // adding the submit panel to the notes and submit panel
+      rightPanel.add(refferButtonPanel);
 
-      // Lay out the panel
-      SpringUtilities.makeCompactGrid(vitals, numPairs, 2, // rows, cols
-            6, 6, // initX, initY
-            6, 6); // xPad, yPad
-
-      // adding the vitals to the main visit panel
-      visitPanel.add(vitals);
-
-      // creating the panel to store the physical exam notes
-      JPanel physicalExam = new JPanel();
-      physicalExam.setBorder(BorderFactory.createTitledBorder("Physical Exam"));
-
-      // creating the exam notes text area
-      JTextArea examNotes = new JTextArea(6, 21);
-      examNotes.setText("Patient is stable. Eyes appear to be normal. Breathing is normal.");
-      examNotes.setEditable(true);
-      examNotes.setLineWrap(true);
-
-      // creating a scroll pane for the exam notes
-      scroll = new JScrollPane(examNotes);
-      scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-      // adding the scroll bar to the exam notes panel
-      physicalExam.add(scroll);
-
-      // adding the exam notes panel to the main visit pane
-      visitPanel.add(physicalExam);
-
-      // creating the panel to store the next step notes
-      JPanel nextSteps = new JPanel();
-      nextSteps.setBorder(BorderFactory.createTitledBorder("Next Steps"));
-
-      // creating the next steps text area
-      JTextArea notes = new JTextArea(6, 21);
-      notes.setText("");
-      notes.setEditable(true);
-      notes.setLineWrap(true);
-
-      // creating a scroll pane for the next steps
-      scroll = new JScrollPane(notes);
-      scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-      // adding the scroll bar to the next steps panel
-      nextSteps.add(scroll);
-
-      // adding the next steps panel to the main visit pane
-      visitPanel.add(nextSteps);
-
-      // adding the created portion to the componet that was passed in
-      pane.add(visitPanel);
+      // adding the right panel to the main referral page
+      referralPanel.add(rightPanel);
+      
+      // adding the referral panel to the passed in container
+      pane.add(referralPanel);
    }
-
-   public void createAndShowProviderPatientVisit() {
+   
+   public void createAndShowProviderReferralsView() {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Patient Visit");
+      JFrame frame = new JFrame("Referral");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
 
       // creating the panes within the screen
       providerSideBar(frame.getContentPane());
       topBarPatientInformation(frame.getContentPane());
-      patientVisitPanel(frame.getContentPane());
+      patientReferralPanel(frame.getContentPane());
 
       // allowing the contents of the screen to be seen
       frame.pack();
       frame.setVisible(true);
    }
 }
+
+
+
+

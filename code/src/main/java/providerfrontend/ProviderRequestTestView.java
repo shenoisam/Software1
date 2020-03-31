@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.List;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -15,18 +15,18 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 
-public class ProviderPrescribeView {
+public class ProviderRequestTestView {
    private static void providerSideBar(Container pane) {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
       sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
       sidePanel.setBorder(BorderFactory.createTitledBorder(""));
-
+      
       // creating the button panel to organize the location of the buttons
       JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -43,11 +43,11 @@ public class ProviderPrescribeView {
       button = new JButton("Referrals");
       buttonPanel.add(button);
       sidePanel.add(buttonPanel);
-
+      
       // adding the side panel to the layout
       pane.add(sidePanel, BorderLayout.WEST);
    }
-
+   
    private static void topBarPatientInformation(Container pane) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();
@@ -127,111 +127,126 @@ public class ProviderPrescribeView {
       // adding the top Panel to the contianer that was passed in to the function
       pane.add(topPanel, BorderLayout.NORTH);
    }
-
-   public void patientPrescribePanel(Container pane) {
-      // setting up the prescribe panel
-      JPanel prescribePanel = new JPanel();
-      prescribePanel.setLayout(new GridLayout(3, 2));
-
-      // creating the medication name search bar panel
-      JPanel medicationNameSearch = new JPanel();
-      medicationNameSearch.setLayout(new GridLayout(3,3));
-      medicationNameSearch.setBorder(BorderFactory.createTitledBorder("Medication Name"));
+   
+   public void patientRequestPanel(Container pane) {
+      // creating the panel for the request section
+      JPanel requestATest = new JPanel();
+      requestATest.setLayout(new GridLayout(4,1));
       
-      // creating the list of medications
-      ArrayList<String> medications = new ArrayList<String>();
-      medications.add("Vicodin");
-      medications.add("Simvastatin");
-      medications.add("Lisinopril");
-      medications.add("Levothyroxine");
-      medications.add("Azithromycin");
-      medications.add("Metformin");
-      medications.add("Lipitor");
-      medications.add("Amlodipine");
+      // creating the test name and date panel
+      JPanel testAndDate = new JPanel();
+      testAndDate.setLayout(new BoxLayout(testAndDate, BoxLayout.X_AXIS));
+      testAndDate.setBorder(BorderFactory.createTitledBorder(""));
 
+      // searchable test area
+      JPanel testArea = new JPanel();
+      testArea.setLayout(new GridLayout(3,1));
+
+      // creating and adding the label for the search box
+      JLabel testLabel = new JLabel();
+      testLabel.setText("Test Name");
+      testArea.add(testLabel);
+      
+      // creating the list of tests
+      ArrayList<String> testNames = new ArrayList<String>();
+      testNames.add("Complete Blood Count(CBC)");
+      testNames.add("Prothrombin Time");
+      testNames.add("Basic Metabolic Panel");
+      testNames.add("Comprehensive Metabolic Panel");
+      testNames.add("Lipid Panel");
+      testNames.add("Liver Panel");
+      testNames.add("Thyroid Stimulating Hormone");
+      testNames.add("Hemoglobin A1C");
+      
       // creating the searchable drop down menu
-      StringSearchable searchable = new StringSearchable(medications);
+      StringSearchable searchable = new StringSearchable(testNames);
       AutocompleteJComboBox combo = new AutocompleteJComboBox(searchable);
 
-      JPanel searchBarOnly = new JPanel();
-      searchBarOnly.setLayout(new BorderLayout());
-      searchBarOnly.add(combo, BorderLayout.PAGE_START);
       // adding the dropdown menu to the medication panel
+      testArea.add(combo);
       
-      medicationNameSearch.add(searchBarOnly);
+      // adding an invisible panel for formation
+      testArea.add(new JPanel());
       
-      medicationNameSearch.add(new JPanel());
-      medicationNameSearch.add(new JPanel());
-      medicationNameSearch.add(new JPanel());
-      medicationNameSearch.add(new JPanel());
+      // adding the testing area to the test and date panel
+      testAndDate.add(testArea);
+      
+      // JPanel for date picket
+      JPanel datePicker = new JPanel();
+      datePicker.setLayout(new GridLayout(3,1));
+      JLabel dateLabel = new JLabel();
+      dateLabel.setText("Date of Request");
+      datePicker.add(dateLabel);
+      
+      // creating boxes for the date to be entered
+      JPanel dateEnter = new JPanel();
+      dateEnter.setLayout(new FlowLayout(FlowLayout.LEFT));
+      JTextArea day = new JTextArea();
+      day.setBorder(BorderFactory.createLineBorder(null));
+      day.setText("DD");
+      day.setEditable(true);
+      JTextArea month = new JTextArea();
+      month.setText("MM");
+      month.setEditable(true);
+      month.setBorder(BorderFactory.createLineBorder(null));
+      JTextArea year = new JTextArea();
+      year.setText("YYYY");
+      year.setEditable(true);
+      year.setBorder(BorderFactory.createLineBorder(null));
+      dateEnter.add(month);
+      dateEnter.add(day);
+      dateEnter.add(year);
+      datePicker.add(dateEnter);
+      datePicker.add(new JPanel());
+      testAndDate.add(new JPanel());
+      
+      testAndDate.add(datePicker);
+      
+      // adding the test and date area to the main panel
+      requestATest.add(testAndDate);
+      
+      // creating the reason for test panel
+      JPanel reasonForTest = new JPanel();
+      reasonForTest.setBorder(BorderFactory.createTitledBorder("Reason for test"));
+      JTextArea testReason = new JTextArea(4,45);
+      testReason.setText("");
+      testReason.setEditable(true);
+      testReason.setLineWrap(true);
+      JScrollPane scroll = new JScrollPane(testReason);
+      scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+      reasonForTest.add(scroll, BorderLayout.WEST);
 
-      // adding the medication panel to the prescribe panel
-      prescribePanel.add(medicationNameSearch);
+      requestATest.add(reasonForTest);
+      
+      JPanel labAndFastingPanel = new JPanel();
+      labAndFastingPanel.setLayout(new BoxLayout(labAndFastingPanel, BoxLayout.X_AXIS));
+      labAndFastingPanel.setBorder(BorderFactory.createTitledBorder(""));
+      
+      // creating the lab drop down menu
+      JPanel labPanel = new JPanel ();
+      labPanel.setLayout(new GridLayout(3,1));
+      JLabel labLabel = new JLabel ();
+      labLabel.setText("Lab Name");
+      labPanel.add(labLabel);
+      JComboBox labOptions = new JComboBox (new Object[] { "", "LabCorp", "Quest", "Baylor Health Center", "Clinical Pathology Labotories" });
+      labPanel.add(labOptions);
+      
+      labAndFastingPanel.add(labPanel);
 
-      // creating the panel for the dosage
-      JPanel dosagePanel = new JPanel();
-      dosagePanel.setLayout(new BoxLayout(dosagePanel, BoxLayout.X_AXIS));
-      dosagePanel.setBorder(BorderFactory.createTitledBorder("Dosage"));
-
-      // creating the dosage dropdown bar and adding it to the dosage panel
-      JComboBox dosageCount = new JComboBox(new Object[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-      dosagePanel.add(dosageCount);
+      // Creating the fasting switch
+      JPanel fastingPanel = new JPanel();
+      fastingPanel.setLayout(new GridLayout(3,1));
+      fastingPanel.add(new JPanel());
+      JToggleButton toggleButton = new JToggleButton("Click Here if Fasting is Required");
+      fastingPanel.add(toggleButton);
       
-      // creating the transition label and adding it to the dosage panel
-      JLabel timesA = new JLabel();
-      timesA.setText(" times a ");
-      dosagePanel.add(timesA);
+      labAndFastingPanel.add(fastingPanel);
       
-      // creating the radio buttons for frequency
-      JPanel frequencyGroup = new JPanel();
-      frequencyGroup.setLayout(new BoxLayout(frequencyGroup, BoxLayout.Y_AXIS));
-      JRadioButton day = new JRadioButton();
-      day.setText("day");
-      JRadioButton week = new JRadioButton();
-      week.setText("week");
-      JRadioButton biWeekly = new JRadioButton();
-      biWeekly.setText("bi-weekly");
-      JRadioButton month = new JRadioButton();
-      month.setText("month");
-      frequencyGroup.add(day);
-      frequencyGroup.add(week);
-      frequencyGroup.add(biWeekly);
-      frequencyGroup.add(month);
-
-      // adding the frequency to the dosage panel
-      dosagePanel.add(frequencyGroup);
+      requestATest.add(labAndFastingPanel);
       
-      // creating the transition lable and adding it to the dosage panel
-      JLabel forLabel = new JLabel();
-      forLabel.setText(" for ");
-      dosagePanel.add(forLabel);
-      
-      // creating the length drop down bar and adding it to the dosage panel
-      JComboBox lengthCount = new JComboBox(new Object[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-      dosagePanel.add(lengthCount);
-      
-      // creating the radio buttons for the length
-      JPanel lengthGroup = new JPanel();
-      lengthGroup.setLayout(new BoxLayout(lengthGroup, BoxLayout.Y_AXIS));
-      JRadioButton days = new JRadioButton();
-      days.setText("days");
-      JRadioButton weeks = new JRadioButton();
-      weeks.setText("weeks");
-      JRadioButton months = new JRadioButton();
-      months.setText("months");
-      lengthGroup.add(days);
-      lengthGroup.add(weeks);
-      lengthGroup.add(months);
-      
-      // adding the length of the dosage to the dosage panel
-      dosagePanel.add(lengthGroup);
-
-      // adding the dosage to the precribe panel
-      prescribePanel.add(dosagePanel);
-      
-      // creating the panel for the notes to pharmacist and submit button
+      // creating the notes and generate button panel
       JPanel notesAndSubmit = new JPanel();
-      notesAndSubmit.setBorder(BorderFactory.createTitledBorder("Notes to Pharmacist"));
+      notesAndSubmit.setBorder(BorderFactory.createTitledBorder("Notes for Lab"));
       notesAndSubmit.setLayout(new GridLayout(1, 2));
       
       // creating the notes section
@@ -243,7 +258,7 @@ public class ProviderPrescribeView {
       notesEntered.setText("");
       notesEntered.setEditable(true);
       notesEntered.setLineWrap(true);
-      JScrollPane scroll = new JScrollPane(notesEntered);
+      scroll = new JScrollPane(notesEntered);
       scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
       notes.add(scroll);
       
@@ -254,32 +269,33 @@ public class ProviderPrescribeView {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Print Prescription"));
+      submitPanel.add(new JButton("Generate"));
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel
       notesAndSubmit.add(submitPanel);
       
       // adding notes and submit to the main prescribe panel
-      prescribePanel.add(notesAndSubmit);
-
-      // adding the created panel to the conatiner that was passed to the method
-      pane.add(prescribePanel);
+      requestATest.add(notesAndSubmit);
+      
+      // adding the request a test panel to the container passed in
+      pane.add(requestATest);
    }
-
-   public void createAndShowProviderPrescribeView() {
+   
+   public void createAndShowProviderRequestTestView() {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Provider Prescribe");
+      JFrame frame = new JFrame("Request a Test");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
 
       // creating the panes within the screen
       providerSideBar(frame.getContentPane());
       topBarPatientInformation(frame.getContentPane());
-      patientPrescribePanel(frame.getContentPane());
+      patientRequestPanel(frame.getContentPane());
 
       // allowing the contents of the screen to be seen
       frame.pack();
       frame.setVisible(true);
    }
 }
+

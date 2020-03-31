@@ -284,7 +284,7 @@ public class ProviderPatientOverview {
    
    public void createAndShowProviderPatientOverview() {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Provider Patient Overview");
+      JFrame frame = new JFrame("Patient Overview");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
 
