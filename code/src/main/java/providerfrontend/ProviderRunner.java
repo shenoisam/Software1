@@ -13,11 +13,14 @@ public class ProviderRunner {
            /*ProviderPatientVisit p = new ProviderPatientVisit();
            p.createAndShowProviderPatientVisit();*/
            
-           ProviderPrescribeView p = new ProviderPrescribeView();
-           p.createAndShowProviderPrescribeView();
+           /*ProviderPrescribeView p = new ProviderPrescribeView();
+           p.createAndShowProviderPrescribeView();*/
            
            /*ProviderRequestTestView p = new ProviderRequestTestView();
            p.createAndShowProviderRequestTestView();*/
+           
+           ProviderReferralsView p = new ProviderReferralsView();
+           p.createAndShowProviderReferralsView();
         }
       });
 

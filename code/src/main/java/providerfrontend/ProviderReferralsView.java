@@ -9,9 +9,14 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 public class ProviderReferralsView {
    private static void providerSideBar(Container pane) {
@@ -122,12 +127,108 @@ public class ProviderReferralsView {
    }
    
    public void patientReferralPanel(Container pane) {
+      // creating the main referral panel
+      JPanel referralPanel = new JPanel();
+      referralPanel.setLayout(new GridLayout(1,2));
       
+      // creating the left hand side of the page 
+      JPanel leftPanel = new JPanel();
+      leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+      
+      // creating the specality section
+      JPanel specialtyPanel = new JPanel();
+      specialtyPanel.setBorder(BorderFactory.createTitledBorder("Specialty"));
+      JComboBox specalites = new JComboBox(new Object[] { "", "Radiology", "Obstetrics & Gynecology", "Cardiovascular", "Anesthesiology", "Orthopaedic Surgery", "Ophthalmology", "Dermatology", "Pediatrics" });
+      specialtyPanel.add(specalites);
+      leftPanel.add(specialtyPanel);
+      
+      // creating the provider section
+      JPanel providerPanel = new JPanel();
+      providerPanel.setBorder(BorderFactory.createTitledBorder("Provider"));
+      JComboBox providers = new JComboBox(new Object[] { "", "Dr. Mickey Mouse", "Dr. Minnie Mouse", "Dr. Goofy", "Dr. Donald Duck", "Dr. Daffy Duck", "Dr. Pluto"});
+      providerPanel.add(providers);
+      
+      leftPanel.add(providerPanel);
+      
+      // creating the additional notes section
+      JPanel notes = new JPanel();
+      notes.setBorder(BorderFactory.createTitledBorder("Additional Notes"));
+      notes.setLayout(new BoxLayout(notes, BoxLayout.Y_AXIS));
+      
+      // creating the notes entered text area
+      JTextArea notesEntered = new JTextArea(4, 10);
+      notesEntered.setText("");
+      notesEntered.setEditable(true);
+      notesEntered.setLineWrap(true);
+      JScrollPane scroll = new JScrollPane(notesEntered);
+      scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+      notes.add(scroll);
+      
+      // adding the notes to the notes and submit section
+      leftPanel.add(notes);
+      
+      referralPanel.add(leftPanel);
+      
+      // creating the left hand side of the page 
+      JPanel rightPanel = new JPanel();
+      rightPanel.setLayout(new GridLayout(2,1));
+      
+      // creating reason for referral panel
+      JPanel reason = new JPanel();
+      reason.setBorder(BorderFactory.createTitledBorder("Reason For Referral"));
+      reason.setLayout(new BoxLayout(reason, BoxLayout.Y_AXIS));
+      
+      // creating check boxes for each diagnosis option
+      JCheckBox daignosis1 = new JCheckBox("Daignosis 1");
+      daignosis1.setSelected(false);
+      reason.add(daignosis1);
+
+      JCheckBox daignosis2 = new JCheckBox("Daignosis 2");
+      daignosis2.setSelected(false);
+      reason.add(daignosis2);
+
+      JCheckBox daignosis3 = new JCheckBox("Daignosis 3");
+      daignosis3.setSelected(false);
+      reason.add(daignosis3);
+
+      JCheckBox daignosis4 = new JCheckBox("Daignosis 4");
+      daignosis4.setSelected(false);
+      reason.add(daignosis4);
+      
+      JCheckBox other = new JCheckBox("Other (input reason below)");
+      other.setSelected(false);
+      reason.add(other);
+      JTextArea otherReason = new JTextArea(1, 5);
+      otherReason.setEditable(true);
+      reason.add(otherReason);
+      reason.add(new JPanel());
+      reason.add(new JPanel());
+      reason.add(new JPanel());
+      reason.add(new JPanel());
+
+      
+      rightPanel.add(reason);
+      
+      // creating the refer button
+      JPanel refferButtonPanel = new JPanel();
+      refferButtonPanel.setLayout(new BoxLayout(refferButtonPanel, BoxLayout.LINE_AXIS));
+      refferButtonPanel.add(new JPanel());
+      refferButtonPanel.add(new JButton("Refer"));
+      refferButtonPanel.add(new JPanel());
+      
+      // adding the submit panel to the notes and submit panel
+      rightPanel.add(refferButtonPanel);
+
+      referralPanel.add(rightPanel);
+
+      
+      // adding the referral panel to the passed in container
+      pane.add(referralPanel);
    }
    
    public void createAndShowProviderReferralsView() {
       // creating the frame for the screen
-      JFrame frame = new JFrame("Provider Prescribe");
+      JFrame frame = new JFrame("Referral");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setPreferredSize(new Dimension(750, 500));
 
