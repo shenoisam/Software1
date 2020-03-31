@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -34,8 +36,17 @@ private static void sideBarWithCalander(Container pane) {
       JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new GridLayout(3,1));
       buttonPanel.setMaximumSize(new Dimension(600,400));
+     
       JButton button = new JButton("Today's Schedule");
+      button.addActionListener(new ActionListener() { 
+    	  public void actionPerformed(ActionEvent e) { 
+    	    p.displayFrameOpt(ProviderScreen.HOME);
+    	  } 
+    	 } );
       buttonPanel.add(button);
+      
+      
+      
       button = new JButton("View All My Patients");
       buttonPanel.add(button);
       button = new JButton("This one is used just blank");

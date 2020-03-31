@@ -32,16 +32,46 @@ public class ProviderFrontend implements IProviderFrontend{
 	      JPanel buttonPanel = new JPanel();
 	      buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 	      JButton button = new JButton("Patient Overview");
+	      button.addActionListener(new ActionListener() { 
+	    	  public void actionPerformed(ActionEvent e) { 
+	 
+	    	    p.displayFrameOpt(ProviderScreen.POVERVIEW);
+	    	  } 
+	      } );
 	      buttonPanel.add(button);
 	      button = new JButton("Patient Visit");
+	      button.addActionListener(new ActionListener() { 
+	    	  public void actionPerformed(ActionEvent e) { 
+	 
+	    	    p.displayFrameOpt(ProviderScreen.PVISIT);
+	    	  } 
+	      } );
 	      buttonPanel.add(button);
 	      button = new JButton("Prescribe");
+	      button.addActionListener(new ActionListener() { 
+	    	  public void actionPerformed(ActionEvent e) { 
+	 
+	    	    p.displayFrameOpt(ProviderScreen.PPRESCRIBE);
+	    	  } 
+	      } );
 	      buttonPanel.add(button);
 	      button = new JButton("Request a Test");
+	      button.addActionListener(new ActionListener() { 
+	    	  public void actionPerformed(ActionEvent e) { 
+	 
+	    	    p.displayFrameOpt(ProviderScreen.PTESTREQUEST);
+	    	  } 
+	      } );
 	      buttonPanel.add(button);
 	      button = new JButton("View Test Results");
+	     
 	      buttonPanel.add(button);
 	      button = new JButton("Referrals");
+	      button.addActionListener(new ActionListener() { 
+	    	  public void actionPerformed(ActionEvent e) { 
+	    	    p.displayFrameOpt(ProviderScreen.PREFERRAL);
+	    	  } 
+	      } );
 	      buttonPanel.add(button);
 	      sidePanel.add(buttonPanel);
 	      
