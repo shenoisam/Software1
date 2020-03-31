@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -145,7 +146,6 @@ public class Runner {
     	
     	// Can't figure this out yet...
 
->>>>>>> master
 		/*JTextArea StaffName = new JTextArea();
 		StaffName.setText("Staff Name Here");
 		frame.getContentPane().add(StaffName, BorderLayout.CENTER);*/
