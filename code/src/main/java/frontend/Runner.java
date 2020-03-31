@@ -2,6 +2,9 @@ package frontend;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +15,7 @@ public class Runner {
     
     public static void buttonAdder(Container pane) {
     	JPanel panel = new JPanel(); 
-    	 
+    	
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); 
         
         JPanel topPanel = new JPanel();
@@ -31,6 +34,17 @@ public class Runner {
         panel.add(button);
         
         button = new JButton("Scheduling");
+        button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.add(new JButton("Hello"));
+				frame.getContentPane().doLayout();
+				frame.update(frame.getGraphics());
+			}
+        	
+        });
         panel.add(button);
         
         button = new JButton("View Patient Records");
@@ -42,9 +56,20 @@ public class Runner {
         pane.add(panel, BorderLayout.WEST);
  
     }
+
+    static JFrame frame;
+	private static void createAndShowGUI1() {
+		/*JFrame*/ frame = new JFrame("EHR Staff Homescreen");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setSize(500, 500);
+		frame.setPreferredSize(new Dimension(800, 500));
+	}
+		// Can't figure this out yet...
+
     private static void staffHomeScreen(Container pane) {
     	
     	// Can't figure this out yet...
+
 		/*JTextArea StaffName = new JTextArea();
 		StaffName.setText("Staff Name Here");
 		frame.getContentPane().add(StaffName, BorderLayout.CENTER);*/
@@ -78,13 +103,15 @@ public class Runner {
 		
 		
 		
+		
 		frame.pack();
 		frame.setVisible(true);
+		
 	}
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				createAndShowGUI();
+				createAndShowGUI1();
 			}
 		});
 

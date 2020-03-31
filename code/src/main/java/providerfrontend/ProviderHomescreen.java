@@ -38,16 +38,18 @@ public class ProviderHomescreen {
       buttonPanel.add(button);
       sidePanel.add(buttonPanel);
 
+
       // creating and adding an invisible pane to push down the calander
       sidePanel.add(new JPanel());
+
       
-      // creating the calander
+      // creating the calendar
       JPanel cPanel = new JPanel();
       cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
       JPanel calander = new Calendar().makeCalander(); 
       cPanel.add(calander);
       
-      // adding the calander panel to the side panel
+      // adding the calendar panel to the side panel
       sidePanel.add(cPanel);
       
       // adding the side panel to the layout
@@ -85,7 +87,7 @@ public class ProviderHomescreen {
       JPanel invisible = new JPanel();
       namePanel.add(invisible);
       
-      // creating the apointment time and location
+      // creating the appointment time and location
       JLabel nextAppointmentTitle  = new JLabel();
       nextAppointmentTitle.setText("Your Next Appointment is at: ");
       JLabel appointmentTime = new JLabel();
@@ -98,10 +100,10 @@ public class ProviderHomescreen {
       namePanel.add(appointmentTime);
       namePanel.add(appointmentLocation);
       
-      // adding the name panel to the main panel
+      // adding the name panel to  4the main panel
       topPanel.add(namePanel);
       
-      // adding the top Panel to the contianer that was passed in to the function
+      // adding the top Panel to the container that was passed in to the function
       pane.add(topPanel, BorderLayout.NORTH);
    }
 
