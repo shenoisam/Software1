@@ -2,9 +2,6 @@ package frontend;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,12 +19,10 @@ import java.util.Date;
 import java.util.Vector;
 import static java.nio.file.StandardCopyOption.*;
 
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class TableWrap extends JPanel {
 	/**
