@@ -148,6 +148,7 @@ public class ProviderReferralsView {
       JComboBox providers = new JComboBox(new Object[] { "", "Dr. Mickey Mouse", "Dr. Minnie Mouse", "Dr. Goofy", "Dr. Donald Duck", "Dr. Daffy Duck", "Dr. Pluto"});
       providerPanel.add(providers);
       
+      // adding the provider panel to the left panel
       leftPanel.add(providerPanel);
       
       // creating the additional notes section
@@ -167,9 +168,10 @@ public class ProviderReferralsView {
       // adding the notes to the notes and submit section
       leftPanel.add(notes);
       
+      // adding the left panel to the main panel veiw
       referralPanel.add(leftPanel);
       
-      // creating the left hand side of the page 
+      // creating the right hand side of the page 
       JPanel rightPanel = new JPanel();
       rightPanel.setLayout(new GridLayout(2,1));
       
@@ -201,12 +203,14 @@ public class ProviderReferralsView {
       JTextArea otherReason = new JTextArea(1, 5);
       otherReason.setEditable(true);
       reason.add(otherReason);
+      
+      // adding invisible panels for formating
       reason.add(new JPanel());
       reason.add(new JPanel());
       reason.add(new JPanel());
       reason.add(new JPanel());
 
-      
+      // adding the reason for referral to the right panel
       rightPanel.add(reason);
       
       // creating the refer button
@@ -219,8 +223,8 @@ public class ProviderReferralsView {
       // adding the submit panel to the notes and submit panel
       rightPanel.add(refferButtonPanel);
 
+      // adding the right panel to the main referral page
       referralPanel.add(rightPanel);
-
       
       // adding the referral panel to the passed in container
       pane.add(referralPanel);
