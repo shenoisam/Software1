@@ -19,8 +19,6 @@ public class PatientRunner {
 	
 	public PatientRunner(JFrame frame){
 		this.frame = frame;
-		
-		
 	}
 	public void displayFrameOpt(PatientScreenEnum opt) {
 		   //Remove everything from the frame
@@ -44,9 +42,11 @@ public class PatientRunner {
 		   frame.revalidate();
 		   frame.repaint();
 		   frame.setVisible(true);
-		   
-		   
-		
+	}
+	public void logout() {
+		  frame.getContentPane().removeAll();
+		  frame.revalidate();
+		  frame.repaint();
 	}
 	
 	

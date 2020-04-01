@@ -34,6 +34,10 @@ public class EHRRunner {
 	    v = new ProviderRunner(frame); 
 	}
 	
+	public JFrame getFrame() {
+		return this.frame;
+	}
+	
 	public void validateUser(String user,String pass) {
 	
 		 
