@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 
+import frontend.EHRRunner;
+import frontend.GenericEnum;
+import frontend.GenericRunner;
 import frontend.LoginScreen;
 import frontend.patient.GenericScreen;
 import frontend.patient.PatientHome;
@@ -23,10 +26,9 @@ import frontend.patient.PatientIntake;
 import frontend.patient.PatientViewTest;
 import frontend.patient.ProviderView;
 
-public class Runner {
-	private JFrame frame; 
-	public Runner(JFrame frame){
-		this.frame = frame;
+public class Runner extends GenericRunner{
+	public Runner(EHRRunner r){
+		super(r);
 		
 		
 	}
@@ -36,7 +38,7 @@ public class Runner {
 	private static void checkPasswordValidity(String password) {
     	
     }
-	public void displayFrameOpt(StaffEnum opt) {
+	public void displayFrameOpt(GenericEnum opt) {
 
 	   frame.getContentPane().removeAll();
 	   frame.revalidate();

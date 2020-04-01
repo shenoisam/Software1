@@ -3,6 +3,8 @@ package frontend.staff;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -10,8 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import frontend.GenericEnum;
+
 public class GenericStaffScreen implements IGenericStaff {
-	Runner r; 
+	static Runner r; 
 	GenericStaffScreen(Runner r){
 		this.r = r; 
 	}
@@ -27,6 +31,17 @@ public class GenericStaffScreen implements IGenericStaff {
 	      buttonPanel.setLayout(new BorderLayout());
 	      buttonPanel.add(button, BorderLayout.WEST);
 	      button = new JButton("Logout");
+	      button.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//Modified so that it calls the calling class to switch the screen. 
+					//Allows for one method to be used to switch the screens - Sam 
+					r.logout();
+					
+				}
+				
+			});
 	      buttonPanel.add(button, BorderLayout.EAST);
 	      topPanel.add(buttonPanel);
 	      

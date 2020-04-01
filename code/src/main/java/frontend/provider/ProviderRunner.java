@@ -4,16 +4,22 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class ProviderRunner {
-   private JFrame frame;  
+import frontend.EHRRunner;
+import frontend.GenericEnum;
+import frontend.GenericRunner;
+
+public class ProviderRunner extends GenericRunner{
+
 	
    
-   public ProviderRunner(JFrame frame){
-		this.frame = frame;
+   public ProviderRunner(EHRRunner r){
+	   super(r);
+	  
+
 	}
    
-   public void displayFrameOpt(ProviderScreen opt) {
-	   opt = (ProviderScreen) opt;
+   public void displayFrameOpt(GenericEnum opt) {
+	   
 	   //Remove everything from the frame
 	   frame.getContentPane().removeAll();
 	   frame.revalidate();
