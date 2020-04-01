@@ -5,21 +5,16 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import frontend.patient.PatientRunner;
-import frontend.patient.PatientScreenEnum;
 import frontend.provider.ProviderRunner;
-import frontend.provider.ProviderScreen;
 import frontend.staff.Runner;
-import frontend.staff.StaffEnum;
+
 
 import backend.*;
 import cshare.User;
 
 public class EHRRunner {
-	private Runner r; 
-	private PatientRunner p; 
-	private ProviderRunner v; 
-	
-	private JFrame frame; 
+	private GenericRunner r; 
+	protected JFrame frame; 
 	
 	EHRRunner(){
 		
@@ -29,10 +24,13 @@ public class EHRRunner {
 		frame.setPreferredSize(new Dimension(1000,650));
 		frame.setBounds(240,100,1000,650);
 		
-		r = new Runner(frame); 
-	    p = new PatientRunner(frame);
-	    v = new ProviderRunner(frame); 
+		r = null; 
 	}
+	
+	public JFrame getFrame() {
+		return this.frame;
+	}
+	
 	
 	public void validateUser(String user,String pass) {
 	
@@ -53,13 +51,15 @@ public class EHRRunner {
 		 TestData d = new TestData(); 
 		 
 		 int z = d.randomGetter(); 
+		
 		 
 		 switch (z) {
-		 case 0: v.displayFrameOpt(ProviderScreen.HOME);break; 
-		 case 1: r.displayFrameOpt(StaffEnum.HOME); break; 
-		 case 2: p.displayFrameOpt(PatientScreenEnum.HOME);break; 
-		 default:  p.displayFrameOpt(PatientScreenEnum.HOME);
+		 case 0: r = new ProviderRunner(this); break; 
+		 case 1: r = new Runner(this) ; break; 
+		 case 2: r = new PatientRunner(this);break; 
+		 default: r = new PatientRunner(this);break; 
 		 }
+		 r.displayFrameOpt(GenericEnum.HOME);
 		 
 		 //For some reason getting address instead of value, fix later
 		 /*if (user.equals("doctor")) {
@@ -84,6 +84,15 @@ public class EHRRunner {
 		s.createAndShowGUI(frame.getContentPane());
 		frame.pack();
 		frame.setVisible(true);
+	}
+	public void logout() {
+		  //Wherever we are, remove it all 
+		  frame.getContentPane().removeAll();
+		  frame.revalidate();
+		  frame.repaint();
+		  
+		  //Create a log in screen
+		  this.displayLogin(); 
 	}
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {

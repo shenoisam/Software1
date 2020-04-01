@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import frontend.GenericEnum;
+
 public abstract class GenericScreen {
 	protected JFrame frame;
 	protected JPanel topPanel;
@@ -34,7 +36,7 @@ public abstract class GenericScreen {
 			public void actionPerformed(ActionEvent e) {
 				//Modified so that it calls the calling class to switch the screen. 
 				//Allows for one method to be used to switch the screens - Sam 
-				p.displayFrameOpt(PatientScreenEnum.HOME);
+				p.displayFrameOpt(GenericEnum.HOME);
 				
 			}
 			
@@ -42,6 +44,17 @@ public abstract class GenericScreen {
 	    buttonPanel.setLayout(new BorderLayout());
 	    buttonPanel.add(button, BorderLayout.WEST);
 	    button = new JButton("Logout");
+	    button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Modified so that it calls the calling class to switch the screen. 
+				//Allows for one method to be used to switch the screens - Sam 
+				p.logout();
+				
+			}
+			
+		});
 	    buttonPanel.add(button, BorderLayout.EAST); 
 	    topPanel.add(buttonPanel);
 	    
@@ -75,7 +88,7 @@ public abstract class GenericScreen {
 			public void actionPerformed(ActionEvent e) {
 				//Modified so that it calls the calling class to switch the screen. 
 				//Allows for one method to be used to switch the screens - Sam 
-				p.displayFrameOpt(PatientScreenEnum.INTAKE);
+				p.displayFrameOpt(GenericEnum.INTAKE);
 				
 			}
 			
@@ -90,7 +103,7 @@ public abstract class GenericScreen {
 			public void actionPerformed(ActionEvent e) {
 				//Modified so that it calls the calling class to switch the screen. 
 				//Allows for one method to be used to switch the screens - Sam 
-				p.displayFrameOpt(PatientScreenEnum.VIEWTABLE);
+				p.displayFrameOpt(GenericEnum.VIEWTABLE);
 				
 			}
 			
@@ -98,6 +111,7 @@ public abstract class GenericScreen {
 		sidePanel.add(viewTestResButton);
 		
 	}
+	
 	
 	public void update() {
 		setTopBar();

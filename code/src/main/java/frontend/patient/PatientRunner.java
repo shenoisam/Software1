@@ -2,8 +2,12 @@ package frontend.patient;
 
 import java.awt.Dimension;
 
+
 import javax.swing.JFrame;
 
+import frontend.EHRRunner;
+import frontend.GenericEnum;
+import frontend.GenericRunner;
 import frontend.provider.ProviderFrontend;
 import frontend.provider.ProviderHomescreen;
 import frontend.provider.ProviderPatientOverview;
@@ -12,17 +16,13 @@ import frontend.provider.ProviderPrescribeView;
 import frontend.provider.ProviderReferralsView;
 import frontend.provider.ProviderRequestTestView;
 import frontend.provider.ProviderRunner;
-import frontend.provider.ProviderScreen;
 
-public class PatientRunner {
-	JFrame frame; 
+public class PatientRunner extends GenericRunner{
 	
-	public PatientRunner(JFrame frame){
-		this.frame = frame;
-		
-		
+	public PatientRunner(EHRRunner r){
+		super(r);
 	}
-	public void displayFrameOpt(PatientScreenEnum opt) {
+	public void displayFrameOpt(GenericEnum opt) {
 		   //Remove everything from the frame
 		   frame.getContentPane().removeAll();
 		   frame.revalidate();
@@ -44,9 +44,11 @@ public class PatientRunner {
 		   frame.revalidate();
 		   frame.repaint();
 		   frame.setVisible(true);
-		   
-		   
-		
+	}
+	public void logout() {
+		  frame.getContentPane().removeAll();
+		  frame.revalidate();
+		  frame.repaint();
 	}
 	
 	

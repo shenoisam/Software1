@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import frontend.GenericEnum;
+
 public class ProviderFrontend implements IProviderFrontend{
 	static ProviderRunner p; 
 
@@ -43,7 +45,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(ProviderScreen.PVISIT);
+	    	    p.displayFrameOpt(GenericEnum.PVISIT);
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -51,7 +53,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(ProviderScreen.PPRESCRIBE);
+	    	    p.displayFrameOpt(GenericEnum.PPRESCRIBE);
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -59,7 +61,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(ProviderScreen.PTESTREQUEST);
+	    	    p.displayFrameOpt(GenericEnum.PTESTREQUEST);
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -69,7 +71,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button = new JButton("Referrals");
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
-	    	    p.displayFrameOpt(ProviderScreen.PREFERRAL);
+	    	    p.displayFrameOpt(GenericEnum.PREFERRAL);
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -86,7 +88,7 @@ public class ProviderFrontend implements IProviderFrontend{
         button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
     		System.out.println("Display Home");
-    	    p.displayFrameOpt(ProviderScreen.HOME);
+    	    p.displayFrameOpt(GenericEnum.HOME);
     	  } 
     	 } );
       
@@ -96,6 +98,12 @@ public class ProviderFrontend implements IProviderFrontend{
       
       
         button = new JButton("Logout");
+        button.addActionListener(new ActionListener() { 
+      	  public void actionPerformed(ActionEvent e) { 
+      		System.out.println("Display Home");
+      	    p.logout();
+      	  } 
+      	 } );
         buttonPanel.add(button, BorderLayout.EAST);
 		
 	}

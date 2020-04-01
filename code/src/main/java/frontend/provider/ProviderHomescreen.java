@@ -20,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import frontend.GenericEnum;
+
 public class ProviderHomescreen extends ProviderFrontend{
 
    public ProviderHomescreen(ProviderRunner p) {
@@ -40,7 +42,7 @@ private static void sideBarWithCalander(Container pane) {
       JButton button = new JButton("Today's Schedule");
       button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
-    	    p.displayFrameOpt(ProviderScreen.HOME);
+    	    p.displayFrameOpt(GenericEnum.HOME);
     	  } 
     	 } );
       buttonPanel.add(button);
