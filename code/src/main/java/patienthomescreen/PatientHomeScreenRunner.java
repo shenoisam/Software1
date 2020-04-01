@@ -2,6 +2,8 @@ package patienthomescreen;
 
 import javax.swing.JFrame;
 
+import providerfrontend.ProviderHomescreen;
+
 public class PatientHomeScreenRunner {
 
 	public static void main(String[] args) {

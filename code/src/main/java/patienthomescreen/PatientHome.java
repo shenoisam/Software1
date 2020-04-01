@@ -110,7 +110,7 @@ public class PatientHome extends GenericScreen{
 		
 		//dummy data
 		String[][] meds = {{"Tamiflu", "2 pills a day"},
-							{"Vaporub", "apply any where to heal"}};
+							{"Doxycycline", "2 pills a day"}};
 		
 		JTable medTable = new JTable(meds, medColNames);
 		JScrollPane scrollMeds = new JScrollPane(medTable);
