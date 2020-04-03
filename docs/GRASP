@@ -1,0 +1,52 @@
+Appointment:
+  Principle/Pattern: Information Expert
+    Responsible for holding information for other classes; holds the time of the appointment for the notes and the billing information for the patient.
+
+Diagnosis:
+  Principle/Pattern: Information Expert
+    Responsible for holding information about diagnoses, this class is instantiated by a doctor, and is held within a patient class so that it is responsible for knowing what the patient has as a prescription is given.
+
+Doctor:
+  Principle/Pattern: Creator
+    Responsible for using the input of the doctor in order to assign information to Diagnosis class, as well as create tests to be ordered, creating notes and prescriptions.
+
+Health Care Provider:
+  Principle/Pattern: Polymorphism
+    Is an umbrella class for Doctor and the Staff, both being health care providers.
+
+Notes:
+  Principle/Pattern: Information Expert
+    Responsible for storing any additional information regarding the patient’s file or visit which may need to be accessed.
+      
+Patient: 
+  Principle/Pattern: Information Expert
+    Responsible for retrieving information about a patient, also functions alongside Staff to create and schedule Appointments
+
+Prescription:
+  Principle/Pattern: Information Expert
+    Responsible for knowing the information regarding the medication, number of refills, patient ID, and doctor ID along with the dosage. 
+    This information can be accessed by the doctor and patient.
+
+Patient Diagnosis:
+  Principle/Pattern: Controller
+    Responsible for assigning an existing Diagnosis to a Patient based on the input of the Doctor.
+
+Staff:
+  Principle/Pattern: Creator
+    Responsible for creating Appointments and Tests
+
+Test:
+  Principle/Pattern: Information Expert
+    Responsible for storing data necessary to be able to perform a test on a Patient in a lab.
+
+Test Order:
+  Principle/Pattern: Controller
+    Responsible for assigning an existing Test to a Patient based on input from a Staff member.
+
+Test Result:
+  Principle/Pattern: Controller
+    Responsible for taking input from the Test which was performed and relaying the information to the Patient.
+
+User:
+  Principle/Pattern: Low Coupling + High Cohesion + Polymorphism
+    Used as an umbrella class representing the different people using the system, being either Health Care Providers or Patients.
