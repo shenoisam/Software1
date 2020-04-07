@@ -183,6 +183,11 @@ public class ProviderFrontend implements IProviderFrontend{
 	      // adding the top Panel to the contianer that was passed in to the function
 	      pane.add(topPanel, BorderLayout.NORTH);
 	   }
+	@Override
+	public void createAndShowGUI(JFrame frame) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	
