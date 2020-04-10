@@ -1,9 +1,11 @@
 
 package backend;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import frontend.EHRRunner;
 
 /**
  * Defines a class that allows for connection to the database using java derby 
@@ -26,7 +28,8 @@ public class SQLConnection {
 	  *            
 	  **/ 
 	public SQLConnection(String db, String host, int port, String username, String password) {
-		String url = "jdbc:mysql://" + host + ":" + port + "/" + db; 
+		// Get the connection url. Have to add some parameters to the end because of some timezone issue. 
+		String url = "jdbc:mysql://" + host + ":" + port + "/" + db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; 
 		try {
 			con = DriverManager.getConnection(url,username,password);
 		} catch (SQLException e) {
@@ -35,5 +38,11 @@ public class SQLConnection {
 		}  
 		
 	}
+	public static void main(String[] args) {
+		Config m = new Config(); 
+	
+		SQLConnection q = new SQLConnection(m.getProperty("db"),m.getProperty("host"),Integer.parseInt(m.getProperty("port")),m.getProperty("user"),m.getProperty("password"));
+	}
+	
 
 }
