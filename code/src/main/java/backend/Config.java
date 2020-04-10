@@ -21,30 +21,22 @@ public class Config
 	   configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
 
 	 }catch(Exception eta){
-		  //try {
-			  System.out.println("Error: You do not have a configuration file created.");
-				 System.out.println("This config file is needed in order to configure the database connection.");
-				 System.out.println("A file has been created for you. Please fill it out in the src/main/resources folder");
-				
+		
+			System.out.println("Error: You do not have a configuration file created.");
+		    System.out.println("This config file is needed in order to configure the database connection.");
+		    System.out.println("Please create a file called config.properties in the src/main/resources folder with the following stuff");
 			
-			 /* This is somehow working but I cant find the file...
-			File f = new File(getClass().getClassLoader().getResource("person-icon.jpg").getFile());
-			final File myfile = new File(f.getParentFile(), "config.properties");
-			myfile.createNewFile();
-			FileWriter myWriter = new FileWriter(myfile);
-            myWriter.write("#This is a configuration file for the CShare database.\n");
-            myWriter.write("db=CShare\n");
-            myWriter.write("user=root\n");
-            myWriter.write("password=<your mysql password>\n");
-            myWriter.write("host=localhost\n");
-            myWriter.write("port=3306\n");
-            myWriter.close();
-            */
-		//} catch (IOException e) {
-			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
-		 eta.printStackTrace();
+		    System.out.println("====================================");
+		    System.out.println("#This is a configuration file for the CShare database.");
+		    System.out.println("db=CShare");
+		    System.out.println("user=root");
+		    System.out.println("password=<your mysql password>");
+		    System.out.println("host=localhost");
+		    System.out.println("port=3306");
+		    System.out.println("====================================");
+			
+		    eta.printStackTrace();
+		
 	 }
    }
  
