@@ -117,6 +117,11 @@ public class GenericStaffScreen implements IGenericStaff {
         pane.add(panel, BorderLayout.WEST);
  
     }
+	@Override
+	public void createAndShowGUI(Container pane) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
