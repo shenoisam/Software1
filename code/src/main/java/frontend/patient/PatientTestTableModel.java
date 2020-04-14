@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import cshare.TestOrder;
+import backend.classes.TestOrder;
 
 public class PatientTestTableModel extends AbstractTableModel {
 	private ArrayList<TestOrder> testOrders;

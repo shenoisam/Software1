@@ -1,4 +1,4 @@
-package cshare;
+package backend.classes;
 /*
  * -Test Name -Date -PatientID -Result
  */

@@ -1,4 +1,6 @@
-package cshare;
+package backend.classes;
+
+import frontend.EHRRunner;
 
 public class User {
 	private String FirstName; 
@@ -38,6 +40,12 @@ public class User {
 
 	public void setEmail(String email) {
 		Email = email;
+	}
+
+
+	public void accept(EHRRunner ehrRunner) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
