@@ -1,52 +1,77 @@
-Appointment:
+GRASP
+getAppointmentDate:
+  Location: Appointment
   Principle/Pattern: Information Expert
-    Responsible for holding information for other classes; holds the time of the appointment for the notes and the billing information for the patient.
+  Responsible for holding information for other classes; holds the time of the appointment for the notes and the billing information for the patient.
 
-Diagnosis:
+getDescription / getName:
+  Location: Diagnosis
   Principle/Pattern: Information Expert
-    Responsible for holding information about diagnoses, this class is instantiated by a doctor, and is held within a patient class so that it is responsible for knowing what the patient has as a prescription is given.
+  Responsible for holding information about diagnoses, these methods relay the information the class knows about the ailment of the patient, its name and description.
 
-Doctor:
+createPrescription / orderTest:
+  Location: Doctor
   Principle/Pattern: Creator
-    Responsible for using the input of the doctor in order to assign information to Diagnosis class, as well as create tests to be ordered, creating notes and prescriptions.
+  Responsible for using the input of the doctor in order to create test and prescription objects
 
-Health Care Provider:
-  Principle/Pattern: Polymorphism
-    Is an umbrella class for Doctor and the Staff, both being health care providers.
+updateHealthSheet
+  Location: Doctor
+  Principle/Pattern: Controller
+  Responsible for using the information passed to the Doctor class to edit the patient’s health sheet, which is outside of the doctor class.
 
-Notes:
+sendBillToRecipients:
+  Location: Health Care Provider
+  Principle/Pattern: Controller
+  This operation is responsible for gathering information from the appointment and providing it to the necessary parties.
+
+editGraphProperties:
+  Location: Health Care Provider
   Principle/Pattern: Information Expert
-    Responsible for storing any additional information regarding the patient’s file or visit which may need to be accessed.
+  This operation is responsible for changing the graph to represent the way it is to be displayed, which it knows
       
-Patient: 
+getBillInfo:
+  Location: Patient 
   Principle/Pattern: Information Expert
-    Responsible for retrieving information about a patient, also functions alongside Staff to create and schedule Appointments
+  Responsible for knowing the information regarding the bill the patient must pay, and potentially making that information available to the patient.
 
-Prescription:
+getPrescription: 
+  Location: Prescription
   Principle/Pattern: Information Expert
-    Responsible for knowing the information regarding the medication, number of refills, patient ID, and doctor ID along with the dosage. 
-    This information can be accessed by the doctor and patient.
+  Responsible for knowing the information regarding the medication, number of refills, patient ID, and doctor ID along with the dosage. This information can be accessed by the doctor and patient.
 
-Patient Diagnosis:
+storeDiagnosis / storePrescriptions:
+  Location: Patient Diagnosis
   Principle/Pattern: Controller
-    Responsible for assigning an existing Diagnosis to a Patient based on the input of the Doctor.
+  Responsible for assigning an existing Diagnosis or Prescription to a Patient based on the input of the Doctor.
 
-Staff:
+createAppointment / sendTestOrder:
+  Location: Staff
   Principle/Pattern: Creator
-    Responsible for creating Appointments and Tests
+  Responsible for creating Appointments and Tests
 
-Test:
+getTestName / getInsuranceCode:
+  Location: Test
   Principle/Pattern: Information Expert
-    Responsible for storing data necessary to be able to perform a test on a Patient in a lab.
+  Responsible for storing data necessary to be able to perform a test on a Patient in a lab.
 
-Test Order:
+sendTestOrder / confirmTest:
+  Location: Test Order
   Principle/Pattern: Controller
-    Responsible for assigning an existing Test to a Patient based on input from a Staff member.
+  Responsible for assigning an existing Test to a Patient based on input from a Staff member.
 
-Test Result:
+getTestResult:
+  Location: Test Result
   Principle/Pattern: Controller
-    Responsible for taking input from the Test which was performed and relaying the information to the Patient.
+  Responsible for taking input from the Test which was performed and relaying the information to the Patient.
 
-User:
-  Principle/Pattern: Low Coupling + High Cohesion + Polymorphism
-    Used as an umbrella class representing the different people using the system, being either Health Care Providers or Patients.
+viewSchedule:
+  Location: User
+  Principle/Pattern: Low Coupling, High Cohesion, Polymorphism, Information Expert
+  Useful for polymorphism, allows different types of users to view their own personalized schedule, being either Doctor, Patient, or Staff
+
+SQLConnection(): 
+  Location: SQLConnection
+  Principle/Pattern: Low Coupling, Controller
+  Receives information from a database and initializes data in other 
+  classes
+
