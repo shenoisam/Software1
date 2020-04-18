@@ -58,10 +58,12 @@ public class EHRRunner {
 		 
 		 u = d.LogInUser(user, pass);
 		 if (u !=null) {
-			 u.accept(this);
+			 this.r = u.accept(this);
 			 
 			 r.displayFrameOpt(GenericEnum.HOME);
 			 
+		 }else {
+			 System.out.println("User not found");
 		 }
 		 
 		 //For some reason getting address instead of value, fix later

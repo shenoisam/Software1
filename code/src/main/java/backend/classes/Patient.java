@@ -3,8 +3,10 @@ package backend.classes;
 import java.util.Date;
 
 import frontend.EHRRunner;
+import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
 import frontend.provider.ProviderRunner;
+import frontend.staff.Runner;
 
 public class Patient extends User {
 	private Date DOB;
@@ -52,8 +54,8 @@ public class Patient extends User {
 		PatientID = patientID;
 	}
 	@Override 
-	public void accept(EHRRunner r) {
-		r.setR(new PatientRunner(r));
+	public GenericRunner accept(EHRRunner r) {
+		return new PatientRunner(r);
 	}
 	
 

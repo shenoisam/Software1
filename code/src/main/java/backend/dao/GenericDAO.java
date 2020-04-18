@@ -9,6 +9,7 @@ import java.util.List;
 
 import java.sql.ResultSetMetaData;
 
+import backend.NotImplementedException;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
 
@@ -64,6 +65,42 @@ public class GenericDAO {
 			e.printStackTrace();
 		}
         return data; 
+		
+		
+	}
+	private String generateUpdateString(String table, String att,  String rmStr) {
+		//TODO: Write the update query
+		return "";
+	}
+	protected void update(String table, String rmStr,String [] params) throws NotImplementedException {
+		Connection c = pool.getConnection();
+		pool.releaseConnection(c);
+		
+		
+		
+		
+	}
+	private String generateDeleteString(String table, String rmStr) {
+		String delete = "DELETE FROM ? WHERE" + rmStr; 
+		return delete;
+	}
+	protected void delete(String table, String rmStr,String [] params) {
+		Connection c = pool.getConnection();
+		//TODO: write delete code 
+		String del = this.generateDeleteString(table, rmStr);
+		try {
+			PreparedStatement p = c.prepareStatement(del);
+		    for(int i =0; i < params.length; i++) {
+		    	p.setString(i +1, params[i]);
+		    }
+		    ResultSet rs = p.executeQuery();
+		    //TODO: Check to see if I need to call commit on the database object...
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		pool.releaseConnection(c);
 		
 		
 	}

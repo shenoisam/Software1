@@ -1,6 +1,7 @@
 package backend.classes;
 
 import frontend.EHRRunner;
+import frontend.GenericRunner;
 
 public class User {
 	private String FirstName; 
@@ -43,7 +44,7 @@ public class User {
 	}
 
 
-	public void accept(EHRRunner ehrRunner) {
+	public GenericRunner accept(EHRRunner ehrRunner) {
 		// TODO Auto-generated method stub
 		
 	}

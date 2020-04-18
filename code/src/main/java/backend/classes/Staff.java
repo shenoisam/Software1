@@ -1,6 +1,7 @@
 package backend.classes;
 
 import frontend.EHRRunner;
+import frontend.GenericRunner;
 import frontend.provider.ProviderRunner;
 import frontend.staff.Runner;
 
@@ -21,8 +22,8 @@ public class Staff extends HealthCareProvider {
 	}
 	
 	@Override 
-	public void accept(EHRRunner r) {
-		r.setR(new Runner(r));
+	public GenericRunner accept(EHRRunner r) {
+	   return new Runner(r);
 	}
 
 }

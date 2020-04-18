@@ -1,6 +1,7 @@
 package backend.classes;
 
 import frontend.EHRRunner;
+import frontend.GenericRunner;
 import frontend.provider.ProviderRunner;
 
 public class Doctor extends HealthCareProvider {
@@ -22,8 +23,8 @@ public class Doctor extends HealthCareProvider {
 	}
 	
 	@Override 
-	public void accept(EHRRunner r) {
-		r.setR(new ProviderRunner(r));
+	public GenericRunner accept(EHRRunner r) {
+		return new ProviderRunner(r);
 	}
 	
 

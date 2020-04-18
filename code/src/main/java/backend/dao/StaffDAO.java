@@ -18,7 +18,7 @@ public class StaffDAO extends GenericDAO{
 	public Staff getStaff(String id) {
 		Staff s = null; 
 		String [] params = {id};
-		List<List<Object>> data = this.query("*","Patient","ID = ?", params);
+		List<List<Object>> data = this.query("*","Staff","ID = ?", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
@@ -26,6 +26,7 @@ public class StaffDAO extends GenericDAO{
 			List<Object> staff = data.get(1); 
 			//TODO: implement new patient for all columns and check for null columns. 
 			s = new Staff(staff.get(0).toString(),staff.get(1).toString());
+			System.out.println("Staff Found");
 		}
 		return s; 		
 				
