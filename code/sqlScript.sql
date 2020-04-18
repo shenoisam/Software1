@@ -55,6 +55,8 @@ Create Table Appointment(
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
 
+  FOREIGN KEY (DoctorID) REFERENCES Doctor(ID),
+  FOREIGN KEY (PatientID) REFERENCES Patient(ID),
   CONSTRAINT Appointment_pk PRIMARY KEY (Date, DoctorID, PatientID) 
 );
 Create Table Test(
