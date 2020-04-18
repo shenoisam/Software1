@@ -1,12 +1,12 @@
 package backend.classes;
 
 import java.util.Date;
+import java.util.List;
 
+import backend.NotImplementedException;
 import frontend.EHRRunner;
 import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
-import frontend.provider.ProviderRunner;
-import frontend.staff.Runner;
 
 public class Patient extends User {
 	private Date DOB;
@@ -30,6 +30,9 @@ public class Patient extends User {
 		
 	}
 
+	public Patient(List<Object> list) throws NotImplementedException {
+		throw new NotImplementedException("Patient from SQL table constuctor not implemented");
+	}
 	public Date getDOB() {
 		return DOB;
 	}

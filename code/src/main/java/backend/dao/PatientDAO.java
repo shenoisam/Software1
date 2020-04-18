@@ -1,6 +1,10 @@
 package backend.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import backend.NotImplementedException;
+import backend.classes.Appointment;
 import backend.classes.Patient;
 
 public class PatientDAO extends GenericDAO{
@@ -21,6 +25,22 @@ public class PatientDAO extends GenericDAO{
 		}
 		return s; 		
 				
+	}
+	public List<Patient> getAllPatients(){
+		String select = "Firstname, LastName, DOB, Gender, Race, Ethnicity, MaritalStatus";
+		String table = "Patient, User";
+		String rmStr = "Patient.ID = User.ID";
+		String [] params = {};
+		return generateList(this.query(select, table, rmStr, params)); 
+	}
+	private List<Patient> generateList(List<List<Object>> stuff) throws NotImplementedException{
+		 List<Patient> finalList = new ArrayList<Appointment>(); 
+		 for(int i = 0; i < stuff.size(); i++) {
+			 //TODO: implement this; 
+			 finalList.add(new Patient(stuff.get(i)));
+		 }
+		 
+		 return finalList;
 	}
 	@Override
 	public void updateTable(String[] fields, String[] params) {
