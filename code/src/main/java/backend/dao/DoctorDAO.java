@@ -24,5 +24,20 @@ public class DoctorDAO extends GenericDAO{
 		return s; 		
 				
 	}
+	@Override
+	public void updateTable(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void insertIntoTable(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteFromTable(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

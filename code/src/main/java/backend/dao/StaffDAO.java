@@ -11,9 +11,9 @@ import backend.classes.Patient;
 import backend.classes.Staff;
 
 public class StaffDAO extends GenericDAO{
-	SQLConnectionPool p; 
+	
 	public StaffDAO(){
-		p = SQLConnectionPoolFactory.getPool();
+		super();
 	}
 	public Staff getStaff(String id) {
 		Staff s = null; 
@@ -30,6 +30,21 @@ public class StaffDAO extends GenericDAO{
 		}
 		return s; 		
 				
+	}
+	@Override
+	public void updateTable(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void insertIntoTable(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteFromTable(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

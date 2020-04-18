@@ -13,7 +13,7 @@ import backend.NotImplementedException;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
 
-public class GenericDAO {
+public abstract class GenericDAO {
 	SQLConnectionPool pool; 
 	protected int MAX_SINGLET_DATA_SIZE = 3; 
 	protected int MIN_DATA_SIZE = 1; 
@@ -116,6 +116,12 @@ public class GenericDAO {
 		}
 		pool.releaseConnection(c);
 	}
+	
+	//Should return a List<Backend.class>, not sure how to genericify that. 
+	//public abstract List<Object> getTableValues(String [] fields, String [] params);
+	public abstract void updateTable(String [] fields, String [] params);
+	public abstract void insertIntoTable(String [] fields, String [] params);
+	public abstract void deleteFromTable(String [] fields, String [] params);
 	
 
 }
