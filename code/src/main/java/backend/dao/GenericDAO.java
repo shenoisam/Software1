@@ -68,28 +68,43 @@ public class GenericDAO {
 		
 		
 	}
-	private String generateUpdateString(String table, String att,  String rmStr) {
-		//TODO: Write the update query
-		return "";
-	}
-	protected void update(String table, String rmStr,String [] params) throws NotImplementedException {
-		Connection c = pool.getConnection();
-		pool.releaseConnection(c);
-		
+
+	protected void update(String table, String [] fields,String rmStr,String [] params) throws NotImplementedException {
+		String update = "UPDATE " + table + " SET "; 
+		//TODO: Fix this. 
 		
 		
 		
 	}
-	private String generateDeleteString(String table, String rmStr) {
-		String delete = "DELETE FROM ? WHERE" + rmStr; 
-		return delete;
-	}
+
 	protected void delete(String table, String rmStr,String [] params) {
+		String delete = "DELETE FROM ? WHERE" + rmStr; 
+		dbConnect(delete, params);	
+		
+	}
+
+	protected void insert(String table, String [] fields, String [] params) {
+		//Generate the query 
+		String in = "INSERT INTO" + table + "VALUES ("; 
+		assert(params.length == fields.length);
+		for(int i =0; i < fields.length -1 ; i++) {
+			in = in + fields[i] + ", ";
+		}
+		in = in + fields[fields.length -1] + ") VALUES (";
+		for(int i =0; i < params.length -1 ; i++) {
+			in = in + "?, ";
+		}
+		in = in + "?)";
+		
+		//Preform the action 
+		dbConnect(in, params);
+
+	}
+	
+	private void dbConnect(String query, String [] params) {
 		Connection c = pool.getConnection();
-		//TODO: write delete code 
-		String del = this.generateDeleteString(table, rmStr);
 		try {
-			PreparedStatement p = c.prepareStatement(del);
+			PreparedStatement p = c.prepareStatement(query);
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
@@ -99,10 +114,8 @@ public class GenericDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		pool.releaseConnection(c);
-		
-		
 	}
+	
 
 }
