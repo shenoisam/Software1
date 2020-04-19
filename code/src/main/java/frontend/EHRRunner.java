@@ -31,6 +31,10 @@ public class EHRRunner {
 		return this.frame;
 	}
 	
+	public GenericRunner getGenericRunner() {
+		return this.r;
+	}
+	
 	
 	public void validateUser(String user,String pass) {
 	
