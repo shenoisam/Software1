@@ -33,7 +33,6 @@ public class GenericStaffScreen implements IGenericStaff {
 	      button = new JButton("Logout");
 	      button.addActionListener(new ActionListener() {
 
-				@Override
 				public void actionPerformed(ActionEvent e) {
 					//Modified so that it calls the calling class to switch the screen. 
 					//Allows for one method to be used to switch the screens - Sam 
@@ -117,6 +116,10 @@ public class GenericStaffScreen implements IGenericStaff {
         pane.add(panel, BorderLayout.WEST);
  
     }
+	public void createAndShowGUI(Container pane) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

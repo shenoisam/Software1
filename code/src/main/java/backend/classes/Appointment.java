@@ -1,6 +1,9 @@
-package cshare;
+package backend.classes;
 
 import java.util.Date;
+import java.util.List;
+
+import backend.NotImplementedException;
 
 /*
  * -Date -User ID 1 -User ID 2
@@ -10,6 +13,10 @@ public class Appointment {
 	private String UserID1;
 	private String UserID2;
 	
+	public Appointment(List<Object> list) throws NotImplementedException {
+		// TODO Auto-generated constructor stub
+		throw new NotImplementedException("Appointment List Constructor not created!");
+	}
 	public Date getAppointmentDate() {
 		return AppointmentDate;
 	}
