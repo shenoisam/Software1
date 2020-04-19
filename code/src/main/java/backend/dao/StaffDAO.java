@@ -37,16 +37,14 @@ public class StaffDAO extends GenericDAO{
 		
 	}
 	@Override
-	public void insertIntoTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
+	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		this.insert("Staff", fields, params);
 		
 	}
 	@Override
-	public void deleteFromTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
+	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
+		this.delete("Staff", fields, params);
 	}
-	
 	
 
 }

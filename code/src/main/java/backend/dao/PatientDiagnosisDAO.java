@@ -1,5 +1,7 @@
 package backend.dao;
 
+import java.sql.SQLException;
+
 public class PatientDiagnosisDAO extends GenericDAO {
     PatientDiagnosisDAO(){
     	
@@ -11,15 +13,13 @@ public class PatientDiagnosisDAO extends GenericDAO {
 	}
 
 	@Override
-	public void insertIntoTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
+	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		this.insert("PatientDiagnosis", fields, params);
 		
 	}
-
 	@Override
-	public void deleteFromTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
+	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
+		this.delete("PatientDiagnosis", fields, params);
 	}
 
 }

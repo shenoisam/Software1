@@ -57,15 +57,13 @@ public class UserDAO extends GenericDAO{
 	}
 
 	@Override
-	public void insertIntoTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
+	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		this.insert("User", fields, params);
 		
 	}
-
 	@Override
-	public void deleteFromTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
+	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
+		this.delete("User", fields, params);
 	}
 	
 

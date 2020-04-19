@@ -26,7 +26,7 @@ public class PatientDAO extends GenericDAO{
 		return s; 		
 				
 	}
-	public List<Patient> getAllPatients(){
+	public List<Patient> getAllPatients() throws NotImplementedException{
 		String select = "Firstname, LastName, DOB, Gender, Race, Ethnicity, MaritalStatus";
 		String table = "Patient, User";
 		String rmStr = "Patient.ID = User.ID";
@@ -34,7 +34,7 @@ public class PatientDAO extends GenericDAO{
 		return generateList(this.query(select, table, rmStr, params)); 
 	}
 	private List<Patient> generateList(List<List<Object>> stuff) throws NotImplementedException{
-		 List<Patient> finalList = new ArrayList<Appointment>(); 
+		 List<Patient> finalList = new ArrayList<Patient>(); 
 		 for(int i = 0; i < stuff.size(); i++) {
 			 //TODO: implement this; 
 			 finalList.add(new Patient(stuff.get(i)));

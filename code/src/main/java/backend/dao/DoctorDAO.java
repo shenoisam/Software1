@@ -1,5 +1,6 @@
 package backend.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import backend.classes.Doctor;
 
@@ -30,14 +31,13 @@ public class DoctorDAO extends GenericDAO{
 		
 	}
 	@Override
-	public void insertIntoTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
+	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		this.insert("Doctor", fields, params);
 		
 	}
 	@Override
-	public void deleteFromTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
+	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
+		this.delete("Doctor", fields, params);
 	}
 
 }

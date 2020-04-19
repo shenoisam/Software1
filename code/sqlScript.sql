@@ -1,5 +1,16 @@
-DROP Schema CShare;
-Create Schema CShare;
+/* this file contains a really stupid way to create the CSHARE database. 
+*  It creates a database if the CShare database does not exists and then drops it. If you are 
+*  running this in a production setting. Please do not use this script. It will delete all of your data
+*  from the CShare database. 
+*
+*  Author: Sam Shenoi 
+*  Version: 1.2
+*  Date Last Modified: 4/18/2020 
+*/
+
+CREATE DATABASE IF NOT EXISTS `CShare`;
+DROP DATABASE `CShare`;
+Create DATABASE CSHARE; 
 Use CShare; 
 
 

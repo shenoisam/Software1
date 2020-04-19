@@ -13,6 +13,13 @@ import backend.NotImplementedException;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
 
+/**
+ * Defines a generic Database Access Object (DAO) specific for connecting to a table; 
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public abstract class GenericDAO {
 	SQLConnectionPool pool; 
 	protected int MAX_SINGLET_DATA_SIZE = 3; 
@@ -56,6 +63,7 @@ public abstract class GenericDAO {
 		    	}
 		    	data.add(row);
 		    }
+		    rs.close(); 
 		    p.close();
 		    pool.releaseConnection(c);
 
@@ -77,15 +85,20 @@ public abstract class GenericDAO {
 		
 	}
 
-	protected void delete(String table, String rmStr,String [] params) {
-		String delete = "DELETE FROM ? WHERE" + rmStr; 
+	protected void delete(String table, String [] fields, String [] params) throws SQLException {
+		String rmStr = ""; 
+		for ( int i = 0; i < fields.length - 1; i++) {
+			rmStr = rmStr  + fields[i] + " = ? AND ";
+		}
+		rmStr = rmStr  + fields[fields.length -1] + " = ?";
+		String delete = "DELETE FROM " + table + " WHERE " + rmStr; 
 		dbConnect(delete, params);	
 		
 	}
 
-	protected void insert(String table, String [] fields, String [] params) {
+	protected void insert(String table, String [] fields, String [] params) throws SQLException {
 		//Generate the query 
-		String in = "INSERT INTO" + table + "VALUES ("; 
+		String in = "INSERT INTO " + table + " ("; 
 		assert(params.length == fields.length);
 		for(int i =0; i < fields.length -1 ; i++) {
 			in = in + fields[i] + ", ";
@@ -96,32 +109,55 @@ public abstract class GenericDAO {
 		}
 		in = in + "?)";
 		
+		
+		
 		//Preform the action 
 		dbConnect(in, params);
 
 	}
 	
-	private void dbConnect(String query, String [] params) {
+	private void dbConnect(String query, String [] params) throws SQLException {
 		Connection c = pool.getConnection();
-		try {
-			PreparedStatement p = c.prepareStatement(query);
-		    for(int i =0; i < params.length; i++) {
-		    	p.setString(i +1, params[i]);
-		    }
-		    ResultSet rs = p.executeQuery();
-		    //TODO: Check to see if I need to call commit on the database object...
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		PreparedStatement p = c.prepareStatement(query);
+	    for(int i =0; i < params.length; i++) {
+	    	p.setString(i +1, params[i]);
+	    }
+	    p.executeUpdate();
+	    //TODO: Check to see if I need to call commit on the database object...
+	
 		pool.releaseConnection(c);
 	}
 	
 	//Should return a List<Backend.class>, not sure how to genericify that. 
 	//public abstract List<Object> getTableValues(String [] fields, String [] params);
-	public abstract void updateTable(String [] fields, String [] params);
-	public abstract void insertIntoTable(String [] fields, String [] params);
-	public abstract void deleteFromTable(String [] fields, String [] params);
+	
+	/*
+	 * updates a table in the database
+	 * 
+	 * @param fields the fields in question for this specific table 
+	 * @param params the parameters to insert into this table
+	 * 
+	 */
+	public abstract void updateTable(String [] fields, String [] params) throws SQLException;
+	
+	/*
+	 * inserts a row into a table in the database
+	 * 
+	 * @param fields the fields in question for this specific table 
+	 * @param params the parameters to insert into this table
+	 * 
+	 */
+	public abstract void insertIntoTable(String [] fields, String [] params) throws SQLException;
+	
+	/*
+	 * deletes a row in the database based on given parameters
+	 * 
+	 * @param fields the fields in question for this specific table 
+	 * @param params the parameters to match for deletion for this specific table
+	 * 
+	 */
+	public abstract void deleteFromTable(String [] fields, String [] params) throws SQLException;
 	
 
 }
