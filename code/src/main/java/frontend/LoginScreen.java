@@ -55,8 +55,9 @@ public class LoginScreen {
 		pane.add(login);
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 String pass = password.getPassword().toString();
-				 String user = username.getPassword().toString();
+				 String pass = new String(password.getPassword());
+				 String user = new String(username.getPassword());
+				 System.out.println(pass + " " + user);
 				 r.validateUser(user, pass);
 				//pane.invalidate();
 				//pane.validate();

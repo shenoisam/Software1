@@ -1,4 +1,4 @@
-package cshare;
+package backend.classes;
 
 public class Perscription {
 	private String PerscriptionName;
