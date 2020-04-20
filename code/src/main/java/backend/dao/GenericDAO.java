@@ -129,6 +129,16 @@ public abstract class GenericDAO {
 		pool.releaseConnection(c);
 	}
 	
+	protected String generateRmStr(String [] fields, String [] params) {
+		String rmStr = " ";
+		 
+		 for (int i =0; i < fields.length - 1; i++) {
+			 rmStr = rmStr +" " + fields[i] + " = ? AND"; 
+		 }
+		 rmStr = rmStr + fields[fields.length -1] + " = ? ";
+		 return rmStr;
+	}
+	
 	//Should return a List<Backend.class>, not sure how to genericify that. 
 	//public abstract List<Object> getTableValues(String [] fields, String [] params);
 	

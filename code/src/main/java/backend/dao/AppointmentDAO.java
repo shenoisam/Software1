@@ -32,12 +32,7 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns a List of appointments representing the rows returned from the table 
 	 */
 	 public List<Appointment> getAppointments(String [] fields, String [] params) throws NotImplementedException{
-		 String rmStr = " ";
-		 
-		 for (int i =0; i < fields.length - 1; i++) {
-			 rmStr = rmStr +" " + fields[i] + " = ? AND"; 
-		 }
-		 rmStr = rmStr + fields[fields.length -1] + " = ? ";
+		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Appointment", rmStr, params);
 		 return generateList(stuff);
