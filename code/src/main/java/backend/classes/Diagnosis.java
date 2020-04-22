@@ -12,9 +12,9 @@ public class Diagnosis {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Diagnosis(List<String> headerRow, List<Object> list) {
+	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {
 		// TODO Auto-generated constructor stub
-		throws new NotImplementedException(); 
+		throw new NotImplementedException("Diagnosis Not Implemented"); 
 	}
 
 	public String getName() {
