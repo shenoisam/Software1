@@ -62,13 +62,13 @@ Create Table PatientDiagnosis(
   CONSTRAINT PatientDiagnosis_pk PRIMARY KEY (PatientID, DoctorID, Diagnosis) 
 );
 Create Table Appointment(
-  Date Date NOT NULL, 
+  DateVal Date NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID),
   FOREIGN KEY (PatientID) REFERENCES Patient(ID),
-  CONSTRAINT Appointment_pk PRIMARY KEY (Date, DoctorID, PatientID) 
+  CONSTRAINT Appointment_pk PRIMARY KEY (DateVal, DoctorID, PatientID) 
 );
 Create Table Test(
   Name VARCHAR(100) NOT NULL, 
