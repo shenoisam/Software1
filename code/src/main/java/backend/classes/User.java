@@ -1,5 +1,7 @@
 package backend.classes;
 
+import java.util.List;
+
 import frontend.EHRRunner;
 import frontend.GenericRunner;
 
@@ -10,6 +12,11 @@ public class User {
 	
 	
 	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public User(List<String> headerList, List<Object> dataList) {
 		// TODO Auto-generated constructor stub
 	}
 
