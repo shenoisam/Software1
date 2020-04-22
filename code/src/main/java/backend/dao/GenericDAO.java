@@ -12,7 +12,6 @@ import java.sql.ResultSetMetaData;
 import backend.NotImplementedException;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
-import backend.classes.Notes;
 
 /**
  * Defines a generic Database Access Object (DAO) specific for connecting to a table; 
@@ -23,8 +22,8 @@ import backend.classes.Notes;
  */
 public abstract class GenericDAO {
 	SQLConnectionPool pool; 
-	protected static int MAX_SINGLET_DATA_SIZE = 3; 
-	protected static int MIN_DATA_SIZE = 1; 
+	protected int MAX_SINGLET_DATA_SIZE = 3; 
+	protected int MIN_DATA_SIZE = 1; 
 	protected GenericDAO(){
 		pool = SQLConnectionPoolFactory.getPool();
 	}
@@ -139,8 +138,6 @@ public abstract class GenericDAO {
 		 rmStr = rmStr + fields[fields.length -1] + " = ? ";
 		 return rmStr;
 	}
-	
-	
 	
 	//Should return a List<Backend.class>, not sure how to genericify that. 
 	//public abstract List<Object> getTableValues(String [] fields, String [] params);

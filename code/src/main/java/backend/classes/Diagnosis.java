@@ -47,9 +47,9 @@ public class Diagnosis {
 		}
 	}
 
-	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {
+	public Diagnosis(List<String> headerRow, List<Object> list) {
 		// TODO Auto-generated constructor stub
-		throw new NotImplementedException("Diagnosis Not Implemented"); 
+		throws new NotImplementedException(); 
 	}
 
 	public String getName() {

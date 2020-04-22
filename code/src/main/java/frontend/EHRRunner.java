@@ -59,8 +59,7 @@ public class EHRRunner {
 		 u = d.LogInUser(user, pass);
 		 if (u !=null) {
 			 this.r = u.accept(this);
-			 //Set the user for this screen... Is this a good way to do it?
-			 this.r.setUser(u);
+			 
 			 r.displayFrameOpt(GenericEnum.HOME);
 			 
 		 }else {

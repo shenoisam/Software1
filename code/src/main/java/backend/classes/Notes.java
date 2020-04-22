@@ -1,7 +1,6 @@
 package backend.classes;
 
 import java.util.Date;
-import java.util.List;
 
 /*
  * -DoctorID
@@ -11,18 +10,7 @@ public class Notes {
 	private String DoctorID;
 	private String PatientID;
 	private Date AppointmentDate;
-	
-<<<<<<< HEAD
-	
-	/* This is the sql constructor for the Notes object
-	 * 
-	 * @param list this list contains the header row 
-	 * @param list2 this list contains the value row
-	 */
-	public Notes(List<Object> list, List<Object> list2) {
-		// TODO Auto-generated constructor stub
-	}
-=======
+
 	public Notes(List<String> headerList, List<Object> dataList) {
 		// Check that the headerList is not null
 		if(headerList != null) {
@@ -68,7 +56,7 @@ public class Notes {
 		this.PatientID = patientID;
 	}
 	
->>>>>>> John
+
 	public String getDoctorID() {
 		return DoctorID;
 	}
