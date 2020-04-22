@@ -10,6 +10,7 @@ public class Notes {
 	private String DoctorID;
 	private String PatientID;
 	private Date AppointmentDate;
+<<<<<<< HEAD
 
 	public Notes(List<String> headerList, List<Object> dataList) {
 		// Check that the headerList is not null
@@ -56,6 +57,8 @@ public class Notes {
 		this.PatientID = patientID;
 	}
 
+=======
+>>>>>>> parent of 2e4d6ec... Created database dump
 	public String getDoctorID() {
 		return DoctorID;
 	}
