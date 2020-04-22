@@ -10,6 +10,7 @@ public class Notes {
 	private String DoctorID;
 	private String PatientID;
 	private Date AppointmentDate;
+
 	public Notes(List<String> headerList, List<Object> dataList) {
 		// Check that the headerList is not null
 		if(headerList != null) {
