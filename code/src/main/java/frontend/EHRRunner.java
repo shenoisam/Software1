@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import frontend.GenericEnum;
+import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
 import frontend.provider.ProviderRunner;
 import frontend.staff.Runner;
@@ -59,7 +61,7 @@ public class EHRRunner {
 		 u = d.LogInUser(user, pass);
 		 if (u !=null) {
 			 this.r = u.accept(this);
-			 
+			 this.r.setUser(u);
 			 r.displayFrameOpt(GenericEnum.HOME);
 			 
 		 }else {

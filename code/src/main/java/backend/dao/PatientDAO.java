@@ -39,9 +39,13 @@ public class PatientDAO extends GenericDAO{
 	}
 	private List<Patient> generateList(List<List<Object>> stuff) throws NotImplementedException{
 		 List<Patient> finalList = new ArrayList<Patient>(); 
-		 for(int i = 0; i < stuff.size(); i++) {
+		 List<String> headerRow = new ArrayList<String>(); 
+		 for (Object o: stuff.get(0)) {
+			 headerRow.add(o.toString());
+		 }
+		 for(int i = 1; i < stuff.size(); i++) {
 			 //TODO: implement this; 
-			 finalList.add(new Patient(stuff.get(i)));
+			 finalList.add(new Patient(headerRow,stuff.get(i)));
 		 }
 		 
 		 return finalList;

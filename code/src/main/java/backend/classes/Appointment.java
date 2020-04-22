@@ -10,8 +10,14 @@ import backend.NotImplementedException;
  */
 public class Appointment {
 	private Date AppointmentDate;
-	private String UserID1;
-	private String UserID2;
+	
+	//Should we convert this to a composition? Have Doctor and Patient objects in this class that way we can display the correct info
+	private String DoctorID;
+	private String PatientID;
+	
+	//Testing adding in composition 
+	//private Patient patient; 
+	//private Doctor doctor; 
 	
 	public Appointment(List<String> headerList, List<Object> list){
 		// If there are values to read in
@@ -42,18 +48,12 @@ public class Appointment {
 					 *  is which.
 					 *  	- John
 					 */
-					this.UserID1 = (String)list.get(i);
+					this.DoctorID = (String)list.get(i);
 				}
 				// Otherwise if it represents the Patient ID
 				else if(headerVal.contentEquals(Patient)) {
 					// Initialize the patient ID
-					this.UserID2 =  (String)list.get(i);
-				}
-				// If the header is any other string
-				else {
-					// Print that there is an error since there is an
-					// illegal value attempting initialization.
-					System.out.println("Error: initializing illegal value.");
+					this.PatientID =  (String)list.get(i);
 				}
 				
 			}
@@ -69,17 +69,24 @@ public class Appointment {
 	public void setAppointmentDate(Date appointmentDate) {
 		AppointmentDate = appointmentDate;
 	}
-	public String getUserID1() {
-		return UserID1;
+	public String getDoctorID() {
+		return DoctorID;
 	}
-	public void setUserID1(String userID1) {
-		UserID1 = userID1;
+	public void setDoctorID(String doctorID) {
+		DoctorID = doctorID;
 	}
-	public String getUserID2() {
-		return UserID2;
+	public String getPatientID() {
+		return PatientID;
 	}
-	public void setUserID2(String userID2) {
-		UserID2 = userID2;
+	public void setPatientID(String patientID) {
+		PatientID = patientID;
 	}
+	@Override
+	public String toString() {
+		return "Appointment [AppointmentDate=" + AppointmentDate + ", DoctorID=" + DoctorID + ", PatientID=" + PatientID
+				+ "]";
+	}
+	
+	
 	
 }

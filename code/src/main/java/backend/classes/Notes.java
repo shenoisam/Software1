@@ -55,6 +55,7 @@ public class Notes {
 	public void setPatientID(String patientID) {
 		this.PatientID = patientID;
 	}
+
 	public String getDoctorID() {
 		return DoctorID;
 	}

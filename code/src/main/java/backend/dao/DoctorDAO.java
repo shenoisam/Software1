@@ -18,9 +18,7 @@ public class DoctorDAO extends GenericDAO{
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
 	    if(data.size() > MIN_DATA_SIZE) {
-			List<Object> doc = data.get(1); 
-			//TODO: need to check to make sure that we are placing in the right columns
-			s = new Doctor(doc.get(0).toString(), doc.get(1).toString());
+	    	s = new Doctor(listToString(data.get(0)), data.get(1));
 		}
 		return s; 		
 				

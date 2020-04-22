@@ -9,6 +9,7 @@ import java.util.List;
 
 import backend.NotImplementedException;
 import backend.classes.*;
+import backend.dao.GenericDAO;
 
 
 /**
@@ -19,7 +20,7 @@ import backend.classes.*;
  *
  */
 public class AppointmentDAO extends GenericDAO {
-	AppointmentDAO(){
+	public AppointmentDAO(){
 		super();
 	}
 	
@@ -31,7 +32,7 @@ public class AppointmentDAO extends GenericDAO {
 	 * @param params the values to be matched against the fields. Must be in the same order and orientation as the fields array.
 	 * @return returns a List of appointments representing the rows returned from the table 
 	 */
-	 public List<Appointment> getAppointments(String [] fields, String [] params) throws NotImplementedException{
+	 public List<Appointment> getAppointments(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Appointment", rmStr, params);
@@ -45,9 +46,9 @@ public class AppointmentDAO extends GenericDAO {
 	 * @params date the date to be checked against 
 	 * @return returns the a List of Appointments representing the rows returned from the table 
 	 */
-	public List<Appointment> getAllAppointmentsByDate(Date date) throws NotImplementedException{
-		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date";
-		String table = "User p, Doctor d, Appointment a";
+	public List<Appointment> getAllAppointmentsByDate(Date date) {
+		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date AS DateVal, DoctorID, PatientID";
+		String table = "User p, User d, Appointment a";
 		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date = ?";
 		
 		// This might not work
@@ -57,11 +58,15 @@ public class AppointmentDAO extends GenericDAO {
 		return generateList(data);
 	}
 	
-	private List<Appointment> generateList(List<List<Object>> stuff) throws NotImplementedException{
+	private List<Appointment> generateList(List<List<Object>> stuff) {
 		 List<Appointment> finalList = new ArrayList<Appointment>(); 
-		 for(int i = 0; i < stuff.size(); i++) {
+		 List<String> headerRow = new ArrayList<String>(); 
+		 for (Object o: stuff.get(0)) {
+			 headerRow.add(o.toString());
+		 }
+		 for(int i = 1; i < stuff.size(); i++) {
 			 //TODO: implement this; 
-			 finalList.add(new Appointment(stuff.get(i)));
+			 finalList.add(new Appointment(headerRow, stuff.get(i)));
 		 }
 		 
 		 return finalList;

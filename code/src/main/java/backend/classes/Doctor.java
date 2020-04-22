@@ -27,8 +27,9 @@ public class Doctor extends HealthCareProvider {
 	 * 		- dataList:
 	 * 				contains the variables stored by the Doctor object
 	 */
-	public Doctor(List<String> headerList, List<String> dataList) {
+	public Doctor(List<String> headerList, List<Object> dataList) {
 		// If the headerList isn't null
+		super(headerList, dataList);
 		if(headerList != null) {
 			// Create constants to represent the Doctor variables' names
 			final String identification = "ID";
@@ -40,17 +41,14 @@ public class Doctor extends HealthCareProvider {
 				// If the ID is read in at the corresponding index of the dataList
 				if(headerList.get(i).contentEquals(identification)) {
 					// Initialize the ID for the doctor object
-					this.DoctorID = dataList.get(i);
+					this.DoctorID = dataList.get(i).toString();
 				}
 				// Otherwise if the title is being read in
 				else if(headerList.get(i).contentEquals(doctorTitle)) {
 					// Initialize the doctor object's title
-					this.title = dataList.get(i);
+					this.title = dataList.get(i).toString();
 				}
-				// Otherwise print an error for an illegal object being read in
-				else {
-					System.out.println("Error: Initializing an illegal value");
-				}
+				
 			}
 		}
 		// Otherwise print an error about initializing without values

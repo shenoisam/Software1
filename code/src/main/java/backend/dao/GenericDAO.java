@@ -96,6 +96,14 @@ public abstract class GenericDAO {
 		
 	}
 
+	protected List<String> listToString(List<Object> l){
+		List<String> s = new ArrayList<String>(); 
+		for (Object obj: l) {
+			s.add(obj.toString());
+		}
+		return s; 
+	}
+	
 	protected void insert(String table, String [] fields, String [] params) throws SQLException {
 		//Generate the query 
 		String in = "INSERT INTO " + table + " ("; 

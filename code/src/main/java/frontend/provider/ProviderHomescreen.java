@@ -93,10 +93,11 @@ private static void sideBarWithCalander(Container pane) {
       welcome.setFont(welcome.getFont().deriveFont(25f));
       namePanel.add(welcome);
       JLabel staffName = new JLabel();
-      staffName.setText("Provider's Name");
+      staffName.setText(p.getUser().getFullName());
       staffName.setFont(staffName.getFont().deriveFont(25f));
       namePanel.add(staffName);
       
+
       // creating and adding an invisible panel to push out the appointment times
       JPanel invisible = new JPanel();
       namePanel.add(invisible);
