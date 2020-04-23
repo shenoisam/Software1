@@ -9,7 +9,7 @@ public class User {
 	private String FirstName; 
 	private String LastName; 
 	private String Email; 
-	
+	private String ID; 
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -18,6 +18,27 @@ public class User {
 
 	public User(List<String> headerList, List<Object> dataList) {
 		// TODO Auto-generated constructor stub
+		for( int i =0; i < headerList.size(); i++) {
+			System.out.println(headerList.get(i) +" "+ dataList.get(i).toString());
+			if(headerList.get(i).equals("FirstName")) {
+				FirstName = dataList.get(i).toString();
+			}
+			if(headerList.get(i).contentEquals("LastName")) {
+				LastName = dataList.get(i).toString();
+			}
+			if(headerList.get(i).contentEquals("Email")) {
+				Email = dataList.get(i).toString();
+			}
+			if(headerList.get(i).contentEquals("ID")) {
+				ID = dataList.get(i).toString();
+			}
+		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email + "]";
 	}
 
 
@@ -56,8 +77,18 @@ public class User {
 		
 	}
 	public String getFullName() {
-		return "Dr. "+ getFirstName()  + " " + getLastName(); 
+		return getFirstName()  + " " + getLastName(); 
 	}
 	
+	public void setUserInfo(User u) {
+		if (u != null) {
+			this.FirstName = u.getFirstName(); 
+			this.LastName = u.getLastName();
+			this.Email = u.getEmail();
+		}
+	}
+	public String getID() {
+		return ID; 
+	}
 
 }

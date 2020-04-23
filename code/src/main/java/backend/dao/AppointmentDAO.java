@@ -58,6 +58,24 @@ public class AppointmentDAO extends GenericDAO {
 		return generateList(data);
 	}
 	
+	/*
+	 * gets all appointments that fall on a singular date for any doctor or patient 
+	 * 
+	 * @params date the date to be checked against 
+	 * @return returns the a List of Appointments representing the rows returned from the table 
+	 */
+	public List<Appointment> getAllDoctorsAppointmentsByDate(Date date, Doctor d) {
+		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date AS DateVal, DoctorID, PatientID";
+		String table = "User p, User d, Appointment a";
+		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date = ? AND d.ID";
+		
+		// This might not work
+		String [] params = {new java.sql.Date(date.getTime()).toString(), d.getID()};
+		List<List<Object>> data = this.query(select, table, rmStr, params);
+		
+		return generateList(data);
+	}
+	
 	private List<Appointment> generateList(List<List<Object>> stuff) {
 		 List<Appointment> finalList = new ArrayList<Appointment>(); 
 		 List<String> headerRow = new ArrayList<String>(); 

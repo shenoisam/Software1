@@ -4,6 +4,7 @@ package backend.classes;
  */
 
 import java.util.Date;
+import java.util.List;
 
 public class TestResult {
 	private String TestName;
@@ -11,6 +12,9 @@ public class TestResult {
 	private String PatientID;
 	private String Result;
 	
+	public TestResult(List<String> headerRow, List<Object> list) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getTestName() {
 		return TestName;
 	}

@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,6 +22,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import backend.classes.Appointment;
+import backend.classes.Patient;
+import backend.dao.AppointmentDAO;
+import backend.dao.PatientDAO;
 import frontend.GenericEnum;
 
 public class ProviderHomescreen extends ProviderFrontend{
@@ -134,58 +140,70 @@ private static void sideBarWithCalander(Container pane) {
       JPanel datePanel = new JPanel();
       datePanel.setBorder(BorderFactory.createTitledBorder(""));
       datePanel.setBackground(Color.lightGray);
+       
       datePanel.add(new JLabel("March 30, 2020"), BorderLayout.CENTER);
       
       // adding the date panel to the appointment list
       appointmentList.add(datePanel);
       
       // creating the appointments
-      for (int i = 0; i < 4; i += 1) {
-         // creating the individual appointment panel
-         JPanel appointment = new JPanel();
-         appointment.setBorder(BorderFactory.createTitledBorder(""));
-         appointment.setLayout(new GridLayout(2, 3));
-         
-         // creating the time and patient name panel
-         JPanel timeAndName = new JPanel();
-         timeAndName.setBackground(Color.white);
-         timeAndName.setLayout(new BoxLayout(timeAndName, BoxLayout.Y_AXIS));
-         timeAndName.add(new JLabel("Appointment Time "));
-         timeAndName.add(new JLabel("Patient Name"));
-         
-         // adding the panel to the appointment panel
-         appointment.add(timeAndName);
-         
-         // creating the diagnosis panel
-         JPanel diagnosis = new JPanel();
-         diagnosis.setBackground(Color.white);
-         diagnosis.setLayout(new BoxLayout(diagnosis, BoxLayout.Y_AXIS));
-         diagnosis.add(new JLabel("Diagnosis:"));
-         diagnosis.add(new JLabel("Patient's Diagnosis"));
-         
-         // adding the panel to the appointment panel
-         appointment.add(diagnosis);
-         
-         // creating and adding an invisible panel for formating
-         JPanel invisible = new JPanel();
-         invisible.setBackground(Color.white);
-         appointment.add(invisible);
-         
-         // creating the reason for visit panel
-         JPanel reasonForVisit = new JPanel();
-         reasonForVisit.setBackground(Color.white);
-         reasonForVisit.setLayout(new BoxLayout(reasonForVisit, BoxLayout.Y_AXIS));
-         reasonForVisit.add(new JLabel("Reason for Visit:"));
-         reasonForVisit.add(new JLabel("Patient's Reason for Visit"));
-         
-         // adding the panel to the appointment panel
-         appointment.add(reasonForVisit);
-         
-         // adding the appointment to the appointment list
-         appointmentList.add(appointment);
+      AppointmentDAO a = new AppointmentDAO();
+      PatientDAO p = new PatientDAO(); 
+      List<Appointment> li = a.getAllAppointmentsByDate(new java.util.Date());
+      for (int i = 0; i < li.size(); i += 1) {
+    	  
+    	  
+    	  Patient pp = p.getPatient(li.get(i).getPatientID());
+    	  // adding the appointment to the appointment list
+          appointmentList.add(appointment(li.get(i),pp));
+          
       }
 
       pane.add(appointmentList);
+   }
+   
+   private static JPanel appointment(Appointment a, Patient p) {
+	   // creating the individual appointment panel
+       JPanel appointment = new JPanel();
+       appointment.setBorder(BorderFactory.createTitledBorder(""));
+       appointment.setLayout(new GridLayout(2, 3));
+       
+       // creating the time and patient name panel
+       JPanel timeAndName = new JPanel();
+       timeAndName.setBackground(Color.white);
+       timeAndName.setLayout(new BoxLayout(timeAndName, BoxLayout.Y_AXIS));
+       timeAndName.add(new JLabel("Appointment Time " + a.getAppointmentDate().toLocaleString()));
+       timeAndName.add(new JLabel("Patient Name" + p.getFullName()));
+       
+       // adding the panel to the appointment panel
+       appointment.add(timeAndName);
+       
+       // creating the diagnosis panel
+       JPanel diagnosis = new JPanel();
+       diagnosis.setBackground(Color.white);
+       diagnosis.setLayout(new BoxLayout(diagnosis, BoxLayout.Y_AXIS));
+       diagnosis.add(new JLabel("Diagnosis:"));
+       diagnosis.add(new JLabel("Patient's Diagnosis"));
+       
+       // adding the panel to the appointment panel
+       appointment.add(diagnosis);
+       
+       // creating and adding an invisible panel for formating
+       JPanel invisible = new JPanel();
+       invisible.setBackground(Color.white);
+       appointment.add(invisible);
+       
+       // creating the reason for visit panel
+       JPanel reasonForVisit = new JPanel();
+       reasonForVisit.setBackground(Color.white);
+       reasonForVisit.setLayout(new BoxLayout(reasonForVisit, BoxLayout.Y_AXIS));
+       reasonForVisit.add(new JLabel("Reason for Visit:"));
+       reasonForVisit.add(new JLabel("Patient's Reason for Visit"));
+       
+       // adding the panel to the appointment panel
+       appointment.add(reasonForVisit);
+       
+       return appointment;
    }
   
    public void createAndShowGUI(JFrame frame) {

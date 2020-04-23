@@ -17,7 +17,9 @@ public class DoctorDAO extends GenericDAO{
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
+	    System.out.println("ID" + id);
 	    if(data.size() > MIN_DATA_SIZE) {
+	    	System.out.println("HERE");
 	    	s = new Doctor(listToString(data.get(0)), data.get(1));
 		}
 		return s; 		

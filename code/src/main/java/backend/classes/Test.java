@@ -1,4 +1,7 @@
 package backend.classes;
+
+import java.util.List;
+
 /*
  * -Name
 -Type -Insurance Code
@@ -8,6 +11,9 @@ public class Test {
 	private String Type;
 	private String InsuranceCode;
 	
+	public Test(List<String> headerRow, List<Object> list) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getName() {
 		return Name;
 	}
