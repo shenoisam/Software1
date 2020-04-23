@@ -129,7 +129,7 @@ INSERT INTO USER VALUES ("Test2", "User2", "testuser2@test.com", "pooiqwiewqiqwi
 INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor"); 
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
-
+INSERT INTO APPOINTMENT (Date, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
 
 
 

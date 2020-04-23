@@ -1,15 +1,20 @@
 package backend.dao;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import backend.classes.Appointment;
+import backend.dao.AppointmentDAO;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -55,7 +60,10 @@ public class AppointmentDAOTest {
 	 */
 	@Test
 	public void test2() {
-		
+		AppointmentDAO a = new AppointmentDAO();
+		List<Appointment> q  = a.getAllAppointmentsByDate(usedDate);
+		assertTrue(q.size() == 1);
+		System.out.println(q.get(0));
 	}
 	
 	

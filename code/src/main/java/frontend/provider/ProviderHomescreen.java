@@ -172,8 +172,8 @@ private static void sideBarWithCalander(Container pane) {
        JPanel timeAndName = new JPanel();
        timeAndName.setBackground(Color.white);
        timeAndName.setLayout(new BoxLayout(timeAndName, BoxLayout.Y_AXIS));
-       timeAndName.add(new JLabel("Appointment Time " + a.getAppointmentDate().toLocaleString()));
-       timeAndName.add(new JLabel("Patient Name" + p.getFullName()));
+       timeAndName.add(new JLabel("Appointment Time: " + a.getAppointmentDate().toLocaleString()));
+       timeAndName.add(new JLabel("Patient Name: " + p.getFullName()));
        
        // adding the panel to the appointment panel
        appointment.add(timeAndName);

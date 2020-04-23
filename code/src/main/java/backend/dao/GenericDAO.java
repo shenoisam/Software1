@@ -40,10 +40,11 @@ public abstract class GenericDAO {
 	    List<List<Object>> data = new ArrayList<List<Object>>();
 		try {
 			PreparedStatement p = c.prepareStatement(query);
+		
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		   
+		
 		    ResultSet rs = p.executeQuery();
 		   
 		    

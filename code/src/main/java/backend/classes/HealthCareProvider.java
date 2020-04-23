@@ -4,7 +4,9 @@ import java.util.List;
 
 public class HealthCareProvider extends User {
 
-
+    public HealthCareProvider() {
+    	super();
+    }
 	public HealthCareProvider(List<String> headerList, List<Object> dataList) {
 		// Call the User constructor with the passed variables
 		super(headerList, dataList);
