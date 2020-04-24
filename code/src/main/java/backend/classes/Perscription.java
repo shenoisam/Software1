@@ -1,5 +1,7 @@
 package backend.classes;
 
+import java.util.List;
+
 public class Perscription {
 	private String PerscriptionName;
 	private double Dosage;
@@ -7,6 +9,9 @@ public class Perscription {
 	private String DoctorID;
 	private String PatientID;
 	
+	public Perscription(List<String> headerRow, List<Object> list) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getPerscriptionName() {
 		return PerscriptionName;
 	}

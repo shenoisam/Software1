@@ -26,7 +26,7 @@ public class TestOrderDAO extends GenericDAO {
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("TestOrder", fields, params);
 	}
-	public List<TestOrder> getAppointments(String [] fields, String [] params) {
+	public List<TestOrder> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);

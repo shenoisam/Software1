@@ -8,7 +8,7 @@ import backend.classes.PatientDiagnosis;
 import backend.classes.Perscription;
 
 public class PrescriptionDAO extends GenericDAO {
-    PrescriptionDAO(){
+    public PrescriptionDAO(){
     	
     }
 	@Override
@@ -27,7 +27,7 @@ public class PrescriptionDAO extends GenericDAO {
 		this.delete("Prescription", fields, params);
 	}
 	
-	public List<Perscription> getAppointments(String [] fields, String [] params) {
+	public List<Perscription> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);

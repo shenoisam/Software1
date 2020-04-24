@@ -52,7 +52,7 @@ public class DiagnosisDAO extends GenericDAO{
 		this.delete("Diagnosis", fields, params);
 	}
 	
-	public List<Diagnosis> getDiagnosis(String [] fields, String [] params) {
+	public List<Diagnosis> getData(String [] fields, String [] params) {
 		String rmStr = this.generateRmStr(fields, params);
 		
 		List<List<Object>> vals = this.query("*", "Diagnosis", rmStr, params);

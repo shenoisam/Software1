@@ -39,14 +39,14 @@ public class PatientDAO extends GenericDAO{
 		return s; 		
 				
 	}
-	public List<Patient> getAllPatients() throws NotImplementedException{
+	public List<Patient> getAllPatients() {
 		String select = "Firstname, LastName, DOB, Gender, Race, Ethnicity, MaritalStatus";
 		String table = "Patient, User";
 		String rmStr = "Patient.ID = User.ID";
 		String [] params = {};
 		return generateList(this.query(select, table, rmStr, params)); 
 	}
-	private List<Patient> generateList(List<List<Object>> stuff) throws NotImplementedException{
+	private List<Patient> generateList(List<List<Object>> stuff){
 		 List<Patient> finalList = new ArrayList<Patient>(); 
 		 List<String> headerRow = new ArrayList<String>(); 
 		 for (Object o: stuff.get(0)) {
@@ -74,6 +74,15 @@ public class PatientDAO extends GenericDAO{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public List<Patient> getData(String[] fields, String[] params) {
+	    String rmStr = this.generateRmStr(fields, params);
+		 
+		List<List<Object>> stuff = this.query("*", "Patient", rmStr, params);
+		return generateList(stuff);
+	}
+	
+	
 
 	
 }

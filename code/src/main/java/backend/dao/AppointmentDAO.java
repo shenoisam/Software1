@@ -32,7 +32,7 @@ public class AppointmentDAO extends GenericDAO {
 	 * @param params the values to be matched against the fields. Must be in the same order and orientation as the fields array.
 	 * @return returns a List of appointments representing the rows returned from the table 
 	 */
-	 public List<Appointment> getAppointments(String [] fields, String [] params) {
+	 public List<Appointment> getData(String[] fields, String[] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Appointment", rmStr, params);

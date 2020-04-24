@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import backend.NotImplementedException;
+import backend.dao.AppointmentDAO;
+import backend.dao.GenericDAO;
 
 /*
  * -Date -User ID 1 -User ID 2
  */
-public class Appointment {
+public class Appointment{
 	private Date AppointmentDate;
 	
 	//Should we convert this to a composition? Have Doctor and Patient objects in this class that way we can display the correct info
@@ -18,7 +20,7 @@ public class Appointment {
 	//Testing adding in composition 
 	//private Patient patient; 
 	//private Doctor doctor; 
-	
+
 	public Appointment(List<String> headerList, List<Object> list){
 		// If there are values to read in
 		if(headerList != null) {
@@ -86,7 +88,8 @@ public class Appointment {
 		return "Appointment [AppointmentDate=" + AppointmentDate + ", DoctorID=" + DoctorID + ", PatientID=" + PatientID
 				+ "]";
 	}
-	
+
+
 	
 	
 }

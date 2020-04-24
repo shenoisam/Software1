@@ -27,7 +27,7 @@ public class NotesDAO extends GenericDAO {
 		this.delete("Notes", fields, params);
 	}
 	
-	public List<Notes> getAppointments(String [] fields, String [] params) {
+	public List<Notes> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);

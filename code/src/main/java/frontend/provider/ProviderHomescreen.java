@@ -26,13 +26,16 @@ import backend.classes.Appointment;
 import backend.classes.Patient;
 import backend.dao.AppointmentDAO;
 import backend.dao.PatientDAO;
+import businesslayer.CShareObjects;
+import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class ProviderHomescreen extends ProviderFrontend{
-
+   private static ProviderService serv;
    public ProviderHomescreen(ProviderRunner p) {
 		super(p);
-		// TODO Auto-generated constructor stub
+		serv = new ProviderService(); 
+		
 	}
 
 private static void sideBarWithCalander(Container pane) {
@@ -147,13 +150,14 @@ private static void sideBarWithCalander(Container pane) {
       appointmentList.add(datePanel);
       
       // creating the appointments
-      AppointmentDAO a = new AppointmentDAO();
-      PatientDAO p = new PatientDAO(); 
-      List<Appointment> li = a.getAllAppointmentsByDate(new java.util.Date());
-      for (int i = 0; i < li.size(); i += 1) {
-    	  
-    	  
-    	  Patient pp = p.getPatient(li.get(i).getPatientID());
+      java.util.Date date = new java.util.Date();
+      String [] params = {new java.sql.Date(date.getTime()).toString()};
+      String [] fields = {"DateVal"};
+      List<Appointment> li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+      for (int i = 0; i < li.size(); i += 1) {  
+    	  String [] fields2 = {"ID"};
+    	  String [] params2 = {li.get(i).getPatientID()};
+    	  Patient pp = (Patient) serv.getData(CShareObjects.PATIENT, fields, params).get(0);
     	  // adding the appointment to the appointment list
           appointmentList.add(appointment(li.get(i),pp));
           

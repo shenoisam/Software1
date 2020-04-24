@@ -8,7 +8,7 @@ import backend.classes.Notes;
 import backend.classes.PatientDiagnosis;
 
 public class PatientDiagnosisDAO extends GenericDAO {
-    PatientDiagnosisDAO(){
+    public PatientDiagnosisDAO(){
     	
     }
 	@Override
@@ -28,7 +28,7 @@ public class PatientDiagnosisDAO extends GenericDAO {
 	}
 	
 	
-	public List<PatientDiagnosis> getAppointments(String [] fields, String [] params) {
+	public List<PatientDiagnosis> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);

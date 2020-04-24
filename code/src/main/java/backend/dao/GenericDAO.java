@@ -177,6 +177,7 @@ public abstract class GenericDAO {
 	 * 
 	 */
 	public abstract void deleteFromTable(String [] fields, String [] params) throws SQLException;
-	
+	public abstract  <T> List<T> getData(String [] fields, String [] params);
+
 
 }

@@ -52,5 +52,10 @@ public class DoctorDAO extends GenericDAO{
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Doctor", fields, params);
 	}
+	@Override
+	public List<Doctor> getData(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

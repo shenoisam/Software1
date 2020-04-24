@@ -113,10 +113,10 @@ Create Table Prescription (
 Create Table Notes(
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
-  Date Date NOT NULL, 
+  DateVal Date NOT NULL, 
   Note Varchar(200) NOT NULL,
 
-  FOREIGN KEY (Date, DoctorID, PatientID) REFERENCES Appointment(Date, DoctorID, PatientID)  
+  FOREIGN KEY (DateVal, DoctorID, PatientID) REFERENCES Appointment(DateVal, DoctorID, PatientID)  
 );
 
 
@@ -129,7 +129,7 @@ INSERT INTO USER VALUES ("Test2", "User2", "testuser2@test.com", "pooiqwiewqiqwi
 INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor"); 
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
-INSERT INTO APPOINTMENT (Date, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
+INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
 
 
 

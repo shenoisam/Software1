@@ -59,6 +59,11 @@ public class StaffDAO extends GenericDAO{
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Staff", fields, params);
 	}
+	@Override
+	public <T> List<T> getData(String[] fields, String[] params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
