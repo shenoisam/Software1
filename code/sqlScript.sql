@@ -54,7 +54,7 @@ Create Table PatientDiagnosis(
   PatientID VARCHAR(25) NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   Diagnosis VARCHAR(25) NOT NULL, 
-  Date Date NOT NULL, 
+  DateVal Date NOT NULL, 
 
   FOREIGN KEY (PatientID) REFERENCES Patient(ID),
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID),
@@ -130,6 +130,9 @@ INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor");
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
+INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
+INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
+
 
 
 

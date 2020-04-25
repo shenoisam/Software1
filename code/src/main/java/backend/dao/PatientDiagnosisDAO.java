@@ -31,7 +31,7 @@ public class PatientDiagnosisDAO extends GenericDAO {
 	public List<PatientDiagnosis> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "PatientDiagnosis", rmStr, params);
 		 return generateList(stuff);
 		
 	 }

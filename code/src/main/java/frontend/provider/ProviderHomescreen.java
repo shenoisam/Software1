@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -23,7 +24,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import backend.classes.Appointment;
+import backend.classes.Diagnosis;
 import backend.classes.Patient;
+import backend.classes.PatientDiagnosis;
 import backend.dao.AppointmentDAO;
 import backend.dao.PatientDAO;
 import businesslayer.CShareObjects;
@@ -157,16 +160,26 @@ private static void sideBarWithCalander(Container pane) {
       for (int i = 0; i < li.size(); i += 1) {  
     	  String [] fields2 = {"ID"};
     	  String [] params2 = {li.get(i).getPatientID()};
-    	  Patient pp = (Patient) serv.getData(CShareObjects.PATIENT, fields, params).get(0);
+    	  Patient pp = (Patient) serv.getData(CShareObjects.PATIENT, fields2, params2).get(0);
+    	  String [] fields3 = {"PatientID"};
+    	  List<Object> pd = (List<Object>) serv.getData(CShareObjects.PATIENTDIAGNOSIS, fields3, params2);
+    	 
+    	  List<Diagnosis> pds = new ArrayList<Diagnosis>(); 
+    	  for (Object p : pd) {
+    		  PatientDiagnosis z = (PatientDiagnosis)p;
+    		  String [] params4 = {z.getName()};
+    		  String [] fields4 = {"Name"};
+    		  pds.add((Diagnosis) serv.getData(CShareObjects.DIAGNOSIS,fields4 , params4).get(0));
+    	  }
     	  // adding the appointment to the appointment list
-          appointmentList.add(appointment(li.get(i),pp));
+          appointmentList.add(appointment(li.get(i),pp, pds));
           
       }
 
       pane.add(appointmentList);
    }
    
-   private static JPanel appointment(Appointment a, Patient p) {
+   private static JPanel appointment(Appointment a, Patient p, List<Diagnosis> d) {
 	   // creating the individual appointment panel
        JPanel appointment = new JPanel();
        appointment.setBorder(BorderFactory.createTitledBorder(""));
@@ -187,7 +200,7 @@ private static void sideBarWithCalander(Container pane) {
        diagnosis.setBackground(Color.white);
        diagnosis.setLayout(new BoxLayout(diagnosis, BoxLayout.Y_AXIS));
        diagnosis.add(new JLabel("Diagnosis:"));
-       diagnosis.add(new JLabel("Patient's Diagnosis"));
+       diagnosis.add(new JLabel(d.stream().map(e -> e.getName()).reduce(",", String::concat)));
        
        // adding the panel to the appointment panel
        appointment.add(diagnosis);

@@ -44,7 +44,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		
+		    System.out.println(p);
 		    ResultSet rs = p.executeQuery();
 		   
 		    

@@ -76,9 +76,15 @@ public class PatientDAO extends GenericDAO{
 	}
 	@Override
 	public List<Patient> getData(String[] fields, String[] params) {
+	    for (int i = 0; i < fields.length; i++) {
+	    	if(fields[i].contentEquals("ID")) {
+	    		fields[i] = "Patient.ID";
+	    	}
+	    }
 	    String rmStr = this.generateRmStr(fields, params);
-		 
-		List<List<Object>> stuff = this.query("*", "Patient", rmStr, params);
+	
+		rmStr = rmStr + "AND Patient.ID = User.ID";
+		List<List<Object>> stuff = this.query("*", "Patient, User", rmStr, params);
 		return generateList(stuff);
 	}
 	

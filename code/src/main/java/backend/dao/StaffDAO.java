@@ -2,11 +2,13 @@ package backend.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.SQLConnection.SQLConnection;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
+import backend.classes.Doctor;
 import backend.classes.Patient;
 import backend.classes.Staff;
 
@@ -60,9 +62,29 @@ public class StaffDAO extends GenericDAO{
 		this.delete("Staff", fields, params);
 	}
 	@Override
-	public <T> List<T> getData(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Staff> getData(String[] fields, String[] params) {
+	    for (int i = 0; i < fields.length; i++) {
+	    	if(fields[i].contentEquals("ID")) {
+	    		fields[i] = "Staff.ID";
+	    	}
+	    }
+		    String rmStr = this.generateRmStr(fields, params);
+			rmStr = rmStr + "AND Doctor.ID = User.ID";
+			List<List<Object>> stuff = this.query("*", "Doctor, User", rmStr, params);
+			List<Staff> d = new ArrayList<Staff>(); 
+			if (stuff.size() > MIN_DATA_SIZE) {
+				//Get the header row. The first row returned should be the header row
+				List<Object> header = stuff.get(0);
+				List<String> headerRow  = new ArrayList<String> (); 
+				
+				for (Object h: header) {
+					headerRow.add(h.toString());
+				}
+				for(int i = MIN_DATA_SIZE; i < stuff.size(); i++) {
+					d.add(new Staff(headerRow, stuff.get(i)));
+				}
+			}
+			return d; 
 	}
 	
 
