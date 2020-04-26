@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,8 +154,8 @@ private static void sideBarWithCalander(Container pane) {
       appointmentList.add(datePanel);
       
       // creating the appointments
-      java.util.Date date = new java.util.Date();
-      String [] params = {new java.sql.Date(date.getTime()).toString()};
+      LocalDateTime date = LocalDateTime.now();
+      String [] params = {date.toString()};
       String [] fields = {"DateVal"};
       List<Appointment> li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
       for (int i = 0; i < li.size(); i += 1) {  

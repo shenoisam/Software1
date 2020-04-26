@@ -2,6 +2,7 @@ package backend.dao;
 
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,9 +48,10 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns the a List of Appointments representing the rows returned from the table 
 	 */
 	public List<Appointment> getAllAppointmentsByDate(Date date) {
+		
 		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date AS DateVal, DoctorID, PatientID";
 		String table = "User p, User d, Appointment a";
-		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date = ?";
+		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date > ?";
 		
 		// This might not work
 		String [] params = {new java.sql.Date(date.getTime()).toString()};
@@ -127,7 +129,13 @@ public class AppointmentDAO extends GenericDAO {
 	 */
 	@Override 
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
-		params[0] =  new java.sql.Date(new Date(params[0]).getTime()).toString();
+		/*for (int i =0; i < fields.length; i++) {
+			if (fields[i] == "DateVal") {
+
+				params[i] =  java.sql.Date.valueOf( LocalDateTime.parse(params[i]) );
+			}
+		}*/
+		
 		this.insert("Appointment", fields, params);
 		
 	}
@@ -139,7 +147,12 @@ public class AppointmentDAO extends GenericDAO {
 	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {
-		params[0] = new java.sql.Date(new Date(params[0]).getTime()).toString();
+		for (int i =0; i < fields.length; i++) {
+			if (fields[i] == "DateVal") {
+				params[i] =  new java.sql.Date(new Date(params[i]).getTime()).toString();
+			}
+		}
+
 		this.delete("Appointment", fields, params);
 	}
 

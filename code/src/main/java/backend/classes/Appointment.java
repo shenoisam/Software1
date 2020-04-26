@@ -1,5 +1,6 @@
 package backend.classes;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import backend.dao.GenericDAO;
  * -Date -User ID 1 -User ID 2
  */
 public class Appointment{
-	private Date AppointmentDate;
+	private LocalDateTime AppointmentDate;
 	
 	//Should we convert this to a composition? Have Doctor and Patient objects in this class that way we can display the correct info
 	private String DoctorID;
@@ -36,7 +37,7 @@ public class Appointment{
 				// If the header represents the Date
 				if(headerVal.contentEquals(Date)) {
 					// Initialize the object's date
-					this.AppointmentDate = (Date)list.get(i);
+					this.AppointmentDate = (LocalDateTime)list.get(i);
 				}
 				// Otherwise if it represents the Doctor ID
 				else if(headerVal.contentEquals(Doctor)) {
@@ -65,10 +66,10 @@ public class Appointment{
 			System.out.println("Error: initializing from no values.");
 		}
 	}
-	public Date getAppointmentDate() {
+	public LocalDateTime getAppointmentDate() {
 		return AppointmentDate;
 	}
-	public void setAppointmentDate(Date appointmentDate) {
+	public void setAppointmentDate(LocalDateTime appointmentDate) {
 		AppointmentDate = appointmentDate;
 	}
 	public String getDoctorID() {

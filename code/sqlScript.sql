@@ -62,7 +62,7 @@ Create Table PatientDiagnosis(
   CONSTRAINT PatientDiagnosis_pk PRIMARY KEY (PatientID, DoctorID, Diagnosis) 
 );
 Create Table Appointment(
-  DateVal Date NOT NULL, 
+  DateVal DateTime NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
 
@@ -113,7 +113,7 @@ Create Table Prescription (
 Create Table Notes(
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
-  DateVal Date NOT NULL, 
+  DateVal DateTime NOT NULL, 
   Note Varchar(200) NOT NULL,
 
   FOREIGN KEY (DateVal, DoctorID, PatientID) REFERENCES Appointment(DateVal, DoctorID, PatientID)  
