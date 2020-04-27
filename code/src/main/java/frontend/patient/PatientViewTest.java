@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
-import cshare.TestOrder;
+import backend.classes.TestOrder;
 
 public class PatientViewTest extends GenericScreen {
 

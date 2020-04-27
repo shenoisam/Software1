@@ -10,7 +10,8 @@ import frontend.staff.Runner;
 
 
 import backend.*;
-import cshare.User;
+import backend.classes.User;
+import backend.dao.UserDAO;
 
 public class EHRRunner {
 	private GenericRunner r; 
@@ -31,8 +32,9 @@ public class EHRRunner {
 		return this.frame;
 	}
 	
-	public GenericRunner getGenericRunner() {
-		return this.r;
+
+	public void setR(GenericRunner w) {
+		r = w; 
 	}
 	
 	
@@ -52,18 +54,18 @@ public class EHRRunner {
 		  * TODO: some fancy polymorphism stuff. probs will have to create some new classes and stuff
 		  * idk hacky way for now. 
 		  */
-		 TestData d = new TestData(); 
+
+		 UserDAO d = new UserDAO();
 		 
-		 int z = d.randomGetter(); 
-		
-		 
-		 switch (z) {
-		 case 0: r = new ProviderRunner(this); break; 
-		 case 1: r = new Runner(this) ; break; 
-		 case 2: r = new PatientRunner(this);break; 
-		 default: r = new PatientRunner(this);break; 
+		 u = d.LogInUser(user, pass);
+		 if (u !=null) {
+			 this.r = u.accept(this);
+			 
+			 r.displayFrameOpt(GenericEnum.HOME);
+			 
+		 }else {
+			 System.out.println("User not found");
 		 }
-		 r.displayFrameOpt(GenericEnum.HOME);
 		 
 		 //For some reason getting address instead of value, fix later
 		 /*if (user.equals("doctor")) {
