@@ -37,7 +37,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(ProviderScreen.POVERVIEW);
+	    	    p.displayFrameOpt(GenericEnum.POVERVIEW);
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -66,7 +66,12 @@ public class ProviderFrontend implements IProviderFrontend{
 	      } );
 	      buttonPanel.add(button);
 	      button = new JButton("View Test Results");
-	     
+	      button.addActionListener(new ActionListener() { 
+	    	  public void actionPerformed(ActionEvent e) { 
+	    	    p.displayFrameOpt(GenericEnum.PTESTREQUEST);
+	    	  } 
+	      } );
+	      
 	      buttonPanel.add(button);
 	      button = new JButton("Referrals");
 	      button.addActionListener(new ActionListener() { 
@@ -183,6 +188,10 @@ public class ProviderFrontend implements IProviderFrontend{
 	      // adding the top Panel to the contianer that was passed in to the function
 	      pane.add(topPanel, BorderLayout.NORTH);
 	   }
+	public void createAndShowGUI(JFrame frame) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	
