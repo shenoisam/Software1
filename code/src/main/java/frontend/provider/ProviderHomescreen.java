@@ -166,7 +166,15 @@ private static void sideBarWithCalander(Container pane) {
       for (int i = 0; i < li.size(); i += 1) {  
     	  String [] fields2 = {"ID"};
     	  String [] params2 = {li.get(i).getPatientID()};
-    	  Patient pp = (Patient) serv.getData(CShareObjects.PATIENT, fields2, params2).get(0);
+    	  List<Patient> pat =  serv.getData(CShareObjects.PATIENT, fields2, params2);
+    	  Patient pp = null; 
+    	  if(pat.size() > 0) {
+    		  pp = pat.get(0);
+    	  }else {
+    		  pp = new Patient(null);
+    	  }
+    	  
+    	  //.get(0);
     	  String [] fields3 = {"PatientID"};
     	  List<Object> pd = (List<Object>) serv.getData(CShareObjects.PATIENTDIAGNOSIS, fields3, params2);
     	 
@@ -195,7 +203,7 @@ private static void sideBarWithCalander(Container pane) {
        JPanel timeAndName = new JPanel();
        timeAndName.setBackground(Color.white);
        timeAndName.setLayout(new BoxLayout(timeAndName, BoxLayout.Y_AXIS));
-       timeAndName.add(new JLabel("Appointment Time: " + a.getAppointmentDate().toLocaleString()));
+       timeAndName.add(new JLabel("Appointment Time: " + a.getAppointmentDate().toString()));
        timeAndName.add(new JLabel("Patient Name: " + p.getFullName()));
        
        // adding the panel to the appointment panel

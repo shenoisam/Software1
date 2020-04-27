@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,41 +37,44 @@ public class AppointmentDAO extends GenericDAO {
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
 		 String rmStr = this.generateRmStr(fields, params);
-		 List<List<Object>> stuff = this.query("*", "Appointment", rmStr, params);
+		 LocalDateTime d = null; 
+		 int ndx = -1; 
+		 // Hacky way to ensure that we get a noice date range 
+		 boolean searchByDate = false; 
+		 for(int i = 0; i < fields.length && ! searchByDate; i++){
+			 if(fields[i].contentEquals("DateVal")) {
+				 searchByDate = true; 
+				 d = LocalDateTime.parse(params[i]);
+				 ndx = i; 
+			 }
+		 }
+		 List<List<Object>> stuff;
+		 if (searchByDate) {
+			 Date d1 = Date.from( d.atZone( ZoneId.systemDefault()).toInstant());
+			 Date d2 = Date.from( d.atZone( ZoneId.systemDefault()).toInstant());
+			 d1.setDate(d1.getDate() - 1);
+			 d2.setDate(d2.getDate() + 1);
+			 List<String> newFields = new ArrayList<String>(); 
+			 List<String> newParams = new ArrayList<String>(); 
+			 for (int y = 0; y < fields.length; y++) {
+				 if(y != ndx) {
+					 newFields.add(fields[y]);
+					 newParams.add(params[y]);
+				 }
+			 }
+			 
+			 String [] f = Arrays.asList(newFields.toArray()).toArray(new String[newFields.toArray().length]);
+			 String [] p = Arrays.asList(newParams.toArray()).toArray(new String[newParams.toArray().length]);
+			 stuff = getAllAppointmentsByDateRange(d1, d2, f, p);
+		 }else {
+		    stuff = this.query("*", "Appointment", rmStr, params);
+		 }
 		 
 		 return generateList(stuff);
 		
 	 }
 	 
-	 protected String generateRmStr(String [] fields, String [] params) {
-         String rmStr = " ";
-		 
-		 for (int i =0; i < fields.length - 1; i++) {
-			 if(!fields[i].contentEquals("DateVal")) {
-			    rmStr = rmStr +" " + fields[i] + " = ? AND"; 
-			 }else {
-				 rmStr = rmStr + dateFormatter(params[i]) + "AND ";
-				 params[i] = new java.sql.Date(Date.from( LocalDateTime.parse(params[i]).atZone( ZoneId.systemDefault()).toInstant()).getTime()).toString();
-			 }
-		 }
-		 if(!fields[fields.length -1].contentEquals("DateVal")) {
-			 rmStr = rmStr + fields[fields.length -1] + " = ? ";
-		 }else {
-				 rmStr = rmStr + dateFormatter(params[fields.length -1]);
-		 }
-		 
-		 return rmStr;
-	 }
 
-	 private String dateFormatter(String i) {
-		 LocalDateTime d= LocalDateTime.parse(i);
-		 Date w = Date.from( d.atZone( ZoneId.systemDefault()).toInstant());
-		 w.setDate(1);
-		 String rmStr =  "DateVal BETWEEN " + new java.sql.Date(w.getTime()).toString();
-		 w.setDate(-2);
-		 rmStr = rmStr + "?";
-		 return rmStr; 
-	 }
 	/*
 	 * gets all appointments that fall on a singular date for any doctor or patient 
 	 * 
@@ -97,7 +101,7 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns the a List of Appointments representing the rows returned from the table 
 	 */
 	public List<Appointment> getAllDoctorsAppointmentsByDate(Date date, Doctor d) {
-		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date AS DateVal, DoctorID, PatientID";
+		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.DateVal AS DateVal, DoctorID, PatientID";
 		String table = "User p, User d, Appointment a";
 		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date = ? AND d.ID";
 		
@@ -129,16 +133,21 @@ public class AppointmentDAO extends GenericDAO {
 	 * @params date2 the upper bound of the date range
 	 * @return returns the a List of Appointments representing the rows returned from the table 
 	 */
-	public List<Appointment> getAllAppointmentsByDateRange(Date date1, Date date2) throws NotImplementedException{
-		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date";
-		String table = "User p, Doctor d, Appointment a";
-		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date > ? AND a.Date < ?";
+	public List<List<Object>> getAllAppointmentsByDateRange(Date date1, Date date2, String [] fields, String [] params) {
+		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.DateVal";
+		String table = "User p, User d, Appointment a";
+		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.DateVal > ? AND a.DateVal < ?";// + generateRmStr(fields, params);
 		
-		String [] params = {new java.sql.Date(date1.getTime()).toString(), new java.sql.Date(date2.getTime()).toString()};
+		List<String> par = new ArrayList<String>(); 
+		par.add(new java.sql.Date(date1.getTime()).toString());
+		par.add( new java.sql.Date(date2.getTime()).toString());
+		for(String z: params ) {
+			par.add(z);
+		}
 		
-        List<List<Object>> data = this.query(select, table, rmStr, params);
+        List<List<Object>> data = this.query(select, table, rmStr, Arrays.asList(par.toArray()).toArray(new String[par.toArray().length]));
 		
-		return generateList(data);
+		return data;
 	}
 	
 	/*

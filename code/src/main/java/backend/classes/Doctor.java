@@ -46,7 +46,12 @@ public class Doctor extends HealthCareProvider {
 				// Otherwise if the title is being read in
 				else if(headerList.get(i).contentEquals(doctorTitle)) {
 					// Initialize the doctor object's title
+					try {
 					this.title = dataList.get(i).toString();
+					}catch(NullPointerException e) {
+						this.title = "";
+					
+					}
 				}
 				
 			}

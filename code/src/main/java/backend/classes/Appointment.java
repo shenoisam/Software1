@@ -66,6 +66,7 @@ public class Appointment{
 			System.out.println("Error: initializing from no values.");
 		}
 	}
+
 	public LocalDateTime getAppointmentDate() {
 		return AppointmentDate;
 	}
