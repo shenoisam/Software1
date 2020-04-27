@@ -37,7 +37,7 @@ public class Appointment{
 				// If the header represents the Date
 				if(headerVal.contentEquals(Date)) {
 					// Initialize the object's date
-					this.AppointmentDate = (LocalDateTime)list.get(i);
+					this.AppointmentDate = ((java.sql.Timestamp)list.get(i)).toLocalDateTime();
 				}
 				// Otherwise if it represents the Doctor ID
 				else if(headerVal.contentEquals(Doctor)) {

@@ -1,32 +1,34 @@
 package backend.dao;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.function.Executable;
 
 import backend.SQLConnection.SQLConnectionPoolFactory;
 import backend.classes.Appointment;
 import backend.dao.AppointmentDAO;
 
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AppointmentDAOTest {
 	private List<LocalDateTime> usedDates; 
 	private String [] goodFields;
@@ -49,10 +51,10 @@ public class AppointmentDAOTest {
 	 */
 	@BeforeAll
 	public void setUp() throws Exception {
-		System.out.println("Working");
-		String patquery = "INSERT INTO USER VALUES('Pat','Test','Pattest@test.com', 'one',  MD5('Test'))";
-		String docquery = "INSERT INTO USER VALUES('Doc','Test','Doctest@test.com','two',  MD5('Test'))";
-		String staffquery = "INSERT INTO USER VALUES('Staff','Test','Stafftest@test.com','three', MD5('Test'))";
+		
+		String patquery = "INSERT INTO USER (Firstname, Lastname, Email, ID, Password) VALUES('Pat','Test','Pattest@test.com', 'one',  MD5('Test'))";
+		String docquery = "INSERT INTO USER  (Firstname, Lastname, Email, ID, Password) VALUES('Doc','Test','Doctest@test.com','two',  MD5('Test'))";
+		String staffquery = "INSERT INTO USER  (Firstname, Lastname, Email, ID, Password)  VALUES('Staff','Test','Stafftest@test.com','three', MD5('Test'))";
 		PreparedStatement p = c.prepareStatement(patquery);
 		PreparedStatement p2 = c.prepareStatement(docquery);
 		PreparedStatement p3 = c.prepareStatement(staffquery);
@@ -61,9 +63,9 @@ public class AppointmentDAOTest {
 		 p2.executeUpdate();
 		 p3.executeUpdate();
 		 
-		 patquery = "INSERT INTO Patient VALUES('one')";
-		 docquery = "INSERT INTO Doctor VALUES('two')";
-		 staffquery = "INSERT INTO USER VALUES('three')";
+		 patquery = "INSERT INTO Patient (ID) VALUES('one')";
+		 docquery = "INSERT INTO Doctor (ID) VALUES('two')";
+		 staffquery = "INSERT INTO STAFF (ID) VALUES('three')";
 		 
 		  p = c.prepareStatement(patquery);
 		  p2 = c.prepareStatement(docquery);
@@ -72,6 +74,7 @@ public class AppointmentDAOTest {
 		 p.executeUpdate();
 		 p2.executeUpdate();
 		 p3.executeUpdate();
+		 
 	}
 	
 	
@@ -85,17 +88,22 @@ public class AppointmentDAOTest {
 		
      
 		for (int i =0; i < 10; i ++) {
-			LocalDateTime a = LocalDateTime.now(); 
-			usedDates.add(a);
-			String query = "INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (Date(?),'two','one'";
+			LocalDateTime tw = LocalDateTime.now(); 
+		    tw = tw.plusHours(i);
+			Timestamp z = Timestamp.valueOf(tw); 
+		
+			usedDates.add(tw);
+			String query = "INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES ( ?, 'two','one')";
 			PreparedStatement p = c.prepareStatement(query);
-			p.setString(1,a.toString());
+		    p.setTimestamp(1, z);
+		  
 			p.executeUpdate();
 		}
 		
 		
 		
 	}
+	
 	
 	/*
 	 * 
@@ -106,7 +114,6 @@ public class AppointmentDAOTest {
 	public void tearDown1() throws Exception {
 		String query = "DELETE FROM  APPOINTMENT WHERE PatientID ='one'";
 		PreparedStatement p = c.prepareStatement(query);
-		p.setString(1,a.toString());
 		p.executeUpdate();
 		
 		
@@ -119,10 +126,10 @@ public class AppointmentDAOTest {
 	 */
 	@AfterAll
 	public void tearDown() throws Exception {
-		/*String q = "DELETE FROM Doctor WHERE ID = 'one'";
-		String q2 = "DELETE FROM Patient WHERE ID = 'two'";
+		String q = "DELETE FROM Doctor WHERE ID = 'two'";
+		String q2 = "DELETE FROM Patient WHERE ID = 'one'";
 		String q3 = "DELETE FROM Staff WHERE ID = 'three'";
-		String q4 = "DELETE FROM User WHERE (ID = 'one' OR ID = 'two' OR ID = 'three'";
+		String q4 = "DELETE FROM User WHERE (ID = 'one' OR ID = 'two' OR ID = 'three')";
 		
 		PreparedStatement p = c.prepareStatement(q);
 		PreparedStatement p2 = c.prepareStatement(q2);
@@ -132,15 +139,15 @@ public class AppointmentDAOTest {
 		 p.executeUpdate();
 		 p2.executeUpdate();
 		 p3.executeUpdate();
-		 p4.executeUpdate();*/
+		 p4.executeUpdate();
 		
 	}
 
+	
 	@Test
 	public void testValidInsert() {
 		String [] params = {LocalDateTime.now().toString(), "two", "one"};
 		try {
-			System.out.println(goodFields[0]);
 			a.insertIntoTable(goodFields, params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -151,14 +158,62 @@ public class AppointmentDAOTest {
 	
 	@Test
 	public void testInValidInsert() {
-		String [] params = {LocalDateTime.now().toString(), "two", "one"};
-		Exception exception = assertThrows(SQLException.class, () -> {
-			 a.insertIntoTable(badFields, params);
-		    });
-		 
-		 
-	
+		final String [] params = {LocalDateTime.now().toString(), "two", "one"};
+		Exception exception = assertThrows(SQLException.class, new Executable() {
+			public void execute() throws Throwable {
+				 a.insertIntoTable(badFields, params);
+			    }
+		});
 		
+	}
+	
+	@Test
+	public void testQueryByPatientID() {
+		final String [] params = {"one"};
+		final String [] fields = {"PatientID"};
+		List<Appointment> q = a.getData(fields, params);
+		assertTrue(q.size() == 10);
+	}
+	
+	@Test
+	public void testQueryByAppointment() {
+		final String [] fields = {"DateVal"};
+		final String [] params = {usedDates.get(0).toString()};
+		
+		List<Appointment> q = a.getData(fields, params);
+		assertTrue(q.size() == 1);
+	}
+	@Test 
+	public void testDelete() {
+		final String [] params = {"one"};
+		final String [] fields = {"PatientID"};
+		try {
+			a.deleteFromTable(fields, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(a.getData(fields, params).size() == 0);
+	}
+
+	@Test 
+	public void testUpdate() {
+
+		final String [] fields = {"PatientID", "DateVal"};
+		
+		LocalDateTime aptTime = usedDates.get(0);
+		final String [] params = {"one", aptTime.toString()};
+		aptTime.minusHours(1);
+		final String [] params2= {"one", aptTime.toString()};
+		try {
+			a.updateTable(fields, params2, fields, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+		}
+		
+		//assertTrue(a.getData(fields, params).size() == 0);
 	}
 
 	

@@ -44,7 +44,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		    System.out.println(p);
+
 		    ResultSet rs = p.executeQuery();
 		   
 		    
@@ -78,8 +78,19 @@ public abstract class GenericDAO {
 		
 	}
 
-	protected void update(String table, String [] fields,String rmStr,String [] params) throws NotImplementedException {
-		String update = "UPDATE " + table + " SET "; 
+	protected void update(String table, String [] fields,String rmStr,String [] params) throws SQLException {
+		Connection con = pool.getConnection();
+		String update = "UPDATE " + table + " SET " + generateRmStr(fields, params) + "WHERE " + rmStr; 
+
+		PreparedStatement p = con.prepareStatement(update);
+	    for(int i = 0; i < params.length; i++) {
+	    	p.setString(i +1, params[i]);
+	    }
+	    p.executeUpdate(); 
+	
+		
+		
+		pool.releaseConnection(con);
 		//TODO: Fix this. 
 		
 		
@@ -151,14 +162,8 @@ public abstract class GenericDAO {
 	//Should return a List<Backend.class>, not sure how to genericify that. 
 	//public abstract List<Object> getTableValues(String [] fields, String [] params);
 	
-	/*
-	 * updates a table in the database
-	 * 
-	 * @param fields the fields in question for this specific table 
-	 * @param params the parameters to insert into this table
-	 * 
-	 */
-	public abstract void updateTable(String [] fields, String [] params) throws SQLException;
+	
+	
 	
 	/*
 	 * inserts a row into a table in the database
@@ -178,6 +183,18 @@ public abstract class GenericDAO {
 	 */
 	public abstract void deleteFromTable(String [] fields, String [] params) throws SQLException;
 	public abstract  <T> List<T> getData(String [] fields, String [] params);
+
+	
+	/*
+	 * updates a table in the database
+	 * 
+	 * @param fields the fields in question for this specific table the rmStr 
+	 * @param params the parameters to insert into this table for the rmStr 
+	 * @param setFields the fields to be set 
+	 * @param setParams the parameters to be set
+	 * 
+	 */
+	public abstract void updateTable(String[] setFields, String[] setParams, String [] fields, String[] params) throws SQLException;
 
 
 }

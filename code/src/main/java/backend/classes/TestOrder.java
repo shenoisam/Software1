@@ -1,6 +1,7 @@
 package backend.classes;
 
 import java.util.Date;
+import java.util.List;
 
 public class TestOrder {
 	private String DoctorID; 
@@ -10,6 +11,10 @@ public class TestOrder {
 	private Test test;
 
 	public TestOrder() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public TestOrder(List<String> headerRow, List<Object> list) {
 		// TODO Auto-generated constructor stub
 	}
 

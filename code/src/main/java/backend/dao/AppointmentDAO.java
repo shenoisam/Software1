@@ -3,6 +3,7 @@ package backend.dao;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,12 +36,41 @@ public class AppointmentDAO extends GenericDAO {
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
 		 String rmStr = this.generateRmStr(fields, params);
-		 
 		 List<List<Object>> stuff = this.query("*", "Appointment", rmStr, params);
+		 
 		 return generateList(stuff);
 		
 	 }
+	 
+	 protected String generateRmStr(String [] fields, String [] params) {
+         String rmStr = " ";
+		 
+		 for (int i =0; i < fields.length - 1; i++) {
+			 if(!fields[i].contentEquals("DateVal")) {
+			    rmStr = rmStr +" " + fields[i] + " = ? AND"; 
+			 }else {
+				 rmStr = rmStr + dateFormatter(params[i]) + "AND ";
+				 params[i] = new java.sql.Date(Date.from( LocalDateTime.parse(params[i]).atZone( ZoneId.systemDefault()).toInstant()).getTime()).toString();
+			 }
+		 }
+		 if(!fields[fields.length -1].contentEquals("DateVal")) {
+			 rmStr = rmStr + fields[fields.length -1] + " = ? ";
+		 }else {
+				 rmStr = rmStr + dateFormatter(params[fields.length -1]);
+		 }
+		 
+		 return rmStr;
+	 }
 
+	 private String dateFormatter(String i) {
+		 LocalDateTime d= LocalDateTime.parse(i);
+		 Date w = Date.from( d.atZone( ZoneId.systemDefault()).toInstant());
+		 w.setDate(1);
+		 String rmStr =  "DateVal BETWEEN " + new java.sql.Date(w.getTime()).toString();
+		 w.setDate(-2);
+		 rmStr = rmStr + "?";
+		 return rmStr; 
+	 }
 	/*
 	 * gets all appointments that fall on a singular date for any doctor or patient 
 	 * 
@@ -117,8 +147,9 @@ public class AppointmentDAO extends GenericDAO {
 	 * @see GenericDAO#updateTable
 	 */
 	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
+	public void updateTable(String[] setFields, String[] setParams, String [] fields, String [] params ) throws SQLException {
+		String rmStr = this.generateRmStr(fields, params);
+		this.update("Appointment", setFields, rmStr, setParams);
 		
 	}
 
