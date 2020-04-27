@@ -34,6 +34,7 @@ public class EHRRunner {
 		return this.frame;
 	}
 	
+
 	public void setR(GenericRunner w) {
 		r = w; 
 	}
