@@ -66,8 +66,7 @@ public class AutocompleteJComboBox extends JComboBox {
                // and JComboBox will result in an IllegalStateException due to editing
                // the component when it is locked.
                SwingUtilities.invokeLater(new Runnable() {
-
-                  @Override
+            	   @Override
                   public void run() {
 
                      ArrayList<String> founds = new ArrayList<String>(searchable.search(tc.getText()));
@@ -106,15 +105,13 @@ public class AutocompleteJComboBox extends JComboBox {
          // popup.
 
          tc.addFocusListener(new FocusListener() {
-
-            @Override
+        	 @Override
             public void focusGained(FocusEvent arg0) {
                if (tc.getText().length() > 0) {
                   setPopupVisible(true);
                }
             }
-
-            @Override
+        	 @Override
             public void focusLost(FocusEvent arg0) {
 
             }
