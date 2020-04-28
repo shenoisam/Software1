@@ -83,6 +83,10 @@ public class Patient extends User {
 			System.out.println("Error: initializing from empty set of values");
 		}
 	}
+	public Patient() {
+		PatientID = race = ethnicity = "";
+		
+	}
 	public Date getDOB() {
 		return DOB;
 	}

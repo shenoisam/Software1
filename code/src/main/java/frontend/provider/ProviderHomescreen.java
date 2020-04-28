@@ -160,7 +160,7 @@ private static void sideBarWithCalander(Container pane) {
       for (int i = 0; i < li.size(); i += 1) {  
     	  String [] fields2 = {"ID"};
     	  String [] params2 = {li.get(i).getPatientID()};
-    	  System.out.println(li.get(0));
+ 
     	  List<Patient> pat =  serv.getData(CShareObjects.PATIENT, fields2, params2);
     	  Patient pp = null; 
     	  if(pat.size() > 0) {
@@ -235,7 +235,7 @@ private static void sideBarWithCalander(Container pane) {
      
        button.addActionListener(new ActionListener() { 
      	  public void actionPerformed(ActionEvent e) { 
-     	    p.displayFrameOpt(GenericEnum.POVERVIEW);
+     	    p.displayFrameOpt(GenericEnum.POVERVIEW, pat);
      	  } 
      	 } );
        
@@ -261,5 +261,9 @@ private static void sideBarWithCalander(Container pane) {
       // allowing the contents of the screen to be seen
       //frame.pack();
       //frame.setVisible(true);
+   }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+
+	   createAndShowGUI(frame);      
    }
 }

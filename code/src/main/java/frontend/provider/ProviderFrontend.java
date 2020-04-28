@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import backend.classes.Patient;
 import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
@@ -192,6 +193,11 @@ public class ProviderFrontend implements IProviderFrontend{
 	   }
 
 	public void createAndShowGUI(JFrame frame) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void createAndShowGUI(JFrame frame, Patient pat) {
 		// TODO Auto-generated method stub
 		
 	}

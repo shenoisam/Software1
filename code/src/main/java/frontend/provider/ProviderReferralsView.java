@@ -148,6 +148,12 @@ public void patientReferralPanel(Container pane) {
       patientReferralPanel(frame.getContentPane());
 
    }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+	   this.pat = pat; 
+	   createAndShowGUI(frame);
+   }
+
+	   
 }
 
 

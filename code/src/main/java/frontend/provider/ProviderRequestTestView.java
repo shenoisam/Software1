@@ -200,5 +200,9 @@ public void patientRequestPanel(Container pane) {
 
  
    }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+      this.pat = pat;
+      createAndShowGUI(frame);
+   }
 }
 

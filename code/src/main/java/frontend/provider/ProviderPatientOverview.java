@@ -28,23 +28,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import backend.classes.Patient;
-import backend.classes.Perscription;
+import backend.classes.*;
+
 import businesslayer.CShareObjects;
 
 public class ProviderPatientOverview extends ProviderFrontend{
 
-   Patient pat; 
+   static Patient pat; 
    
    public ProviderPatientOverview(ProviderRunner p) {
 		super(p);
+		pat = new Patient(); 
 		// TODO Auto-generated constructor stub
 	}
 
 
    public ProviderPatientOverview(ProviderRunner providerRunner, Patient pat) {
 	   super(providerRunner);
-	   this.pat = pat
+	   this.pat = pat;
+	   
 	// TODO Auto-generated constructor stub
 }
 
@@ -90,7 +92,23 @@ private static void patientInformationPanel(Container pane) {
       
       // creating the text area to display the diagnosises 
       JTextArea display = new JTextArea(6,21);
-      display.setText("Hypertension\nHyperlipidemia\nDiabetes\nBack pain");
+      
+      /********** Data Retrieval **********/
+      String [] fields = {"PatientID"};
+      String [] params = {pat.getID()};
+      List<PatientDiagnosis> pds =  serv.getData(CShareObjects.PATIENTDIAGNOSIS,fields , params);
+      String text = "";
+      String [] fields2 = {"Name"};
+      String [] params2 = new String [1];
+      for (PatientDiagnosis z : pds) {
+    	  params2[0] = z.getName();
+    	  System.out.println("Provider Overview: " + z.getName());
+    	  List<Diagnosis> diag = serv.getData(CShareObjects.DIAGNOSIS,fields2 , params2);
+    	  text = text + diag.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";
+      }
+      /******* End data retrieval ********/
+      
+      display.setText(text);
       display.setEditable(false); // set textArea non-editable
       display.setLineWrap(true);
       
@@ -110,7 +128,19 @@ private static void patientInformationPanel(Container pane) {
       
       // creating the text area for the appointment
       JTextArea appointmentTime = new JTextArea(6,23);
-      appointmentTime.setText("This is the next appointment time");
+      
+      /***** Data Retrieval ****/
+      List<Appointment> apts = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+      String apt; 
+      if ( apts.size() > 0){
+    	  apt = apts.get(0).toString();
+      }else {
+    	  apt = "No appointment scheduled";
+      }
+      /*** End data retrieval *******/
+      
+      
+      appointmentTime.setText(apt);
       appointmentTime.setEditable(false);
       appointmentTime.setLineWrap(true);
       
@@ -127,11 +157,15 @@ private static void patientInformationPanel(Container pane) {
       // creating the medication list text area
       JTextArea medicationList = new JTextArea(6,21);
       
+      /****** Data Retreival ***/
+      List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
+      String stuff = "No Prescriptions on file";
+      if (pres.size() > 0) {
+    	  stuff = pres.stream().map(e -> e.getPerscriptionName()).reduce("\n", String::concat) + "\n";
+      }
+      /**** End Data retrieval *****/
       
-      //String [] fields = {"PatientID"};
-     // String [] params = {p.getID()};
-     // List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
-      medicationList.setText("Metoprolol\n" + "Lisinopril\n" + "Losartan Potassium\n");
+      medicationList.setText(stuff);
       medicationList.setEditable(false);
       medicationList.setLineWrap(true);
       
@@ -184,6 +218,10 @@ private static void patientInformationPanel(Container pane) {
       
       // creating the list of results text area
       JTextArea listOfResults = new JTextArea(6,21);
+      
+      
+      
+      
       listOfResults.setText("Haemoglobin (Hb)\t       NWhite Blood Cell Count\tN\n");
       listOfResults.setEditable(false);
       listOfResults.setLineWrap(true);
@@ -218,5 +256,14 @@ private static void patientInformationPanel(Container pane) {
       /*frame.pack();
       frame.setVisible(true);
       */
+      
+   }
+   
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+	  
+      this.pat = pat;
+      createAndShowGUI(frame);
+     
+      
    }
 }
