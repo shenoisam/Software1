@@ -134,7 +134,7 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns the a List of Appointments representing the rows returned from the table 
 	 */
 	public List<List<Object>> getAllAppointmentsByDateRange(Date date1, Date date2, String [] fields, String [] params) {
-		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.DateVal";
+		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.DateVal, a.DoctorID AS DoctorID, a.PatientID AS PatientID";
 		String table = "User p, User d, Appointment a";
 		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.DateVal > ? AND a.DateVal < ?";// + generateRmStr(fields, params);
 		

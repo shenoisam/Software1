@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -31,9 +32,14 @@ import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
 public class ProviderHomescreen extends ProviderFrontend{
-  
+   private static List<Appointment> li; 
    public ProviderHomescreen(ProviderRunner p) {
 		super(p);
+		LocalDateTime date = LocalDateTime.now();
+	    String [] params = {date.toString()};
+	    String [] fields = {"DateVal"};
+	    li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+	   
 		
 	}
 
@@ -57,13 +63,7 @@ private static void sideBarWithCalander(Container pane) {
       
       
       
-      button = new JButton("View All My Patients");
-      buttonPanel.add(button);
-      button.addActionListener(new ActionListener() { 
-    	  public void actionPerformed(ActionEvent e) { 
-    	    p.displayFrameOpt(GenericEnum.POVERVIEW);
-    	  } 
-    	 } );
+      
       button = new JButton("This one is used just blank");
       button.setVisible(false);
       buttonPanel.add(button);
@@ -119,14 +119,16 @@ private static void sideBarWithCalander(Container pane) {
       JLabel nextAppointmentTitle  = new JLabel();
       nextAppointmentTitle.setText("Your Next Appointment is at: ");
       JLabel appointmentTime = new JLabel();
-      appointmentTime.setText("MM-DD-YY HH:mm ");
-      JLabel appointmentLocation = new JLabel();
-      appointmentLocation.setText("Room 123");
+      appointmentTime.setText(li.get(0).getAppointmentDate().toString());
+      
+      // We dont store the location so lets leave this out for how ;D
+      //JLabel appointmentLocation = new JLabel();
+      //appointmentLocation.setText("Room 123");
       
       // adding the time and location to the name panel
       namePanel.add(nextAppointmentTitle);
       namePanel.add(appointmentTime);
-      namePanel.add(appointmentLocation);
+      //namePanel.add(appointmentLocation);
       
       // adding the name panel to  4the main panel
       topPanel.add(namePanel);
@@ -147,20 +149,18 @@ private static void sideBarWithCalander(Container pane) {
       JPanel datePanel = new JPanel();
       datePanel.setBorder(BorderFactory.createTitledBorder(""));
       datePanel.setBackground(Color.lightGray);
-       
-      datePanel.add(new JLabel("March 30, 2020"), BorderLayout.CENTER);
+      Date d = new Date(); 
+      datePanel.add(new JLabel(d.toString()), BorderLayout.CENTER);
       
       // adding the date panel to the appointment list
       appointmentList.add(datePanel);
       
       // creating the appointments
-      LocalDateTime date = LocalDateTime.now();
-      String [] params = {date.toString()};
-      String [] fields = {"DateVal"};
-      List<Appointment> li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+      
       for (int i = 0; i < li.size(); i += 1) {  
     	  String [] fields2 = {"ID"};
     	  String [] params2 = {li.get(i).getPatientID()};
+    	  System.out.println(li.get(0));
     	  List<Patient> pat =  serv.getData(CShareObjects.PATIENT, fields2, params2);
     	  Patient pp = null; 
     	  if(pat.size() > 0) {
@@ -188,7 +188,7 @@ private static void sideBarWithCalander(Container pane) {
       pane.add(appointmentList);
    }
    
-   private static JPanel appointment(Appointment a, Patient p, List<Diagnosis> d) {
+   private static JPanel appointment(Appointment a, Patient pat, List<Diagnosis> d) {
 	   // creating the individual appointment panel
        JPanel appointment = new JPanel();
        appointment.setBorder(BorderFactory.createTitledBorder(""));
@@ -199,7 +199,7 @@ private static void sideBarWithCalander(Container pane) {
        timeAndName.setBackground(Color.white);
        timeAndName.setLayout(new BoxLayout(timeAndName, BoxLayout.Y_AXIS));
        timeAndName.add(new JLabel("Appointment Time: " + a.getAppointmentDate().toString()));
-       timeAndName.add(new JLabel("Patient Name: " + p.getFullName()));
+       timeAndName.add(new JLabel("Patient Name: " + pat.getFullName()));
        
        // adding the panel to the appointment panel
        appointment.add(timeAndName);
@@ -209,7 +209,12 @@ private static void sideBarWithCalander(Container pane) {
        diagnosis.setBackground(Color.white);
        diagnosis.setLayout(new BoxLayout(diagnosis, BoxLayout.Y_AXIS));
        diagnosis.add(new JLabel("Diagnosis:"));
-       diagnosis.add(new JLabel(d.stream().map(e -> e.getName()).reduce(",", String::concat)));
+       
+       if (d.size() > 0) {
+    	   diagnosis.add(new JLabel(d.stream().map(e -> e.getName()).reduce(",", String::concat)));
+       }else {
+    	   diagnosis.add(new JLabel("None"));
+       }
        
        // adding the panel to the appointment panel
        appointment.add(diagnosis);
@@ -224,10 +229,19 @@ private static void sideBarWithCalander(Container pane) {
        reasonForVisit.setBackground(Color.white);
        reasonForVisit.setLayout(new BoxLayout(reasonForVisit, BoxLayout.Y_AXIS));
        reasonForVisit.add(new JLabel("Reason for Visit:"));
-       reasonForVisit.add(new JLabel("Patient's Reason for Visit"));
+       reasonForVisit.add(new JLabel("Checkup"));
+       
+       JButton button = new JButton("View Patient");
+     
+       button.addActionListener(new ActionListener() { 
+     	  public void actionPerformed(ActionEvent e) { 
+     	    p.displayFrameOpt(GenericEnum.POVERVIEW);
+     	  } 
+     	 } );
        
        // adding the panel to the appointment panel
        appointment.add(reasonForVisit);
+       timeAndName.add(button);
        
        return appointment;
    }

@@ -24,18 +24,24 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
+import backend.classes.Patient;
 import frontend.GenericEnum;
 
 public class ProviderPatientVisit extends ProviderFrontend {
-
-
+   private Patient pat; 
    
    public ProviderPatientVisit(ProviderRunner p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
 
-    public void patientVisitPanel(Container pane) {
+    public ProviderPatientVisit(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+       super(providerRunner);
+       this.pat = pat; 
+}
+
+	public void patientVisitPanel(Container pane) {
       // creating the panel to store the whole visit
       JPanel visitPanel = new JPanel();
       visitPanel.setLayout(new GridLayout(2, 2));

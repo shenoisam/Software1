@@ -20,12 +20,21 @@ import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 
-public class ProviderRequestTestView extends ProviderFrontend{
+import backend.classes.Patient;
 
+public class ProviderRequestTestView extends ProviderFrontend{
+   private Patient pat; 
    public ProviderRequestTestView(ProviderRunner p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
+
+public ProviderRequestTestView(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+	super(providerRunner);
+	this.pat = pat; 
+	
+}
 
 public void patientRequestPanel(Container pane) {
       // creating the panel for the request section

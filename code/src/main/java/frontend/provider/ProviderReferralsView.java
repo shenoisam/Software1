@@ -18,13 +18,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import backend.classes.Patient;
+
 public class ProviderReferralsView extends ProviderFrontend{
   
-   
+   private Patient pat; 
    public ProviderReferralsView(ProviderRunner p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
+
+public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+	super(providerRunner);
+	this.pat = pat; 
+}
 
 public void patientReferralPanel(Container pane) {
       // creating the main referral panel

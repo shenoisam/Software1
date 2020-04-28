@@ -34,7 +34,7 @@ import businesslayer.CShareObjects;
 
 public class ProviderPatientOverview extends ProviderFrontend{
 
-   
+   Patient pat; 
    
    public ProviderPatientOverview(ProviderRunner p) {
 		super(p);
@@ -42,7 +42,14 @@ public class ProviderPatientOverview extends ProviderFrontend{
 	}
 
 
-   private static void patientInformationPanel(Container pane) {
+   public ProviderPatientOverview(ProviderRunner providerRunner, Patient pat) {
+	   super(providerRunner);
+	   this.pat = pat
+	// TODO Auto-generated constructor stub
+}
+
+
+private static void patientInformationPanel(Container pane) {
       //Patient p = new Patient(null); 
 	   
       // creating the patient information panel to store all the information

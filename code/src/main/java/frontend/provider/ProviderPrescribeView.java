@@ -20,12 +20,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import backend.classes.Patient;
+
 public class ProviderPrescribeView extends ProviderFrontend{
- 
+   private Patient pat; 
    public ProviderPrescribeView(ProviderRunner p) {
 		super(p);
+		
 		// TODO Auto-generated constructor stub
 	}
+
+public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+	super(providerRunner);
+	this.pat = pat; 
+}
 
 public void patientPrescribePanel(Container pane) {
       // setting up the prescribe panel
