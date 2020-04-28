@@ -14,6 +14,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -27,6 +28,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import backend.classes.Patient;
+import backend.classes.Perscription;
+import businesslayer.CShareObjects;
+
 public class ProviderPatientOverview extends ProviderFrontend{
 
    
@@ -38,6 +43,8 @@ public class ProviderPatientOverview extends ProviderFrontend{
 
 
    private static void patientInformationPanel(Container pane) {
+      //Patient p = new Patient(null); 
+	   
       // creating the patient information panel to store all the information
       JPanel patientInformation = new JPanel();
       patientInformation.setLayout(new GridLayout(3, 2));
@@ -112,6 +119,11 @@ public class ProviderPatientOverview extends ProviderFrontend{
       
       // creating the medication list text area
       JTextArea medicationList = new JTextArea(6,21);
+      
+      
+      //String [] fields = {"PatientID"};
+     // String [] params = {p.getID()};
+     // List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
       medicationList.setText("Metoprolol\n" + "Lisinopril\n" + "Losartan Potassium\n");
       medicationList.setEditable(false);
       medicationList.setLineWrap(true);

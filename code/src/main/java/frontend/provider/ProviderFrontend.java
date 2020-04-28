@@ -15,13 +15,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class ProviderFrontend implements IProviderFrontend{
 	static ProviderRunner p; 
-
+	protected static ProviderService serv;
 	public ProviderFrontend(ProviderRunner p) {
 		this.p = p; 
+		serv = new ProviderService(); 
 		// TODO Auto-generated constructor stub
 	}
 	protected static void providerSideBar(Container pane) {
@@ -188,10 +190,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      // adding the top Panel to the contianer that was passed in to the function
 	      pane.add(topPanel, BorderLayout.NORTH);
 	   }
-<<<<<<< HEAD
-	@Override
-=======
->>>>>>> master
+
 	public void createAndShowGUI(JFrame frame) {
 		// TODO Auto-generated method stub
 		

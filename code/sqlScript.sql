@@ -48,7 +48,7 @@ Create Table Patient(
 );
 Create Table Diagnosis(
   Name VARCHAR(25) PRIMARY KEY NOT NULL, 
-  Description VARCHAR(100) NOT NULL
+  Description VARCHAR(500) NOT NULL
 );
 Create Table PatientDiagnosis(
   PatientID VARCHAR(25) NOT NULL, 

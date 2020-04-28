@@ -12,7 +12,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +27,13 @@ import backend.classes.Appointment;
 import backend.classes.Diagnosis;
 import backend.classes.Patient;
 import backend.classes.PatientDiagnosis;
-import backend.dao.AppointmentDAO;
-import backend.dao.PatientDAO;
 import businesslayer.CShareObjects;
-import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class ProviderHomescreen extends ProviderFrontend{
-   private static ProviderService serv;
+  
    public ProviderHomescreen(ProviderRunner p) {
 		super(p);
-		serv = new ProviderService(); 
 		
 	}
 
