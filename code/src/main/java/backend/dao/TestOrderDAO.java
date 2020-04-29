@@ -31,7 +31,7 @@ public class TestOrderDAO extends GenericDAO {
 	public List<TestOrder> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "TestOrder", rmStr, params);
 		 return generateList(stuff);
 		
 	 }

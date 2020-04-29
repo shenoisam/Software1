@@ -35,7 +35,7 @@ public class PrescriptionDAO extends GenericDAO {
 	public List<Perscription> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "Prescription", rmStr, params);
 		 return generateList(stuff);
 		
 	 }

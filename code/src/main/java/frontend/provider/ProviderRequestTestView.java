@@ -6,7 +6,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,6 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import backend.classes.*;
 import java.util.List;
 import businesslayer.CShareObjects;
+import frontend.GenericEnum;
 
 public class ProviderRequestTestView extends ProviderFrontend{
    private Patient pat; 
@@ -86,22 +90,8 @@ public void patientRequestPanel(Container pane) {
       JPanel dateEnter = new JPanel();
       dateEnter.setLayout(new FlowLayout(FlowLayout.LEFT));
       JTextArea day = new JTextArea();
-      day.setBorder(BorderFactory.createLineBorder(null));
-      day.setText("DD");
-      day.setEditable(true);
-      JTextArea month = new JTextArea();
-      month.setText("MM");
-      month.setEditable(true);
-      month.setBorder(BorderFactory.createLineBorder(null));
-      JTextArea year = new JTextArea();
-      year.setText("YYYY");
-      year.setEditable(true);
-      year.setBorder(BorderFactory.createLineBorder(null));
-      dateEnter.add(month);
-      dateEnter.add(day);
-      dateEnter.add(year);
-      datePicker.add(dateEnter);
-      datePicker.add(new JPanel());
+      Date d = new Date();
+      JLabel lab = new JLabel(d.toString() );
       testAndDate.add(new JPanel());
       
       testAndDate.add(datePicker);
@@ -173,7 +163,24 @@ public void patientRequestPanel(Container pane) {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Generate"));
+      JButton but = new JButton("Generate");
+      JLabel labb = new JLabel(); 
+      but.addActionListener(new ActionListener() { 
+     	  public void actionPerformed(ActionEvent e) { 
+     	    String [] fields = {"DoctorID" , "Test","DateVal", "PatientID"};
+     	    String [] params = {p.getUser().getID(), combo.getSelectedItem().toString(),d.toString(),pat.getID()};
+     	    boolean data = serv.insert(CShareObjects.TESTORDER, fields, params);
+     	    if (data) {
+     	    	labb.setText("Success");
+     	    }else {
+     	    	labb.setText("Failure");
+     	    }
+     	  } 
+     	 });
+      
+       
+      submitPanel.add(but);
+      submitPanel.add(labb);
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel

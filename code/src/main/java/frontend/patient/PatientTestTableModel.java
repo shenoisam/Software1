@@ -1,18 +1,22 @@
 package frontend.patient;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import backend.classes.TestResult;
 
 import javax.swing.table.AbstractTableModel;
 
 import backend.classes.TestOrder;
+import frontend.provider.TestResult;
 
 public class PatientTestTableModel extends AbstractTableModel {
-	private ArrayList<TestOrder> testOrders;
+	private List<TestResult> testOrders;
 	private String[] columnNames = {"Test Name", "Date of Test",
-									"Last View", "Specimen"};
+									"Result", "Extra"};
 
-	public PatientTestTableModel(ArrayList<TestOrder> t){
-		testOrders = t;
+	public PatientTestTableModel(List<backend.classes.TestResult> tr){
+		testOrders = tr;
 	}
 	
 	@Override
@@ -29,16 +33,16 @@ public class PatientTestTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		TestOrder tOrder = testOrders.get(rowIndex);
+		backend.classes.TestResult tOrder = testOrders.get(rowIndex);
 		switch(columnIndex) {
 		case 0:
 			return tOrder.getTestName();
 		case 1:
-			return tOrder.getDateOrdered();
+			return tOrder.getTestDate();
 		case 2:
 			return "fix later";
 		case 3:
-			return tOrder.getTest().getType();
+			return tOrder.getTestName();
 		}
 		return null;
 	}
