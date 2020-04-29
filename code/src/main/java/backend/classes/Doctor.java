@@ -11,7 +11,7 @@ public class Doctor extends HealthCareProvider {
 	public Doctor(String string, String string2) {
 		// TODO Auto-generated constructor stub
 		DoctorID = string; 
-		title = string2; 
+		title = string2;
 	}
 
 	public String getDoctorID() {
@@ -27,5 +27,4 @@ public class Doctor extends HealthCareProvider {
 		return new ProviderRunner(r);
 	}
 	
-
 }

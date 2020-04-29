@@ -13,9 +13,14 @@ public class Appointment {
 	private String UserID1;
 	private String UserID2;
 	
-	public Appointment(List<Object> list) throws NotImplementedException {
-		// TODO Auto-generated constructor stub
-		throw new NotImplementedException("Appointment List Constructor not created!");
+	public Appointment(List<String> columnNames, List<Object> list) {
+		if(columnNames != null) {
+			for(int i = 0; i < columnNames.size(); i++) {
+				
+			}
+		} else {
+			System.out.println("Error: No Column Names included");
+		}
 	}
 	public Date getAppointmentDate() {
 		return AppointmentDate;
