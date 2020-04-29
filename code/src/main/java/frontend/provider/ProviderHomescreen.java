@@ -51,6 +51,11 @@ private static void sideBarWithCalander(Container pane) {
       
       button = new JButton("View All My Patients");
       buttonPanel.add(button);
+      button.addActionListener(new ActionListener() { 
+    	  public void actionPerformed(ActionEvent e) { 
+    	    p.displayFrameOpt(GenericEnum.POVERVIEW);
+    	  } 
+    	 } );
       button = new JButton("This one is used just blank");
       button.setVisible(false);
       buttonPanel.add(button);

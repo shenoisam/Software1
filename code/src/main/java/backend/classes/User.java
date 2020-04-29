@@ -52,7 +52,6 @@ public class User {
 
 
 	public GenericRunner accept(EHRRunner ehrRunner) {
-		// TODO Auto-generated method stub
 		
 	}
 	
