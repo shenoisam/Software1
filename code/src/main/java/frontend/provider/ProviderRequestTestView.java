@@ -6,7 +6,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,6 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import backend.classes.*;
 import java.util.List;
 import businesslayer.CShareObjects;
+import frontend.GenericEnum;
 
 public class ProviderRequestTestView extends ProviderFrontend{
    private Patient pat; 
@@ -173,7 +177,24 @@ public void patientRequestPanel(Container pane) {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Generate"));
+      JButton but = new JButton("Generate");
+      JLabel lab = new JLabel ();
+      but.addActionListener(new ActionListener() { 
+     	  public void actionPerformed(ActionEvent e) { 
+       	    String [] fields = {"DoctorID", "Test","DateVal", "PatientID"};
+       	    Test t =  (Test) combo.getSelectedItem();
+       	    String [] params = {p.getUser().getID(),t.getName(),new Date().toString(), pat.getID()};
+       	    boolean res = serv.insertData(CShareObjects.TESTORDER, fields, params);
+       	    if(res) {
+       	    	lab.setText("Success!");
+       	    }else {
+       	    	lab.setText("Failure");
+       	    }
+       	  } 
+       	 } );
+      
+      submitPanel.add(but);
+      submitPanel.add(lab);
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel

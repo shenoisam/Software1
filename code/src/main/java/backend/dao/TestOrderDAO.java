@@ -27,9 +27,15 @@ public class TestOrderDAO extends GenericDAO {
 		this.delete("TestOrder", fields, params);
 	}
 	public List<TestOrder> getData(String [] fields, String [] params) {
+		for(int i = 0; i < fields.length;i++) {
+			if (fields[i].contentEquals("DateVal")) {
+				params[i] = new java.sql.Date(new java.util.Date(params[i]).getTime()).toString();
+			}
+		}
+		
 		 String rmStr = this.generateRmStr(fields, params);
 		 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "TestOrder", rmStr, params);
 		 return generateList(stuff);
 		
 	 }

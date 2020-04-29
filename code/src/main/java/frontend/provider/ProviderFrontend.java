@@ -95,7 +95,7 @@ public class ProviderFrontend implements IProviderFrontend{
         //Add ActionListener 
         button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
-    		System.out.println("Display Home");
+    		
     	    p.displayFrameOpt(GenericEnum.HOME);
     	  } 
     	 } );
@@ -108,7 +108,7 @@ public class ProviderFrontend implements IProviderFrontend{
         button = new JButton("Logout");
         button.addActionListener(new ActionListener() { 
       	  public void actionPerformed(ActionEvent e) { 
-      		System.out.println("Display Home");
+      		
       	    p.logout();
       	  } 
       	 } );

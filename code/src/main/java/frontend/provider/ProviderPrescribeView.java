@@ -1,12 +1,16 @@
 package frontend.provider;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,6 +25,8 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import backend.classes.Patient;
+import businesslayer.CShareObjects;
+import frontend.GenericEnum;
 
 public class ProviderPrescribeView extends ProviderFrontend{
    private Patient pat; 
@@ -162,7 +168,28 @@ public void patientPrescribePanel(Container pane) {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Print Prescription"));
+      
+      JButton pres = new JButton("Order Prescription");
+      JLabel message = new JLabel();
+      pres.addActionListener(new ActionListener() { 
+     	  public void actionPerformed(ActionEvent e) { 
+     		  String [] fields = {"Name" , "Dosage", "NumRefills" , "DateVal", "DoctorID" , "PatientID" };
+     		  String [] params = {combo.getSelectedItem().toString(), dosageCount.getSelectedItem().toString(), lengthCount.getSelectedItem().toString(), new Date().toString(), p.getUser().getID(), pat.getID()};
+     		  
+       	      boolean success = serv.insertData(CShareObjects.PRESCRIPTION, fields, params);
+       	      if(success) {
+       	    	  message.setBackground(Color.green);
+       	    	  message.setText("Added Prescription!");
+       	      }else {
+       	    	message.setText("There was an error adding your prescription!");
+       	        message.setBackground(Color.red);
+       	      }
+       	  } 
+       	 } );
+      
+      
+      submitPanel.add(pres);
+      submitPanel.add(message);
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel
