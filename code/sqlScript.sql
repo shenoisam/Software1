@@ -82,7 +82,7 @@ Create Table Test(
 Create Table TestOrder(
    DoctorID VARCHAR(25) NOT NULL, 
    Test VARCHAR(25) NOT NULL, 
-   Date Date Not NULL, 
+   DateVal Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
@@ -93,18 +93,18 @@ Create Table TestOrder(
 Create Table TestResult(
    Result VARCHAR(100) NOT NULL, 
    Test VARCHAR(25) NOT NULL, 
-   Date Date Not NULL, 
+   DateVal Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (Test) REFERENCES Test(Name),  
-  CONSTRAINT TestOrder_pk PRIMARY KEY ( PatientID, Test, Date) 
+  CONSTRAINT TestOrder_pk PRIMARY KEY ( PatientID, Test, DateVal) 
 );
 Create Table Prescription (
   Name VARCHAR(25) NOT NULL, 
   Dosage FLOAT(2) NOT NULL, 
   NumRefills int NOT NULL, 
-  Date Date NOT NULL, 
+  DateVal Date NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
   
