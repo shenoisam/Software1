@@ -52,9 +52,7 @@ public class User {
 
 
 	public GenericRunner accept(EHRRunner ehrRunner) {
-		
-		return null; 
-		
+		return null; 		
 	}
 	
 

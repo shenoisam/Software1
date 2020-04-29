@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,6 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
+
+import frontend.GenericEnum;
 
 public class ProviderPatientVisit extends ProviderFrontend {
 
@@ -115,6 +119,16 @@ public class ProviderPatientVisit extends ProviderFrontend {
 
       // adding the scroll bar to the next steps panel
       nextSteps.add(scroll);
+      
+      // Adding submit info button
+      JButton button = new JButton("Submit");
+      nextSteps.add(button);
+      button.addActionListener(new ActionListener() { 
+    	  public void actionPerformed(ActionEvent e) { 
+    		  //Write info to database
+    	    
+    	  } 
+      } );
 
       // adding the next steps panel to the main visit pane
       visitPanel.add(nextSteps);
