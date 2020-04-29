@@ -5,12 +5,15 @@
 package frontend.provider;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -25,6 +28,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
 import backend.classes.Patient;
+import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
 public class ProviderPatientVisit extends ProviderFrontend {
@@ -73,10 +77,12 @@ public class ProviderPatientVisit extends ProviderFrontend {
       // create the form and place the labels
       String[] labels = { "Body Temp: ", "Pulse Rate: ", "Respiration Rate: ", "Blood Pressure: " };
       int numPairs = labels.length;
+      List<JTextField> tf = new ArrayList<JTextField>(); 
       for (int i = 0; i < numPairs; i++) {
          JLabel l = new JLabel(labels[i], JLabel.TRAILING);
          vitals.add(l);
          JTextField textField = new JTextField(10);
+         tf.add(textField);
          l.setLabelFor(textField);
          vitals.add(textField);
       }
@@ -129,15 +135,38 @@ public class ProviderPatientVisit extends ProviderFrontend {
       // Adding submit info button
       JButton button = new JButton("Submit");
       nextSteps.add(button);
+      JLabel lab = new JLabel();
+      // adding the next steps panel to the main visit pane
+      visitPanel.add(nextSteps);
+      nextSteps.add(lab);
       button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
-    		  
-    	    
+    		  boolean success = false; 
+    		  try {
+    			  Integer.parseInt(tf.get(2).getText());
+    			  Integer.parseInt(tf.get(1).getText());
+    			  Float.parseFloat(tf.get(0).getText());
+    			  String [] fields = {"DoctorID"," PatientID","DateVal","Note","ChiefComplaint "," PhysicalExam ",
+    	    		  		" BodyTemp ","  Pulse ","  Respiration ","  BloodPressure "};
+    	    		  String [] params = {p.getUser().getID(),pat.getID(),new java.util.Date().toString(),notes.getText(), complaints.getText(),examNotes.getText(),
+    	    		       tf.get(0).getText(),tf.get(1).getText(),tf.get(2).getText(),tf.get(3).getText()};
+    	    		  success = serv.insert(CShareObjects.NOTES, fields, params);
+    		  }catch(Exception excp) {
+    			  success = false;
+    		  }
+    		 
+    	      if (success) {
+    	    	  lab.setText("Success");
+    	      }else {
+    	    	  lab.setText("There was an error");
+    	    	  tf.get(2).setBackground(Color.RED);
+    	    	  tf.get(1).setBackground(Color.RED);
+    	    	  tf.get(0).setBackground(Color.RED);
+    	      }
     	  } 
       } );
 
-      // adding the next steps panel to the main visit pane
-      visitPanel.add(nextSteps);
+    
 
       // adding the created portion to the componet that was passed in
       pane.add(visitPanel);

@@ -6,7 +6,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,6 +24,8 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import backend.classes.Patient;
+import businesslayer.CShareObjects;
+import frontend.GenericEnum;
 
 public class ProviderPrescribeView extends ProviderFrontend{
    private Patient pat; 
@@ -162,7 +167,24 @@ public void patientPrescribePanel(Container pane) {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Print Prescription"));
+      JButton but = new JButton("Print Prescription");
+      JLabel lab = new JLabel();
+      but.addActionListener(new ActionListener() { 
+    	  public void actionPerformed(ActionEvent e) { 
+    			 String [] fields = {"Name", "Dosage", "NumRefills", "DateVal", "DoctorID" ,"PatientID"};
+    			 String [] params = {combo.getSelectedItem().toString(),dosageCount.getSelectedItem().toString(),lengthCount.getSelectedItem().toString(),new Date().toString(),p.getUser().getID(),pat.getID()}; 
+    			 boolean success = serv.insert(CShareObjects.PRESCRIPTION,fields,params);
+    			 if(success) {
+    				 lab.setText("Success");
+    			 }else {
+    				 lab.setText("Error");
+    			 }
+    					  
+	      } 
+	  });
+      
+      submitPanel.add(but);
+      submitPanel.add(lab);
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel

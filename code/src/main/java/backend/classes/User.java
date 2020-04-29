@@ -74,10 +74,9 @@ public class User {
 
 
 	public GenericRunner accept(EHRRunner ehrRunner) {
-
 		return null; 
+
 	}
-	
 	public String getFullName() {
 		return getFirstName()  + " " + getLastName(); 
 	}

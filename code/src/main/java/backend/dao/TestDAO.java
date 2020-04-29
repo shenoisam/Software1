@@ -29,7 +29,7 @@ public class TestDAO extends GenericDAO {
 		   rmStr =  this.generateRmStr(fields, params);
 		 }
 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "Test", rmStr, params);
 		 return generateList(stuff);
 		
 	 }

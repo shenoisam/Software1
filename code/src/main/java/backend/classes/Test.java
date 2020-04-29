@@ -53,7 +53,7 @@ public class Test {
 	}
 	@Override
 	public String toString() {
-		return "Test [Name=" + Name + ", Type=" + Type + "]";
+		return Name;
 	}
 	
 }
