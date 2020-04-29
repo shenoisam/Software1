@@ -6,10 +6,10 @@ import frontend.EHRRunner;
 import frontend.GenericRunner;
 
 public class User {
-	private String FirstName; 
-	private String LastName; 
-	private String Email; 
-	
+	protected String FirstName; 
+	protected String LastName; 
+	protected String Email; 
+	protected String ID; 
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -18,6 +18,30 @@ public class User {
 
 	public User(List<String> headerList, List<Object> dataList) {
 		// TODO Auto-generated constructor stub
+		for( int i =0; i < headerList.size(); i++) {
+			System.out.println("HeaderList[" + i + "]: "+ headerList.get(i) );
+			if(headerList.get(i).equals("FirstName")) {
+				FirstName = dataList.get(i).toString();
+				
+			}
+			if(headerList.get(i).contentEquals("LastName")) {
+				LastName = dataList.get(i).toString();
+				
+			}
+			if(headerList.get(i).contentEquals("Email")) {
+				Email = dataList.get(i).toString();
+				
+			}
+			if(headerList.get(i).contentEquals("ID")) {
+				ID = dataList.get(i).toString();
+			}
+		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email + "]";
 	}
 
 
@@ -52,12 +76,24 @@ public class User {
 
 
 	public GenericRunner accept(EHRRunner ehrRunner) {
-<<<<<<< HEAD
+
 		return null; 
-=======
->>>>>>> b0a2518785746ab0f3d47568c484a04d341f20c6
-		
+
 	}
 	
+	public String getFullName() {
+		return getFirstName()  + " " + getLastName(); 
+	}
+	
+	public void setUserInfo(User u) {
+		if (u != null) {
+			this.FirstName = u.getFirstName(); 
+			this.LastName = u.getLastName();
+			this.Email = u.getEmail();
+		}
+	}
+	public String getID() {
+		return ID; 
+	}
 
 }
