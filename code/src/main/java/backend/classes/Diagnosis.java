@@ -38,15 +38,10 @@ public class Diagnosis {
 				}
 				// Otherwise if it represents anything else print an error
 				// about initializing an illegal variable
-				else {
-					System.out.println("Error: Initializing an illegal variable");
-				}
+				
 			}
 		}
-		// Otherwise if it is null print an error about initializing with no values
-		else {
-			System.out.println("Error: Initializing without values.");
-		}
+		
 	}
 
 //	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {

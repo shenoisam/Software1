@@ -1,7 +1,5 @@
 package backend.dao;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -11,9 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -26,21 +22,17 @@ import org.junit.jupiter.api.function.Executable;
 
 import backend.SQLConnection.SQLConnectionPoolFactory;
 import backend.classes.Appointment;
-import backend.dao.AppointmentDAO;
+import backend.classes.Diagnosis;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AppointmentDAOTest {
-	private List<LocalDateTime> usedDates; 
-	private String [] goodFields;
-	private String [] badFields ;
-	private Connection c;
-	private AppointmentDAO a;
+public class DiagnosisDAOTest {
 
-	public AppointmentDAOTest(){
-		goodFields = new String []{ "DateVal", "DoctorID", "PatientID"};
-		badFields = new String [] {"Date", "DoctorID", "PatientID"};
-		a = new AppointmentDAO(); 
-		usedDates = new ArrayList<LocalDateTime>();  
+	private Connection c;
+	private DiagnosisDAO d;
+
+	public DiagnosisDAOTest(){
+		d = new DiagnosisDAO();
+		
 		c = SQLConnectionPoolFactory.getPool().getConnection();
 	}
 	
@@ -86,20 +78,13 @@ public class AppointmentDAOTest {
 	@BeforeEach
 	public void clean() throws Exception {
 		
-     
-		for (int i =0; i < 10; i ++) {
-			LocalDateTime tw = LocalDateTime.now(); 
-		    tw = tw.plusHours(i);
-			Timestamp z = Timestamp.valueOf(tw); 
+		String query = "INSERT INTO Diagnosis (Name, Description) VALUES ('GERD', 'Gastroesophageal reflux disease (GERD) is a long-term condition where acid from the stomach comes up into the esophagus' )";
+		PreparedStatement p = c.prepareStatement(query);
+		p.executeUpdate();
 		
-			usedDates.add(tw);
-			String query = "INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES ( ?, 'two','one')";
-			PreparedStatement p = c.prepareStatement(query);
-		    p.setTimestamp(1, z);
-		  
-			p.executeUpdate();
-		}
-		
+		query = "INSERT INTO Diagnosis (Name, Description) VALUES ('Breast Cancer', 'A cancer effecting the breast' )";
+		p = c.prepareStatement(query);
+		p.executeUpdate();
 		
 		
 	}
@@ -112,7 +97,7 @@ public class AppointmentDAOTest {
 	 */
 	@AfterEach
 	public void tearDown1() throws Exception {
-		String query = "DELETE FROM  APPOINTMENT WHERE PatientID ='one'";
+		String query = "DELETE FROM Diagnosis";
 		PreparedStatement p = c.prepareStatement(query);
 		p.executeUpdate();
 		
@@ -146,9 +131,11 @@ public class AppointmentDAOTest {
 	
 	@Test
 	public void testValidInsert() {
-		String [] params = {LocalDateTime.now().toString(), "two", "one"};
+		
+	    String [] fields  = {"Name", "Description"};
+		String [] params = {"Behcet's disease", "A rare disorder causing inflammation in blood vessels."};
 		try {
-			a.insertIntoTable(goodFields, params);
+			d.insertIntoTable(fields, params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -158,43 +145,37 @@ public class AppointmentDAOTest {
 	
 	@Test
 	public void testInValidInsert() {
-		final String [] params = {LocalDateTime.now().toString(), "two", "one"};
+		String [] fields  = {"Name12312", "Description"};
+		String [] params = {"Behcet's disease", "A rare disorder causing inflammation in blood vessels."};
 		Exception exception = assertThrows(SQLException.class, new Executable() {
 			public void execute() throws Throwable {
-				 a.insertIntoTable(badFields, params);
+				 d.insertIntoTable(fields, params);
 			    }
 		});
 		
-	}
-	
-	@Test
-	public void testQueryByPatientID() {
-		final String [] params = {"one"};
-		final String [] fields = {"PatientID"};
-		List<Appointment> q = a.getData(fields, params);
-		assertTrue(q.size() == 10);
-	}
-	
-	@Test
-	public void testQueryByAppointment() {
-		final String [] fields = {"DateVal"};
-		final String [] params = {usedDates.get(0).toString()};
 		
-		List<Appointment> q = a.getData(fields, params);
-		//Not super specific but whatever
-		assertTrue(q.size() > 0 );
 	}
+	
+	@Test
+	public void testQueryByDiagnosisName() {
+		final String [] params = {"GERD"};
+		final String [] fields = {"Name"};
+		List<Diagnosis> q = d.getData(fields, params);
+		assertTrue(q.size() == 1);
+		assertTrue(q.get(0).getDescription().contentEquals("Gastroesophageal reflux disease (GERD) is a long-term condition where acid from the stomach comes up into the esophagus"));
+	}
+	
 	@Test 
 	public void testDelete() {
-		final String [] params = {"one"};
-		final String [] fields = {"PatientID"};
+		final String [] params = {"GERD"};
+		final String [] fields = {"Name"};
 		try {
-			a.deleteFromTable(fields, params);
+			d.deleteFromTable(fields, params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertTrue(a.getData(fields, params).size() == 0);
+		assertTrue(d.getData(fields, params).size() == 0);
 	}
 
 	/*@Test 
@@ -217,5 +198,4 @@ public class AppointmentDAOTest {
 		//assertTrue(a.getData(fields, params).size() == 0);
 	}*/
 
-	
 }

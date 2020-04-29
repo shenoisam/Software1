@@ -1,12 +1,20 @@
 package backend.classes;
 
+import java.util.Date;
+import java.util.List;
+
 public class Perscription {
 	private String PerscriptionName;
 	private double Dosage;
 	private int NumberRefills;
 	private String DoctorID;
 	private String PatientID;
+	private Date DateVal; 
 	
+	public Perscription(List<String> headerRow, List<Object> list) {
+		//TODO: implement 
+		PerscriptionName = "Pres 1";
+	}
 	public String getPerscriptionName() {
 		return PerscriptionName;
 	}
@@ -37,4 +45,5 @@ public class Perscription {
 	public void setPatientID(String patientID) {
 		PatientID = patientID;
 	}
+
 }

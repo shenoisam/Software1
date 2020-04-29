@@ -4,8 +4,8 @@
 *  from the CShare database. 
 *
 *  Author: Sam Shenoi 
-*  Version: 1.2
-*  Date Last Modified: 4/18/2020 
+*  Version: 1.4
+*  Date Last Modified: 4/29/2020 
 */
 
 CREATE DATABASE IF NOT EXISTS `CShare`;
@@ -13,6 +13,9 @@ DROP DATABASE `CShare`;
 Create DATABASE CSHARE; 
 Use CShare; 
 
+/* Create a user for access to the database */
+Create User if not exists 'CShareAdmin'@'localhost' IDENTIFIED BY  'password';
+GRANT ALL PRIVILEGES ON CShare.* TO 'CShareAdmin'@'localhost';
 
 Create Table User(
   FirstName VARCHAR(25) NOT NULL, 
@@ -48,13 +51,13 @@ Create Table Patient(
 );
 Create Table Diagnosis(
   Name VARCHAR(25) PRIMARY KEY NOT NULL, 
-  Description VARCHAR(100) NOT NULL
+  Description VARCHAR(500) NOT NULL
 );
 Create Table PatientDiagnosis(
   PatientID VARCHAR(25) NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   Diagnosis VARCHAR(25) NOT NULL, 
-  Date Date NOT NULL, 
+  DateVal Date NOT NULL, 
 
   FOREIGN KEY (PatientID) REFERENCES Patient(ID),
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID),
@@ -62,7 +65,7 @@ Create Table PatientDiagnosis(
   CONSTRAINT PatientDiagnosis_pk PRIMARY KEY (PatientID, DoctorID, Diagnosis) 
 );
 Create Table Appointment(
-  DateVal Date NOT NULL, 
+  DateVal DateTime NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
 
@@ -71,55 +74,52 @@ Create Table Appointment(
   CONSTRAINT Appointment_pk PRIMARY KEY (DateVal, DoctorID, PatientID) 
 );
 Create Table Test(
-  Name VARCHAR(100) NOT NULL, 
-  Type VARCHAR(100) NOT NULL, 
-  InsuranceCode VARCHAR(25) NOT NULL,
-  CONSTRAINT Test_pk PRIMARY KEY (Name, InsuranceCode, Type)
+  Name VARCHAR(25) PRIMARY KEY NOT NULL, 
+  Type VARCHAR(25) NOT NULL, 
+  InsuranceCode VARCHAR(25) NOT NULL
 
 );
 Create Table TestOrder(
    DoctorID VARCHAR(25) NOT NULL, 
- 
-   TestCode VARCHAR(25) NOT NULL, 
-   Date Date Not NULL, 
+   Test VARCHAR(25) NOT NULL, 
+   DateVal Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID), 
-  /*FOREIGN KEY (TestCode) REFERENCES Test(InsuranceCode),  */
-  CONSTRAINT TestOrder_pk PRIMARY KEY (DoctorID, PatientID, TestCode, Date) 
+  FOREIGN KEY (Test) REFERENCES Test(Name),  
+  CONSTRAINT TestOrder_pk PRIMARY KEY (DoctorID, PatientID, Test, DateVal) 
 );
 Create Table TestResult(
    Result VARCHAR(100) NOT NULL, 
-   TestCode VARCHAR(25) NOT NULL, 
- 
+   Test VARCHAR(25) NOT NULL, 
    Date Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
-  /*FOREIGN KEY (TestCode) REFERENCES Test(InsuranceCode),*/
-  CONSTRAINT TestOrder_pk PRIMARY KEY ( PatientID, TestCode,  Date) 
+  FOREIGN KEY (Test) REFERENCES Test(Name),  
+  CONSTRAINT TestOrder_pk PRIMARY KEY ( PatientID, Test, Date) 
 );
 Create Table Prescription (
   Name VARCHAR(25) NOT NULL, 
   Dosage FLOAT(2) NOT NULL, 
   NumRefills int NOT NULL, 
-  Date Date NOT NULL, 
+  DateVal Date NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID), 
-  CONSTRAINT Prescription_pk PRIMARY KEY (Name, Date, DoctorID, PatientID) 
+  CONSTRAINT Prescription_pk PRIMARY KEY (Name, DateVal, DoctorID, PatientID) 
 );
 
 Create Table Notes(
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
-  Date Date NOT NULL, 
-  Note Varchar(200) NOT NULL,
+  DateVal DateTime NOT NULL, 
+  Note Varchar(500) NOT NULL,
 
-  FOREIGN KEY (Date, DoctorID, PatientID) REFERENCES Appointment(Date, DoctorID, PatientID)  
+  FOREIGN KEY (DateVal, DoctorID, PatientID) REFERENCES Appointment(DateVal, DoctorID, PatientID)  
 );
 
 
@@ -132,6 +132,10 @@ INSERT INTO USER VALUES ("Test2", "User2", "testuser2@test.com", "pooiqwiewqiqwi
 INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor"); 
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
+INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
+INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (DATE_ADD(CURDATE(), INTERVAL 1 HOUR), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
+INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
+INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
 
 
 

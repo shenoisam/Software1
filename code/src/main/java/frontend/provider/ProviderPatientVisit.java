@@ -24,18 +24,24 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
+import backend.classes.Patient;
 import frontend.GenericEnum;
 
 public class ProviderPatientVisit extends ProviderFrontend {
-
-
+   private Patient pat; 
    
    public ProviderPatientVisit(ProviderRunner p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
 
-    public void patientVisitPanel(Container pane) {
+    public ProviderPatientVisit(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+       super(providerRunner);
+       this.pat = pat; 
+}
+
+	public void patientVisitPanel(Container pane) {
       // creating the panel to store the whole visit
       JPanel visitPanel = new JPanel();
       visitPanel.setLayout(new GridLayout(2, 2));
@@ -125,7 +131,7 @@ public class ProviderPatientVisit extends ProviderFrontend {
       nextSteps.add(button);
       button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
-    		  //Write info to database
+    		  
     	    
     	  } 
       } );
@@ -139,10 +145,19 @@ public class ProviderPatientVisit extends ProviderFrontend {
 
    public void createAndShowGUI(JFrame frame) {
       // Add the relavent panels to the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientVisitPanel(frame.getContentPane());
 
  
    }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+	      this.pat = pat; 
+	      // Add the relavent panels to the screen
+	      providerSideBar(frame.getContentPane(), pat);
+	      topBarPatientInformation(frame.getContentPane(), pat);
+	      patientVisitPanel(frame.getContentPane());
+
+	 
+  }
 }

@@ -11,6 +11,7 @@ public class Notes {
 	private String DoctorID;
 	private String PatientID;
 	private Date AppointmentDate;
+	private String Note; 
 
 	public Notes(List<String> headerList, List<Object> dataList) {
 		// Check that the headerList is not null
@@ -19,6 +20,7 @@ public class Notes {
 			final String doctorIdentification = "DoctorID";
 			final String patientIdentification = "PatientID";
 			final String notesDate = "Date";
+			final String note = "Note";
 			
 			
 			// For every member of the header list
@@ -42,7 +44,6 @@ public class Notes {
 					else {
 						System.out.println("Error: initializing an illegal value for notes");
 					}
-				}
 			}
 		}
 		// If the headerList is null print an error about initializing with no values
@@ -80,4 +81,13 @@ public class Notes {
 	public void setAppointmentDate(Date appointmentDate) {
 		AppointmentDate = appointmentDate;
 	}
+
+	public String getNote() {
+		return Note;
+	}
+
+	public void setNote(String note) {
+		Note = note;
+	}
+	
 }

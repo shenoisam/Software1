@@ -6,7 +6,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,12 +23,24 @@ import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 
-public class ProviderRequestTestView extends ProviderFrontend{
+import backend.classes.*;
+import java.util.List;
+import businesslayer.CShareObjects;
+import frontend.GenericEnum;
 
+public class ProviderRequestTestView extends ProviderFrontend{
+   private Patient pat; 
    public ProviderRequestTestView(ProviderRunner p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
+
+public ProviderRequestTestView(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+	super(providerRunner);
+	this.pat = pat; 
+	
+}
 
 public void patientRequestPanel(Container pane) {
       // creating the panel for the request section
@@ -46,16 +61,10 @@ public void patientRequestPanel(Container pane) {
       testLabel.setText("Test Name");
       testArea.add(testLabel);
       
-      // creating the list of tests
-      ArrayList<String> testNames = new ArrayList<String>();
-      testNames.add("Complete Blood Count(CBC)");
-      testNames.add("Prothrombin Time");
-      testNames.add("Basic Metabolic Panel");
-      testNames.add("Comprehensive Metabolic Panel");
-      testNames.add("Lipid Panel");
-      testNames.add("Liver Panel");
-      testNames.add("Thyroid Stimulating Hormone");
-      testNames.add("Hemoglobin A1C");
+      /***** Data Retrieval ******/
+      String [] fields = {};
+      String [] params = {};
+      List<Test> testNames = serv.getData(CShareObjects.TEST, fields, params);
       
       // creating the searchable drop down menu
       StringSearchable searchable = new StringSearchable(testNames);
@@ -168,7 +177,24 @@ public void patientRequestPanel(Container pane) {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Generate"));
+      JButton but = new JButton("Generate");
+      JLabel lab = new JLabel ();
+      but.addActionListener(new ActionListener() { 
+     	  public void actionPerformed(ActionEvent e) { 
+       	    String [] fields = {"DoctorID", "Test","DateVal", "PatientID"};
+       	    Test t =  (Test) combo.getSelectedItem();
+       	    String [] params = {p.getUser().getID(),t.getName(),new Date().toString(), pat.getID()};
+       	    boolean res = serv.insertData(CShareObjects.TESTORDER, fields, params);
+       	    if(res) {
+       	    	lab.setText("Success!");
+       	    }else {
+       	    	lab.setText("Failure");
+       	    }
+       	  } 
+       	 } );
+      
+      submitPanel.add(but);
+      submitPanel.add(lab);
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel
@@ -185,11 +211,15 @@ public void patientRequestPanel(Container pane) {
 
 
       // creating the panes within the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientRequestPanel(frame.getContentPane());
 
  
+   }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+      this.pat = pat;
+      createAndShowGUI(frame);
    }
 }
 

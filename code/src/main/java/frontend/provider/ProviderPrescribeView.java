@@ -1,12 +1,16 @@
 package frontend.provider;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,12 +24,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import backend.classes.Patient;
+import businesslayer.CShareObjects;
+import frontend.GenericEnum;
+
 public class ProviderPrescribeView extends ProviderFrontend{
- 
+   private Patient pat; 
    public ProviderPrescribeView(ProviderRunner p) {
 		super(p);
+		
 		// TODO Auto-generated constructor stub
 	}
+
+public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+	super(providerRunner);
+	this.pat = pat; 
+}
 
 public void patientPrescribePanel(Container pane) {
       // setting up the prescribe panel
@@ -153,7 +168,28 @@ public void patientPrescribePanel(Container pane) {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-      submitPanel.add(new JButton("Print Prescription"));
+      
+      JButton pres = new JButton("Order Prescription");
+      JLabel message = new JLabel();
+      pres.addActionListener(new ActionListener() { 
+     	  public void actionPerformed(ActionEvent e) { 
+     		  String [] fields = {"Name" , "Dosage", "NumRefills" , "DateVal", "DoctorID" , "PatientID" };
+     		  String [] params = {combo.getSelectedItem().toString(), dosageCount.getSelectedItem().toString(), lengthCount.getSelectedItem().toString(), new Date().toString(), p.getUser().getID(), pat.getID()};
+     		  
+       	      boolean success = serv.insertData(CShareObjects.PRESCRIPTION, fields, params);
+       	      if(success) {
+       	    	  message.setBackground(Color.green);
+       	    	  message.setText("Added Prescription!");
+       	      }else {
+       	    	message.setText("There was an error adding your prescription!");
+       	        message.setBackground(Color.red);
+       	      }
+       	  } 
+       	 } );
+      
+      
+      submitPanel.add(pres);
+      submitPanel.add(message);
       submitPanel.add(new JPanel());
       
       // adding the submit panel to the notes and submit panel
@@ -168,10 +204,16 @@ public void patientPrescribePanel(Container pane) {
 
    public void createAndShowGUI(JFrame frame) {
       // creating the panes within the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientPrescribePanel(frame.getContentPane());
 
      
    }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+	     this.pat = pat; 
+	     createAndShowGUI(frame);
+
+	     
+	   }
 }
