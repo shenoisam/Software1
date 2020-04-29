@@ -44,11 +44,12 @@ public class Notes {
 					else {
 						System.out.println("Error: initializing an illegal value for notes");
 					}
+				}
+				// If the headerList is null print an error about initializing with no values
+				else {
+					System.out.println("Error: initializing Notes with no values.");
+				}
 			}
-		}
-		// If the headerList is null print an error about initializing with no values
-		else {
-			System.out.println("Error: initializing Notes with no values.");
 		}
 	}
 	
