@@ -1,5 +1,9 @@
 package backend.classes;
 
+<<<<<<< HEAD
+=======
+import java.util.Date;
+>>>>>>> Sam
 import java.util.List;
 
 public class Perscription {
@@ -8,7 +12,9 @@ public class Perscription {
 	private int NumberRefills;
 	private String DoctorID;
 	private String PatientID;
+	private Date DateVal; 
 	
+<<<<<<< HEAD
 	public Perscription(List<String> headerList, List<Object> list) {
 		// Test that headerList has values
 		if(headerList != null) {
@@ -38,6 +44,12 @@ public class Perscription {
 		}
 	}
 	
+=======
+	public Perscription(List<String> headerRow, List<Object> list) {
+		//TODO: implement 
+		PerscriptionName = "Pres 1";
+	}
+>>>>>>> Sam
 	public String getPerscriptionName() {
 		return PerscriptionName;
 	}
@@ -68,4 +80,5 @@ public class Perscription {
 	public void setPatientID(String patientID) {
 		PatientID = patientID;
 	}
+
 }

@@ -2,6 +2,8 @@ package backend.classes;
 
 import java.util.List;
 
+import backend.NotImplementedException;
+
 public class Diagnosis {
 	private String Name; 
 	private String Description; 
@@ -12,7 +14,7 @@ public class Diagnosis {
 	}
 	*/
 	
-	public Diagnosis(List<String> headerList, List<String> dataList) {
+	public Diagnosis(List<String> headerList, List<Object> dataList) {
 		// If the headerList is not null
 		if(headerList != null) {
 			// Create constant strings to represent the variable names
@@ -27,25 +29,22 @@ public class Diagnosis {
 				// If the element represents the diagnosis name
 				if(h.contentEquals(diagnosisName)) {
 					// Initialize the name variable of the diagnosis
-					this.Name = dataList.get(index);
+					this.Name = (String) dataList.get(index);
 				}
 				// Otherwise if it represents the description
 				else if(h.contentEquals(diagnosisDescription)) {
 					// Initialize the description variable of the diagnosis
-					this.Description = dataList.get(index);
+					this.Description = (String) dataList.get(index);
 				}
 				// Otherwise if it represents anything else print an error
 				// about initializing an illegal variable
-				else {
-					System.out.println("Error: Initializing an illegal variable");
-				}
+				
 			}
 		}
-		// Otherwise if it is null print an error about initializing with no values
-		else {
-			System.out.println("Error: Initializing without values.");
-		}
+		
 	}
+
+
 
 	public String getName() {
 		return Name;

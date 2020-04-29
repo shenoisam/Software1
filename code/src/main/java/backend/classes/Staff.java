@@ -30,10 +30,15 @@ public class Staff extends HealthCareProvider {
     }
     
 	public Staff() {
+	
 		// TODO Auto-generated constructor stub
 	}
 	public Staff(String id, String title ) {
 		// TODO Auto-generated constructor stub
+	}
+	public Staff(List<String> listToString, List<Object> list) {
+		// TODO Auto-generated constructor stub
+		super(listToString, list);
 	}
 	public String getStaffID() {
 		return StaffID;

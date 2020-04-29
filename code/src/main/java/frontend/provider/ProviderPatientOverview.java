@@ -14,6 +14,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -27,17 +28,32 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import backend.classes.*;
+
+import businesslayer.CShareObjects;
+
 public class ProviderPatientOverview extends ProviderFrontend{
 
-   
+   static Patient pat; 
    
    public ProviderPatientOverview(ProviderRunner p) {
 		super(p);
+		pat = new Patient(); 
 		// TODO Auto-generated constructor stub
 	}
 
 
-   private static void patientInformationPanel(Container pane) {
+   public ProviderPatientOverview(ProviderRunner providerRunner, Patient pat) {
+	   super(providerRunner);
+	   this.pat = pat;
+	   
+	// TODO Auto-generated constructor stub
+}
+
+
+private static void patientInformationPanel(Container pane) {
+      //Patient p = new Patient(null); 
+	   
       // creating the patient information panel to store all the information
       JPanel patientInformation = new JPanel();
       patientInformation.setLayout(new GridLayout(3, 2));
@@ -76,7 +92,23 @@ public class ProviderPatientOverview extends ProviderFrontend{
       
       // creating the text area to display the diagnosises 
       JTextArea display = new JTextArea(6,21);
-      display.setText("Hypertension\nHyperlipidemia\nDiabetes\nBack pain");
+      
+      /********** Data Retrieval **********/
+      String [] fields = {"PatientID"};
+      String [] params = {pat.getID()};
+      List<PatientDiagnosis> pds =  serv.getData(CShareObjects.PATIENTDIAGNOSIS,fields , params);
+      String text = "";
+      String [] fields2 = {"Name"};
+      String [] params2 = new String [1];
+      for (PatientDiagnosis z : pds) {
+    	  params2[0] = z.getName();
+    	  System.out.println("Provider Overview: " + z.getName());
+    	  List<Diagnosis> diag = serv.getData(CShareObjects.DIAGNOSIS,fields2 , params2);
+    	  text = text + diag.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";
+      }
+      /******* End data retrieval ********/
+      
+      display.setText(text);
       display.setEditable(false); // set textArea non-editable
       display.setLineWrap(true);
       
@@ -96,7 +128,19 @@ public class ProviderPatientOverview extends ProviderFrontend{
       
       // creating the text area for the appointment
       JTextArea appointmentTime = new JTextArea(6,23);
-      appointmentTime.setText("This is the next appointment time");
+      
+      /***** Data Retrieval ****/
+      List<Appointment> apts = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+      String apt; 
+      if ( apts.size() > 0){
+    	  apt = apts.get(0).getAppointmentDate().toString();
+      }else {
+    	  apt = "No appointment scheduled";
+      }
+      /*** End data retrieval *******/
+      
+      
+      appointmentTime.setText(apt);
       appointmentTime.setEditable(false);
       appointmentTime.setLineWrap(true);
       
@@ -112,7 +156,17 @@ public class ProviderPatientOverview extends ProviderFrontend{
       
       // creating the medication list text area
       JTextArea medicationList = new JTextArea(6,21);
-      medicationList.setText("Metoprolol\n" + "Lisinopril\n" + "Losartan Potassium\n");
+      
+      /****** Data Retreival ***/
+      System.out.println("Prescription");
+      List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
+      String stuff = "No Prescriptions on file";
+      if (pres.size() > 0) {
+    	  stuff = pres.stream().map(e -> e.getPerscriptionName()).reduce("\n", String::concat) + "\n";
+      }
+      /**** End Data retrieval *****/
+      
+      medicationList.setText(stuff);
       medicationList.setEditable(false);
       medicationList.setLineWrap(true);
       
@@ -132,7 +186,22 @@ public class ProviderPatientOverview extends ProviderFrontend{
       
       // creating the text area for the patient history
       JTextArea history = new JTextArea(6,21);
-      history.setText("77 y/o woman in NAD with a h/o CAD, DM2, asthma and HTN on altace for 8 years " + 
+      
+      /***** Data retrival ****/
+      
+      // For this section we are just going to display doctor notes. 
+      
+      List<Notes> notes = serv.getData(CShareObjects.NOTES, fields, params);
+      String noteHistory = "No patient history";
+      if(notes.size() > 0) {
+    	  noteHistory = notes.stream().map(e -> e.getNote()).reduce("\n", String::concat) + "\n";
+      }
+      
+      /*** end data retrieval ****/
+      
+      history.setText(noteHistory);
+      
+      /*history.setText("77 y/o woman in NAD with a h/o CAD, DM2, asthma and HTN on altace for 8 years " + 
             "awoke from sleep around 2:30 am this morning of a sore throat and swelling of tongue. " + 
             "She came immediately to the ED b/c she was having difficulty swallowing and some " + 
             "trouble breathing due to obstruction caused by the swelling. She has never had a similar " + 
@@ -146,6 +215,7 @@ public class ProviderPatientOverview extends ProviderFrontend{
             "other allergens. She has not started any new medications, has not used any new lotions or " + 
             "perfumes and has not eaten any unusual foods. Patient has not taken any of her oral " + 
             "medications today.");
+      */
       history.setEditable(false);
       history.setLineWrap(true);
       
@@ -165,7 +235,25 @@ public class ProviderPatientOverview extends ProviderFrontend{
       
       // creating the list of results text area
       JTextArea listOfResults = new JTextArea(6,21);
-      listOfResults.setText("Haemoglobin (Hb)\t       NWhite Blood Cell Count\tN\n");
+      
+      
+      /**** Data retrieval ****/
+      List<TestResult> tr = serv.getData(CShareObjects.TESTRESULT, fields, params);
+      String testres= ""; 
+      if (tr.size() > 0) {
+    	  testres = testres + tr.stream().map(e -> e.getTestName() + e.getResult() ).reduce("\n", String::concat) + "\n";
+      }
+      List<TestOrder> to = serv.getData(CShareObjects.TESTORDER, fields, params);
+      if (to.size() >0) {
+    	  testres = testres + to.stream().map(e -> e.getTestName()).reduce("\n", String::concat) + "\n";
+      }
+      if (to.size() == 0 && tr.size() == 0) {
+    	  testres = "No tests ordered";
+      }
+      /**** End data retrieval ***/
+      
+      
+      listOfResults.setText(testres);
       listOfResults.setEditable(false);
       listOfResults.setLineWrap(true);
       
@@ -184,20 +272,18 @@ public class ProviderPatientOverview extends ProviderFrontend{
    }
    
    public void createAndShowGUI(JFrame frame) {
-      // creating the frame for the screen
-      /*JFrame frame = new JFrame("Patient Overview");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setPreferredSize(new Dimension(750, 500));
-      */
-
-      // creating the panes within the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientInformationPanel(frame.getContentPane());
 
-      // allowing the contents of the screen to be seen
-      /*frame.pack();
-      frame.setVisible(true);
-      */
+      
+   }
+   
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+	  
+      this.pat = pat;
+      createAndShowGUI(frame);
+     
+      
    }
 }

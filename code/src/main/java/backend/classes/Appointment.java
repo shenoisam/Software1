@@ -1,18 +1,27 @@
 package backend.classes;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 import backend.NotImplementedException;
+import backend.dao.AppointmentDAO;
+import backend.dao.GenericDAO;
 
 /*
  * -Date -User ID 1 -User ID 2
  */
-public class Appointment {
-	private Date AppointmentDate;
-	private String UserID1;
-	private String UserID2;
+public class Appointment{
+	private LocalDateTime AppointmentDate;
 	
+	//Should we convert this to a composition? Have Doctor and Patient objects in this class that way we can display the correct info
+	private String DoctorID;
+	private String PatientID;
+	
+	//Testing adding in composition 
+	//private Patient patient; 
+	//private Doctor doctor; 
+
 	public Appointment(List<String> headerList, List<Object> list){
 		// If there are values to read in
 		if(headerList != null) {
@@ -28,7 +37,7 @@ public class Appointment {
 				// If the header represents the Date
 				if(headerVal.contentEquals(Date)) {
 					// Initialize the object's date
-					this.AppointmentDate = (Date)list.get(i);
+					this.AppointmentDate = ((java.sql.Timestamp)list.get(i)).toLocalDateTime();
 				}
 				// Otherwise if it represents the Doctor ID
 				else if(headerVal.contentEquals(Doctor)) {
@@ -42,44 +51,44 @@ public class Appointment {
 					 *  is which.
 					 *  	- John
 					 */
-					this.UserID1 = (String)list.get(i);
+					this.DoctorID = (String)list.get(i);
 				}
 				// Otherwise if it represents the Patient ID
 				else if(headerVal.contentEquals(Patient)) {
 					// Initialize the patient ID
-					this.UserID2 =  (String)list.get(i);
-				}
-				// If the header is any other string
-				else {
-					// Print that there is an error since there is an
-					// illegal value attempting initialization.
-					System.out.println("Error: initializing illegal value.");
+					this.PatientID =  (String)list.get(i);
 				}
 				
 			}
 		}
-		// Otherwise if there are no values to read in print an error
-		else {
-			System.out.println("Error: initializing from no values.");
-		}
+		
 	}
-	public Date getAppointmentDate() {
+
+	public LocalDateTime getAppointmentDate() {
 		return AppointmentDate;
 	}
-	public void setAppointmentDate(Date appointmentDate) {
+	public void setAppointmentDate(LocalDateTime appointmentDate) {
 		AppointmentDate = appointmentDate;
 	}
-	public String getUserID1() {
-		return UserID1;
+	public String getDoctorID() {
+		return DoctorID;
 	}
-	public void setUserID1(String userID1) {
-		UserID1 = userID1;
+	public void setDoctorID(String doctorID) {
+		DoctorID = doctorID;
 	}
-	public String getUserID2() {
-		return UserID2;
+	public String getPatientID() {
+		return PatientID;
 	}
-	public void setUserID2(String userID2) {
-		UserID2 = userID2;
+	public void setPatientID(String patientID) {
+		PatientID = patientID;
 	}
+	@Override
+	public String toString() {
+		return "Appointment [AppointmentDate=" + AppointmentDate + ", DoctorID=" + DoctorID + ", PatientID=" + PatientID
+				+ "]";
+	}
+
+
+	
 	
 }

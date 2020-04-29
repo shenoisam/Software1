@@ -1,6 +1,10 @@
 package backend.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import backend.classes.Diagnosis;
 
 /**
  * Defines a Database Access Object (DAO) specific for connecting to the Diagnosis Table 
@@ -46,6 +50,28 @@ public class DiagnosisDAO extends GenericDAO{
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Diagnosis", fields, params);
+	}
+	
+	public List<Diagnosis> getData(String [] fields, String [] params) {
+		String rmStr = this.generateRmStr(fields, params);
+		
+		List<List<Object>> vals = this.query("*", "Diagnosis", rmStr, params);
+		List<Diagnosis> d = new ArrayList<Diagnosis>(); 
+		if (vals.size() > MIN_DATA_SIZE) {
+			//Get the header row. The first row returned should be the header row
+			List<Object> header = vals.get(0);
+			List<String> headerRow  = new ArrayList<String> (); 
+			
+			for (Object h: header) {
+				headerRow.add(h.toString());
+			}
+			for(int i = MIN_DATA_SIZE; i < vals.size(); i++) {
+				d.add(new Diagnosis(headerRow, vals.get(i)));
+			}
+		}
+		return d;
+		
+		
 	}
 
 }

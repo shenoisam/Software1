@@ -11,6 +11,7 @@ public class Test {
 	private String Type;
 	private String InsuranceCode;
 	
+<<<<<<< HEAD
 	public Test(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String nm = "Name", type = "Type", ic = "InsuranceCode";
@@ -33,6 +34,11 @@ public class Test {
 	
 	public Test() {}
 	
+=======
+	public Test(List<String> headerRow, List<Object> list) {
+		// TODO Auto-generated constructor stub
+	}
+>>>>>>> Sam
 	public String getName() {
 		return Name;
 	}
@@ -51,4 +57,9 @@ public class Test {
 	public void setInsuranceCode(String insuranceCode) {
 		InsuranceCode = insuranceCode;
 	}
+	@Override
+	public String toString() {
+		return "Test [Name=" + Name + ", Type=" + Type + "]";
+	}
+	
 }
