@@ -140,11 +140,20 @@ public class ProviderPatientVisit extends ProviderFrontend {
       nextSteps.add(lab);
       button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
-    		  String [] fields = {"DoctorID"," PatientID","DateVal","Note","ChiefComplaint "," PhysicalExam ",
-    		  		" BodyTemp ","  Pulse ","  Respiration ","  BloodPressure "};
-    		  String [] params = {p.getUser().getID(),pat.getID(),new java.util.Date().toString(),notes.getText(), complaints.getText(),examNotes.getText(),
-    		       tf.get(0).getText(),tf.get(1).getText(),tf.get(2).getText(),tf.get(3).getText()};
-    		  boolean success = serv.insert(CShareObjects.NOTES, fields, params);
+    		  boolean success = false; 
+    		  try {
+    			  Integer.parseInt(tf.get(2).getText());
+    			  Integer.parseInt(tf.get(1).getText());
+    			  Float.parseFloat(tf.get(0).getText());
+    			  String [] fields = {"DoctorID"," PatientID","DateVal","Note","ChiefComplaint "," PhysicalExam ",
+    	    		  		" BodyTemp ","  Pulse ","  Respiration ","  BloodPressure "};
+    	    		  String [] params = {p.getUser().getID(),pat.getID(),new java.util.Date().toString(),notes.getText(), complaints.getText(),examNotes.getText(),
+    	    		       tf.get(0).getText(),tf.get(1).getText(),tf.get(2).getText(),tf.get(3).getText()};
+    	    		  success = serv.insert(CShareObjects.NOTES, fields, params);
+    		  }catch(Exception excp) {
+    			  success = false;
+    		  }
+    		 
     	      if (success) {
     	    	  lab.setText("Success");
     	      }else {
