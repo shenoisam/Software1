@@ -6,9 +6,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class ScheduleScreen extends GenericStaffScreen{
+public class StaffScheduleScreen extends GenericStaffScreen{
 
-	ScheduleScreen(Runner r) {
+	StaffScheduleScreen(StaffRunner r) {
 		super(r);
 		// TODO Auto-generated constructor stub
 	}

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import frontend.GenericEnum;
 
-public abstract class GenericScreen {
+public abstract class PatientGenericScreen {
 	protected JFrame frame;
 	protected JPanel topPanel;
 	protected JPanel titlePanel;
@@ -22,7 +22,7 @@ public abstract class GenericScreen {
 	protected PatientRunner p;  
 	
 	
-	public GenericScreen(JFrame f, String title, PatientRunner po) {
+	public PatientGenericScreen(JFrame f, String title, PatientRunner po) {
 		this.p = po; 
 		frame = f;
 		

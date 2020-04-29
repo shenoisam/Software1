@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 import frontend.staff.GenericStaffScreen;
-import frontend.staff.Runner;
+import frontend.staff.StaffRunner;
 
 public class LoginScreen {
 	private EHRRunner r;

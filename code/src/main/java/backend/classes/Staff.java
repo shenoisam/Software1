@@ -5,7 +5,7 @@ import java.util.List;
 import frontend.EHRRunner;
 import frontend.GenericRunner;
 import frontend.provider.ProviderRunner;
-import frontend.staff.Runner;
+import frontend.staff.StaffRunner;
 
 public class Staff extends HealthCareProvider {
     private String StaffID;
@@ -46,7 +46,7 @@ public class Staff extends HealthCareProvider {
 	
 	@Override 
 	public GenericRunner accept(EHRRunner r) {
-	   return new Runner(r);
+	   return new StaffRunner(r);
 	}
 
 }
