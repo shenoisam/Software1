@@ -110,7 +110,7 @@ Create Table Prescription (
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID), 
-  CONSTRAINT Prescription_pk PRIMARY KEY (Name, Date, DoctorID, PatientID) 
+  CONSTRAINT Prescription_pk PRIMARY KEY (Name, DateVal, DoctorID, PatientID) 
 );
 
 Create Table Notes(
