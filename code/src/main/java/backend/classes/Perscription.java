@@ -1,5 +1,6 @@
 package backend.classes;
 
+import java.util.Date;
 import java.util.List;
 
 public class Perscription {
@@ -9,9 +10,35 @@ public class Perscription {
 	private String DoctorID;
 	private String PatientID;
 	
-	public Perscription(List<String> headerRow, List<Object> list) {
-		// TODO Auto-generated constructor stub
+	public Perscription(List<String> headerList, List<Object> list) {
+		// Test that headerList has values
+		if(headerList != null) {
+			// Generate strings for fields in MySQL
+			final String name = "Name", doctorID = "DoctorID", patientID = "PatientID",
+					dosage = "Dosage", numRefills = "NumRefills";
+			
+			// Find each value in header list
+			for(int i = 0; i < headerList.size(); i++) {
+				String headerVal = headerList.get(i);
+				
+				// Fill the appropriate fields
+				if(headerVal.contentEquals(name)) {
+					PerscriptionName = (String)list.get(i);
+				} else if (headerVal.contentEquals(doctorID)) {
+					DoctorID = (String)list.get(i);
+				} else if (headerVal.contentEquals(patientID)) {
+					PatientID = (String)list.get(i);
+				} else if (headerVal.contentEquals(dosage)) {
+					Dosage = Double.parseDouble((String)list.get(i));
+				} else if (headerVal.contentEquals(numRefills)) {
+					NumberRefills = Integer.parseInt((String)list.get(i));
+				} 
+			}
+		} else {
+			System.out.println("Error: initializing from no values");
+		}
 	}
+	
 	public String getPerscriptionName() {
 		return PerscriptionName;
 	}

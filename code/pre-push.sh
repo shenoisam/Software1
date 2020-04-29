@@ -3,7 +3,7 @@
 
 
 # To escape this and push anyway, please run this command
-# git commit --no-verify -m <Your message> 
+# git push --no-verify -m <Your message> 
 
 
 
