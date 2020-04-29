@@ -69,6 +69,10 @@ public class User {
 
 
 	public GenericRunner accept(EHRRunner ehrRunner) {
+<<<<<<< HEAD
+		return null; 
+=======
+>>>>>>> b0a2518785746ab0f3d47568c484a04d341f20c6
 		
 	}
 	
