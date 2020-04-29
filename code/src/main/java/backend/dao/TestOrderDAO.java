@@ -2,6 +2,7 @@ package backend.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import backend.classes.Test;
@@ -11,14 +12,15 @@ public class TestOrderDAO extends GenericDAO {
     public TestOrderDAO(){
     	
     }
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		for(int i =0; i < fields.length;i++) {
+			if (fields[i].contentEquals("DateVal")) {
+				params[i] = new java.sql.Date(new java.util.Date(params[i]).getTime()).toString();
+			}
+		}
+		
 		this.insert("TestOrder", fields, params);
 		
 	}
@@ -43,6 +45,14 @@ public class TestOrderDAO extends GenericDAO {
 		 }
 		 
 		 return finalList;
+	}
+
+
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 
