@@ -2,19 +2,52 @@ package backend.classes;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import backend.NotImplementedException;
 
 public class Diagnosis {
 	private String Name; 
 	private String Description; 
 
+	/*
 	public Diagnosis() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Diagnosis(List<String> headerRow, List<Object> list) {
-		// TODO Auto-generated constructor stub
-		throws new NotImplementedException(); 
+	*/
+	
+	public Diagnosis(List<String> headerList, List<Object> dataList) {
+		// If the headerList is not null
+		if(headerList != null) {
+			// Create constant strings to represent the variable names
+			final String diagnosisName = "Name";
+			final String diagnosisDescription = "Description";
+			
+			// For every element in the headerList
+			for(String h : headerList) {
+				// Get the index the string is at
+				int index = headerList.indexOf(h);
+				
+				// If the element represents the diagnosis name
+				if(h.contentEquals(diagnosisName)) {
+					// Initialize the name variable of the diagnosis
+					this.Name = (String)dataList.get(index);
+				}
+				// Otherwise if it represents the description
+				else if(h.contentEquals(diagnosisDescription)) {
+					// Initialize the description variable of the diagnosis
+					this.Description = (String) dataList.get(index);
+				}
+				// Otherwise if it represents anything else print an error
+				// about initializing an illegal variable
+				else {
+					System.out.println("Error: Initializing an illegal variable");
+				}
+			}
+		}
+		// Otherwise if it is null print an error about initializing with no values
+		else {
+			System.out.println("Error: Initializing without values.");
+		}
 	}
 
 	public String getName() {
