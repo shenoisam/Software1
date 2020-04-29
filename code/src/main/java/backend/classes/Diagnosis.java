@@ -2,6 +2,7 @@ package backend.classes;
 
 import java.util.List;
 
+
 import backend.NotImplementedException;
 
 public class Diagnosis {
@@ -29,6 +30,7 @@ public class Diagnosis {
 				// If the element represents the diagnosis name
 				if(h.contentEquals(diagnosisName)) {
 					// Initialize the name variable of the diagnosis
+          
 					this.Name = (String) dataList.get(index);
 				}
 				// Otherwise if it represents the description
