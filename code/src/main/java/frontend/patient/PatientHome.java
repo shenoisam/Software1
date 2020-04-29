@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
-public class PatientHome extends GenericScreen{
+public class PatientHome extends PatientGenericScreen{
 
 	public PatientHome(JFrame f, PatientRunner p) {
 		super(f, "Patient Home", p);

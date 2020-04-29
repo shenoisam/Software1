@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
-public class PatientIntake extends GenericScreen {
+public class PatientIntake extends PatientGenericScreen {
 	public PatientIntake(JFrame frame, PatientRunner  p) {
 		super(frame, "Patient Intake",p);
 		setTopBar();
