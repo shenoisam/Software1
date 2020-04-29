@@ -131,7 +131,7 @@ public class ProviderPatientVisit extends ProviderFrontend {
       nextSteps.add(button);
       button.addActionListener(new ActionListener() { 
     	  public void actionPerformed(ActionEvent e) { 
-    		  //Write info to database
+    		  
     	    
     	  } 
       } );

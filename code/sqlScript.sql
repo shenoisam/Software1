@@ -4,8 +4,8 @@
 *  from the CShare database. 
 *
 *  Author: Sam Shenoi 
-*  Version: 1.2
-*  Date Last Modified: 4/18/2020 
+*  Version: 1.4
+*  Date Last Modified: 4/29/2020 
 */
 
 CREATE DATABASE IF NOT EXISTS `CShare`;
@@ -13,6 +13,9 @@ DROP DATABASE `CShare`;
 Create DATABASE CSHARE; 
 Use CShare; 
 
+/* Create a user for access to the database */
+Create User if not exists 'CShareAdmin'@'localhost' IDENTIFIED BY  'password';
+GRANT ALL PRIVILEGES ON CShare.* TO 'CShareAdmin'@'localhost';
 
 Create Table User(
   FirstName VARCHAR(25) NOT NULL, 
@@ -85,7 +88,7 @@ Create Table TestOrder(
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID), 
   FOREIGN KEY (Test) REFERENCES Test(Name),  
-  CONSTRAINT TestOrder_pk PRIMARY KEY (DoctorID, PatientID, Test, Date) 
+  CONSTRAINT TestOrder_pk PRIMARY KEY (DoctorID, PatientID, Test, DateVal) 
 );
 Create Table TestResult(
    Result VARCHAR(100) NOT NULL, 
@@ -114,7 +117,7 @@ Create Table Notes(
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
   DateVal DateTime NOT NULL, 
-  Note Varchar(200) NOT NULL,
+  Note Varchar(500) NOT NULL,
 
   FOREIGN KEY (DateVal, DoctorID, PatientID) REFERENCES Appointment(DateVal, DoctorID, PatientID)  
 );
