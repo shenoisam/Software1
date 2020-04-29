@@ -5,6 +5,7 @@
 package frontend.provider;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -158,6 +159,9 @@ public class ProviderPatientVisit extends ProviderFrontend {
     	    	  lab.setText("Success");
     	      }else {
     	    	  lab.setText("There was an error");
+    	    	  tf.get(2).setBackground(Color.RED);
+    	    	  tf.get(1).setBackground(Color.RED);
+    	    	  tf.get(0).setBackground(Color.RED);
     	      }
     	  } 
       } );

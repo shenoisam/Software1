@@ -198,7 +198,7 @@ private static void patientInformationPanel(Container pane) {
     		  noteHistory = n.getChiefComplaint() + " : " + n.getNote() + "\n";
     	  }
     	  
-    	  noteHistory = notes.stream().map(e -> e.getChiefComplaint() + e.getNote()).reduce("\n", String::concat) + "\n";
+    	  //noteHistory = notes.stream().map(e -> e.getChiefComplaint() + e.getNote()).reduce("\n", String::concat) + "\n";
       }
       
       /*** end data retrieval ****/
