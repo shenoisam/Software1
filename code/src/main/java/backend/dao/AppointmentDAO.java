@@ -85,7 +85,7 @@ public class AppointmentDAO extends GenericDAO {
 		
 		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.Date AS DateVal, DoctorID, PatientID";
 		String table = "User p, User d, Appointment a";
-		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date > ?";
+		String rmStr = " WHERE a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date > ?";
 		
 		// This might not work
 		String [] params = {new java.sql.Date(date.getTime()).toString()};
@@ -103,7 +103,7 @@ public class AppointmentDAO extends GenericDAO {
 	public List<Appointment> getAllDoctorsAppointmentsByDate(Date date, Doctor d) {
 		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.DateVal AS DateVal, DoctorID, PatientID";
 		String table = "User p, User d, Appointment a";
-		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date = ? AND d.ID";
+		String rmStr = " WHERE a.DoctorID = d.ID AND a.PatientID = p.ID AND a.Date = ? AND d.ID";
 		
 		// This might not work
 		String [] params = {new java.sql.Date(date.getTime()).toString(), d.getID()};
@@ -136,7 +136,7 @@ public class AppointmentDAO extends GenericDAO {
 	public List<List<Object>> getAllAppointmentsByDateRange(Date date1, Date date2, String [] fields, String [] params) {
 		String select = "p.FirstName, p.LastName, d.FirstName, d.LastName, a.DateVal, a.DoctorID AS DoctorID, a.PatientID AS PatientID";
 		String table = "User p, User d, Appointment a";
-		String rmStr = "a.DoctorID = d.ID AND a.PatientID = p.ID AND a.DateVal > ? AND a.DateVal < ?";// + generateRmStr(fields, params);
+		String rmStr = " WHERE a.DoctorID = d.ID AND a.PatientID = p.ID AND a.DateVal > ? AND a.DateVal < ?";// + generateRmStr(fields, params);
 		
 		List<String> par = new ArrayList<String>(); 
 		par.add(new java.sql.Date(date1.getTime()).toString());

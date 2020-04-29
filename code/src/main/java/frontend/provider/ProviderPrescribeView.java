@@ -177,8 +177,8 @@ public void patientPrescribePanel(Container pane) {
 
    public void createAndShowGUI(JFrame frame) {
       // creating the panes within the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientPrescribePanel(frame.getContentPane());
 
      

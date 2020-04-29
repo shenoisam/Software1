@@ -1,5 +1,6 @@
 package backend.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class PatientDAO extends GenericDAO{
 	public Patient getPatient(String email, String password) {
 		Patient s = null; 
 		String [] params = {email, password};
-		List<List<Object>> data = this.query("*","Patient, User","Patient.ID = User.ID AND Email = ? AND Password = MD5(?)", params);
+		List<List<Object>> data = this.query("*","Patient, User"," WHERE Patient.ID = User.ID AND Email = ? AND Password = MD5(?)", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
@@ -59,11 +60,7 @@ public class PatientDAO extends GenericDAO{
 		 
 		 return finalList;
 	}
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) {
 		// TODO Auto-generated method stub
@@ -86,6 +83,13 @@ public class PatientDAO extends GenericDAO{
 		rmStr = rmStr + "AND Patient.ID = User.ID";
 		List<List<Object>> stuff = this.query("*", "Patient, User", rmStr, params);
 		return generateList(stuff);
+	}
+
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

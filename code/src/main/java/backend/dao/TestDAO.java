@@ -11,11 +11,7 @@ public class TestDAO extends GenericDAO {
     public TestDAO(){
     	
     }
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
@@ -28,8 +24,11 @@ public class TestDAO extends GenericDAO {
 	}
 	
 	public List<Test> getData(String [] fields, String [] params) {
-		 String rmStr = this.generateRmStr(fields, params);
-		 
+		 String rmStr = "";
+		 if(fields.length > 0) {
+		   rmStr =  this.generateRmStr(fields, params);
+		 }
+
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
 		 return generateList(stuff);
 		
@@ -44,6 +43,13 @@ public class TestDAO extends GenericDAO {
 		 }
 		 
 		 return finalList;
+	}
+
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

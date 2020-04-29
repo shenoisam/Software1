@@ -35,7 +35,7 @@ public class StaffDAO extends GenericDAO{
 	public Staff getStaff(String email, String password) {
 		Staff s = null; 
 		String [] params = {email, password};
-		List<List<Object>> data = this.query("*","Staff, User","User.ID = Staff.ID AND Email = ? AND Password = MD5(?)", params);
+		List<List<Object>> data = this.query("*","Staff, User"," WHERE User.ID = Staff.ID AND Email = ? AND Password = MD5(?)", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);

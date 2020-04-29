@@ -20,7 +20,9 @@ import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 
-import backend.classes.Patient;
+import backend.classes.*;
+import java.util.List;
+import businesslayer.CShareObjects;
 
 public class ProviderRequestTestView extends ProviderFrontend{
    private Patient pat; 
@@ -55,16 +57,10 @@ public void patientRequestPanel(Container pane) {
       testLabel.setText("Test Name");
       testArea.add(testLabel);
       
-      // creating the list of tests
-      ArrayList<String> testNames = new ArrayList<String>();
-      testNames.add("Complete Blood Count(CBC)");
-      testNames.add("Prothrombin Time");
-      testNames.add("Basic Metabolic Panel");
-      testNames.add("Comprehensive Metabolic Panel");
-      testNames.add("Lipid Panel");
-      testNames.add("Liver Panel");
-      testNames.add("Thyroid Stimulating Hormone");
-      testNames.add("Hemoglobin A1C");
+      /***** Data Retrieval ******/
+      String [] fields = {};
+      String [] params = {};
+      List<Test> testNames = serv.getData(CShareObjects.TEST, fields, params);
       
       // creating the searchable drop down menu
       StringSearchable searchable = new StringSearchable(testNames);
@@ -194,8 +190,8 @@ public void patientRequestPanel(Container pane) {
 
 
       // creating the panes within the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientRequestPanel(frame.getContentPane());
 
  

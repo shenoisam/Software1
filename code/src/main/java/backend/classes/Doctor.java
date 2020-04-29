@@ -75,6 +75,12 @@ public class Doctor extends HealthCareProvider {
 	public GenericRunner accept(EHRRunner r) {
 		return new ProviderRunner(r);
 	}
+
+
+	@Override
+	public String toString() {
+		return "Doctor [name= Dr. " + this.getFullName() + " title=" + title + "]";
+	}
 	
 
 }

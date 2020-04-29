@@ -133,7 +133,7 @@ private static void patientInformationPanel(Container pane) {
       List<Appointment> apts = serv.getData(CShareObjects.APPOINTMENT, fields, params);
       String apt; 
       if ( apts.size() > 0){
-    	  apt = apts.get(0).toString();
+    	  apt = apts.get(0).getAppointmentDate().toString();
       }else {
     	  apt = "No appointment scheduled";
       }
@@ -185,7 +185,22 @@ private static void patientInformationPanel(Container pane) {
       
       // creating the text area for the patient history
       JTextArea history = new JTextArea(6,21);
-      history.setText("77 y/o woman in NAD with a h/o CAD, DM2, asthma and HTN on altace for 8 years " + 
+      
+      /***** Data retrival ****/
+      
+      // For this section we are just going to display doctor notes. 
+      
+      List<Notes> notes = serv.getData(CShareObjects.NOTES, fields, params);
+      String noteHistory = "No patient history";
+      if(notes.size() > 0) {
+    	  noteHistory = notes.stream().map(e -> e.getNote()).reduce("\n", String::concat) + "\n";
+      }
+      
+      /*** end data retrieval ****/
+      
+      history.setText(noteHistory);
+      
+      /*history.setText("77 y/o woman in NAD with a h/o CAD, DM2, asthma and HTN on altace for 8 years " + 
             "awoke from sleep around 2:30 am this morning of a sore throat and swelling of tongue. " + 
             "She came immediately to the ED b/c she was having difficulty swallowing and some " + 
             "trouble breathing due to obstruction caused by the swelling. She has never had a similar " + 
@@ -199,6 +214,7 @@ private static void patientInformationPanel(Container pane) {
             "other allergens. She has not started any new medications, has not used any new lotions or " + 
             "perfumes and has not eaten any unusual foods. Patient has not taken any of her oral " + 
             "medications today.");
+      */
       history.setEditable(false);
       history.setLineWrap(true);
       
@@ -220,9 +236,23 @@ private static void patientInformationPanel(Container pane) {
       JTextArea listOfResults = new JTextArea(6,21);
       
       
+      /**** Data retrieval ****/
+      List<TestResult> tr = serv.getData(CShareObjects.TESTRESULT, fields, params);
+      String testres= ""; 
+      if (tr.size() > 0) {
+    	  testres = testres + tr.stream().map(e -> e.getTestName() + e.getResult() ).reduce("\n", String::concat) + "\n";
+      }
+      List<TestOrder> to = serv.getData(CShareObjects.TESTORDER, fields, params);
+      if (to.size() >0) {
+    	  testres = testres + to.stream().map(e -> e.getTestName()).reduce("\n", String::concat) + "\n";
+      }
+      if (to.size() == 0 && tr.size() == 0) {
+    	  testres = "No tests ordered";
+      }
+      /**** End data retrieval ***/
       
       
-      listOfResults.setText("Haemoglobin (Hb)\t       NWhite Blood Cell Count\tN\n");
+      listOfResults.setText(testres);
       listOfResults.setEditable(false);
       listOfResults.setLineWrap(true);
       
@@ -241,21 +271,10 @@ private static void patientInformationPanel(Container pane) {
    }
    
    public void createAndShowGUI(JFrame frame) {
-      // creating the frame for the screen
-      /*JFrame frame = new JFrame("Patient Overview");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setPreferredSize(new Dimension(750, 500));
-      */
-
-      // creating the panes within the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientInformationPanel(frame.getContentPane());
 
-      // allowing the contents of the screen to be seen
-      /*frame.pack();
-      frame.setVisible(true);
-      */
       
    }
    

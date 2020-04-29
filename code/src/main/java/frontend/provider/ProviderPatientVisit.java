@@ -145,8 +145,8 @@ public class ProviderPatientVisit extends ProviderFrontend {
 
    public void createAndShowGUI(JFrame frame) {
       // Add the relavent panels to the screen
-      providerSideBar(frame.getContentPane());
-      topBarPatientInformation(frame.getContentPane());
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
       patientVisitPanel(frame.getContentPane());
 
  
@@ -154,8 +154,8 @@ public class ProviderPatientVisit extends ProviderFrontend {
    public void createAndShowGUI(JFrame frame, Patient pat) {
 	      this.pat = pat; 
 	      // Add the relavent panels to the screen
-	      providerSideBar(frame.getContentPane());
-	      topBarPatientInformation(frame.getContentPane());
+	      providerSideBar(frame.getContentPane(), pat);
+	      topBarPatientInformation(frame.getContentPane(), pat);
 	      patientVisitPanel(frame.getContentPane());
 
 	 

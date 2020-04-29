@@ -30,7 +30,10 @@ public abstract class GenericDAO {
 	
 	private String generateQueryString(String select, String table, String rmStr) {
 		String query; 
-		query = "SELECT " + select + " FROM " + table +" WHERE " + rmStr + ";";
+		query = "SELECT " + select + " FROM " + table;
+		
+	    query = query + rmStr + ";";
+
 		return query; 
 	}
 	protected List<List<Object>> query(String select, String table, String rmStr,String [] params) {
@@ -44,7 +47,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-
+          
 		    ResultSet rs = p.executeQuery();
 		   
 		    
@@ -150,12 +153,14 @@ public abstract class GenericDAO {
 	}
 	
 	protected String generateRmStr(String [] fields, String [] params) {
-		String rmStr = " ";
+		String rmStr = " WHERE ";
 		 
 		 for (int i =0; i < fields.length - 1; i++) {
 			 rmStr = rmStr +" " + fields[i] + " = ? AND"; 
 		 }
-		 rmStr = rmStr + fields[fields.length -1] + " = ? ";
+		 if (fields.length > 0) {
+			 rmStr = rmStr + fields[fields.length -1] + " = ? ";
+		 }
 		 return rmStr;
 	}
 	

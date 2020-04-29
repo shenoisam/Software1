@@ -30,7 +30,7 @@ public class DoctorDAO extends GenericDAO{
 	public Doctor getDoctor(String email, String password) {
 		Doctor s = null; 
 		String [] params = {email, password};
-	    List<List<Object>> data = this.query("*","Doctor, User "," Doctor.ID = User.ID AND User.Email = ? AND User.Password = MD5(?)", params);
+	    List<List<Object>> data = this.query("*","Doctor, User "," WHERE Doctor.ID = User.ID AND User.Email = ? AND User.Password = MD5(?)", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
@@ -41,11 +41,8 @@ public class DoctorDAO extends GenericDAO{
 		return s; 		
 				
 	}
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		this.insert("Doctor", fields, params);
@@ -62,8 +59,15 @@ public class DoctorDAO extends GenericDAO{
 	    		fields[i] = "Doctor.ID";
 	    	}
 	    }
-	    String rmStr = this.generateRmStr(fields, params);
-		rmStr = rmStr + "AND Doctor.ID = User.ID";
+	    String rmStr = "Doctor.ID = User.ID"; 
+	    
+	    String rm = this.generateRmStr(fields, params);
+	    if (fields.length > 0) {
+	    	rmStr = rm + " AND " + rmStr; 
+	    }else {
+	    	rmStr = " WHERE " + rmStr; 
+	    }
+		
 		List<List<Object>> stuff = this.query("*", "Doctor, User", rmStr, params);
 		List<Doctor> d = new ArrayList<Doctor>(); 
 		if (stuff.size() > MIN_DATA_SIZE) {
@@ -79,6 +83,13 @@ public class DoctorDAO extends GenericDAO{
 			}
 		}
 		return d;
+	}
+
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
