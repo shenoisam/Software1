@@ -71,31 +71,34 @@ Create Table Appointment(
   CONSTRAINT Appointment_pk PRIMARY KEY (DateVal, DoctorID, PatientID) 
 );
 Create Table Test(
-  Name VARCHAR(25) PRIMARY KEY NOT NULL, 
-  Type VARCHAR(25) NOT NULL, 
-  InsuranceCode VARCHAR(25) NOT NULL
+  Name VARCHAR(100) NOT NULL, 
+  Type VARCHAR(100) NOT NULL, 
+  InsuranceCode VARCHAR(25) NOT NULL,
+  CONSTRAINT Test_pk PRIMARY KEY (Name, InsuranceCode, Type)
 
 );
 Create Table TestOrder(
    DoctorID VARCHAR(25) NOT NULL, 
-   Test VARCHAR(25) NOT NULL, 
+ 
+   TestCode VARCHAR(25) NOT NULL, 
    Date Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID), 
-  FOREIGN KEY (Test) REFERENCES Test(Name),  
-  CONSTRAINT TestOrder_pk PRIMARY KEY (DoctorID, PatientID, Test, Date) 
+  /*FOREIGN KEY (TestCode) REFERENCES Test(InsuranceCode),  */
+  CONSTRAINT TestOrder_pk PRIMARY KEY (DoctorID, PatientID, TestCode, Date) 
 );
 Create Table TestResult(
    Result VARCHAR(100) NOT NULL, 
-   Test VARCHAR(25) NOT NULL, 
+   TestCode VARCHAR(25) NOT NULL, 
+ 
    Date Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
-  FOREIGN KEY (Test) REFERENCES Test(Name),  
-  CONSTRAINT TestOrder_pk PRIMARY KEY ( PatientID, Test, Date) 
+  /*FOREIGN KEY (TestCode) REFERENCES Test(InsuranceCode),*/
+  CONSTRAINT TestOrder_pk PRIMARY KEY ( PatientID, TestCode,  Date) 
 );
 Create Table Prescription (
   Name VARCHAR(25) NOT NULL, 

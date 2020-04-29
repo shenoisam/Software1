@@ -2,6 +2,8 @@ package backend.classes;
 
 import java.util.List;
 
+import backend.NotImplementedException;
+
 public class Diagnosis {
 	private String Name; 
 	private String Description; 
@@ -45,6 +47,11 @@ public class Diagnosis {
 		else {
 			System.out.println("Error: Initializing without values.");
 		}
+	}
+
+	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {
+		// TODO Auto-generated constructor stub
+		throw new NotImplementedException("Diagnosis Not Implemented"); 
 	}
 
 	public String getName() {
