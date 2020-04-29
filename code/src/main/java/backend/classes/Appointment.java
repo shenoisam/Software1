@@ -61,7 +61,10 @@ public class Appointment{
 				
 			}
 		}
-		
+		// Otherwise if there are no values to read in print an error
+		else {
+			System.out.println("Error: initializing from no values.");
+		}
 	}
 
 	public LocalDateTime getAppointmentDate() {

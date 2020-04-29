@@ -119,10 +119,7 @@ private static void sideBarWithCalander(Container pane) {
       JLabel nextAppointmentTitle  = new JLabel();
       nextAppointmentTitle.setText("Your Next Appointment is at: ");
       JLabel appointmentTime = new JLabel();
-      if (li.size() > 0) {
-    	  appointmentTime.setText(li.get(0).getAppointmentDate().toString());
-      }
-      
+      appointmentTime.setText(li.get(0).getAppointmentDate().toString());
       
       // We dont store the location so lets leave this out for how ;D
       //JLabel appointmentLocation = new JLabel();

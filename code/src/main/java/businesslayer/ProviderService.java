@@ -2,7 +2,6 @@ package businesslayer;
 
 import backend.dao.*;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ public class ProviderService {
 		daos = new HashMap<CShareObjects, GenericDAO>(); 
 	}
 	
-	
+	// This is such as bad way to do this
 	public <T> List<T> getData(CShareObjects classname, String [] fields, String [] params){
 		if (!daos.containsKey(classname)) {
 			// Need to either build a factory or do something with this 
@@ -25,22 +24,6 @@ public class ProviderService {
 		return daos.get(classname).getData(fields, params);
 	}
 	
-	public boolean insertData(CShareObjects classname, String [] fields, String [] params){
-		if (!daos.containsKey(classname)) {
-			// Need to either build a factory or do something with this 
-			 daos.put(classname, getDAOfromClassName(classname));
-		}
-		boolean updateSuccess = true; 
-	
-		 try {
-			daos.get(classname).insertIntoTable(fields, params);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			updateSuccess = false; 
-		}
-	    return updateSuccess;
-	}
 	//Convert this to a factory maybe... Hacky way for now
 	private GenericDAO getDAOfromClassName(CShareObjects classname) {
 		GenericDAO g = null; 

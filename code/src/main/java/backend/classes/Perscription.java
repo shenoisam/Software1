@@ -1,6 +1,5 @@
 package backend.classes;
 
-import java.util.Date;
 import java.util.List;
 
 public class Perscription {
@@ -9,11 +8,9 @@ public class Perscription {
 	private int NumberRefills;
 	private String DoctorID;
 	private String PatientID;
-	private Date DateVal; 
 	
 	public Perscription(List<String> headerRow, List<Object> list) {
-		//TODO: implement 
-		PerscriptionName = "Pres 1";
+		// TODO Auto-generated constructor stub
 	}
 	public String getPerscriptionName() {
 		return PerscriptionName;

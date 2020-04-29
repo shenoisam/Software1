@@ -82,7 +82,7 @@ Create Table Test(
 Create Table TestOrder(
    DoctorID VARCHAR(25) NOT NULL, 
    Test VARCHAR(25) NOT NULL, 
-   DateVal Date Not NULL, 
+   Date Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
@@ -104,13 +104,13 @@ Create Table Prescription (
   Name VARCHAR(25) NOT NULL, 
   Dosage FLOAT(2) NOT NULL, 
   NumRefills int NOT NULL, 
-  DateVal Date NOT NULL, 
+  Date Date NOT NULL, 
   DoctorID VARCHAR(25) NOT NULL, 
   PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
   FOREIGN KEY (DoctorID) REFERENCES Doctor(ID), 
-  CONSTRAINT Prescription_pk PRIMARY KEY (Name, DateVal, DoctorID, PatientID) 
+  CONSTRAINT Prescription_pk PRIMARY KEY (Name, Date, DoctorID, PatientID) 
 );
 
 Create Table Notes(
@@ -133,7 +133,6 @@ INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor");
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
-INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (DATE_ADD(CURDATE(), INTERVAL 1 HOUR), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
 INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
 INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
 
