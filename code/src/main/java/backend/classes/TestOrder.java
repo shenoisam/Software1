@@ -6,7 +6,7 @@ import java.util.List;
 public class TestOrder {
 	private String DoctorID; 
 	private String TestName; 
-	private Date DateVal; 
+	private Date DateOrdered; 
 	private String PatientID; 
 	private Test test;
 

@@ -158,7 +158,6 @@ private static void patientInformationPanel(Container pane) {
       JTextArea medicationList = new JTextArea(6,21);
       
       /****** Data Retreival ***/
-      System.out.println("Prescription");
       List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
       String stuff = "No Prescriptions on file";
       if (pres.size() > 0) {
