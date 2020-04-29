@@ -7,11 +7,7 @@ import java.util.List;
 public class TestOrder {
 	private String DoctorID; 
 	private String TestName; 
-<<<<<<< HEAD
 	private LocalDateTime DateOrdered; 
-=======
-	private Date DateVal; 
->>>>>>> Sam
 	private String PatientID; 
 	private Test test;
 	
@@ -40,10 +36,6 @@ public class TestOrder {
 	}
 
 	public TestOrder() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public TestOrder(List<String> headerRow, List<Object> list) {
 		// TODO Auto-generated constructor stub
 	}
 

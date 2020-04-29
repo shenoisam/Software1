@@ -24,15 +24,18 @@ public class User {
     				LastName = (String)list.get(i);
     			} else if(headerVal.contentEquals(email)) {
     				Email = (String)list.get(i);
-    			} else if(headerVal.contentEquals(pswd)) {
-    				Password = (String)list.get(i);
+    			} else if(headerVal.contentEquals(ID)) {
+    				ID = (String)list.get(i);
     			}
     		}
     	} else {
     		System.out.println("Error: initializing from no values");
     	}
 	}
+	
+	User() {}
 
+	/*
 	public User(List<String> headerList, List<Object> dataList) {
 		// TODO Auto-generated constructor stub
 		for( int i =0; i < headerList.size(); i++) {
@@ -53,7 +56,7 @@ public class User {
 				ID = dataList.get(i).toString();
 			}
 		}
-	}
+	}*/
 
 
 	@Override
