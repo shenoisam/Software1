@@ -44,8 +44,6 @@ public class Diagnosis {
 		
 	}
 
-
-
 	public String getName() {
 		return Name;
 	}

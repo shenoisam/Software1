@@ -5,12 +5,10 @@ import frontend.EHRRunner;
 import frontend.GenericRunner;
 
 public class User {
-<<<<<<< HEAD
 	private String FirstName; 
 	private String LastName; 
 	private String Email; 
 	private String ID;
-	private String Password;
 	
 	public User(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
@@ -34,19 +32,6 @@ public class User {
     		System.out.println("Error: initializing from no values");
     	}
 	}
-=======
-	protected String FirstName; 
-	protected String LastName; 
-	protected String Email; 
-	protected String ID; 
->>>>>>> Sam
-	
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
-
-<<<<<<< HEAD
-=======
 
 	public User(List<String> headerList, List<Object> dataList) {
 		// TODO Auto-generated constructor stub
@@ -76,8 +61,6 @@ public class User {
 		return "User [FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email + "]";
 	}
 
-
->>>>>>> Sam
 	public String getFirstName() {
 		return FirstName;
 	}
