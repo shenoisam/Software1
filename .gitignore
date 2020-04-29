@@ -1,3 +1,4 @@
 /node_modules
 .DS_STORE
 /code/src/main/resources/config.properties
+/code/.classpath
