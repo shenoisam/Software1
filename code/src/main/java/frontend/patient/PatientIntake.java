@@ -29,7 +29,6 @@ public class PatientIntake extends GenericScreen {
 		setMainPanel();
 	}
 	
-	
 
 	protected void setTopBar() {
 		JPanel namePanel = new JPanel();
@@ -158,6 +157,12 @@ public class PatientIntake extends GenericScreen {
 		sl.putConstraint(SpringLayout.WEST, allergies, 5, SpringLayout.WEST, intakePanel);
 		
 		intakePanel.add(allergies);
+		
+		JButton submitPatient = new JButton("Submit");
+		sl.putConstraint(SpringLayout.NORTH, submitPatient, 5, SpringLayout.SOUTH, allergies);
+		sl.putConstraint(SpringLayout.WEST, submitPatient, 5, SpringLayout.WEST, intakePanel);
+		
+		intakePanel.add(submitPatient);
 		
 		mainPanel.add(intakePanel);
 		

@@ -21,6 +21,10 @@ public class PatientDAO extends GenericDAO{
 	    if(data.size() > MIN_DATA_SIZE) {
 			List<Object> pat = data.get(1); 
 			//TODO: implement new patient for all columns and check for null columns. 
+			
+			
+			// Hey we should probably switch this constructor call to just passing in pat,
+			// that way we're sending in all of the patient's values as a list of objects
 			s = new Patient(pat.get(0).toString());
 		}
 		return s; 		
