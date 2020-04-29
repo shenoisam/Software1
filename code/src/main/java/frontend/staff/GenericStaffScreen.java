@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import frontend.GenericEnum;
 
 public class GenericStaffScreen implements IGenericStaff {
-	static Runner r; 
-	GenericStaffScreen(Runner r){
+	static StaffRunner r; 
+	GenericStaffScreen(StaffRunner r){
 		this.r = r; 
 	}
 	protected static void topBarProviderHomescreen(Container pane) {

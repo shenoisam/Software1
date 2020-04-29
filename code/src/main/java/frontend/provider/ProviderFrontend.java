@@ -19,7 +19,7 @@ import backend.classes.Patient;
 import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
-public class ProviderFrontend implements IProviderFrontend {
+public class ProviderFrontend implements IProviderGeneric {
    static ProviderRunner p;
    protected static ProviderService serv;
 
