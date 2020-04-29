@@ -1,10 +1,6 @@
 package backend.classes;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
-
->>>>>>> b0a2518785746ab0f3d47568c484a04d341f20c6
 import frontend.EHRRunner;
 import frontend.GenericRunner;
 
@@ -41,12 +37,6 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public User(List<String> headerList, List<Object> dataList) {
-		// TODO Auto-generated constructor stub
-	}
-
 
 	public String getFirstName() {
 		return FirstName;
