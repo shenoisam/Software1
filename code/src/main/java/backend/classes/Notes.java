@@ -123,5 +123,53 @@ public class Notes {
 	public void setNote(String note) {
 		Note = note;
 	}
+
+	public String getChiefComplaint() {
+		return ChiefComplaint;
+	}
+
+	public void setChiefComplaint(String chiefComplaint) {
+		ChiefComplaint = chiefComplaint;
+	}
+
+	public String getPhysicalExam() {
+		return PhysicalExam;
+	}
+
+	public void setPhysicalExam(String physicalExam) {
+		PhysicalExam = physicalExam;
+	}
+
+	public float getBodyTemp() {
+		return BodyTemp;
+	}
+
+	public void setBodyTemp(float bodyTemp) {
+		BodyTemp = bodyTemp;
+	}
+
+	public int getPulse() {
+		return Pulse;
+	}
+
+	public void setPulse(int pulse) {
+		Pulse = pulse;
+	}
+
+	public int getRespiration() {
+		return Respiration;
+	}
+
+	public void setRespiration(int respiration) {
+		Respiration = respiration;
+	}
+
+	public String getBloodPressure() {
+		return BloodPressure;
+	}
+
+	public void setBloodPressure(String bloodPressure) {
+		BloodPressure = bloodPressure;
+	}
 	
 }

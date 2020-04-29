@@ -161,6 +161,11 @@ private static void patientInformationPanel(Container pane) {
       List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
       String stuff = "No Prescriptions on file";
       if (pres.size() > 0) {
+    	  stuff = "";
+    	  for (Prescription prsw : pres) {
+    		  
+    	  }
+    	  
     	  stuff = pres.stream().map(e -> e.getPerscriptionName()).reduce("\n", String::concat) + "\n";
       }
       /**** End Data retrieval *****/
@@ -193,7 +198,7 @@ private static void patientInformationPanel(Container pane) {
       List<Notes> notes = serv.getData(CShareObjects.NOTES, fields, params);
       String noteHistory = "No patient history";
       if(notes.size() > 0) {
-    	  noteHistory = notes.stream().map(e -> e.getNote()).reduce("\n", String::concat) + "\n";
+    	  noteHistory = notes.stream().map(e -> e.getChiefComplaint() + e.getNote()).reduce("\n", String::concat) + "\n";
       }
       
       /*** end data retrieval ****/
