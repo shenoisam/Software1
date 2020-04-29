@@ -25,33 +25,31 @@ public class Notes {
 			
 			// For every member of the header list
 			for(int i = 0; i < headerList.size(); i++) {
-				// If the doctor ID is at the current index
-				if(headerList.get(i).contentEquals(doctorIdentification)) {
-					// Initialize the doctor ID value from the data list
-					this.DoctorID = (String)dataList.get(i);
+				if(dataList.get(i) != null) {
+					// If the doctor ID is at the current index
+					if(headerList.get(i).contentEquals(doctorIdentification)) {
+						// Initialize the doctor ID value from the data list
+						this.DoctorID = (String)dataList.get(i);
+					}
+					// Otherwise if the patient ID is at the current index
+					else if(headerList.get(i).contentEquals(patientIdentification)) {
+						// Initialize the patient ID value from the data list
+						this.PatientID = (String)dataList.get(i);
+					}
+					// Otherwise if the date of the notes is at the current index
+					else if(headerList.get(i).contentEquals(notesDate)) {
+						this.AppointmentDate = (Date)dataList.get(i);
+					}
+					// Otherwise print an error about initializing an illegal value
+					else {
+						System.out.println("Error: initializing an illegal value for notes");
+					}
 				}
-				// Otherwise if the patient ID is at the current index
-				else if(headerList.get(i).contentEquals(patientIdentification)) {
-					// Initialize the patient ID value from the data list
-					this.PatientID = (String)dataList.get(i);
-				}
-				// Otherwise if the date of the notes is at the current index
-				else if(headerList.get(i).contentEquals(notesDate)) {
-					this.AppointmentDate = (Date)dataList.get(i);
-				}
-				// Otherwise if the date of the notes is at the current index
-				else if(headerList.get(i).contentEquals(note)) {
-					this.Note = (String)dataList.get(i);
-				}
-				// Otherwise print an error about initializing an illegal value
+				// If the headerList is null print an error about initializing with no values
 				else {
-					System.out.println("Error: initializing an illegal value for notes");
+					System.out.println("Error: initializing Notes with no values.");
 				}
 			}
-		}
-		// If the headerList is null print an error about initializing with no values
-		else {
-			System.out.println("Error: initializing Notes with no values.");
 		}
 	}
 	
@@ -62,6 +60,15 @@ public class Notes {
 	public void setPatientID(String patientID) {
 		this.PatientID = patientID;
 	}
+	
+	/* This is the sql constructor for the Notes object
+	 * 
+	 * @param list this list contains the header row 
+	 * @param list2 this list contains the value row
+	 */
+//	public Notes(List<Object> list, List<Object> list2) {
+//		// TODO Auto-generated constructor stub
+//	}
 
 	public String getDoctorID() {
 		return DoctorID;

@@ -9,7 +9,6 @@ public class Perscription {
 	private int NumberRefills;
 	private String DoctorID;
 	private String PatientID;
-	private Date DateVal; 
 	
 	public Perscription(List<String> headerList, List<Object> list) {
 		// Test that headerList has values

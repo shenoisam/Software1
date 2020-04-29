@@ -10,13 +10,13 @@ public class Doctor extends HealthCareProvider {
 	private String DoctorID; 
 	private String title; 
 
-	/*
+	
 	public Doctor(String string, String string2) {
 		// TODO Auto-generated constructor stub
 		DoctorID = string; 
 		title = string2;
 	}
-	*/
+	
 	
 	/*
 	 * Constructor for doctor assuming two passed lists:
