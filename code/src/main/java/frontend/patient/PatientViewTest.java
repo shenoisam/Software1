@@ -57,7 +57,7 @@ public class PatientViewTest extends GenericScreen {
 	    namePanel.setPreferredSize(new Dimension(500, 50));
 	    namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
 	    JLabel staffName = new JLabel();
-	    staffName.setText("<Patient Name>");
+	    staffName.setText(p.getUser().getFirstName() + " " + p.getUser().getLastName());
 	    namePanel.add(staffName);
 	      
 	    // creating and adding an invisible panel to push out the appointment times
@@ -68,7 +68,7 @@ public class PatientViewTest extends GenericScreen {
 	    JLabel nextAppointmentTitle  = new JLabel();
 	    nextAppointmentTitle.setText("Your Next Appointment is at: ");
 	    JLabel appointmentTime = new JLabel();
-	    appointmentTime.setText("MM-DD-YY HH:mm ");
+	    appointmentTime.setText(this.a.getAppointmentDate().toString());
 	      
 	    // adding the time and location to the name panel
 	    namePanel.add(nextAppointmentTitle);
