@@ -2,6 +2,8 @@ package frontend;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import frontend.GenericEnum;
+import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
 import frontend.provider.ProviderRunner;
 import frontend.staff.Runner;
@@ -37,49 +39,19 @@ public class EHRRunner {
 	
 	
 	public void validateUser(String user,String pass) {
-	
-		 
 		 // Display the home screen depending on the user
 		 User u = null; 
-		 
-		
-		 System.out.println(user + "|");
-		  
-		 // For now we will just use test data
-		 /*
-		  * Display the correct screen. 
-		  * 
-		  * TODO: some fancy polymorphism stuff. probs will have to create some new classes and stuff
-		  * idk hacky way for now. 
-		  */
-
 		 UserDAO d = new UserDAO();
 		 
 		 u = d.LogInUser(user, pass);
 		 if (u !=null) {
 			 this.r = u.accept(this);
-			 
+			 this.r.setUser(u);
 			 r.displayFrameOpt(GenericEnum.HOME);
 			 
 		 }else {
 			 System.out.println("User not found");
 		 }
-		 
-		 //For some reason getting address instead of value, fix later
-		 /*if (user.equals("doctor")) {
-			 System.out.println("HERE");
-			 u = d.getDoctor(); 
-			 v.displayFrameOpt(ProviderScreen.HOME);
-		 }else if (user.equals("staff")) {
-			 u = d.getStaff(); 
-			 r.displayFrameOpt(StaffEnum.HOME);
-		 }else {
-			 u = d.getPatient(); 
-			 p.displayFrameOpt(PatientScreenEnum.HOME);
-		 }*/
-		 
-		 
-		
 	}
 	
 	public void displayLogin() {

@@ -16,7 +16,7 @@ public class PatientDiagnosis {
 			final String patientIdentification = "PatientID";
 			final String diagnosis = "Diagnosis";
 			final String doctorIdentification = "DoctorID";
-			final String date = "Date";
+			final String date = "DateVal";
 			
 			// For every value in the headerList
 			for(int i = 0; i < headerList.size(); i++) {

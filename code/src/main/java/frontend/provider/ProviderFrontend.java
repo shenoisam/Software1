@@ -15,16 +15,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import backend.classes.Patient;
+import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class ProviderFrontend implements IProviderFrontend{
 	static ProviderRunner p; 
-
+	protected static ProviderService serv;
 	public ProviderFrontend(ProviderRunner p) {
 		this.p = p; 
+		serv = new ProviderService(); 
 		// TODO Auto-generated constructor stub
 	}
-	protected static void providerSideBar(Container pane) {
+	protected static void providerSideBar(Container pane, Patient pat) {
 	      // creating the whole side panel
 	      JPanel sidePanel = new JPanel();
 	      sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
@@ -37,7 +40,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(GenericEnum.POVERVIEW);
+	    	    p.displayFrameOpt(GenericEnum.POVERVIEW, pat );
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -45,7 +48,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(GenericEnum.PVISIT);
+	    	    p.displayFrameOpt(GenericEnum.PVISIT,pat );
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -53,7 +56,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(GenericEnum.PPRESCRIBE);
+	    	    p.displayFrameOpt(GenericEnum.PPRESCRIBE, pat );
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -61,14 +64,14 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
 	 
-	    	    p.displayFrameOpt(GenericEnum.PTESTREQUEST);
+	    	    p.displayFrameOpt(GenericEnum.PTESTREQUEST, pat );
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
 	      button = new JButton("View Test Results");
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
-	    	    p.displayFrameOpt(GenericEnum.PTESTREQUEST);
+	    	    p.displayFrameOpt(GenericEnum.PTESTREQUEST, pat );
 	    	  } 
 	      } );
 	      
@@ -76,7 +79,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      button = new JButton("Referrals");
 	      button.addActionListener(new ActionListener() { 
 	    	  public void actionPerformed(ActionEvent e) { 
-	    	    p.displayFrameOpt(GenericEnum.PREFERRAL);
+	    	    p.displayFrameOpt(GenericEnum.PREFERRAL, pat );
 	    	  } 
 	      } );
 	      buttonPanel.add(button);
@@ -112,7 +115,7 @@ public class ProviderFrontend implements IProviderFrontend{
         buttonPanel.add(button, BorderLayout.EAST);
 		
 	}
-	protected static void topBarPatientInformation(Container pane) {
+	protected static void topBarPatientInformation(Container pane, Patient p) {
 	      // creating the top panel to store all the information
 	      JPanel topPanel = new JPanel();
 	      topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
@@ -130,7 +133,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      patientPanel.setLayout(new BoxLayout(patientPanel, BoxLayout.X_AXIS));
 
 	      // displaying the patient's name
-	      JLabel patientName = new JLabel("Patient's name");
+	      JLabel patientName = new JLabel(p.getFullName());
 	      patientName.setFont(patientName.getFont().deriveFont(35f));
 	      patientPanel.add(patientName);
 
@@ -143,7 +146,7 @@ public class ProviderFrontend implements IProviderFrontend{
 	      JLabel sexTitle = new JLabel("SEX");
 	      sexTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 	      gender.add(sexTitle);
-	      JLabel patientGender = new JLabel("-");
+	      JLabel patientGender = new JLabel("" + p.getGender());
 	      patientGender.setAlignmentX(Component.CENTER_ALIGNMENT);
 	      gender.add(patientGender);
 	      patientInformation.add(gender);
@@ -154,7 +157,13 @@ public class ProviderFrontend implements IProviderFrontend{
 	      JLabel dateOfBirthTitle = new JLabel("DOB");
 	      dateOfBirthTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 	      dateOfBirth.add(dateOfBirthTitle);
-	      JLabel patientDateOfBirth = new JLabel("MM-DD-YY");
+	      JLabel patientDateOfBirth;
+	      try {
+	    	  patientDateOfBirth= new JLabel(p.getDOB().toLocaleString());
+	      }catch(NullPointerException e) {
+	    	 // If we don't know what the patients DOB is we need to ask 
+	    	   patientDateOfBirth = new JLabel("-");
+	      }
 	      patientDateOfBirth.setAlignmentX(Component.CENTER_ALIGNMENT);
 	      dateOfBirth.add(patientDateOfBirth);
 	      patientInformation.add(dateOfBirth);
@@ -190,6 +199,11 @@ public class ProviderFrontend implements IProviderFrontend{
 	   }
 
 	public void createAndShowGUI(JFrame frame) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void createAndShowGUI(JFrame frame, Patient pat) {
 		// TODO Auto-generated method stub
 		
 	}

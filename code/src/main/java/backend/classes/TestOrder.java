@@ -39,6 +39,10 @@ public class TestOrder {
 		// TODO Auto-generated constructor stub
 	}
 
+	public TestOrder(List<String> headerRow, List<Object> list) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Test getTest() {
 		return test;
 	}

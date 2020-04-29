@@ -51,4 +51,9 @@ public class Test {
 	public void setInsuranceCode(String insuranceCode) {
 		InsuranceCode = insuranceCode;
 	}
+	@Override
+	public String toString() {
+		return "Test [Name=" + Name + ", Type=" + Type + "]";
+	}
+	
 }

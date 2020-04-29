@@ -2,7 +2,7 @@ package backend.classes;
 
 import java.util.List;
 
-<<<<<<< HEAD
+
 import backend.NotImplementedException;
 
 public class Diagnosis {
@@ -30,7 +30,8 @@ public class Diagnosis {
 				// If the element represents the diagnosis name
 				if(h.contentEquals(diagnosisName)) {
 					// Initialize the name variable of the diagnosis
-					this.Name = (String)dataList.get(index);
+          
+					this.Name = (String) dataList.get(index);
 				}
 				// Otherwise if it represents the description
 				else if(h.contentEquals(diagnosisDescription)) {
@@ -49,6 +50,11 @@ public class Diagnosis {
 			System.out.println("Error: Initializing without values.");
 		}
 	}
+
+//	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {
+//		// TODO Auto-generated constructor stub
+//		throw new NotImplementedException("Diagnosis Not Implemented"); 
+//	}
 
 	public String getName() {
 		return Name;

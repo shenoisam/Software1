@@ -13,6 +13,7 @@ public class TestResult {
 	private String PatientID;
 	private String Result;
 	
+<<<<<<< HEAD
 	public TestResult(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String res = "Result", tst = "Test", date = "DateVal", patID = "PatientID";
@@ -35,6 +36,11 @@ public class TestResult {
     	}
 	}
 	
+=======
+	public TestResult(List<String> headerRow, List<Object> list) {
+		// TODO Auto-generated constructor stub
+	}
+>>>>>>> 06536c91ead31ae189a01400fadb0d192792f0d3
 	public String getTestName() {
 		return TestName;
 	}
