@@ -34,6 +34,7 @@ public class SQLConnection {
 				Connection con = null; 
 				try {
 					con = DriverManager.getConnection(url,username,password);
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					System.out.println("Error: Can't connect. Is your mysql server running?");
