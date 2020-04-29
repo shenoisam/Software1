@@ -65,7 +65,7 @@ public void patientRequestPanel(Container pane) {
       String [] fields = {};
       String [] params = {};
       List<Test> testNames = serv.getData(CShareObjects.TEST, fields, params);
-      
+      System.out.println(testNames.size());
       // creating the searchable drop down menu
       StringSearchable searchable = new StringSearchable(testNames);
       AutocompleteJComboBox combo = new AutocompleteJComboBox(searchable);

@@ -29,9 +29,9 @@ public class Perscription {
 				} else if (headerVal.contentEquals(patientID)) {
 					PatientID = (String)list.get(i);
 				} else if (headerVal.contentEquals(dosage)) {
-					Dosage = Double.parseDouble((String)list.get(i));
+					Dosage = (Float)list.get(i);
 				} else if (headerVal.contentEquals(numRefills)) {
-					NumberRefills = Integer.parseInt((String)list.get(i));
+					NumberRefills = (Integer)list.get(i);
 				} 
 			}
 		} else {

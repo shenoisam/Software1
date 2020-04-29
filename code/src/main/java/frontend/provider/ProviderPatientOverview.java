@@ -161,8 +161,7 @@ private static void patientInformationPanel(Container pane) {
       List<Perscription> pres = serv.getData(CShareObjects.PRESCRIPTION,fields , params);
       String stuff = "No Prescriptions on file";
       if (pres.size() > 0) {
-    	  System.out.println(pres.get(0).getPerscriptionName());
-    	  //stuff = //pres.stream().map(e -> e.getPerscriptionName()).reduce("\n", String::concat) + "\n";
+    	  stuff = pres.stream().map(e -> e.getPerscriptionName()).reduce("\n", String::concat) + "\n";
       }
       /**** End Data retrieval *****/
       

@@ -7,7 +7,7 @@ import java.util.List;
 public class TestOrder {
 	private String DoctorID; 
 	private String TestName; 
-	private LocalDateTime DateOrdered; 
+	private Date DateOrdered; 
 	private String PatientID; 
 	private Test test;
 	
@@ -25,7 +25,7 @@ public class TestOrder {
     				test.setName((String)list.get(i));
     				TestName = (String)list.get(i);
     			} else if(headerVal.contentEquals(date)) {
-    				DateOrdered = ((java.sql.Timestamp)list.get(i)).toLocalDateTime();
+    				DateOrdered = (Date)list.get(i);
     			} else if(headerVal.contentEquals(pID)) {
     				PatientID = (String)list.get(i);
     			}
