@@ -32,7 +32,6 @@
 	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar" sourcepath="M2_REPO/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar" sourcepath="M2_REPO/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1-sources.jar"/>
-
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
