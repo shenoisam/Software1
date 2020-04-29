@@ -8,7 +8,7 @@ public class ProviderRunner {
            p.createAndShowProviderPatientOverview();*/
            
            /*ProviderHomescreen p = new ProviderHomescreen();
-           p.createAndShowProviderHomescreen();*/
+           p.createAndShowProviderHomescreen();
            
            /*ProviderPatientVisit p = new ProviderPatientVisit();
            p.createAndShowProviderPatientVisit();*/
