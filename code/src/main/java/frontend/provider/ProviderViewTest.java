@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -16,8 +17,9 @@ import javax.swing.SpringLayout;
 
 import backend.classes.Patient;
 import backend.classes.TestOrder;
+import businesslayer.CShareObjects;
 import frontend.patient.PatientTestTableModel;
-
+import backend.classes.*;
 public class ProviderViewTest extends ProviderFrontend {
    private Patient pat;
 
@@ -34,7 +36,13 @@ public class ProviderViewTest extends ProviderFrontend {
       JPanel viewTest = new JPanel();
       viewTest.setLayout(new BoxLayout(viewTest, BoxLayout.PAGE_AXIS));
 
-      PatientTestTableModel ptModel = new PatientTestTableModel(new ArrayList<TestOrder>());
+      /*****  Data Retrieval **********/
+      String [] fields = {"PatientID"};
+      String [] params = {pat.getID()};
+      List<TestResult> tr = serv.getData(CShareObjects.TESTRESULT, fields, params);
+      /*****************************/
+      
+      PatientTestTableModel ptModel = new PatientTestTableModel(tr);
       JTable testTable = new JTable();
       testTable.setModel(ptModel);
       JScrollPane scrollPane = new JScrollPane(testTable);

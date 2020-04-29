@@ -2,6 +2,7 @@ package businesslayer;
 
 import backend.dao.*;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,21 @@ public class ProviderService {
 		return g; 
 	}
 	
+	public boolean insert(CShareObjects classname, String [] fields, String [] params) {
+		if (!daos.containsKey(classname)) {
+			// Need to either build a factory or do something with this 
+			 daos.put(classname, getDAOfromClassName(classname));
+		}
+	    boolean success = true;
+		try {
+			daos.get(classname).insertIntoTable(fields, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			success = false; 
+		}
+		return success; 
+	}
 	
 
 }

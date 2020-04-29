@@ -76,6 +76,15 @@ public class PatientDiagnosis {
 	public void setName(String name) {
 		Name = name;
 	}
+
+
+	public Date getDate() {
+		return DiagnosisDate;
+	}
+
+	public void setDate(Date date) {
+		this.DiagnosisDate = date;
+	}
 	
 
 }

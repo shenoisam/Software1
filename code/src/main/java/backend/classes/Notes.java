@@ -12,6 +12,12 @@ public class Notes {
 	private String PatientID;
 	private Date AppointmentDate;
 	private String Note; 
+	private String ChiefComplaint; 
+	private String PhysicalExam; 
+	private float BodyTemp; 
+	private int Pulse; 
+	private int Respiration; 
+	private String BloodPressure; 
 
 	public Notes(List<String> headerList, List<Object> dataList) {
 		// Check that the headerList is not null
@@ -21,6 +27,12 @@ public class Notes {
 			final String patientIdentification = "PatientID";
 			final String notesDate = "Date";
 			final String note = "Note";
+			final String complaint = "ChiefComplaint";
+			final String ex = "PhysicalExam";
+			final String bt = "BodyTemp";
+			final String pulse ="Pulse";
+			final String res = "Respiration";
+			final String bp = "BloodPressure";
 			
 			
 			// For every member of the header list
@@ -40,10 +52,31 @@ public class Notes {
 					else if(headerList.get(i).contentEquals(notesDate)) {
 						this.AppointmentDate = (Date)dataList.get(i);
 					}
-					// Otherwise print an error about initializing an illegal value
-					else {
-						System.out.println("Error: initializing an illegal value for notes");
+					// Otherwise if the date of the notes is at the current index
+					else if(headerList.get(i).contentEquals(note)) {
+						this.Note = (String)dataList.get(i);
 					}
+					// Otherwise if the date of the notes is at the current index
+					else if(headerList.get(i).contentEquals(complaint)) {
+						this.ChiefComplaint= (String)dataList.get(i);
+					}
+					// Otherwise if the date of the notes is at the current index
+					else if(headerList.get(i).contentEquals(ex)) {
+						this.PhysicalExam = (String)dataList.get(i);
+					}
+					else if(headerList.get(i).contentEquals(bt)) {
+						this.BodyTemp = (float)dataList.get(i);
+					}
+					else if(headerList.get(i).contentEquals(pulse)) {
+						this.Pulse = (int)dataList.get(i);
+					}
+					else if(headerList.get(i).contentEquals(res)) {
+						this.Respiration = (int)dataList.get(i);
+					}
+					else if(headerList.get(i).contentEquals(bp)) {
+						this.BloodPressure = (String)dataList.get(i);
+					}
+					
 				}
 				// If the headerList is null print an error about initializing with no values
 				else {
@@ -89,6 +122,54 @@ public class Notes {
 
 	public void setNote(String note) {
 		Note = note;
+	}
+
+	public String getChiefComplaint() {
+		return ChiefComplaint;
+	}
+
+	public void setChiefComplaint(String chiefComplaint) {
+		ChiefComplaint = chiefComplaint;
+	}
+
+	public String getPhysicalExam() {
+		return PhysicalExam;
+	}
+
+	public void setPhysicalExam(String physicalExam) {
+		PhysicalExam = physicalExam;
+	}
+
+	public float getBodyTemp() {
+		return BodyTemp;
+	}
+
+	public void setBodyTemp(float bodyTemp) {
+		BodyTemp = bodyTemp;
+	}
+
+	public int getPulse() {
+		return Pulse;
+	}
+
+	public void setPulse(int pulse) {
+		Pulse = pulse;
+	}
+
+	public int getRespiration() {
+		return Respiration;
+	}
+
+	public void setRespiration(int respiration) {
+		Respiration = respiration;
+	}
+
+	public String getBloodPressure() {
+		return BloodPressure;
+	}
+
+	public void setBloodPressure(String bloodPressure) {
+		BloodPressure = bloodPressure;
 	}
 	
 }

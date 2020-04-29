@@ -1,9 +1,7 @@
 package frontend;
 
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
-
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
