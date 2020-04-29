@@ -102,7 +102,7 @@ private static void patientInformationPanel(Container pane) {
       String [] params2 = new String [1];
       for (PatientDiagnosis z : pds) {
     	  params2[0] = z.getName();
-    	  System.out.println("Provider Overview: " + z.getName());
+    	  
     	  List<Diagnosis> diag = serv.getData(CShareObjects.DIAGNOSIS,fields2 , params2);
     	  text = text + diag.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";
       }
