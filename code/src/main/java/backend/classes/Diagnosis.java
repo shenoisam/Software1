@@ -14,7 +14,7 @@ public class Diagnosis {
 	}
 	*/
 	
-	public Diagnosis(List<String> headerList, List<String> dataList) {
+	public Diagnosis(List<String> headerList, List<Object> dataList) {
 		// If the headerList is not null
 		if(headerList != null) {
 			// Create constant strings to represent the variable names
@@ -29,12 +29,12 @@ public class Diagnosis {
 				// If the element represents the diagnosis name
 				if(h.contentEquals(diagnosisName)) {
 					// Initialize the name variable of the diagnosis
-					this.Name = dataList.get(index);
+					this.Name = (String) dataList.get(index);
 				}
 				// Otherwise if it represents the description
 				else if(h.contentEquals(diagnosisDescription)) {
 					// Initialize the description variable of the diagnosis
-					this.Description = dataList.get(index);
+					this.Description = (String) dataList.get(index);
 				}
 				// Otherwise if it represents anything else print an error
 				// about initializing an illegal variable
@@ -49,10 +49,10 @@ public class Diagnosis {
 		}
 	}
 
-	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {
-		// TODO Auto-generated constructor stub
-		throw new NotImplementedException("Diagnosis Not Implemented"); 
-	}
+//	public Diagnosis(List<String> headerRow, List<Object> list) throws NotImplementedException {
+//		// TODO Auto-generated constructor stub
+//		throw new NotImplementedException("Diagnosis Not Implemented"); 
+//	}
 
 	public String getName() {
 		return Name;
