@@ -2,14 +2,6 @@ package backend.classes;
 
 import java.util.List;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-=======
-
->>>>>>> master
 import backend.NotImplementedException;
 
 public class Diagnosis {
