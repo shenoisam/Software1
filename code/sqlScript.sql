@@ -90,7 +90,7 @@ Create Table TestOrder(
 Create Table TestResult(
    Result VARCHAR(100) NOT NULL, 
    Test VARCHAR(25) NOT NULL, 
-   Date Date Not NULL, 
+   DateVal Date Not NULL, 
    PatientID VARCHAR(25) NOT NULL, 
   
   FOREIGN KEY (PatientID) REFERENCES Patient(ID), 
