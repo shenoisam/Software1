@@ -16,7 +16,7 @@ public class PatientDAO extends GenericDAO{
 		Patient s = null; 
 		String [] params = {id};
 
-		List<List<Object>> data = this.query("*","Patient, User","WHERE Patient.ID = User.ID AND User.ID = ?", params);
+		List<List<Object>> data = this.query("*","Patient, User"," WHERE Patient.ID = User.ID AND User.ID = ?", params);
 
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
@@ -46,7 +46,7 @@ public class PatientDAO extends GenericDAO{
 		String select = "Firstname, LastName, DOB, Gender, Race, Ethnicity, MaritalStatus";
 		String table = "Patient, User";
 
-		String rmStr = "WHERE Patient.ID = User.ID";
+		String rmStr = " WHERE Patient.ID = User.ID";
 		
 		String [] params = {};
 		return generateList(this.query(select, table, rmStr, params)); 
