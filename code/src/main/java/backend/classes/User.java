@@ -1,16 +1,47 @@
 package backend.classes;
 
+import java.util.List;
+
 import frontend.EHRRunner;
 import frontend.GenericRunner;
 
 public class User {
-	private String FirstName; 
-	private String LastName; 
-	private String Email; 
-	
+	protected String FirstName; 
+	protected String LastName; 
+	protected String Email; 
+	protected String ID; 
 	
 	public User() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public User(List<String> headerList, List<Object> dataList) {
+		// TODO Auto-generated constructor stub
+		for( int i =0; i < headerList.size(); i++) {
+			System.out.println("HeaderList[" + i + "]: "+ headerList.get(i) );
+			if(headerList.get(i).equals("FirstName")) {
+				FirstName = dataList.get(i).toString();
+				
+			}
+			if(headerList.get(i).contentEquals("LastName")) {
+				LastName = dataList.get(i).toString();
+				
+			}
+			if(headerList.get(i).contentEquals("Email")) {
+				Email = dataList.get(i).toString();
+				
+			}
+			if(headerList.get(i).contentEquals("ID")) {
+				ID = dataList.get(i).toString();
+			}
+		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email + "]";
 	}
 
 
@@ -45,9 +76,23 @@ public class User {
 
 
 	public GenericRunner accept(EHRRunner ehrRunner) {
-		// TODO Auto-generated method stub
+
+		return null; 
 		
 	}
+	public String getFullName() {
+		return getFirstName()  + " " + getLastName(); 
+	}
 	
+	public void setUserInfo(User u) {
+		if (u != null) {
+			this.FirstName = u.getFirstName(); 
+			this.LastName = u.getLastName();
+			this.Email = u.getEmail();
+		}
+	}
+	public String getID() {
+		return ID; 
+	}
 
 }

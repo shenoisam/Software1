@@ -49,6 +49,8 @@ public class PatientRunner extends GenericRunner{
 		  frame.getContentPane().removeAll();
 		  frame.revalidate();
 		  frame.repaint();
+		  
+		  this.r.logout();
 	}
 	
 	

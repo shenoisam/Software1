@@ -17,7 +17,7 @@ package frontend.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+import backend.classes.*;
 public class StringSearchable implements Searchable<String, String> {
 
    private List<String> terms = new ArrayList<String>();
@@ -26,14 +26,18 @@ public class StringSearchable implements Searchable<String, String> {
     * 
     * Constructs a new object based upon the parameter terms.
     * 
-    * @param terms The inventory of terms to search.
+    * @param testNames The inventory of terms to search.
     * 
     */
-   public StringSearchable(List<String> terms) {
+   public <T> StringSearchable(List<T> testNames) {
 
-      this.terms.addAll(terms);
+      for(T test: testNames) {
+    	  terms.add(test.toString());
+      }
 
    }
+   
+
 
    @Override
    public Collection<String> search(String value) {
