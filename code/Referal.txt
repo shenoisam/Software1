@@ -1,0 +1,11 @@
+Dear Dr. Doctor [name= Dr. Sam Shenoi title=ER Doctor],
+
+	Test2 User2 (DOB: null), null, was recently evaluated in our office. Test2currently has a diagnosis of [backend.classes.PatientDiagnosis@7236fe37]
+	We are reffering this patient for null. We have discussed possible treatment options should Test2 require treatment. 
+
+I look forward to working with you directly in the treatment of Patient Name’s. Please do not hesitate to contact me directly with any questions or comments you may have concerning thier care. 
+
+Sincerely,
+	Dr.Doctor [name= Dr. Sam Shenoi title=ER Doctor]
+
+Additional Notes: 

@@ -82,8 +82,16 @@ public class ProviderReferralsView extends ProviderFrontend {
       String[] fields = {};
       String[] params = {};
       docs = serv.getData(CShareObjects.DOCTOR, fields, params);
-
-      JComboBox providers = new JComboBox(docs.toArray());
+      
+      JComboBox<String> providers = new JComboBox<String>();
+      providers.addItem("");
+      
+      for (Doctor d : docs) {
+         providers.addItem("Dr. " + d.getFullName() + ", " + d.getDoctorTitle());
+      }
+        
+      //JComboBox providers = new JComboBox(docs.toArray());
+      
       providerPanel.add(providers);
 
       selectedDoctor = providers.getSelectedItem().toString();
@@ -105,7 +113,7 @@ public class ProviderReferralsView extends ProviderFrontend {
       scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
       notes.add(scroll);
       
-      addedNotes = notesEntered.getText().toString();
+      //addedNotes = scroll.getInputContext().toString();
 
       // adding the notes to the notes and submit section
       leftPanel.add(notes);
@@ -213,13 +221,19 @@ public class ProviderReferralsView extends ProviderFrontend {
    }
 
    private String referalLetter() {
-      String letter = "Dear Dr. " + selectedDoctor + ",\n\n\t" + pat.getFullName() + " (DOB: " + pat.getDOB() + "), "
+      String letter = "Dear Dr. " + selectedDoctor + ",\n\n" + pat.getFullName() + " (DOB: " + pat.getDOB() + "), "
             + pat.getGender() + ", was recently evaluated in our office. " + pat.getFirstName()
-            + "currently has a diagnosis of " + diags.toString() + "\n\tWe are reffering this patient for "
+            + " currently has a diagnosis of ";
+      
+      for (PatientDiagnosis d : diags) {
+         letter += d.getName();
+      }
+      
+      letter += "\n\nWe are referring this patient for "
             + referralReason + ". We have discussed possible treatment options should " + pat.getFirstName()
-            + " require treatment. \n\nI look forward to working with you directly in the treatment of Patient Name’s. "
+            + " require treatment. \n\nI look forward to working with you directly in the treatment of " + pat.getFirstName() + ". "
             + "Please do not hesitate to contact me directly with any questions "
-            + "or comments you may have concerning thier care. " + "\n\nSincerely,\n\tDr." + p.getUser()
+            + "or comments you may have concerning their care. " + "\n\nSincerely,\n\tDr." + p.getUser().getFirstName() + " " + p.getUser().getLastName()
             +"\n\nAdditional Notes: " + addedNotes + "\n";
 
       return letter;
