@@ -4,7 +4,7 @@ import java.util.List;
 
 import backend.classes.Patient;
 
-public class PatientObject implements FactoryObjects {
+public class PatientObject implements FactoryObjects<Patient> {
 
 	@Override
 	public Patient generateObject(List<String> headerList, List<Object> list) {

@@ -12,6 +12,7 @@ public class Staff extends HealthCareProvider {
     private String title; 
     
     public Staff(List<String> headerList, List<Object> list) {
+    	super(headerList, list);
     	if(headerList != null) {
     		final String id = "ID", ttl = "Title";
     		
@@ -19,7 +20,7 @@ public class Staff extends HealthCareProvider {
     			String headerVal = headerList.get(i);
     			
     			if(headerVal.contentEquals(id)) {
-    				StaffID = (String)list.get(i);
+    				StaffID = (String)list.get(i);		
     			} else if(headerVal.contentEquals(ttl)) {
     				title = (String)list.get(i);
     			}

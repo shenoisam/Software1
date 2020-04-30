@@ -4,7 +4,7 @@ import java.util.List;
 
 import backend.classes.Notes;
 
-public class NotesObject implements FactoryObjects {
+public class NotesObject implements FactoryObjects<Notes> {
 
 	@Override
 	public Notes generateObject(List<String> headerList, List<Object> list) {
