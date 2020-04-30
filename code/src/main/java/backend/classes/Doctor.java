@@ -62,6 +62,9 @@ public class Doctor extends HealthCareProvider {
 		}
 	}
 	
+	public String getDoctorTitle() {
+		return this.title;
+	}
 	
 	public String getDoctorID() {
 		return DoctorID;
