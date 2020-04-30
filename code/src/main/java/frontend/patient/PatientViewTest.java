@@ -3,6 +3,7 @@ package frontend.patient;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -15,6 +16,9 @@ import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
 import backend.classes.TestOrder;
+import backend.classes.Patient;
+import backend.classes.TestResult;
+import businesslayer.CShareObjects;
 
 public class PatientViewTest extends PatientGenericScreen {
 
@@ -28,9 +32,16 @@ public class PatientViewTest extends PatientGenericScreen {
 	protected void setMainPanel() {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));		
 		
-		TestTableModel ptModel = new TestTableModel(new ArrayList<TestOrder>());
+		//ArrayList<TestResult> tr = new ArrayList<TestResult>();
+		
+		String [] fields = {"PatientID"};
+		String [] params = {((backend.classes.Patient)p.getUser()).getID()};
+		List<Object> tr = serv.getData(CShareObjects.TESTRESULT, fields, params);
+		
+		PatientTestTableModel ptModel = new PatientTestTableModel(tr);
 		JTable testTable = new JTable();
 		testTable.setModel(ptModel);
+		ptModel.updateTable();
 		JScrollPane scrollPane = new JScrollPane(testTable);
 		mainPanel.add(scrollPane);
 		

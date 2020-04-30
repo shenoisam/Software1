@@ -92,8 +92,13 @@ public class PatientDAO extends GenericDAO{
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {
+		for(int i =0; i < setFields.length;i++) {
+			if (setFields[i].contentEquals("DOB")) {
+				setParams[i] = new java.sql.Date(new java.util.Date(setParams[i]).getTime()).toString();
+			}
+		}
 		String rmStr = this.generateRmStr(fields, params);
-		this.update("Appointment", setFields, rmStr, setParams);
+		this.update("Patient", setFields, rmStr, setParams);
 		
 	}
 	

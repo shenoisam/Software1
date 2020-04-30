@@ -60,7 +60,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		    System.out.println(p.toString());
+		   // System.out.println(p.toString());
 		    
 		    ResultSet rs = p.executeQuery();
 		   
@@ -104,7 +104,7 @@ public abstract class GenericDAO {
 		 
 		 return finalList;
 	}*/
-	protected <T>List<T> generateList(List<List<Object>> stuff, FactoryObjects<T> object) {
+	protected <T>List<T> generateListObjects(List<List<Object>> stuff, FactoryObjects<T> object) {
 		 List<T> finalList = new ArrayList<T>(); 
 		 List<String> headerRow = listToString(stuff.get(0));
 		 for(int i = 1; i < stuff.size(); i++) {
@@ -117,12 +117,15 @@ public abstract class GenericDAO {
 
 	protected void update(String table, String [] fields,String rmStr,String [] params) throws SQLException {
 		Connection con = pool.getConnection();
-		String update = "UPDATE " + table + " SET " + generateRmStr(fields, params) + "WHERE " + rmStr; 
+		
+		String update = "UPDATE " + table + " SET " + generateUpdateString(fields, params) + rmStr; 
 
 		PreparedStatement p = con.prepareStatement(update);
+	  
 	    for(int i = 0; i < params.length; i++) {
 	    	p.setString(i +1, params[i]);
 	    }
+	    System.out.println(p);
 	    p.executeUpdate(); 
 	
 		
@@ -188,9 +191,19 @@ public abstract class GenericDAO {
 	
 	protected String generateRmStr(String [] fields, String [] params) {
 		String rmStr = " WHERE ";
+		 for (int i =0; i < fields.length - 1; i++) {
+			 rmStr = rmStr +" " + fields[i] + " = ? AND "; 
+		 }
+		 if (fields.length > 0) {
+			 rmStr = rmStr + fields[fields.length -1] + " = ? ";
+		 }
+		 return rmStr;
+	}
+	protected String generateUpdateString(String [] fields, String [] params) {
+		String rmStr = "";
 		 
 		 for (int i =0; i < fields.length - 1; i++) {
-			 rmStr = rmStr +" " + fields[i] + " = ? AND"; 
+			 rmStr = rmStr +" " + fields[i] + " = ? , "; 
 		 }
 		 if (fields.length > 0) {
 			 rmStr = rmStr + fields[fields.length -1] + " = ? ";

@@ -131,20 +131,45 @@ Create Table Notes(
 
 
 /* Adding in a sample user to help with the process of viewing data and stuff. Really should do this via the GUI*/
-INSERT INTO USER VALUES ("Test", "User", "testuser@test.com", "adbacubasdibcuasdc", MD5('Test'));
+INSERT INTO USER VALUES ("Sam", "Shenoi", "testuser@test.com", "adbacubasdibcuasdc", MD5('Test'));
 INSERT INTO USER VALUES ("Test1", "User1", "testuser1@test.com", "aeqwoqwoqwoqwpqpqwo", MD5('Test'));
 INSERT INTO USER VALUES ("Test2", "User2", "testuser2@test.com", "pooiqwiewqiqwiqpoqwoq", MD5('Test'));
 INSERT INTO USER VALUES ("John", "Harrison", "john@att.net", "thisismyid", MD5('Test'));
+INSERT INTO USER VALUES("Bill", "Booth", "billbooth@baylor.edu", "akdjflakjdflajdflak", MD5('Test'));
+INSERT INTO USER VALUES("Greg", "Hamerly", "ghamerly@baylor.edu", "akdjflakjdflajdflai", MD5('Test'));
 
-INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor"); 
+INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor");
+INSERT INTO Doctor VALUES("akdjflakjdflajdflak", "Regular Physician"); 
+INSERT INTO Doctor VALUES("akdjflakjdflajdflai", "Neurosurgeon"); 
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
 INSERT INTO PATIENT (ID) VALUES ("thisismyid");
+INSERT INTO PRESCRIPTION (DateVal, NumRefills, Name, Dosage, DoctorID, PatientID) VALUES (CURDATE(), 3, "Levothyroxine", 2.9, "adbacubasdibcuasdc", "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO PRESCRIPTION (DateVal, NumRefills, Name, Dosage, DoctorID, PatientID) VALUES (CURDATE(), 3, "Benzythentanol", 3, "adbacubasdibcuasdc", "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO PRESCRIPTION (DateVal, NumRefills, Name, Dosage, DoctorID, PatientID) VALUES (CURDATE(), 3, "Vitamin D", 1.0, "adbacubasdibcuasdc", "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO PRESCRIPTION (DateVal, NumRefills, Name, Dosage, DoctorID, PatientID) VALUES (CURDATE(), 3, "Apple", 1.0, "adbacubasdibcuasdc", "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "akdjflakjdflajdflak", "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "akdjflakjdflajdflai", "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("HIV", "blood test", "12456");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("Steroids", "urine test", "12457");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("Hashimoto", "blood test", "12458");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("Parent", "cheek swab", "12459");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("Typhus", "urine test", "12460");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("Colon Cancer", "biopsy", "12461");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("HIV", "negative", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("Steroids", "positive", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("Parent", "negative", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("Hashimoto", "positive", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("Typhus", "negative", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("Colon Cancer", "positive", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc", "thisismyid");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
 INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
 INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
 INSERT INTO Test (Name, Type, InsuranceCode) VALUES ("Great test", "Ezy Test", "33BA");
-insert into testresult values ('Positive','Great test', CURDATE(), 'pooiqwiewqiqwiqpoqwoq');
+INSERT INTO Notes (Note, DateVal, PatientID, DoctorID) VALUES ("great visit", CURDATE(),"pooiqwiewqiqwiqpoqwoq", "adbacubasdibcuasdc");
+INSERT INTO Notes (Note, DateVal, PatientID, DoctorID) VALUES ("decent", CURDATE(),"pooiqwiewqiqwiqpoqwoq", "akdjflakjdflajdflak");
+INSERT INTO Notes (Note, DateVal, PatientID, DoctorID) VALUES ("did brain surgery", CURDATE(),"pooiqwiewqiqwiqpoqwoq", "akdjflakjdflajdflai");
+
 
 
