@@ -10,8 +10,8 @@ public class StaffScheduleScreen extends GenericStaffScreen{
 
 	StaffScheduleScreen(StaffRunner r) {
 		super(r);
-		// TODO Auto-generated constructor stub
 	}
+	
 	public void createAndShowGUI(Container pane) {
 		JPanel middleOfScreen = new JPanel();
 		middleOfScreen.setLayout(new BoxLayout(middleOfScreen, BoxLayout.Y_AXIS)); 
@@ -53,6 +53,7 @@ public class StaffScheduleScreen extends GenericStaffScreen{
 		middleOfScreen.add(table);
 		
 		
+		topBarStaff(pane);
 		
 		pane.add(middleOfScreen);
 		

@@ -33,6 +33,7 @@ public class StaffRunner extends GenericRunner {
       case VIEWRECORDS:
          g = new StaffViewPatientRecords(this);
          frame.setTitle("Staff View Patient Records");
+         break;
       default:
          g = new StaffHomescreen(this);
          frame.setTitle("Staff Home Screen");

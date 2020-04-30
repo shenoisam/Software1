@@ -46,6 +46,7 @@ public class ProviderFrontend implements IProviderGeneric {
          }
       });
       buttonPanel.add(button);
+      
       button = new JButton("Patient Visit");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {

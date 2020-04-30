@@ -47,7 +47,8 @@ public class ProviderHomescreen extends ProviderFrontend {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
       sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-
+      sidePanel.setBorder(BorderFactory.createTitledBorder(""));
+      
       // creating the button panel to organize the location of the buttons
       JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new GridLayout(3, 1));
@@ -92,7 +93,7 @@ public class ProviderHomescreen extends ProviderFrontend {
       topBarMenuItems(buttonPanel);
       topPanel.add(buttonPanel);
 
-      // creating the panel with the staff's name
+      // creating the panel with the provider's name
       JPanel namePanel = new JPanel();
       namePanel.setBorder(BorderFactory.createTitledBorder(""));
       namePanel.setPreferredSize(new Dimension(500, 50));
@@ -114,10 +115,6 @@ public class ProviderHomescreen extends ProviderFrontend {
       nextAppointmentTitle.setText("Your Next Appointment is at: ");
       JLabel appointmentTime = new JLabel();
       appointmentTime.setText(li.get(0).getAppointmentDate().toString());
-
-      // We dont store the location so lets leave this out for how ;D
-      // JLabel appointmentLocation = new JLabel();
-      // appointmentLocation.setText("Room 123");
 
       // adding the time and location to the name panel
       namePanel.add(nextAppointmentTitle);

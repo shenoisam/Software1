@@ -3,6 +3,7 @@ package frontend.staff;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +20,29 @@ public class GenericStaffScreen implements IGenericStaff {
 
    GenericStaffScreen(StaffRunner r) {
       GenericStaffScreen.r = r;
+   }
+   
+   protected static void topBarMenuItems(JPanel buttonPanel) {
+      JButton button = new JButton("Home");
+
+      // Add ActionListener
+      button.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            r.displayFrameOpt(GenericEnum.HOME);
+         }
+      });
+
+      buttonPanel.setLayout(new BorderLayout());
+      buttonPanel.add(button, BorderLayout.WEST);
+
+      button = new JButton("Logout");
+      button.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+
+            r.logout();
+         }
+      });
+      buttonPanel.add(button, BorderLayout.EAST);
    }
 
    protected static void topBarStaff(Container pane) {
@@ -48,13 +72,25 @@ public class GenericStaffScreen implements IGenericStaff {
       JPanel namePanel = new JPanel();
       namePanel.setBorder(BorderFactory.createTitledBorder(""));
       namePanel.setPreferredSize(new Dimension(500, 50));
-      namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
+      namePanel.setLayout(new GridLayout(1,3));
+      
+      // specific panel with Staff name
+      JPanel labelPanel = new JPanel();
       JLabel welcome = new JLabel("Welcome, ");
-      namePanel.add(welcome);
+      welcome.setFont(welcome.getFont().deriveFont(25f));
+      labelPanel.add(welcome);
       JLabel staffName = new JLabel();
       staffName.setText("Staff");
-      namePanel.add(staffName);
-
+      staffName.setFont(staffName.getFont().deriveFont(25f));
+      labelPanel.add(staffName);
+      namePanel.add(labelPanel);
+      
+      // adding panels for formating purposes
+      namePanel.add(new JPanel());
+      namePanel.add(new JPanel());
+      namePanel.add(new JPanel());
+      namePanel.add(new JPanel());
+      
       // adding the name panel to the main panel
       topPanel.add(namePanel);
 
@@ -63,17 +99,22 @@ public class GenericStaffScreen implements IGenericStaff {
    }
 
    protected static void staffSideBar(Container pane) {
-      JPanel panel = new JPanel();
+      // creating the whole side panel
+      JPanel sidePanel = new JPanel();
+      sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+      sidePanel.setBorder(BorderFactory.createTitledBorder(""));
 
-      panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
+      // creating the button panel to organize the location of the buttons
+      JPanel buttonPanel = new JPanel();
+      buttonPanel.setLayout(new GridLayout(3, 1));
+      
       JButton button = new JButton("Manage Billing");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             r.displayFrameOpt(GenericEnum.BILLING);
          }
       });
-      panel.add(button);
+      buttonPanel.add(button);
 
       button = new JButton("Scheduling");
       button.addActionListener(new ActionListener() {
@@ -81,7 +122,7 @@ public class GenericStaffScreen implements IGenericStaff {
             r.displayFrameOpt(GenericEnum.SCHEDULE);
          }
       });
-      panel.add(button);
+      buttonPanel.add(button);
 
       button = new JButton("View Patient Records");
       button.addActionListener(new ActionListener() {
@@ -89,7 +130,11 @@ public class GenericStaffScreen implements IGenericStaff {
             r.displayFrameOpt(GenericEnum.VIEWRECORDS);
          }
       });
-      panel.add(button);
+      buttonPanel.add(button);
+      
+      sidePanel.add(buttonPanel);
+      
+      sidePanel.add(new JPanel());
 
       // creating the calander
       JPanel cPanel = new JPanel();
@@ -97,9 +142,9 @@ public class GenericStaffScreen implements IGenericStaff {
       JPanel calander = new Calendar().makeCalander();
       cPanel.add(calander);
 
-      panel.add(cPanel);
+      sidePanel.add(cPanel);
 
-      pane.add(panel, BorderLayout.WEST);
+      pane.add(sidePanel, BorderLayout.WEST);
 
    }
 
