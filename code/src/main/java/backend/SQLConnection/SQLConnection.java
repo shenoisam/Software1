@@ -4,7 +4,6 @@ package backend.SQLConnection;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import backend.Config;
 import frontend.EHRRunner;
 

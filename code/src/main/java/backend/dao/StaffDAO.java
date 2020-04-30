@@ -23,6 +23,7 @@ public class StaffDAO extends GenericDAO{
 		List<List<Object>> data = this.query("*","Staff, User","User.ID = Staff.ID AND User.ID = ?", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
+		
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
 	    if(data.size() > MIN_DATA_SIZE) {
 			
@@ -39,6 +40,7 @@ public class StaffDAO extends GenericDAO{
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
+	    
 	    if(data.size() > MIN_DATA_SIZE) {
 			
 			s = new Staff(listToString(data.get(0)),data.get(1));

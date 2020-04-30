@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -12,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import backend.classes.Staff;
+import backend.dao.StaffDAO;
 import frontend.GenericEnum;
 
 public class GenericStaffScreen implements IGenericStaff {
@@ -52,7 +55,8 @@ public class GenericStaffScreen implements IGenericStaff {
 	      JLabel welcome = new JLabel("Welcome, ");
 	      namePanel.add(welcome);
 	      JLabel staffName = new JLabel();
-	      staffName.setText("Staff");
+	      
+	      staffName.setText(r.getUser().getFullName());
 	      namePanel.add(staffName);
 	      
 	      // creating and adding an invisible panel to push out the appointment times
@@ -63,6 +67,8 @@ public class GenericStaffScreen implements IGenericStaff {
 	      JLabel nextAppointmentTitle  = new JLabel();
 	      nextAppointmentTitle.setText("Your Next Appointment is at: ");
 	      JLabel appointmentTime = new JLabel();
+	     
+	      
 	      appointmentTime.setText("MM-DD-YY HH:mm ");
 	      JLabel appointmentLocation = new JLabel();
 	      appointmentLocation.setText("Room 123");
