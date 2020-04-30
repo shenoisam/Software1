@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 public class ScheduleTable extends AbstractTableModel {
 
    private static final long serialVersionUID = 1L;
-   private String[] columnNames = {};
+   private String[] columnNames = {"Date", "Doctor", "Patient"};
    private Object[][] data = {};
    // private DefaultTableModel table;
 
