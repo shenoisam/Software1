@@ -129,14 +129,6 @@ public class OfficeSchedule extends JPanel{
     		} 
     	}
     	
-    	for(Appointment a : li) {
-    		if(a.getPatientID() != null) {
-    			System.out.println(a.getPatientID());
-    		} else {
-    			System.out.println("null");
-    		}
-    	}
-    	
     	System.out.println(numApptTimes + " " + times.size());
     	
     	data = new String[numApptTimes][headers.size()];
