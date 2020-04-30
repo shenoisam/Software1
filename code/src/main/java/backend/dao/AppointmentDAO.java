@@ -13,6 +13,8 @@ import java.util.List;
 import backend.NotImplementedException;
 import backend.classes.*;
 import backend.dao.GenericDAO;
+import backend.factory.AppointmentObject;
+import backend.factory.FactoryObjects;
 
 
 /**
@@ -108,8 +110,8 @@ public class AppointmentDAO extends GenericDAO {
 		// This might not work
 		String [] params = {new java.sql.Date(date.getTime()).toString(), d.getID()};
 		List<List<Object>> data = this.query(select, table, rmStr, params);
-		
-		return generateList(data);
+		FactoryObjects<Appointment> factoryObj = new AppointmentObject();
+		return super.generateListObjects(data, factoryObj);
 	}
 	
 	private List<Appointment> generateList(List<List<Object>> stuff) {
