@@ -1,19 +1,16 @@
 package frontend.staff;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import frontend.provider.AutocompleteJComboBox;
-import frontend.provider.StringSearchable;
 
 public class StaffScheduleScreen extends GenericStaffScreen {
 
@@ -24,15 +21,15 @@ public class StaffScheduleScreen extends GenericStaffScreen {
    private void showSchedule(Container pane) {
       JPanel middleOfScreen = new JPanel();
       middleOfScreen.setLayout(new BoxLayout(middleOfScreen, BoxLayout.Y_AXIS));
-      
+
       JPanel titlePanel = new JPanel();
-      titlePanel.setLayout(new GridLayout(1,3));
+      titlePanel.setLayout(new GridLayout(1, 3));
       titlePanel.setBorder(BorderFactory.createTitledBorder(""));
       titlePanel.setBackground(Color.GRAY);
       JPanel fillerPanel1 = new JPanel();
       fillerPanel1.setBackground(Color.GRAY);
       titlePanel.add(fillerPanel1);
-      JLabel title = new JLabel ("Create Appointment");
+      JLabel title = new JLabel("Create Appointment");
       title.setFont(title.getFont().deriveFont(15f));
       titlePanel.add(new JLabel(""));
       titlePanel.add(title);
@@ -40,7 +37,7 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       fillerPanel2.setBackground(Color.GRAY);
       titlePanel.add(fillerPanel2);
       titlePanel.add(new JLabel(""));
-      
+
       middleOfScreen.add(titlePanel);
 
       // panel that stores the information on the new appointment
@@ -55,22 +52,15 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       /**
        * TODO NEED TO ADD DATA TO THE THING TO GET THE REAL PATIENTS FROM THE DATABASE
        */
-      ArrayList<String> patients = new ArrayList<String>();
-      patients.add("DUMMY");
-      patients.add("DUMMY");
-      patients.add("DUMMY");
-      patients.add("DUMMY");
-      patients.add("DUMMY");
-      patients.add("DUMMY");
-      patients.add("DUMMY");
-      patients.add("DUMMY");
+      // creating the drop down menu
+      JComboBox<String> patients = new JComboBox<String>();
+      patients.addItem("DUMMY");
+      patients.addItem("DUMMY");
+      patients.addItem("DUMMY");
+      patients.addItem("DUMMY");
 
-      // creating the searchable drop down menu
-      StringSearchable searchable = new StringSearchable(patients);
-      AutocompleteJComboBox combo = new AutocompleteJComboBox(searchable);
+      patientName.add(patients);
 
-      patientName.add(combo);
-      
       makingApptPanel.add(patientName);
 
       // creating a drop down menu for providers names
@@ -82,22 +72,14 @@ public class StaffScheduleScreen extends GenericStaffScreen {
        * TODO NEED TO ADD DATA TO THE THING TO GET THE REAL providers FROM THE
        * DATABASE
        */
-      ArrayList<String> provider = new ArrayList<String>();
-      provider.add("DUMMY");
-      provider.add("DUMMY");
-      provider.add("DUMMY");
-      provider.add("DUMMY");
-      provider.add("DUMMY");
-      provider.add("DUMMY");
-      provider.add("DUMMY");
-      provider.add("DUMMY");
+      JComboBox<String> providers = new JComboBox<String>();
+      providers.addItem("DUMMY");
+      providers.addItem("DUMMY");
+      providers.addItem("DUMMY");
+      providers.addItem("DUMMY");
 
-      // creating the searchable drop down menu
-      searchable = new StringSearchable(provider);
-      combo = new AutocompleteJComboBox(searchable);
+      providerName.add(providers);
 
-      providerName.add(combo);
-      
       makingApptPanel.add(providerName);
 
       JPanel aboutPatient2 = new JPanel();
@@ -114,43 +96,35 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       /**
        * TODO NEED TO ADD DATA TO THE THING TO GET THE REAL DATES FROM THE DATABASE
        */
-      ArrayList<String> dates = new ArrayList<String>();
-      dates.add("DUMMY");
-      dates.add("DUMMY");
-      dates.add("DUMMY");
-      dates.add("DUMMY");
-      dates.add("DUMMY");
-      dates.add("DUMMY");
-      dates.add("DUMMY");
-      dates.add("DUMMY");
+      JComboBox<String> datesAndTimes = new JComboBox<String>();
+      datesAndTimes.addItem("DUMMY");
+      datesAndTimes.addItem("DUMMY");
+      datesAndTimes.addItem("DUMMY");
+      datesAndTimes.addItem("DUMMY");
 
-      // creating the searchable drop down menu
-      searchable = new StringSearchable(dates);
-      combo = new AutocompleteJComboBox(searchable);
-
-      date.add(combo);
+      date.add(datesAndTimes);
+      
       makingApptPanel.add(date);
 
-      JButton name = new JButton("Schedule Appointment");
-      
+      JButton name = new JButton("Schedule");
+
       /**
-       * TODO
-       * CREATE ACTION FOR THIS BUTTON THAT SENDS EVERYTHING TO THE DATABASE
+       * TODO CREATE ACTION FOR THIS BUTTON THAT SENDS EVERYTHING TO THE DATABASE
        */
 
       aboutPatient2.add(name);
       makingApptPanel.add(aboutPatient2);
 
       middleOfScreen.add(makingApptPanel);
-      
+
       titlePanel = new JPanel();
-      titlePanel.setLayout(new GridLayout(1,3));
+      titlePanel.setLayout(new GridLayout(1, 3));
       titlePanel.setBorder(BorderFactory.createTitledBorder(""));
       titlePanel.setBackground(Color.GRAY);
       fillerPanel1 = new JPanel();
       fillerPanel1.setBackground(Color.GRAY);
       titlePanel.add(fillerPanel1);
-      title = new JLabel ("Provider's Schedule");
+      title = new JLabel("Provider's Schedule");
       title.setFont(title.getFont().deriveFont(15f));
       titlePanel.add(new JLabel(""));
       titlePanel.add(title);
@@ -158,14 +132,14 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       fillerPanel2.setBackground(Color.GRAY);
       titlePanel.add(fillerPanel2);
       titlePanel.add(new JLabel(""));
-      
+
       middleOfScreen.add(titlePanel);
-      
+
       // create the table to show the provider schedule
       ProvidersSchedule table = new ProvidersSchedule();
       table.setOpaque(true);
       middleOfScreen.add(table);
-      
+
       pane.add(middleOfScreen);
    }
 
