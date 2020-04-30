@@ -39,8 +39,8 @@ public class PrescriptionDAO extends GenericDAO {
 		 
 		 List<List<Object>> stuff = this.query("*", "Prescription", rmStr, params);
 		 //PerscriptionObject pObj = new PerscriptionObject();
-		 FactoryObjects<Perscription> factoryObj = new PerscriptionObject();
-		 return super.generateList(stuff, factoryObj);
+		 //FactoryObjects<Perscription> factoryObj = new PerscriptionObject();
+		 return generateList(stuff);
 	 }
 		
 	private List<Perscription> generateList(List<List<Object>> stuff) {

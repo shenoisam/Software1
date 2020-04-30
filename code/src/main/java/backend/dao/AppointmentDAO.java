@@ -112,8 +112,8 @@ public class AppointmentDAO extends GenericDAO {
 		// This might not work
 		String [] params = {new java.sql.Date(date.getTime()).toString(), d.getID()};
 		List<List<Object>> data = this.query(select, table, rmStr, params);
-		FactoryObjects<Appointment> factoryObj = new AppointmentObject();
-		return super.generateListObjects(data, factoryObj);
+		//FactoryObjects<Appointment> factoryObj = new AppointmentObject();
+		return generateList(data);
 	}
 	
 	private List<Appointment> generateList(List<List<Object>> stuff) {

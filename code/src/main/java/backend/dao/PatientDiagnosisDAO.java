@@ -30,8 +30,8 @@ public class PatientDiagnosisDAO extends GenericDAO {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "PatientDiagnosis", rmStr, params);
-		 FactoryObjects<PatientDiagnosis> factoryObj = new PatientDiagnosisObject();
-		 return super.generateListObjects(stuff, factoryObj);
+		 //FactoryObjects<PatientDiagnosis> factoryObj = new PatientDiagnosisObject();
+		 return generateList(stuff);
 		
 	 }
 		

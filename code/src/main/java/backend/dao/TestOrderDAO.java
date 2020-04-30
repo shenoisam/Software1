@@ -34,8 +34,8 @@ public class TestOrderDAO extends GenericDAO {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "TestOrder", rmStr, params);
-		 FactoryObjects<TestOrder> factoryObj = new TestOrderObject();
-		 return super.generateListObjects(stuff, factoryObj);
+		 //FactoryObjects<TestOrder> factoryObj = new TestOrderObject();
+		 return generateList(stuff);
 		
 	 }
 		

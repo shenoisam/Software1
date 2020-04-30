@@ -35,7 +35,7 @@ public class NotesDAO extends GenericDAO {
 		 
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
 		 FactoryObjects<Notes> factoryObj = new NotesObject();
-		 return super.generateListObjects(stuff, factoryObj);
+		 return generateList(stuff);
 		
 	 }
 		
