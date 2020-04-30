@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -16,6 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
+
+import backend.classes.Diagnosis;
+import businesslayer.CShareObjects;
 
 public class PatientHome extends PatientGenericScreen{
 
@@ -34,7 +40,7 @@ public class PatientHome extends PatientGenericScreen{
 	    JLabel welcome = new JLabel("Welcome, ");
 	    namePanel.add(welcome);
 	    JLabel staffName = new JLabel();
-	    staffName.setText("<Patient Name>");
+	    staffName.setText(p.getUser().getFirstName() + " " + p.getUser().getLastName());
 	    namePanel.add(staffName);
 	      
 	    // creating and adding an invisible panel to push out the appointment times
@@ -45,7 +51,10 @@ public class PatientHome extends PatientGenericScreen{
 	    JLabel nextAppointmentTitle  = new JLabel();
 	    nextAppointmentTitle.setText("Your Next Appointment is at: ");
 	    JLabel appointmentTime = new JLabel();
-	    appointmentTime.setText("MM-DD-YY HH:mm ");
+	    
+	    appointmentTime.setText(this.a.getAppointmentDate().toString());
+	    
+	    
 	      
 	    // adding the time and location to the name panel
 	    namePanel.add(nextAppointmentTitle);
@@ -63,6 +72,13 @@ public class PatientHome extends PatientGenericScreen{
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 		
 		JLabel infoLabel = new JLabel("Current Diagnosis:");
+		
+		
+		String [] fields = {"Name"};
+		String [] params = {"Breast Cancer"};
+		List<Diagnosis> li = serv.getData(CShareObjects.DIAGNOSIS, fields, params);
+		
+		
 		infoLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		JPanel pane = new JPanel();
 		pane.setOpaque(true);
@@ -70,6 +86,8 @@ public class PatientHome extends PatientGenericScreen{
 		sl.putConstraint(SpringLayout.WEST, infoLabel, 5, SpringLayout.WEST, pane);
 		sl.putConstraint(SpringLayout.EAST, infoLabel, -5, SpringLayout.EAST, pane);
 		sl.putConstraint(SpringLayout.NORTH, infoLabel, 5, SpringLayout.NORTH, pane);
+		
+		infoLabel.setText(li.get(0).getName() + ":\n " + li.get(0).getDescription());
 		pane.setLayout(sl);
 		pane.setPreferredSize(new Dimension(10, 100));
 		pane.add(infoLabel);

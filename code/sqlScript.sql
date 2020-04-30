@@ -134,12 +134,14 @@ Create Table Notes(
 INSERT INTO USER VALUES ("Test", "User", "testuser@test.com", "adbacubasdibcuasdc", MD5('Test'));
 INSERT INTO USER VALUES ("Test1", "User1", "testuser1@test.com", "aeqwoqwoqwoqwpqpqwo", MD5('Test'));
 INSERT INTO USER VALUES ("Test2", "User2", "testuser2@test.com", "pooiqwiewqiqwiqpoqwoq", MD5('Test'));
+INSERT INTO USER VALUES ("John", "Harrison", "john@att.net", "thisismyid", MD5('Test'));
 
 INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor"); 
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
+INSERT INTO PATIENT (ID) VALUES ("thisismyid");
+INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc", "thisismyid");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
-
 INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
 INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
 INSERT INTO Test (Name, Type, InsuranceCode) VALUES ("Great test", "Ezy Test", "33BA");

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -11,6 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import backend.classes.Appointment;
+import businesslayer.CShareObjects;
+import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public abstract class PatientGenericScreen {
@@ -20,11 +24,14 @@ public abstract class PatientGenericScreen {
 	protected JPanel sidePanel;
 	protected JPanel mainPanel;
 	protected PatientRunner p;  
-	
+	protected ProviderService serv;
+	protected Appointment a;
 	
 	public PatientGenericScreen(JFrame f, String title, PatientRunner po) {
 		this.p = po; 
 		frame = f;
+		
+		this.serv = new ProviderService();
 		
 		topPanel = new JPanel();
 	    topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
@@ -71,6 +78,11 @@ public abstract class PatientGenericScreen {
 	    mainPanel = new JPanel();
 	    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 	    frame.getContentPane().add(mainPanel);
+	    
+	    String [] fields = {"PatientID"};
+	    String [] params = {p.getUser().getID()};
+	    List<Appointment> li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+	    a = li.get(0);
 	    
 	    frame.setTitle(title);
 	    

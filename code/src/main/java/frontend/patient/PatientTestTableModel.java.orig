@@ -8,7 +8,7 @@ import backend.classes.TestResult;
 import javax.swing.table.AbstractTableModel;
 
 import backend.classes.TestOrder;
-//import frontend.provider.TestResult;
+import frontend.provider.TestResult;
 
 public class PatientTestTableModel extends AbstractTableModel {
 	private List<TestResult> testOrders;
