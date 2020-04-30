@@ -4,7 +4,7 @@
 *  from the CShare database. 
 *
 *  Author: Sam Shenoi 
-*  Version: 1.4
+*  Version: 1.5
 *  Date Last Modified: 4/29/2020 
 */
 
@@ -118,6 +118,12 @@ Create Table Notes(
   PatientID VARCHAR(25) NOT NULL, 
   DateVal DateTime NOT NULL, 
   Note Varchar(500) NOT NULL,
+  ChiefComplaint VARCHAR(100), 
+  PhysicalExam VARCHAR(100),
+  BodyTemp  FLOAT(2),
+  Pulse INTEGER,
+  Respiration INTEGER,
+  BloodPressure VARCHAR(25),
 
   FOREIGN KEY (DateVal, DoctorID, PatientID) REFERENCES Appointment(DateVal, DoctorID, PatientID)  
 );
@@ -136,10 +142,9 @@ INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
 INSERT INTO PATIENT (ID) VALUES ("thisismyid");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc", "thisismyid");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
-INSERT INTO Diagnosis (Name, Description) VALUES ("Hashimoto's", "This is a thyroid autoimmune disease affecting the mind");
 INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
 INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
-
+INSERT INTO Test (Name, Type, InsuranceCode) VALUES ("Great test", "Ezy Test", "33BA");
 
 
 

@@ -1,14 +1,12 @@
 package frontend;
 
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
-
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
 import frontend.provider.ProviderRunner;
-import frontend.staff.Runner;
+import frontend.staff.StaffRunner;
 
 
 import backend.*;

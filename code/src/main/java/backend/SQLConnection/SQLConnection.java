@@ -33,7 +33,7 @@ public class SQLConnection {
 				String url = "jdbc:mysql://" + host + ":" + port + "/" + db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; 
 				Connection con = null; 
 				try {
-					con = DriverManager.getConnection(url,username,password);
+					con = DriverManager.getConnection(url,"CShareAdmin","password");
 
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

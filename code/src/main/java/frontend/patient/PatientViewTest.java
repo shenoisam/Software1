@@ -16,7 +16,7 @@ import javax.swing.SpringLayout;
 
 import backend.classes.TestOrder;
 
-public class PatientViewTest extends GenericScreen {
+public class PatientViewTest extends PatientGenericScreen {
 
 	public PatientViewTest(JFrame frame, PatientRunner p) {
 		super(frame, "Patient View Test", p);
