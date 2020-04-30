@@ -45,7 +45,9 @@ public class AppointmentDAO extends GenericDAO {
 			 rmStr = "";
 		 }
 		 
-		 String rmStr = this.generateRmStr(fields, params);
+		 if(fields.length > 0 && params.length > 0) {
+			 rmStr = this.generateRmStr(fields, params);
+		 }
 		 LocalDateTime d = null; 
 		 int ndx = -1; 
 		 // Hacky way to ensure that we get a noice date range 
