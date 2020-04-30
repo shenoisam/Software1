@@ -28,20 +28,20 @@ import backend.classes.Patient;
 import frontend.GenericEnum;
 
 public class ProviderPatientVisit extends ProviderFrontend {
-   private Patient pat; 
-   
+   private Patient pat;
+
    public ProviderPatientVisit(ProviderRunner p) {
-		super(p);
-		// TODO Auto-generated constructor stub
-	}
+      super(p);
+      // TODO Auto-generated constructor stub
+   }
 
-    public ProviderPatientVisit(ProviderRunner providerRunner, Patient pat) {
-	// TODO Auto-generated constructor stub
-       super(providerRunner);
-       this.pat = pat; 
-}
+   public ProviderPatientVisit(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
 
-	public void patientVisitPanel(Container pane) {
+   public void patientVisitPanel(Container pane) {
       // creating the panel to store the whole visit
       JPanel visitPanel = new JPanel();
       visitPanel.setLayout(new GridLayout(2, 2));
@@ -111,10 +111,11 @@ public class ProviderPatientVisit extends ProviderFrontend {
 
       // creating the panel to store the next step notes
       JPanel nextSteps = new JPanel();
-      nextSteps.setBorder(BorderFactory.createTitledBorder("Next Steps"));
+      nextSteps.setBorder(BorderFactory.createTitledBorder("Next Steps & Diagnosis"));
 
+      nextSteps.add(new JLabel("Diagnosis "));
       // creating the next steps text area
-      JTextArea notes = new JTextArea(6, 21);
+      JTextArea notes = new JTextArea(3, 21);
       notes.setText("");
       notes.setEditable(true);
       notes.setLineWrap(true);
@@ -126,15 +127,28 @@ public class ProviderPatientVisit extends ProviderFrontend {
       // adding the scroll bar to the next steps panel
       nextSteps.add(scroll);
       
+      nextSteps.add(new JLabel("Next Steps"));
+      // creating the next steps text area
+      JTextArea diagnosis = new JTextArea(6, 21);
+      diagnosis.setText("");
+      diagnosis.setEditable(true);
+      diagnosis.setLineWrap(true);
+
+      // creating a scroll pane for the next steps
+      scroll = new JScrollPane(diagnosis);
+      scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+      // adding the scroll bar to the next steps panel
+      nextSteps.add(scroll);
+
       // Adding submit info button
       JButton button = new JButton("Submit");
       nextSteps.add(button);
-      button.addActionListener(new ActionListener() { 
-    	  public void actionPerformed(ActionEvent e) { 
-    		  
-    	    
-    	  } 
-      } );
+      button.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+
+         }
+      });
 
       // adding the next steps panel to the main visit pane
       visitPanel.add(nextSteps);
@@ -149,15 +163,14 @@ public class ProviderPatientVisit extends ProviderFrontend {
       topBarPatientInformation(frame.getContentPane(), pat);
       patientVisitPanel(frame.getContentPane());
 
- 
    }
-   public void createAndShowGUI(JFrame frame, Patient pat) {
-	      this.pat = pat; 
-	      // Add the relavent panels to the screen
-	      providerSideBar(frame.getContentPane(), pat);
-	      topBarPatientInformation(frame.getContentPane(), pat);
-	      patientVisitPanel(frame.getContentPane());
 
-	 
-  }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+      this.pat = pat;
+      // Add the relavent panels to the screen
+      providerSideBar(frame.getContentPane(), pat);
+      topBarPatientInformation(frame.getContentPane(), pat);
+      patientVisitPanel(frame.getContentPane());
+
+   }
 }
