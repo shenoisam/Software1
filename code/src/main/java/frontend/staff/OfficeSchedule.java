@@ -122,8 +122,7 @@ public class OfficeSchedule extends JPanel{
 	 
 	    colNames = headers.toArray(new String [0]);
 	    
-	   
-	 
+	  
 	    
 	    data = new Object[docs.size()+1][];
 	    for(int i = 0; i < docs.size()+1; i++) {
