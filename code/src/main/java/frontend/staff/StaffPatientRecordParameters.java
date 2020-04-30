@@ -15,6 +15,11 @@ import javax.swing.JPanel;
 import frontend.GenericEnum;
 
 public class StaffPatientRecordParameters extends GenericStaffScreen {
+   private String ageRangeToLookAt;
+   private String diagnosisToLookAt;
+   private String doctorsToLookAt;
+   private String presciptionsToLookAt;
+   
    StaffPatientRecordParameters(StaffRunner r) {
       super(r);
       // TODO Auto-generated constructor stub
@@ -41,32 +46,21 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       titlePanel.add(new JLabel(""));
 
       // creating parameter #1
-      JPanel maritalStatus = new JPanel();
-      maritalStatus.setBorder(BorderFactory.createTitledBorder("Marital Status"));
-      JComboBox<String> status = new JComboBox<String>();
-      status.addItem("n/a");
-      status.addItem("Single");
-      status.addItem("Married");
-      status.addItem("Divorce");
-      status.addItem("Widowed");
-      maritalStatus.add(status);
-
-      // creating parameter #2
       JPanel ageRange = new JPanel();
       ageRange.setBorder(BorderFactory.createTitledBorder("Age Range"));
       JComboBox<String> age = new JComboBox<String>();
       age.addItem("n/a");
-      age.addItem("0–5");
-      age.addItem("6–12");
-      age.addItem("13–19");
-      age.addItem("20–35");
-      age.addItem("36-50");
-      age.addItem("50-65");
-      age.addItem("66-80");
-      age.addItem("80");
+      age.addItem("0 – 5");
+      age.addItem("6 – 12");
+      age.addItem("13 – 19");
+      age.addItem("20 – 35");
+      age.addItem("36 - 50");
+      age.addItem("50 - 65");
+      age.addItem("66 - 80");
+      age.addItem("80+");
       ageRange.add(age);
 
-      // creating parameter #3
+      // creating parameter #2
       JPanel diagnosis = new JPanel();
       diagnosis.setBorder(BorderFactory.createTitledBorder("Diagnosis"));
       JComboBox<String> allDiagnosis = new JComboBox<String>();
@@ -78,7 +72,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       allDiagnosis.addItem("DUMMY");
       diagnosis.add(allDiagnosis);
 
-      // creating parameter #4
+      // creating parameter #3
       JPanel doctor = new JPanel();
       doctor.setBorder(BorderFactory.createTitledBorder("Doctor"));
       JComboBox<String> allDoctors = new JComboBox<String>();
@@ -90,7 +84,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       allDoctors.addItem("DUMMY");
       doctor.add(allDoctors);
 
-      // creating parameter #5
+      // creating parameter #4
       JPanel prescrip = new JPanel();
       prescrip.setBorder(BorderFactory.createTitledBorder("Prescriptions"));
       JComboBox<String> allPrescrips = new JComboBox<String>();
@@ -103,7 +97,6 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       prescrip.add(allPrescrips);
       
       main.add(titlePanel);
-      main.add(maritalStatus);
       main.add(ageRange);
       main.add(diagnosis);
       main.add(doctor);
@@ -126,6 +119,22 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       topBarStaff(pane);
       parameters(pane);
       staffSideBar(pane);
+   }
+
+   public String getAgeRangeToLookAt() {
+      return ageRangeToLookAt;
+   }
+
+   public String getDiagnosisToLookAt() {
+      return diagnosisToLookAt;
+   }
+
+   public String getDoctorsToLookAt() {
+      return doctorsToLookAt;
+   }
+
+   public String getPresciptionsToLookAt() {
+      return presciptionsToLookAt;
    }
 
 }

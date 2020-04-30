@@ -35,7 +35,7 @@ public class StaffRunner extends GenericRunner {
          frame.setTitle("Staff Patient Records Parameters");
          break;
       case VIEWRECORDS:
-         g = new StaffViewPatientRecords(this);
+         g = new StaffPatientRecordsView(this);
          frame.setTitle("Staff View Patient Records");
          break;
       default:
