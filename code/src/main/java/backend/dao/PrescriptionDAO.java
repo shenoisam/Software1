@@ -43,7 +43,16 @@ public class PrescriptionDAO extends GenericDAO {
 		 return super.generateList(stuff, factoryObj);
 	 }
 		
-
+	private List<Perscription> generateList(List<List<Object>> stuff) {
+		 List<Perscription> finalList = new ArrayList<Perscription>(); 
+		 List<String> headerRow = listToString(stuff.get(0));
+		 for(int i = 1; i < stuff.size(); i++) {
+			 //TODO: implement this; 
+			 finalList.add(new Perscription(headerRow, stuff.get(i)));
+		 }
+		 
+		 return finalList;
+	}
 	
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
