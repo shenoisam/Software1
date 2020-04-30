@@ -23,6 +23,7 @@ public class StaffDAO extends GenericDAO{
 		List<List<Object>> data = this.query("*","Staff, User","User.ID = Staff.ID AND User.ID = ?", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
+		
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
 	    if(data.size() > MIN_DATA_SIZE) {
 			
@@ -39,6 +40,7 @@ public class StaffDAO extends GenericDAO{
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
+	    
 	    if(data.size() > MIN_DATA_SIZE) {
 			
 			s = new Staff(listToString(data.get(0)),data.get(1));
@@ -69,8 +71,8 @@ public class StaffDAO extends GenericDAO{
 	    	}
 	    }
 		    String rmStr = this.generateRmStr(fields, params);
-			rmStr = rmStr + "AND Doctor.ID = User.ID";
-			List<List<Object>> stuff = this.query("*", "Doctor, User", rmStr, params);
+			rmStr = rmStr + "AND Staff.ID = User.ID";
+			List<List<Object>> stuff = this.query("*", "Staff, User", rmStr, params);
 			List<Staff> d = new ArrayList<Staff>(); 
 			if (stuff.size() > MIN_DATA_SIZE) {
 				//Get the header row. The first row returned should be the header row

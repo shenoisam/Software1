@@ -30,6 +30,20 @@ import frontend.GenericEnum;
 public class ProviderPrescribeView extends ProviderFrontend {
    private Patient pat;
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
    public ProviderPrescribeView(ProviderRunner p) {
       super(p);
    }
@@ -40,6 +54,153 @@ public class ProviderPrescribeView extends ProviderFrontend {
       this.pat = pat;
    }
 
+=======
+public class ProviderPrescribeView extends ProviderFrontend {
+   private Patient pat;
+
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+>>>>>>> Stashed changes
    public void patientPrescribePanel(Container pane) {
       // setting up the prescribe panel
       JPanel prescribePanel = new JPanel();
@@ -166,7 +327,7 @@ public class ProviderPrescribeView extends ProviderFrontend {
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
-
+<<<<<<< Updated upstream
       JButton but = new JButton("Print Prescription");
       JLabel lab = new JLabel();
       but.addActionListener(new ActionListener() { 
@@ -185,7 +346,9 @@ public class ProviderPrescribeView extends ProviderFrontend {
       
       submitPanel.add(but);
       submitPanel.add(lab);
-
+=======
+      submitPanel.add(new JButton("Print Prescription"));
+>>>>>>> Stashed changes
       submitPanel.add(new JPanel());
 
       // adding the submit panel to the notes and submit panel

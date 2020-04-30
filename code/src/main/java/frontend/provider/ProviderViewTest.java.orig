@@ -16,7 +16,6 @@ import javax.swing.SpringLayout;
 
 import backend.classes.Patient;
 import backend.classes.TestOrder;
-import businesslayer.CShareObjects;
 import frontend.patient.TestTableModel;
 
 public class ProviderViewTest extends ProviderFrontend {
@@ -34,13 +33,8 @@ public class ProviderViewTest extends ProviderFrontend {
    protected void viewTestPanel(Container mainPane) {
       JPanel viewTest = new JPanel();
       viewTest.setLayout(new BoxLayout(viewTest, BoxLayout.PAGE_AXIS));
-      
-      /*** Data Retrieval *****/
-      String [] fields = {"PatientID"};
-      String[] params = {pat.getID()};
-      
 
-      TestTableModel ptModel = new TestTableModel(serv.getData(CShareObjects.TESTRESULT, fields, params));
+      TestTableModel ptModel = new TestTableModel(new ArrayList<TestOrder>());
       JTable testTable = new JTable();
       testTable.setModel(ptModel);
       JScrollPane scrollPane = new JScrollPane(testTable);
