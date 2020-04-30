@@ -15,6 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +31,7 @@ import javax.swing.JTable;
 
 import backend.classes.Appointment;
 import backend.classes.Diagnosis;
+import backend.classes.Patient;
 import backend.classes.PatientDiagnosis;
 import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
@@ -191,6 +194,14 @@ public class BillingTable extends JPanel {
 	  ProviderService serv = new ProviderService();
 	  allBilling = serv.getData(CShareObjects.APPOINTMENT, fields, params);
 	  
+	  String[] patientFields = {};
+	  String[] patientParams = {};
+	  List<Patient> patients = serv.getData(CShareObjects.PATIENT, patientFields, patientParams);
+	  List<String> patientIDs = new ArrayList<String>();
+	  for (Patient p : patients) {
+		  patientIDs.add(p.getID());
+	  }
+	  
 	  List<String> headers = new ArrayList<String>();
 	  headers.add("First");
 	  headers.add("Last");
@@ -198,13 +209,16 @@ public class BillingTable extends JPanel {
 	  
 	  colNames = headers.toArray(new String[0]);
 	  
-	  data = new Object[allBilling.size() + 1][];
+	  data = new Object[allBilling.size()][];
 	  for (int i = 0; i < allBilling.size(); i++) {
 		  data[i] = new String[3];
-		  //LocalDateTime billSendDate = allBilling.get(i).getAppointmentDate();
-		  data[i][0] = "FIRST";//allBilling.get(i).getPatientID();
-		  data[i][1] = "LAST";
-		  data[i][2] = "DATE";//billSendDate;
+		  LocalDateTime billSendDate = allBilling.get(i).getAppointmentDate();
+		  DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+		  String formattedDate = billSendDate.format(formatter);
+		  int index = patientIDs.indexOf(allBilling.get(i).getPatientID());
+		  data[i][0] = patients.get(index).getFirstName();
+		  data[i][1] = patients.get(index).getLastName();
+		  data[i][2] = formattedDate;
 	  }
 	  
       table = new JTable(new ScheduleTable(data, colNames));
