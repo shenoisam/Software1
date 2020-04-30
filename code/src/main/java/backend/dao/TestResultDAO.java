@@ -11,14 +11,14 @@ public class TestResultDAO extends GenericDAO {
     public TestResultDAO(){
     	
     }
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		for(int i =0; i < fields.length;i++) {
+			if (fields[i].contentEquals("DateVal")) {
+				params[i] = new java.sql.Date(new java.util.Date(params[i]).getTime()).toString();
+			}
+		}
 		this.insert("TestResult", fields, params);
 		
 	}
@@ -29,7 +29,7 @@ public class TestResultDAO extends GenericDAO {
 	public List<TestResult> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "TestResult", rmStr, params);
 		 return generateList(stuff);
 		
 	 }
@@ -43,6 +43,13 @@ public class TestResultDAO extends GenericDAO {
 		 }
 		 
 		 return finalList;
+	}
+
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -19,6 +19,11 @@ public class PrescriptionDAO extends GenericDAO {
 
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
+		for(int i =0; i < fields.length;i++) {
+			if (fields[i].contentEquals("DateVal")) {
+				params[i] = new java.sql.Date(new java.util.Date(params[i]).getTime()).toString();
+			}
+		}
 		this.insert("Prescription", fields, params);
 		
 	}
@@ -30,7 +35,7 @@ public class PrescriptionDAO extends GenericDAO {
 	public List<Perscription> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
-		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 List<List<Object>> stuff = this.query("*", "Prescription", rmStr, params);
 		 return generateList(stuff);
 		
 	 }
