@@ -104,7 +104,7 @@ public abstract class GenericDAO {
 		 
 		 return finalList;
 	}*/
-	protected <T>List<T> generateList(List<List<Object>> stuff, FactoryObjects<T> object) {
+	protected <T>List<T> generateListObjects(List<List<Object>> stuff, FactoryObjects<T> object) {
 		 List<T> finalList = new ArrayList<T>(); 
 		 List<String> headerRow = listToString(stuff.get(0));
 		 for(int i = 1; i < stuff.size(); i++) {
