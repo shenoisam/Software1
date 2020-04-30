@@ -116,8 +116,6 @@ public class OfficeSchedule extends JPanel{
 	    	headers.add("Dr. " + doc.getLastName());
 	    }
 	    
-	 
-	    colNames = headers.toArray(new String [0]);
 	    
 	  
 	    
