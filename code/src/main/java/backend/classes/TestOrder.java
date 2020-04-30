@@ -63,11 +63,11 @@ public class TestOrder {
 		TestName = testName;
 	}
 
-	public LocalDateTime getDateOrdered() {
+	public Date getDateOrdered() {
 		return DateOrdered;
 	}
 
-	public void setDateOrdered(LocalDateTime dateOrdered) {
+	public void setDateOrdered(Date dateOrdered) {
 		DateOrdered = dateOrdered;
 	}
 
