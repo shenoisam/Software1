@@ -15,13 +15,18 @@ public class PatientTestTableModel extends AbstractTableModel {
 	private String[] columnNames = {"Test Name", "Date of Test",
 									"Result"};
 
-	public PatientTestTableModel(List<backend.classes.TestResult> tr){
-		testOrders = tr;
+	public PatientTestTableModel(List<Object> tr){
+		testOrders = new ArrayList<TestResult>();
+		for(Object o : tr) {
+			testOrders.add((TestResult)o);
+		}
 	}
 	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
+		if(testOrders == null) {return 0;}
+		
 		return testOrders.size();
 	}
 
@@ -43,6 +48,10 @@ public class PatientTestTableModel extends AbstractTableModel {
 			return tOrder.getResult();
 		}
 		return null;
+	}
+	
+	public void updateTable() {
+		fireTableRowsInserted(0, this.testOrders.size()-1);
 	}
 	
 	public String getColumnName(int col) {

@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,9 @@ import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
 import backend.classes.Diagnosis;
+import backend.classes.Doctor;
+import backend.classes.Notes;
+import backend.classes.Perscription;
 import businesslayer.CShareObjects;
 
 public class PatientHome extends PatientGenericScreen{
@@ -101,17 +106,53 @@ public class PatientHome extends PatientGenericScreen{
 		JPanel medListPane = new JPanel();
 		medListPane.setLayout(new BoxLayout(medListPane, BoxLayout.PAGE_AXIS));
 		medListPane.add(new JLabel("Current Medication: "));
-		String[] medColNames = {"Presciption","Dosage"};
+		String[] medColNames = {"Prescription","Dosage"};
 		
-		//dummy data
-		String[][] meds = {{"Tamiflu", "2 pills a day"},
-							{"Doxycycline", "2 pills a day"}};
+		String [] f = {"PatientID"};
+		String [] pa = {((backend.classes.Patient)p.getUser()).getPatientID()};
+		List<Object> list = serv.getData(CShareObjects.PRESCRIPTION, f, pa);
+		List<String[]> stringList = new ArrayList<String[]>();
+		
+		for(Object object : list) {
+			Perscription pres = (Perscription) object;
+			DecimalFormat df = new DecimalFormat("####0.00");
+			String [] element = {pres.getPerscriptionName(), "Dosage is " + df.format(pres.getDosage()) + " a day."};
+			stringList.add(element);
+		}
+		String[][] meds = new String[stringList.size()][2];
+		stringList.toArray(meds);
 		
 		JTable medTable = new JTable(meds, medColNames);
 		JScrollPane scrollMeds = new JScrollPane(medTable);
 		medListPane.add(scrollMeds);
 		
-		String[] doctors = {"Dr.Cerny", "Dr.Booth"};
+		String [] nFields = {"PatientID"};
+		String [] nParams = {((backend.classes.Patient)p.getUser()).getPatientID()};
+		list = serv.getData(CShareObjects.NOTES, nFields, nParams);
+		List<String> doctorList = new ArrayList<String>();
+		
+		for(Object object : list) {
+			//doctorList.add(((Notes)object).getDoctorID());
+			
+			Notes note = (Notes) object;
+			String doctorID = note.getDoctorID();
+			
+			String [] dFields = {"ID"};
+			String [] dParams = {doctorID};
+			List<Object> doctorL = serv.getData(CShareObjects.DOCTOR, dFields, dParams);
+			String doctorName = "";
+			for(Object d : doctorL) {
+				doctorName = ((Doctor)d).getFullName();
+			}
+					
+			if(!doctorList.contains(doctorName)) {
+				doctorList.add(doctorName);
+			}
+			
+		}
+		String[] doctors = new String [doctorList.size()];
+		doctorList.toArray(doctors);
+		
 		JList providersList = new JList(doctors);
 		JPanel providerPane = new JPanel();
 		providerPane.setLayout(new BoxLayout(providerPane, BoxLayout.PAGE_AXIS));
@@ -125,9 +166,4 @@ public class PatientHome extends PatientGenericScreen{
 		mainPanel.add(dataPane);
 		
 	}
-	
-	
-	
-	
-
 }
