@@ -37,6 +37,10 @@ public class Staff extends HealthCareProvider {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getStaffTitle() {
+		return this.title;
+	}
+	
 	public String getStaffID() {
 		return StaffID;
 	}
