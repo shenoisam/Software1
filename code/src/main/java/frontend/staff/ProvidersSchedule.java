@@ -89,9 +89,9 @@ public class ProvidersSchedule extends JPanel {
 	   		pat = pd.getData(fields, param);
 	   		
 	   		if(pat.get(0) != null) {
-	   			data[i][1] = pat.get(0).getFullName();
+	   			data[i][2] = pat.get(0).getFullName();
 	   		}else {
-	   			data[i][1] = "N/A";
+	   			data[i][2] = "N/A";
 	   		}
 	   		
 	   		
@@ -100,9 +100,9 @@ public class ProvidersSchedule extends JPanel {
 	   		doc = dd.getData(fields, param);
 	   		
 	   		if(doc.get(0) != null) {
-	   			data[i][2] = doc.get(0).getFullName();
+	   			data[i][1] = doc.get(0).getFullName();
 	   		}else {
-	   			data[i][2] = "N/A";
+	   			data[i][1] = "N/A";
 	   		}
 	   		
 	   		
