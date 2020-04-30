@@ -13,6 +13,11 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -24,9 +29,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import backend.classes.Appointment;
 import backend.classes.Diagnosis;
+import backend.classes.Patient;
 import backend.classes.PatientDiagnosis;
 import businesslayer.CShareObjects;
+import businesslayer.ProviderService;
 
 public class BillingTable extends JPanel {
    private JTable table;
@@ -35,6 +43,7 @@ public class BillingTable extends JPanel {
    private static final long serialVersionUID = 1L;
    private boolean DEBUG = false;
    int rowCount = 0, colCount = 0;
+   private Connection c;
 
    public BillingTable() {
       super(new BorderLayout());
@@ -58,7 +67,7 @@ public class BillingTable extends JPanel {
       }
     */
    public void readData() {
-      String workingDir = System.getProperty("user.dir");
+      /*String workingDir = System.getProperty("user.dir");
       try (BufferedReader reader = new BufferedReader(
             new FileReader(workingDir + "/src/main/resources/data.csv"))) {
          String line = reader.readLine();
@@ -73,10 +82,7 @@ public class BillingTable extends JPanel {
             String[] temp = line.split(",");
             String firstName = temp[0];
             // System.out.println(firstName);
-            /*
-             * if(temp.length > 3) { for (int i = 3; i < temp.length; i++) { title += ", ";
-             * title += temp[i]; } }
-             */
+            
 
             // System.out.println("LINE " + line);
 
@@ -180,7 +186,41 @@ public class BillingTable extends JPanel {
          System.err.format("IOException: ", e);
          System.out.println("Working Directory = " + System.getProperty("user.dir"));
          System.exit(1);
-      }
+      }*/
+	  List<Appointment> allBilling= new ArrayList();
+	  LocalDateTime date = LocalDateTime.now();
+	  String[] params = {date.toString()};
+	  String[] fields = {"DateVal"};
+	  ProviderService serv = new ProviderService();
+	  allBilling = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+	  
+	  String[] patientFields = {};
+	  String[] patientParams = {};
+	  List<Patient> patients = serv.getData(CShareObjects.PATIENT, patientFields, patientParams);
+	  List<String> patientIDs = new ArrayList<String>();
+	  for (Patient p : patients) {
+		  patientIDs.add(p.getID());
+	  }
+	  
+	  List<String> headers = new ArrayList<String>();
+	  headers.add("First");
+	  headers.add("Last");
+	  headers.add("Date");
+	  
+	  colNames = headers.toArray(new String[0]);
+	  
+	  data = new Object[allBilling.size()][];
+	  for (int i = 0; i < allBilling.size(); i++) {
+		  data[i] = new String[3];
+		  LocalDateTime billSendDate = allBilling.get(i).getAppointmentDate();
+		  DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+		  String formattedDate = billSendDate.format(formatter);
+		  int index = patientIDs.indexOf(allBilling.get(i).getPatientID());
+		  data[i][0] = patients.get(index).getFirstName();
+		  data[i][1] = patients.get(index).getLastName();
+		  data[i][2] = formattedDate;
+	  }
+	  
       table = new JTable(new ScheduleTable(data, colNames));
       table.setPreferredScrollableViewportSize(new Dimension(500, 70));
       JScrollPane scroller = new JScrollPane(table);
