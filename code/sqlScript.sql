@@ -140,11 +140,13 @@ INSERT INTO Doctor VALUES("adbacubasdibcuasdc","ER Doctor");
 INSERT INTO Staff VALUES ("aeqwoqwoqwoqwpqpqwo","Billing");
 INSERT INTO PATIENT (ID) VALUES ("pooiqwiewqiqwiqpoqwoq");
 INSERT INTO PATIENT (ID) VALUES ("thisismyid");
+INSERT INTO TEST (Name, Type, InsuranceCode) VALUES ("HIV", "blood test", "12456");
+INSERT INTO TESTRESULT (Test, Result, DateVal, PatientID) VALUES ("HIV", "negative", CURDATE(), "pooiqwiewqiqwiqpoqwoq");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc", "thisismyid");
 INSERT INTO APPOINTMENT (DateVal, DoctorID, PatientID) VALUES (CURDATE(), "adbacubasdibcuasdc","pooiqwiewqiqwiqpoqwoq");
 INSERT INTO Diagnosis (Name, Description) VALUES ("Breast Cancer", "This is a cancer affecting breast tissue");
 INSERT INTO PatientDiagnosis (PatientID, DoctorID, Diagnosis,DateVal) VALUES ("pooiqwiewqiqwiqpoqwoq","adbacubasdibcuasdc", "Breast Cancer",CURDATE());
 INSERT INTO Test (Name, Type, InsuranceCode) VALUES ("Great test", "Ezy Test", "33BA");
-insert into testresult values ('Positive','Great test', CURDATE(), 'pooiqwiewqiqwiqpoqwoq');
+
 
 
