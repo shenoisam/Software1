@@ -6,6 +6,8 @@ import java.util.List;
 
 import backend.classes.Notes;
 import backend.classes.PatientDiagnosis;
+import backend.factory.FactoryObjects;
+import backend.factory.PatientDiagnosisObject;
 
 public class PatientDiagnosisDAO extends GenericDAO {
     public PatientDiagnosisDAO(){
@@ -28,6 +30,7 @@ public class PatientDiagnosisDAO extends GenericDAO {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "PatientDiagnosis", rmStr, params);
+		 //FactoryObjects<PatientDiagnosis> factoryObj = new PatientDiagnosisObject();
 		 return generateList(stuff);
 		
 	 }

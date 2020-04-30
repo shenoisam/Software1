@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -22,6 +23,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+
+import businesslayer.CShareObjects;
+import frontend.GenericEnum;
 
 public class PatientIntake extends PatientGenericScreen {
 	
@@ -108,7 +112,7 @@ public class PatientIntake extends PatientGenericScreen {
 		otherPanel.setLayout(new GridLayout(0, 4));
 		otherPanel.add(new JLabel("DOB:"));
 		otherPanel.add(dob);
-		otherPanel.add(new JLabel("Phone:"));
+		otherPanel.add(new JLabel("Married:"));
 		phone.setColumns(9);
 		otherPanel.add(phone);
 		
@@ -117,23 +121,23 @@ public class PatientIntake extends PatientGenericScreen {
 		
 		JPanel addressPane = new JPanel();
 		addressPane.setLayout(new FlowLayout());
-		addressPane.add(new JLabel("Address:"));
+		addressPane.add(new JLabel("Gender:"));
 		address.setColumns(40);
 		addressPane.add(address);
 		
 		sl.putConstraint(SpringLayout.NORTH, addressPane, 5, SpringLayout.SOUTH, otherPanel);
 		intakePanel.add(addressPane);
 		
-		JLabel emergencyLabel = new JLabel("Emergency Contact: ");
+		JLabel emergencyLabel = new JLabel("Demographic Information: ");
 		sl.putConstraint(SpringLayout.NORTH, emergencyLabel, 5, SpringLayout.SOUTH,addressPane);
 		
 		intakePanel.add(emergencyLabel);
 		JPanel emergencyPane = new JPanel();
 		emergencyPane.setLayout(new FlowLayout());
-		emergencyPane.add(new JLabel("Name:"));
+		emergencyPane.add(new JLabel("Ethnicity:"));
 		emergencyName.setColumns(15);
 		emergencyPane.add(emergencyName);
-		emergencyPane.add(new JLabel("Phone:"));
+		emergencyPane.add(new JLabel("Race:"));
 		emergencyPhone.setColumns(10);
 		emergencyPane.add(emergencyPhone);
 		
@@ -165,6 +169,29 @@ public class PatientIntake extends PatientGenericScreen {
 		intakePanel.add(allergies);
 		
 		JButton submitPatient = new JButton("Submit");
+		submitPatient.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+                  // Update patient 
+	        	 
+	        	 String [] fields =  {"ID"};
+	        	 String [] params = {p.getUser().getID()};
+	        	 String [] setFields = {"DOB","Gender","Race","Ethnicity"};
+	        	 String date = "";
+	        	 try {
+	        		date =  new Date(dob.getText()).toString(); 
+	        		
+	        		
+	        		
+	        	 }catch(Exception ex){
+	        		 dob.setBackground(Color.RED);
+	        	 }
+	        	 String [] sp = {date,emergencyName.getText(), emergencyPhone.getText(),address.getText(),p.getUser().getID() };
+	        	 serv.update(CShareObjects.PATIENT,setFields, sp, fields, params);
+	             
+	          }
+	       });
+		
+		
 		sl.putConstraint(SpringLayout.NORTH, submitPatient, 5, SpringLayout.SOUTH, allergies);
 		sl.putConstraint(SpringLayout.WEST, submitPatient, 5, SpringLayout.WEST, intakePanel);
 		

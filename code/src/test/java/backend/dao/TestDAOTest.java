@@ -115,8 +115,8 @@ public class TestDAOTest {
 	@Test
 	public void getDataTest() {
 		List<backend.classes.Test> list = null;
-		String[] fields = {"InsuranceCode"};
-		String[] params = {"pooiqwiewqiqwiqpoqwoq"};
+		String[] fields = {};//{"InsuranceCode"};
+		String[] params = {};//{"pooiqwiewqiqwiqpoqwoq"};
 		
 		list = o.getData(fields, params);
 		

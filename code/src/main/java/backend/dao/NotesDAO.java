@@ -6,6 +6,8 @@ import java.util.List;
 
 import backend.classes.Appointment;
 import backend.classes.Notes;
+import backend.factory.FactoryObjects;
+import backend.factory.NotesObject;
 
 public class NotesDAO extends GenericDAO {
     public NotesDAO(){
@@ -32,6 +34,7 @@ public class NotesDAO extends GenericDAO {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Notes", rmStr, params);
+		 FactoryObjects<Notes> factoryObj = new NotesObject();
 		 return generateList(stuff);
 		
 	 }

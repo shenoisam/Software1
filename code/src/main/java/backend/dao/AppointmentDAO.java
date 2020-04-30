@@ -13,6 +13,8 @@ import java.util.List;
 import backend.NotImplementedException;
 import backend.classes.*;
 import backend.dao.GenericDAO;
+import backend.factory.AppointmentObject;
+import backend.factory.FactoryObjects;
 
 
 /**
@@ -36,7 +38,13 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns a List of appointments representing the rows returned from the table 
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
-		 String rmStr = this.generateRmStr(fields, params);
+		 String rmStr;
+		 if(fields.length > 0 && params.length >0 ) {
+			 rmStr = this.generateRmStr(fields, params);
+		 }else {
+			 rmStr = "";
+		 }
+		 
 		 LocalDateTime d = null; 
 		 int ndx = -1; 
 		 // Hacky way to ensure that we get a noice date range 
@@ -110,7 +118,7 @@ public class AppointmentDAO extends GenericDAO {
 		// This might not work
 		String [] params = {new java.sql.Date(date.getTime()).toString(), d.getID()};
 		List<List<Object>> data = this.query(select, table, rmStr, params);
-		
+		//FactoryObjects<Appointment> factoryObj = new AppointmentObject();
 		return generateList(data);
 	}
 	

@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 import static java.nio.file.StandardCopyOption.*;
 
@@ -22,6 +23,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import backend.classes.Diagnosis;
+import backend.classes.PatientDiagnosis;
+import businesslayer.CShareObjects;
 
 public class BillingTable extends JPanel {
    private JTable table;
@@ -38,7 +43,20 @@ public class BillingTable extends JPanel {
       File file = new File("data.csv");
 
    }
-
+   /*
+    * String [] fields = {"PatientID"};
+      String [] params = {pat.getID()};
+      List<PatientDiagnosis> pds =  serv.getData(CShareObjects.PATIENTDIAGNOSIS,fields , params);
+      String text = "";
+      String [] fields2 = {"Name"};
+      String [] params2 = new String [1];
+      for (PatientDiagnosis z : pds) {
+    	  params2[0] = z.getName();
+    	  
+    	  List<Diagnosis> diag = serv.getData(CShareObjects.DIAGNOSIS,fields2 , params2);
+    	  text = text + diag.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";
+      }
+    */
    public void readData() {
       String workingDir = System.getProperty("user.dir");
       try (BufferedReader reader = new BufferedReader(
