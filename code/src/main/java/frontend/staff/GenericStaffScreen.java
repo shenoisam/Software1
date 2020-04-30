@@ -53,6 +53,11 @@ public class GenericStaffScreen implements IGenericStaff {
       // creating the buttonPanel with the Home and Logout buttons
       JPanel buttonPanel = new JPanel();
       JButton button = new JButton("Home");
+      button.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            r.displayFrameOpt(GenericEnum.HOME);
+         }
+      });
 
       buttonPanel.setLayout(new BorderLayout());
       buttonPanel.add(button, BorderLayout.WEST);
@@ -106,8 +111,7 @@ public class GenericStaffScreen implements IGenericStaff {
 
       // creating the button panel to organize the location of the buttons
       JPanel buttonPanel = new JPanel();
-      buttonPanel.setLayout(new GridLayout(3, 1));
-      
+      buttonPanel.setLayout(new GridLayout(3, 1));      
       JButton button = new JButton("Manage Billing");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {

@@ -37,10 +37,6 @@ public class ScheduleTable extends AbstractTableModel {
       return columnNames[c];
    }
 
-   public Class getColumnClass(int c) {
-      return getValueAt(0, c).getClass();
-   }
-
    public boolean isCellEditable(int row, int col) {
       return true;
    }
