@@ -36,7 +36,7 @@ public class PatientViewTest extends PatientGenericScreen {
 		
 		String [] fields = {"PatientID"};
 		String [] params = {((backend.classes.Patient)p.getUser()).getID()};
-		List<Object> tr = serv.getData(CShareObjects.TESTORDER, fields, params);
+		List<Object> tr = serv.getData(CShareObjects.TESTRESULT, fields, params);
 		
 		PatientTestTableModel ptModel = new PatientTestTableModel(tr);
 		JTable testTable = new JTable();
