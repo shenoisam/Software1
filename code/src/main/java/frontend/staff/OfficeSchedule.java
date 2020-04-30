@@ -116,8 +116,6 @@ public class OfficeSchedule extends JPanel{
 	    	headers.add("Dr. " + doc.getLastName());
 	    }
 	    
-	 
-	    colNames = headers.toArray(new String [0]);
 	    
 	    int numApptTimes = 0;
     	Vector<LocalDateTime> times = new Vector<LocalDateTime>();
