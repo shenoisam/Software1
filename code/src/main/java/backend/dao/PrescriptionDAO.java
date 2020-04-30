@@ -6,16 +6,18 @@ import java.util.List;
 
 import backend.classes.PatientDiagnosis;
 import backend.classes.Perscription;
+import backend.factory.FactoryObjects;
+import backend.factory.PerscriptionObject;
 
 public class PrescriptionDAO extends GenericDAO {
     public PrescriptionDAO(){
     	
     }
-	@Override
+	/*@Override
 	public void updateTable(String[] fields, String[] params) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
@@ -36,19 +38,18 @@ public class PrescriptionDAO extends GenericDAO {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
 		 List<List<Object>> stuff = this.query("*", "Prescription", rmStr, params);
-		 return generateList(stuff);
-		
+		 //PerscriptionObject pObj = new PerscriptionObject();
+		 FactoryObjects<Perscription> factoryObj = new PerscriptionObject();
+		 return super.generateList(stuff, factoryObj);
 	 }
 		
-	private List<Perscription> generateList(List<List<Object>> stuff) {
-		 List<Perscription> finalList = new ArrayList<Perscription>(); 
-		 List<String> headerRow = listToString(stuff.get(0));
-		 for(int i = 1; i < stuff.size(); i++) {
-			 //TODO: implement this; 
-			 finalList.add(new Perscription(headerRow, stuff.get(i)));
-		 }
-		 
-		 return finalList;
+
+	
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

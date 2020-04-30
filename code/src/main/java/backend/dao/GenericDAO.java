@@ -12,7 +12,8 @@ import java.sql.ResultSetMetaData;
 import backend.NotImplementedException;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
-import backend.classes.Notes;
+
+import backend.classes.*;
 import backend.factory.FactoryObjects;
 
 /**
@@ -91,6 +92,26 @@ public abstract class GenericDAO {
         return data; 
 		
 		
+	}
+	/*private List<Perscription> generateList(List<List<Object>> stuff) {
+		 List<Perscription> finalList = new ArrayList<Perscription>(); 
+		 List<String> headerRow = listToString(stuff.get(0));
+		 for(int i = 1; i < stuff.size(); i++) {
+			 //TODO: implement this; 
+			 finalList.add(new Perscription(headerRow, stuff.get(i)));
+		 }
+		 
+		 return finalList;
+	}*/
+	protected <T>List<T> generateList(List<List<Object>> stuff, FactoryObjects<T> object) {
+		 List<T> finalList = new ArrayList<T>(); 
+		 List<String> headerRow = listToString(stuff.get(0));
+		 for(int i = 1; i < stuff.size(); i++) {
+			 //TODO: implement this; 
+			 finalList.add(object.generateObject(headerRow, stuff.get(i)));
+		 }
+		 
+		 return finalList;
 	}
 
 	protected void update(String table, String [] fields,String rmStr,String [] params) throws SQLException {

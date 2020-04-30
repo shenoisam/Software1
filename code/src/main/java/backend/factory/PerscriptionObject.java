@@ -4,7 +4,7 @@ import java.util.List;
 
 import backend.classes.Perscription;
 
-public class PerscriptionObject implements FactoryObjects {
+public class PerscriptionObject implements FactoryObjects<Perscription> {
 
 	@Override
 	public Perscription generateObject(List<String> headerList, List<Object> list) {
