@@ -112,11 +112,18 @@ public class OfficeSchedule extends JPanel{
 	    String[] parameters = {};
 	    List<Doctor> docs = serv.getData(CShareObjects.DOCTOR, doctorFields, parameters);
 	    
-	    colNames = new String[docs.size()+1];
-	    colNames[0] = " ";
-	    for(int i = 1; i < docs.size()+1; i++) {
-	    	colNames[i] = "Dr " + docs.get(i-1).getLastName();
+	    
+	    List<String> headers = new ArrayList<String>(); 
+	    headers.add(" ");
+	    for(Doctor doc: docs) {
+	    	headers.add("Dr. " + doc.getLastName());
 	    }
+	    
+	 
+	    colNames = headers.toArray(new String [0]);
+	    
+	   
+	 
 	    
 	    data = new Object[docs.size()+1][];
 	    for(int i = 0; i < docs.size()+1; i++) {
