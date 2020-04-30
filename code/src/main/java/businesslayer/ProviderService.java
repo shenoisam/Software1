@@ -69,13 +69,9 @@ public class ProviderService {
 		
 	    PatientDAO d = (PatientDAO) daos.get(CShareObjects.PATIENT);
 			
-	    try {
-			return d.bigData(DoctorID, Diagnosis,PrescriptionName, 0,0);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+	    
+		return d.bigData(DoctorID, Diagnosis,PrescriptionName, 0,0);
+		
 	
     }
 	public void update(CShareObjects patient, String[] setFields, String[] sp, String[] fields, String[] params) {

@@ -210,7 +210,7 @@ public abstract class GenericDAO {
 		 }
 		 return rmStr;
 	}
-	protected List<List<Object>> bigdataquery(String query, String [] params, int num) throws SQLException {
+	protected List<List<Object>> bigdataquery(String query, String [] params, int num)  {
 		Connection c = pool.getConnection();
 		 List<List<Object>> data = new ArrayList<List<Object>>();
 		try {

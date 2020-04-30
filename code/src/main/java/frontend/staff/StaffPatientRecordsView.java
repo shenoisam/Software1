@@ -24,6 +24,7 @@ public class StaffPatientRecordsView extends GenericStaffScreen{
    StaffPatientRecordsView(StaffRunner r, List<Patient> data) {
       super(r);
       serv = new ProviderService();
+      this.data = data;
    }
    
    private void patientRecords (Container mainPane) {

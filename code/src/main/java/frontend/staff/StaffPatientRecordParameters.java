@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 
 import backend.classes.Diagnosis;
 import backend.classes.Doctor;
+import backend.classes.Patient;
 import backend.classes.Perscription;
 import businesslayer.CShareObjects;
 import frontend.GenericEnum;
@@ -111,8 +113,17 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       JButton submit = new JButton("Submit");
       submit.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-        	 
-             r.specialDisplay(serv.bigDataQuery(docs.get(allDoctors.getSelectedIndex() -1).getDoctorID() , allDiagnosis.getSelectedItem().toString(), allPrescrips.getSelectedItem().toString()));
+        	 int ndx = allDoctors.getSelectedIndex();
+        	 String id ="";
+        	 if (ndx > 0) {
+        		 id =  docs.get(ndx).getDoctorID();
+        	 }
+        	 List<Patient> data = serv.bigDataQuery( id , allDiagnosis.getSelectedItem().toString(), allPrescrips.getSelectedItem().toString());
+        	 if( data.size()< 1) {
+        	    data = new ArrayList<Patient>(); 
+        	 }
+       
+             r.specialDisplay(data);
          }
       });
 
