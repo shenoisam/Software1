@@ -12,6 +12,8 @@ import java.sql.ResultSetMetaData;
 import backend.NotImplementedException;
 import backend.SQLConnection.SQLConnectionPool;
 import backend.SQLConnection.SQLConnectionPoolFactory;
+import backend.classes.Notes;
+import backend.factory.FactoryObjects;
 
 /**
  * Defines a generic Database Access Object (DAO) specific for connecting to a table; 
@@ -35,6 +37,16 @@ public abstract class GenericDAO {
 	    query = query + rmStr + ";";
 
 		return query; 
+	}
+	protected <T> List<T> generateList(List<List<Object>> stuff, FactoryObjects f) {
+		 List<T> finalList = new ArrayList<T>(); 
+		 List<String> headerRow = listToString(stuff.get(0));
+		 for(int i = 1; i < stuff.size(); i++) {
+			 //TODO: implement this; 
+			 finalList.add(f.generateObject(headerRow, stuff.get(i)));
+		 }
+		 
+		 return finalList;
 	}
 	protected List<List<Object>> query(String select, String table, String rmStr,String [] params) {
 		Connection c = pool.getConnection();
