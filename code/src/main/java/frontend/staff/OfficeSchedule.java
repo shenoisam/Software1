@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-<<<<<<< HEAD
+
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-=======
->>>>>>> master
+
 import java.util.Vector;
 
 import javax.swing.JPanel;

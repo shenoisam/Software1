@@ -39,7 +39,7 @@ public abstract class GenericDAO {
 
 		return query; 
 	}
-	protected <T> List<T> generateList(List<List<Object>> stuff, FactoryObjects f) {
+	/*protected <T> List<T> generateList(List<List<Object>> stuff, FactoryObjects f) {
 		 List<T> finalList = new ArrayList<T>(); 
 		 List<String> headerRow = listToString(stuff.get(0));
 		 for(int i = 1; i < stuff.size(); i++) {
@@ -48,7 +48,7 @@ public abstract class GenericDAO {
 		 }
 		 
 		 return finalList;
-	}
+	}*/
 	protected List<List<Object>> query(String select, String table, String rmStr,String [] params) {
 		Connection c = pool.getConnection();
 		String query = generateQueryString(select,table,rmStr);
