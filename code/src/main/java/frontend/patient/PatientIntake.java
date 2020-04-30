@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -22,6 +24,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 public class PatientIntake extends PatientGenericScreen {
+	
 	public PatientIntake(JFrame frame, PatientRunner  p) {
 		super(frame, "Patient Intake",p);
 		setTopBar();
@@ -38,7 +41,7 @@ public class PatientIntake extends PatientGenericScreen {
 	    JLabel welcome = new JLabel("Welcome, ");
 	    namePanel.add(welcome);
 	    JLabel staffName = new JLabel();
-	    staffName.setText("<Patient Name>");
+	    staffName.setText(p.getUser().getFirstName() + " " + p.getUser().getLastName());
 	    namePanel.add(staffName);
 	      
 	    // creating and adding an invisible panel to push out the appointment times
@@ -49,7 +52,8 @@ public class PatientIntake extends PatientGenericScreen {
 	    JLabel nextAppointmentTitle  = new JLabel();
 	    nextAppointmentTitle.setText("Your Next Appointment is at: ");
 	    JLabel appointmentTime = new JLabel();
-	    appointmentTime.setText("MM-DD-YY HH:mm ");
+	    
+	    appointmentTime.setText(this.a.getAppointmentDate().toString());
 	      
 	    // adding the time and location to the name panel
 	    namePanel.add(nextAppointmentTitle);
@@ -68,8 +72,10 @@ public class PatientIntake extends PatientGenericScreen {
 		mainPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 		
 		JTextField firstName = new JTextField();
+		firstName.setText(p.getUser().getFirstName());
 		JTextField mInitial = new JTextField();
 		JTextField lastName = new JTextField();
+		lastName.setText(p.getUser().getLastName());
 		JTextField dob = new JTextField("mm/dd/yyyy");
 		JTextField phone = new JTextField();
 		JTextField address = new JTextField();
