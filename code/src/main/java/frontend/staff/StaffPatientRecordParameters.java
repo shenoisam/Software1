@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,6 +13,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import backend.classes.Diagnosis;
+import backend.classes.Doctor;
+import backend.classes.Perscription;
+import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
 public class StaffPatientRecordParameters extends GenericStaffScreen {
@@ -64,36 +69,35 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       JPanel diagnosis = new JPanel();
       diagnosis.setBorder(BorderFactory.createTitledBorder("Diagnosis"));
       JComboBox<String> allDiagnosis = new JComboBox<String>();
-      allDiagnosis.addItem("n/a");
-      /**
-       * TODO NEED TO ADD THE DIAGNOSIS FROM THE DATABASE
-       */
-      allDiagnosis.addItem("DUMMY");
-      allDiagnosis.addItem("DUMMY");
+      String [] fields = {};
+      String [] params = {};
+      List<Diagnosis> diags = serv.getData(CShareObjects.DIAGNOSIS,fields,params);
+     
+      for (Diagnosis d : diags) {
+    	  allDiagnosis.add(	new JLabel(d.getName()));
+      }
       diagnosis.add(allDiagnosis);
-
       // creating parameter #3
+      
+      List<Doctor> docs = serv.getData(CShareObjects.DOCTOR,fields,params);
       JPanel doctor = new JPanel();
       doctor.setBorder(BorderFactory.createTitledBorder("Doctor"));
       JComboBox<String> allDoctors = new JComboBox<String>();
-      allDoctors.addItem("n/a");
-      /**
-       * TODO NEED TO ADD THE DOCTORS FROM THE DATABASE
-       */
-      allDoctors.addItem("DUMMY");
-      allDoctors.addItem("DUMMY");
+      for (Doctor d : docs) {
+    	  allDiagnosis.add(	new JLabel(d.getFullName()));
+      }
       doctor.add(allDoctors);
 
       // creating parameter #4
       JPanel prescrip = new JPanel();
+     
+      List<Perscription > pres = serv.getData(CShareObjects.PRESCRIPTION,fields,params);
       prescrip.setBorder(BorderFactory.createTitledBorder("Prescriptions"));
       JComboBox<String> allPrescrips = new JComboBox<String>();
       allPrescrips.addItem("n/a");
-      /**
-       * TODO NEED TO ADD THE DOCTORS FROM THE DATABASE
-       */
-      allPrescrips.addItem("DUMMY");
-      allPrescrips.addItem("DUMMY");
+      for (Perscription d : pres) {
+    	  allDiagnosis.add(	new JLabel(d.getPerscriptionName()));
+      }
       prescrip.add(allPrescrips);
       
       main.add(titlePanel);
@@ -102,7 +106,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       main.add(doctor);
       main.add(prescrip);
       
-      JButton submit = new JButton("Sumbit");
+      JButton submit = new JButton("Submit");
       submit.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             r.displayFrameOpt(GenericEnum.VIEWRECORDS);
