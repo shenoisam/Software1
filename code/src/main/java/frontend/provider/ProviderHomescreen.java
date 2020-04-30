@@ -114,7 +114,12 @@ public class ProviderHomescreen extends ProviderFrontend {
       JLabel nextAppointmentTitle = new JLabel();
       nextAppointmentTitle.setText("Your Next Appointment is at: ");
       JLabel appointmentTime = new JLabel();
-      appointmentTime.setText(li.get(0).getAppointmentDate().toString());
+      if (li.size() > 0) {
+    	  appointmentTime.setText(li.get(0).getAppointmentDate().toString());
+      }else {
+    	  appointmentTime.setText("");
+      }
+     
 
       // adding the time and location to the name panel
       namePanel.add(nextAppointmentTitle);

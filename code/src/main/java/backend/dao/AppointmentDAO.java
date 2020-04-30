@@ -38,6 +38,7 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns a List of appointments representing the rows returned from the table 
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
+		 
 		 String rmStr = this.generateRmStr(fields, params);
 		 LocalDateTime d = null; 
 		 int ndx = -1; 
