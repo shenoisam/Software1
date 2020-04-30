@@ -48,6 +48,14 @@ public class Staff extends HealthCareProvider {
 		StaffID = staffID;
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	@Override 
 	public GenericRunner accept(EHRRunner r) {
 	   return new StaffRunner(r);

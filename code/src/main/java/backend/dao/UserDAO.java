@@ -60,8 +60,15 @@ public class UserDAO extends GenericDAO{
 
 	@Override
 	public <T> List<T> getData(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
+		
 		return null;
+	}
+
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
