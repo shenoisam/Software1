@@ -23,14 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
-<<<<<<< HEAD
-import backend.classes.Appointment;
-import businesslayer.CShareObjects;
-
-public class PatientIntake extends GenericScreen {
-=======
 public class PatientIntake extends PatientGenericScreen {
->>>>>>> master
+	
 	public PatientIntake(JFrame frame, PatientRunner  p) {
 		super(frame, "Patient Intake",p);
 		setTopBar();

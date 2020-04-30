@@ -20,15 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
-<<<<<<< HEAD
-import backend.classes.Appointment;
 import backend.classes.Diagnosis;
 import businesslayer.CShareObjects;
 
-public class PatientHome extends GenericScreen{
-=======
 public class PatientHome extends PatientGenericScreen{
->>>>>>> master
 
 	public PatientHome(JFrame f, PatientRunner p) {
 		super(f, "Patient Home", p);
@@ -80,7 +75,7 @@ public class PatientHome extends PatientGenericScreen{
 		
 		
 		String [] fields = {"Name"};
-		String [] params = {"Hashimoto's"};
+		String [] params = {"Breast Cancer"};
 		List<Diagnosis> li = serv.getData(CShareObjects.DIAGNOSIS, fields, params);
 		
 		
