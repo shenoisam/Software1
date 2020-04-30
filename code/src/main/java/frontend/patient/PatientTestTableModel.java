@@ -13,7 +13,7 @@ import frontend.provider.TestResult;
 public class PatientTestTableModel extends AbstractTableModel {
 	private List<TestResult> testOrders;
 	private String[] columnNames = {"Test Name", "Date of Test",
-									"Result", "Extra"};
+									"Result"};
 
 	public PatientTestTableModel(List<backend.classes.TestResult> tr){
 		testOrders = tr;
@@ -28,7 +28,7 @@ public class PatientTestTableModel extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 3;
 	}
 
 	@Override
@@ -40,9 +40,7 @@ public class PatientTestTableModel extends AbstractTableModel {
 		case 1:
 			return tOrder.getTestDate();
 		case 2:
-			return "fix later";
-		case 3:
-			return tOrder.getTestName();
+			return tOrder.getResult();
 		}
 		return null;
 	}

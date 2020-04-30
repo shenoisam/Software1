@@ -16,7 +16,7 @@ public class DoctorDAO extends GenericDAO{
 	public Doctor getDoctor(String id) {
 		Doctor s = null; 
 		String [] params = {id};
-	    List<List<Object>> data = this.query("*","Doctor, User "," Doctor.ID = User.ID AND User.ID = ?", params);
+	    List<List<Object>> data = this.query("*","Doctor, User "," WHERE Doctor.ID = User.ID AND User.ID = ?", params);
 		// If we are getting the doctor by id, there should only always be only 0..1 doctors
 	    // with this id
 	    assert(data.size() < MAX_SINGLET_DATA_SIZE);
