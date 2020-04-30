@@ -4,7 +4,7 @@ import java.util.List;
 
 import backend.classes.Test;
 
-public class TestObject implements FactoryObjects {
+public class TestObject implements FactoryObjects<Test> {
 
 	@Override
 	public Test generateObject(List<String> headerList, List<Object> list) {

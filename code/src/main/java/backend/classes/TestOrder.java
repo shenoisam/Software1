@@ -78,6 +78,11 @@ public class TestOrder {
 	public void setPatientID(String patientID) {
 		PatientID = patientID;
 	}
+
+	public Object getResult() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

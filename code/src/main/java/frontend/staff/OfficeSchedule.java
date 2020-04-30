@@ -5,11 +5,30 @@ import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import java.util.Vector;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import backend.classes.Appointment;
+import backend.classes.Doctor;
+import backend.dao.AppointmentDAO;
+import businesslayer.CShareObjects;
+import businesslayer.ProviderService;
 
 public class OfficeSchedule extends JPanel{
 	private JTable table;
@@ -25,12 +44,14 @@ public class OfficeSchedule extends JPanel{
 	}
 	
 	public void readData() {
-		BufferedReader reader;
+		/*BufferedReader reader;
+		
 		try {
+			
 			reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource("officeData.csv").getFile()));
 			String line = reader.readLine();
 			colNames = line.split(",");
-			//System.out.println(colNames[0] + " " + colNames[1] + " " + colNames[2] + " " + colNames[3] + " " + colNames[4] + " " + colNames[5]);
+			System.out.println(colNames[0] + " " + colNames[1] + " " + colNames[2] + " " + colNames[3]);// + " " + colNames[4]);// + " " //+ colNames[5]);
 			int numCols = colNames.length;
 			int row = 0;
 			Vector<Vector<OfficeScheduleData>> dataVec = new Vector<Vector<OfficeScheduleData>>();
@@ -75,7 +96,39 @@ public class OfficeSchedule extends JPanel{
 			System.out.println("Working Directory = " +
 		              System.getProperty("user.dir"));
 			System.exit(1);
-		}
+		}*/
+		
+		List<Appointment> li = new ArrayList();
+		LocalDateTime date = LocalDateTime.now();
+	    String [] params = {date.toString()};
+	    String [] fields = {"DateVal"};
+	    ProviderService serv = new ProviderService();
+	    li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
+	    
+	    String[] doctorFields = {};
+	    String[] parameters = {};
+	    List<Doctor> docs = serv.getData(CShareObjects.DOCTOR, doctorFields, parameters);
+	    
+	    
+	    List<String> headers = new ArrayList<String>(); 
+	    headers.add(" ");
+	    for(Doctor doc: docs) {
+	    	headers.add("Dr. " + doc.getLastName());
+	    }
+	    
+	 
+	    colNames = headers.toArray(new String [0]);
+	    
+	  
+	    
+	    data = new Object[docs.size()+1][];
+	    for(int i = 0; i < docs.size()+1; i++) {
+	    	data[i] = new String[3];
+	    	for(int j = 0; j < 3; j++) {
+	    		data[i][j] = "x";
+	    	}
+	    }
+		
 		table = new JTable(new ScheduleTable(data, colNames));
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		JScrollPane scroller = new JScrollPane(table);
