@@ -105,9 +105,6 @@ public void patientReferralPanel(Container pane) {
       reason.setBorder(BorderFactory.createTitledBorder("Reason For Referral"));
       reason.setLayout(new BoxLayout(reason, BoxLayout.Y_AXIS));
       
-      
-      
-      
       /***** Data retrieval ******/
       String [] fields2 = {"PatientID"};
       String [] params2 = {pat.getID()};
@@ -148,27 +145,25 @@ public void patientReferralPanel(Container pane) {
       // adding the referral panel to the passed in container
       pane.add(referralPanel);
    }
+
    private JCheckBox createDiagnosis(PatientDiagnosis d) {
 	   JCheckBox daignosis1 = new JCheckBox(d.getName());
 	   daignosis1.setSelected(false);
 	   return daignosis1;
    }
+   
    public void createAndShowGUI(JFrame frame) {
-  
-
-
       // creating the panes within the screen
       providerSideBar(frame.getContentPane(), pat);
       topBarPatientInformation(frame.getContentPane(), pat);
       patientReferralPanel(frame.getContentPane());
 
    }
+   
    public void createAndShowGUI(JFrame frame, Patient pat) {
 	   this.pat = pat; 
 	   createAndShowGUI(frame);
    }
-
-	   
 }
 
 
