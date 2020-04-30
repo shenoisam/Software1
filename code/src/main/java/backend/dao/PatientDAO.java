@@ -66,7 +66,7 @@ public class PatientDAO extends GenericDAO{
 	}
 	
 	public List<Patient> bigData(String DoctorID, String Diagnosis, String PrescriptionName, int start, int end) throws SQLException{
-		String query = "SELECT * FROM PATIENT";
+		String query = "SELECT * FROM PATIENT, USER WHERE Patient.ID = User.ID";
 		String di, dy, dz; 
 		boolean d, y, z;
 		d = y = z = false; 
@@ -86,41 +86,41 @@ public class PatientDAO extends GenericDAO{
 		int num = 0; 
 		String [] params = new String [3];
 		if(d && y && z) {
-			query = query + " WHERE " + di + " AND " + dy + " AND " + dz;
+			query = query  + di + " AND " + dy + " AND " + dz;
 			params[0] = DoctorID; 
 			params[1] = Diagnosis; 
 			params[2] = PrescriptionName; 
 			num = 3;
 		}else if (d && y) {
-			query = query + "WHERE " + di + " AND " + dy;
+			query = query  + di + " AND " + dy;
 			params[0] = DoctorID; 
 			params[1] = Diagnosis; 
 	
 			num = 2;
 		}else if(d && z) {
-			query = query + "WHERE " + di + " AND " + dz;
+			query = query  + di + " AND " + dz;
 			params[0] = DoctorID; 
 			 
 			params[1] = PrescriptionName; 
 			num = 2; 
 		}else if(d) {
-			query = query + "WHERE " + di;
+			query = query  + di;
 			params[0] = DoctorID; 
 		
 			num =1 ; 
 		}else if(y && z) {
-			query = query + "WHERE " + dy + " AND " + dz;
+			query = query  + dy + " AND " + dz;
 		 
 			params[0] = Diagnosis; 
 			params[1] = PrescriptionName; 
 			num =2;
 		}else if(y) {
-			query = query + "WHERE " + dy ;
+			query = query  + dy ;
  
 			params[0] = PrescriptionName; 
 			num =1; 
 		}else if (z){
-			query = query + "WHERE " + dz;
+			query = query  + dz;
 	 
 			params[0] = PrescriptionName; 
 			num =1;
