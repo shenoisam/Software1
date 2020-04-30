@@ -6,6 +6,8 @@ import java.util.List;
 
 import backend.classes.Perscription;
 import backend.classes.Test;
+import backend.factory.FactoryObjects;
+import backend.factory.TestObject;
 
 public class TestDAO extends GenericDAO {
     public TestDAO(){
@@ -30,7 +32,8 @@ public class TestDAO extends GenericDAO {
 		 }
 
 		 List<List<Object>> stuff = this.query("*", "Test", rmStr, params);
-		 return generateList(stuff);
+		 FactoryObjects<Test> factoryObj = new TestObject();
+		 return super.generateListObjects(stuff, factoryObj);
 		
 	 }
 		
