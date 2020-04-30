@@ -69,8 +69,8 @@ public class StaffDAO extends GenericDAO{
 	    	}
 	    }
 		    String rmStr = this.generateRmStr(fields, params);
-			rmStr = rmStr + "AND Doctor.ID = User.ID";
-			List<List<Object>> stuff = this.query("*", "Doctor, User", rmStr, params);
+			rmStr = rmStr + "AND Staff.ID = User.ID";
+			List<List<Object>> stuff = this.query("*", "Staff, User", rmStr, params);
 			List<Staff> d = new ArrayList<Staff>(); 
 			if (stuff.size() > MIN_DATA_SIZE) {
 				//Get the header row. The first row returned should be the header row

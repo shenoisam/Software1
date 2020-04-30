@@ -17,7 +17,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.FixMethodOrder;
 import java.util.Date;
 import java.util.List;
@@ -91,11 +93,47 @@ public class PatientDAOTest {
 		
 	}
 	
-	@Test 
-	public void getAllPatient() {
-		List<Patient> pats = null;
+	/*
+	 * 
+	 * Before each add in new appointments for testing
+	 * 
+	 */
+	@BeforeEach
+	public void clean() throws Exception {
 		
-		pats = p.getAllPatients();
+		String query = "INSERT INTO Diagnosis (Name, Description) VALUES ('GERD', 'Gastroesophageal reflux disease (GERD) is a long-term condition where acid from the stomach comes up into the esophagus' )";
+		PreparedStatement p = c.prepareStatement(query);
+		p.executeUpdate();
+		
+		query = "INSERT INTO Diagnosis (Name, Description) VALUES ('Breast Cancer', 'A cancer effecting the breast' )";
+		p = c.prepareStatement(query);
+		p.executeUpdate();
+		
+		
+	}
+	
+	
+	/*
+	 * 
+	 * After each remove all appointments associated with these tests 
+	 * 
+	 */
+	@AfterEach
+	public void tearDown1() throws Exception {
+		String query = "DELETE FROM Diagnosis";
+		PreparedStatement p = c.prepareStatement(query);
+		p.executeUpdate();
+		
+		
+	}
+	
+	@Test 
+	public void getDataTest() {
+		List<Patient> pats = null;
+		String[] fields = {"ID"};
+		String[] params = {"pooiqwiewqiqwiqpoqwoq"};
+		
+		pats = p.getData(fields, params);
 		
 		assert(pats != null);
 		
@@ -104,15 +142,6 @@ public class PatientDAOTest {
 		}
 	}
 	
-	@Test
-	public void findPatientByIDTest() {
-		Patient pat;
-		
-		pat = p.getPatient("one");
-		assert(pat != null);
-		//assert(pat.getFirstName().equals("Pat"));
-		//assert(pat.getEmail().equals("Pattest@test.com"));
-	}
 	
 	
 
