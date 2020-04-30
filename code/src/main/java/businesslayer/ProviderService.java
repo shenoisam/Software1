@@ -60,7 +60,24 @@ public class ProviderService {
 		}
 		return success; 
 	}
-
+    public List<Patient> bigDataQuery(String DoctorID, String Diagnosis, String PrescriptionName){
+    	if (!daos.containsKey(CShareObjects.PATIENT)) {
+			// Need to either build a factory or do something with this 
+			 daos.put(CShareObjects.PATIENT, getDAOfromClassName(CShareObjects.PATIENT));
+		}
+	    boolean success = true;
+		
+	    PatientDAO d = (PatientDAO) daos.get(CShareObjects.PATIENT);
+			
+	    try {
+			return d.bigData(DoctorID, Diagnosis,PrescriptionName, 0,0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	
+    }
 	public void update(CShareObjects patient, String[] setFields, String[] sp, String[] fields, String[] params) {
 		if (!daos.containsKey(patient)) {
 			// Need to either build a factory or do something with this 

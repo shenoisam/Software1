@@ -64,6 +64,70 @@ public class PatientDAO extends GenericDAO{
 		 
 		 return finalList;
 	}
+	
+	public List<Patient> bigData(String DoctorID, String Diagnosis, String PrescriptionName, int start, int end) throws SQLException{
+		String query = "SELECT * FROM PATIENT";
+		String di, dy, dz; 
+		boolean d, y, z;
+		d = y = z = false; 
+		di = dy = dz = "";
+		if (!DoctorID.contentEquals("")) {
+			di = "ID IN ( SELECT PATIENTID FROM NOTES WHERE DOCTORID = ?)";
+			d = true; 
+		}
+		if (!Diagnosis.contentEquals("")) {
+			dy = "ID IN ( SELECT PATIENTID FROM PatientDiagnosis WHERE Diagnosis = ?)";
+			y = true; 
+		}
+		if (!PrescriptionName.contentEquals("")) {
+			dz = "ID IN ( SELECT PatientID FROM Prescription WHERE Name = ?)";
+			z = true; 
+		}
+		int num = 0; 
+		String [] params = new String [3];
+		if(d && y && z) {
+			query = query + " WHERE " + di + " AND " + dy + " AND " + dz;
+			params[0] = DoctorID; 
+			params[1] = Diagnosis; 
+			params[2] = PrescriptionName; 
+			num = 3;
+		}else if (d && y) {
+			query = query + "WHERE " + di + " AND " + dy;
+			params[0] = DoctorID; 
+			params[1] = Diagnosis; 
+	
+			num = 2;
+		}else if(d && z) {
+			query = query + "WHERE " + di + " AND " + dz;
+			params[0] = DoctorID; 
+			 
+			params[1] = PrescriptionName; 
+			num = 2; 
+		}else if(d) {
+			query = query + "WHERE " + di;
+			params[0] = DoctorID; 
+		
+			num =1 ; 
+		}else if(y && z) {
+			query = query + "WHERE " + dy + " AND " + dz;
+		 
+			params[0] = Diagnosis; 
+			params[1] = PrescriptionName; 
+			num =2;
+		}else if(y) {
+			query = query + "WHERE " + dy ;
+ 
+			params[0] = PrescriptionName; 
+			num =1; 
+		}else if (z){
+			query = query + "WHERE " + dz;
+	 
+			params[0] = PrescriptionName; 
+			num =1;
+		}
+		
+	   return generateList(bigdataquery(query,params, num));
+	}
 
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
@@ -82,6 +146,7 @@ public class PatientDAO extends GenericDAO{
 	    		fields[i] = "Patient.ID";
 	    	}
 	    }
+	    
 	    String rmStr = this.generateRmStr(fields, params);
 	
 		rmStr = rmStr + "AND Patient.ID = User.ID";

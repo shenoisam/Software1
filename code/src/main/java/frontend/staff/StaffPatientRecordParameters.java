@@ -51,7 +51,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       titlePanel.add(new JLabel(""));
 
       // creating parameter #1
-      JPanel ageRange = new JPanel();
+      /*JPanel ageRange = new JPanel();
       ageRange.setBorder(BorderFactory.createTitledBorder("Age Range"));
       JComboBox<String> age = new JComboBox<String>();
       age.addItem("n/a");
@@ -63,7 +63,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       age.addItem("50 - 65");
       age.addItem("66 - 80");
       age.addItem("80+");
-      ageRange.add(age);
+      ageRange.add(age);*/
 
       // creating parameter #2
       JPanel diagnosis = new JPanel();
@@ -72,9 +72,10 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       String [] fields = {};
       String [] params = {};
       List<Diagnosis> diags = serv.getData(CShareObjects.DIAGNOSIS,fields,params);
-     
+       allDiagnosis.addItem("");
       for (Diagnosis d : diags) {
-    	  allDiagnosis.add(	new JLabel(d.getName()));
+    	  System.out.println(d.getName());
+    	  allDiagnosis.addItem(	d.getName());
       }
       diagnosis.add(allDiagnosis);
       // creating parameter #3
@@ -83,8 +84,9 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       JPanel doctor = new JPanel();
       doctor.setBorder(BorderFactory.createTitledBorder("Doctor"));
       JComboBox<String> allDoctors = new JComboBox<String>();
+      allDoctors.addItem("");
       for (Doctor d : docs) {
-    	  allDiagnosis.add(	new JLabel(d.getFullName()));
+    	  allDoctors.addItem(d.getFullName());
       }
       doctor.add(allDoctors);
 
@@ -94,14 +96,14 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       List<Perscription > pres = serv.getData(CShareObjects.PRESCRIPTION,fields,params);
       prescrip.setBorder(BorderFactory.createTitledBorder("Prescriptions"));
       JComboBox<String> allPrescrips = new JComboBox<String>();
-      allPrescrips.addItem("n/a");
+      allPrescrips.addItem("");
       for (Perscription d : pres) {
-    	  allDiagnosis.add(	new JLabel(d.getPerscriptionName()));
+    	  allPrescrips.addItem(d.getPerscriptionName());
       }
       prescrip.add(allPrescrips);
       
       main.add(titlePanel);
-      main.add(ageRange);
+     
       main.add(diagnosis);
       main.add(doctor);
       main.add(prescrip);
@@ -109,7 +111,8 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       JButton submit = new JButton("Submit");
       submit.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            r.displayFrameOpt(GenericEnum.VIEWRECORDS);
+        	 
+             r.specialDisplay(serv.bigDataQuery(docs.get(allDoctors.getSelectedIndex() -1).getDoctorID() , allDiagnosis.getSelectedItem().toString(), allPrescrips.getSelectedItem().toString()));
          }
       });
 

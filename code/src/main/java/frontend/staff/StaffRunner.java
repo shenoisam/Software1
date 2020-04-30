@@ -1,9 +1,11 @@
 package frontend.staff;
 
+import java.util.List;
+
 import frontend.EHRRunner;
 import frontend.GenericEnum;
 import frontend.GenericRunner;
-
+import backend.classes.*;
 public class StaffRunner extends GenericRunner {
    public StaffRunner(EHRRunner r) {
       super(r);
@@ -35,8 +37,7 @@ public class StaffRunner extends GenericRunner {
          frame.setTitle("Staff Patient Records Parameters");
          break;
       case VIEWRECORDS:
-         g = new StaffPatientRecordsView(this);
-         frame.setTitle("Staff View Patient Records");
+        
          break;
       default:
          g = new StaffHomescreen(this);
@@ -51,4 +52,18 @@ public class StaffRunner extends GenericRunner {
       frame.setVisible(true);
 
    }
+
+  public void specialDisplay(List<Patient> data) {
+	  frame.getContentPane().removeAll();
+      frame.revalidate();
+      frame.repaint();
+	 GenericStaffScreen g = new StaffPatientRecordsView(this, data);
+	 g.createAndShowGUI(this.frame);
+     frame.setTitle("Staff View Patient Records");
+     frame.pack();
+     frame.revalidate();
+     frame.repaint();
+     frame.setVisible(true);
+	
+  }
 }

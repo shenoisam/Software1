@@ -60,7 +60,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < params.length; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		   // System.out.println(p.toString());
+		    System.out.println(p.toString());
 		    
 		    ResultSet rs = p.executeQuery();
 		   
@@ -210,7 +210,48 @@ public abstract class GenericDAO {
 		 }
 		 return rmStr;
 	}
-	
+	protected List<List<Object>> bigdataquery(String query, String [] params, int num) throws SQLException {
+		Connection c = pool.getConnection();
+		 List<List<Object>> data = new ArrayList<List<Object>>();
+		try {
+			PreparedStatement p = c.prepareStatement(query);
+		
+		    for(int i =0; i < num; i++) {
+		    	p.setString(i +1, params[i]);
+		    }
+		    System.out.println(p.toString());
+		    
+		    ResultSet rs = p.executeQuery();
+		   
+		    
+		    List<Object> columnNames = new ArrayList<Object>();
+		    
+		    //Get the rows of teh table 
+		    ResultSetMetaData rsmd = rs.getMetaData();
+		    for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+		        columnNames.add(rsmd.getColumnLabel(i));
+		    }
+		    
+		    data.add(columnNames);
+		    while (rs.next()) {
+		    	List<Object> row = new ArrayList<Object>(); 
+		    	for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+		    	        row.add(rs.getObject(i));
+		    	}
+		    	data.add(row);
+		    }
+		    rs.close(); 
+		    p.close();
+		    pool.releaseConnection(c);
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return data; 
+		
+	}
 	//Should return a List<Backend.class>, not sure how to genericify that. 
 	//public abstract List<Object> getTableValues(String [] fields, String [] params);
 	

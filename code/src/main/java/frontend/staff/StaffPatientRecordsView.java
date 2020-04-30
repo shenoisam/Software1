@@ -3,6 +3,7 @@ package frontend.staff;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -12,14 +13,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
+import backend.classes.Patient;
 import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 import frontend.patient.TestTableModel;
 
 public class StaffPatientRecordsView extends GenericStaffScreen{
    protected static ProviderService serv;
-
-   StaffPatientRecordsView(StaffRunner r) {
+   protected static List<Patient> data; 
+   StaffPatientRecordsView(StaffRunner r, List<Patient> data) {
       super(r);
       serv = new ProviderService();
    }
@@ -32,7 +34,7 @@ public class StaffPatientRecordsView extends GenericStaffScreen{
       String [] fields = {"PatientID"};
       String[] params = {};
       
-      TestTableModel ptModel = new TestTableModel(serv.getData(CShareObjects.TESTRESULT, fields, params));
+      PatientTableModel ptModel = new PatientTableModel(data);
       JTable testTable = new JTable();
       testTable.setModel(ptModel);
       JScrollPane scrollPane = new JScrollPane(testTable);
