@@ -36,6 +36,8 @@ public class ProviderPrescribeView extends ProviderFrontend {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
    public ProviderPrescribeView(ProviderRunner p) {
       super(p);
    }
@@ -97,6 +99,12 @@ public class ProviderPrescribeView extends ProviderFrontend {
    }
 
 >>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
    public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
       // TODO Auto-generated constructor stub
       super(providerRunner);
@@ -104,8 +112,23 @@ public class ProviderPrescribeView extends ProviderFrontend {
    }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
