@@ -201,9 +201,10 @@ public class BillingTable extends JPanel {
 	  data = new Object[allBilling.size() + 1][];
 	  for (int i = 0; i < allBilling.size(); i++) {
 		  data[i] = new String[3];
-		  data[i][0] = allBilling.get(i).getPatientID();
+		  //LocalDateTime billSendDate = allBilling.get(i).getAppointmentDate();
+		  data[i][0] = "FIRST";//allBilling.get(i).getPatientID();
 		  data[i][1] = "LAST";
-		  data[i][2] = "DATE";
+		  data[i][2] = "DATE";//billSendDate;
 	  }
 	  
       table = new JTable(new ScheduleTable(data, colNames));
