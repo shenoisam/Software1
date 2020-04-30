@@ -36,7 +36,12 @@ public class AppointmentDAO extends GenericDAO {
 	 * @return returns a List of appointments representing the rows returned from the table 
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
-		 String rmStr = this.generateRmStr(fields, params);
+		 String rmStr;
+		 if(fields.length > 0 && params.length > 0) {
+			 rmStr = this.generateRmStr(fields, params);
+		 } else {
+			 rmStr = "";
+		 }
 		 LocalDateTime d = null; 
 		 int ndx = -1; 
 		 // Hacky way to ensure that we get a noice date range 
@@ -48,7 +53,9 @@ public class AppointmentDAO extends GenericDAO {
 				 ndx = i; 
 			 }
 		 }
-		 rmStr = rmStr + " ORDER BY DateVal";
+		 if(rmStr != null) {
+			 rmStr = rmStr + " ORDER BY DateVal";
+		 }
 		 
 		 List<List<Object>> stuff;
 		 if (searchByDate) {

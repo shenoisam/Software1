@@ -100,8 +100,8 @@ public class OfficeSchedule extends JPanel{
 		
 		List<Appointment> li = new ArrayList();
 		LocalDateTime date = LocalDateTime.now();
-	    String [] params = {date.toString()};
-	    String [] fields = {"DateVal"};
+	    String [] params = {};
+	    String [] fields = {};
 	    ProviderService serv = new ProviderService();
 	    li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
 	    
@@ -119,15 +119,43 @@ public class OfficeSchedule extends JPanel{
 	 
 	    colNames = headers.toArray(new String [0]);
 	    
-	  
-	    
-	    data = new Object[docs.size()+1][];
-	    for(int i = 0; i < docs.size()+1; i++) {
-	    	data[i] = new String[3];
-	    	for(int j = 0; j < 3; j++) {
-	    		data[i][j] = "x";
-	    	}
-	    }
+	    int numApptTimes = 0;
+    	Vector<LocalDateTime> times = new Vector<LocalDateTime>();
+    	
+    	for(Appointment a : li) {
+    		if(!times.contains(a.getAppointmentDate())) {
+    			numApptTimes++;
+    			times.add(a.getAppointmentDate());
+    		} 
+    	}
+    	
+    	for(Appointment a : li) {
+    		if(a.getPatientID() != null) {
+    			System.out.println(a.getPatientID());
+    		} else {
+    			System.out.println("null");
+    		}
+    	}
+    	
+    	System.out.println(numApptTimes + " " + times.size());
+    	
+    	data = new String[numApptTimes][headers.size()];
+    	for(int i = 0; i < numApptTimes; i++) {
+    		data[i][0] = times.get(i).toLocalTime().toString();
+    		if(headers.size() > 1) {
+    			for(int j = 1; j < headers.size(); j++) {
+    				data[i][j] = "<no patient>";
+    				for(int k = 0; k < li.size(); k++) {
+    					for(int l = 0; l < docs.size(); l++) {
+    						if(li.get(k).getDoctorID().equals(docs.get(l).getDoctorID())) {
+    							data[i][j] = "Patient " + li.get(k).getPatientID();
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
 		
 		table = new JTable(new ScheduleTable(data, colNames));
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
