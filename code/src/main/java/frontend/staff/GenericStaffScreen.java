@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -13,14 +14,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import backend.classes.Staff;
+import backend.dao.StaffDAO;
 import frontend.GenericEnum;
 
 public class GenericStaffScreen implements IGenericStaff {
-   private static StaffRunner r;
 
-   GenericStaffScreen(StaffRunner r) {
-      GenericStaffScreen.r = r;
-   }
+	static StaffRunner r; 
+	GenericStaffScreen(StaffRunner r){
+		this.r = r; 
+	}
    
    protected static void topBarMenuItems(JPanel buttonPanel) {
       JButton button = new JButton("Home");
