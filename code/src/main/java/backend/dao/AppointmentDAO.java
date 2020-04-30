@@ -50,6 +50,8 @@ public class AppointmentDAO extends GenericDAO {
 				 ndx = i; 
 			 }
 		 }
+		 rmStr = rmStr + " ORDER BY DateVal";
+		 
 		 List<List<Object>> stuff;
 		 if (searchByDate) {
 			 Date d1 = Date.from( d.atZone( ZoneId.systemDefault()).toInstant());

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TestResult {
 	private String TestName;
-	private LocalDateTime TestDate;
+	private Date TestDate;
 	private String PatientID;
 	private String Result;
 	
@@ -25,7 +25,7 @@ public class TestResult {
     			} else if(headerVal.contentEquals(tst)) {
     				TestName = (String)list.get(i);
     			} else if(headerVal.contentEquals(date)) {
-    				TestDate = ((java.sql.Timestamp)list.get(i)).toLocalDateTime();
+    				TestDate = (java.util.Date)list.get(i);
     			} else if(headerVal.contentEquals(patID)) {
     				PatientID = (String)list.get(i);
     			}
@@ -41,10 +41,10 @@ public class TestResult {
 	public void setTestName(String testName) {
 		TestName = testName;
 	}
-	public LocalDateTime getTestDate() {
+	public Date getTestDate() {
 		return TestDate;
 	}
-	public void setTestDate(LocalDateTime testDate) {
+	public void setTestDate(Date testDate) {
 		TestDate = testDate;
 	}
 	public String getPatientID() {
