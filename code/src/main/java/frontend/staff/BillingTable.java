@@ -42,7 +42,7 @@ public class BillingTable extends JPanel {
    public void readData() {
       String workingDir = System.getProperty("user.dir");
       try (BufferedReader reader = new BufferedReader(
-            new FileReader(workingDir + "/src/main/java/frontend/data.csv"))) {
+            new FileReader(workingDir + "/src/main/resources/data.csv"))) {
          String line = reader.readLine();
          colNames = line.split(",");
          // System.out.println(colNames[0] + " " + colNames[1] + " " + colNames[2] + " "
