@@ -4,16 +4,12 @@
  */
 package frontend.provider;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,7 +21,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
 import backend.classes.Patient;
-import frontend.GenericEnum;
 
 public class ProviderPatientVisit extends ProviderFrontend {
    private Patient pat;
