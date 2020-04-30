@@ -60,6 +60,22 @@ public class ProviderService {
 		}
 		return success; 
 	}
+
+	public void update(CShareObjects patient, String[] setFields, String[] sp, String[] fields, String[] params) {
+		if (!daos.containsKey(patient)) {
+			// Need to either build a factory or do something with this 
+			 daos.put(patient, getDAOfromClassName(patient));
+		}
+	    boolean success = true;
+		try {
+			daos.get(patient).updateTable(setFields, sp, fields, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			success = false; 
+		}
+		
+	}
 	
 
 }
