@@ -11,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class StaffScheduleScreen extends GenericStaffScreen {
 
    StaffScheduleScreen(StaffRunner r) {
@@ -103,7 +102,7 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       datesAndTimes.addItem("DUMMY");
 
       date.add(datesAndTimes);
-      
+
       makingApptPanel.add(date);
 
       JButton name = new JButton("Schedule");
