@@ -28,7 +28,7 @@ public class PatientViewTest extends PatientGenericScreen {
 	protected void setMainPanel() {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));		
 		
-		PatientTestTableModel ptModel = new PatientTestTableModel(new ArrayList<TestOrder>());
+		TestTableModel ptModel = new TestTableModel(new ArrayList<TestOrder>());
 		JTable testTable = new JTable();
 		testTable.setModel(ptModel);
 		JScrollPane scrollPane = new JScrollPane(testTable);

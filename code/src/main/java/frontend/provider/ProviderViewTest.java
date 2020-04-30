@@ -20,6 +20,9 @@ import backend.classes.TestOrder;
 import businesslayer.CShareObjects;
 import frontend.patient.PatientTestTableModel;
 import backend.classes.*;
+
+import frontend.patient.TestTableModel;
+
 public class ProviderViewTest extends ProviderFrontend {
    private Patient pat;
 
@@ -43,6 +46,8 @@ public class ProviderViewTest extends ProviderFrontend {
       /*****************************/
       
       PatientTestTableModel ptModel = new PatientTestTableModel(tr);
+      TestTableModel model = new TestTableModel(new ArrayList<TestOrder>());
+
       JTable testTable = new JTable();
       testTable.setModel(ptModel);
       JScrollPane scrollPane = new JScrollPane(testTable);

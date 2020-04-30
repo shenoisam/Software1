@@ -1,40 +1,56 @@
 package frontend.staff;
 
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.SpringLayout;
+
 
 public class StaffBillingScreen extends GenericStaffScreen {
 
-	StaffBillingScreen(StaffRunner r) {
-		super(r);
-		// TODO Auto-generated constructor stub
-	}
-    public void createAndShowGUI(Container pane) {
-    	
-    	// Can't figure this out yet...
-		/*JTextArea StaffName = new JTextArea();
-		StaffName.setText("Staff Name Here");
-		frame.getContentPane().add(StaffName, BorderLayout.CENTER);*/
+   StaffBillingScreen(StaffRunner r) {
+      super(r);
+      // TODO Auto-generated constructor stub
+   }
+   
+   private void billingPanel(Container mainPane) {
+      JPanel viewTest = new JPanel();
+      viewTest.setLayout(new BoxLayout(viewTest, BoxLayout.PAGE_AXIS));
 
-    	JPanel middleOfScreen = new JPanel();
-		middleOfScreen.setLayout(new BoxLayout(middleOfScreen, BoxLayout.Y_AXIS)); 
-		
-		TableWrap table = new TableWrap();
-		table.setOpaque(true);
-		
-		JTextArea aboutPatient = new JTextArea();
-		aboutPatient.setText("About the patient");
-		
-		middleOfScreen.add(table);
-		
-		middleOfScreen.add(aboutPatient);
-		
-		pane.add(middleOfScreen);
-		
-		buttonAdder(pane);
-    }
+      //TestTableModel model = new TestTableModel(new ArrayList<TestOrder>());
+      BillingTable bTable = new BillingTable();
+      //bTable.setModel(model);
+      JScrollPane scrollPane = new JScrollPane(bTable);
+      viewTest.add(scrollPane);
 
+      JLabel label = new JLabel("Billing Information");
+      label.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+      label.setOpaque(true);
+
+      JPanel pane = new JPanel();
+      pane.setOpaque(true);
+      SpringLayout sl = new SpringLayout();
+      sl.putConstraint(SpringLayout.WEST, label, 5, SpringLayout.WEST, pane);
+      sl.putConstraint(SpringLayout.EAST, label, -5, SpringLayout.EAST, pane);
+      sl.putConstraint(SpringLayout.NORTH, label, 5, SpringLayout.NORTH, pane);
+      pane.setLayout(sl);
+      pane.setPreferredSize(new Dimension(10, 100));
+      pane.add(label);
+
+      viewTest.add(pane);
+
+      mainPane.add(viewTest);
+   }
+
+   public void createAndShowGUI(Container pane) {
+      topBarStaff(pane);
+      staffSideBar(pane);
+      billingPanel(pane);
+   }
 }

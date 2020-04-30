@@ -56,7 +56,7 @@ public class StaffScheduleScreen extends GenericStaffScreen{
 		
 		pane.add(middleOfScreen);
 		
-		buttonAdder(pane);
+		staffSideBar(pane);
 	}
 
 }

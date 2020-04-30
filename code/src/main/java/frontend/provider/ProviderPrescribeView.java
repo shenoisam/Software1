@@ -27,30 +27,98 @@ import backend.classes.Patient;
 import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
-public class ProviderPrescribeView extends ProviderFrontend{
-   private Patient pat; 
+public class ProviderPrescribeView extends ProviderFrontend {
+   private Patient pat;
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
    public ProviderPrescribeView(ProviderRunner p) {
-		super(p);
-		
-		// TODO Auto-generated constructor stub
-	}
+      super(p);
+   }
 
-public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
-	// TODO Auto-generated constructor stub
-	super(providerRunner);
-	this.pat = pat; 
-}
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
 
-public void patientPrescribePanel(Container pane) {
+=======
+public class ProviderPrescribeView extends ProviderFrontend {
+   private Patient pat;
+
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+=======
+   public ProviderPrescribeView(ProviderRunner p) {
+      super(p);
+   }
+
+>>>>>>> Stashed changes
+   public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
+      // TODO Auto-generated constructor stub
+      super(providerRunner);
+      this.pat = pat;
+   }
+
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+   public void patientPrescribePanel(Container pane) {
       // setting up the prescribe panel
       JPanel prescribePanel = new JPanel();
       prescribePanel.setLayout(new GridLayout(3, 2));
 
       // creating the medication name search bar panel
       JPanel medicationNameSearch = new JPanel();
-      medicationNameSearch.setLayout(new GridLayout(3,3));
+      medicationNameSearch.setLayout(new GridLayout(3, 3));
       medicationNameSearch.setBorder(BorderFactory.createTitledBorder("Medication Name"));
-      
+
       // creating the list of medications
       ArrayList<String> medications = new ArrayList<String>();
       medications.add("Vicodin");
@@ -70,9 +138,9 @@ public void patientPrescribePanel(Container pane) {
       searchBarOnly.setLayout(new BorderLayout());
       searchBarOnly.add(combo, BorderLayout.PAGE_START);
       // adding the dropdown menu to the medication panel
-      
+
       medicationNameSearch.add(searchBarOnly);
-      
+
       medicationNameSearch.add(new JPanel());
       medicationNameSearch.add(new JPanel());
       medicationNameSearch.add(new JPanel());
@@ -89,12 +157,12 @@ public void patientPrescribePanel(Container pane) {
       // creating the dosage dropdown bar and adding it to the dosage panel
       JComboBox dosageCount = new JComboBox(new Object[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
       dosagePanel.add(dosageCount);
-      
+
       // creating the transition label and adding it to the dosage panel
       JLabel timesA = new JLabel();
       timesA.setText(" times a ");
       dosagePanel.add(timesA);
-      
+
       // creating the radio buttons for frequency
       JPanel frequencyGroup = new JPanel();
       frequencyGroup.setLayout(new BoxLayout(frequencyGroup, BoxLayout.Y_AXIS));
@@ -113,16 +181,16 @@ public void patientPrescribePanel(Container pane) {
 
       // adding the frequency to the dosage panel
       dosagePanel.add(frequencyGroup);
-      
+
       // creating the transition lable and adding it to the dosage panel
       JLabel forLabel = new JLabel();
       forLabel.setText(" for ");
       dosagePanel.add(forLabel);
-      
+
       // creating the length drop down bar and adding it to the dosage panel
       JComboBox lengthCount = new JComboBox(new Object[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
       dosagePanel.add(lengthCount);
-      
+
       // creating the radio buttons for the length
       JPanel lengthGroup = new JPanel();
       lengthGroup.setLayout(new BoxLayout(lengthGroup, BoxLayout.Y_AXIS));
@@ -135,22 +203,22 @@ public void patientPrescribePanel(Container pane) {
       lengthGroup.add(days);
       lengthGroup.add(weeks);
       lengthGroup.add(months);
-      
+
       // adding the length of the dosage to the dosage panel
       dosagePanel.add(lengthGroup);
 
       // adding the dosage to the precribe panel
       prescribePanel.add(dosagePanel);
-      
+
       // creating the panel for the notes to pharmacist and submit button
       JPanel notesAndSubmit = new JPanel();
       notesAndSubmit.setBorder(BorderFactory.createTitledBorder("Notes to Pharmacist"));
       notesAndSubmit.setLayout(new GridLayout(1, 2));
-      
+
       // creating the notes section
       JPanel notes = new JPanel();
       notes.setLayout(new GridLayout(1, 1));
-      
+
       // creating the notes entered text area
       JTextArea notesEntered = new JTextArea(4, 10);
       notesEntered.setText("");
@@ -159,14 +227,15 @@ public void patientPrescribePanel(Container pane) {
       JScrollPane scroll = new JScrollPane(notesEntered);
       scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
       notes.add(scroll);
-      
+
       // adding the notes to the notes and submit section
       notesAndSubmit.add(notes);
-      
+
       // creating a panel for the submit button
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new BoxLayout(submitPanel, BoxLayout.LINE_AXIS));
       submitPanel.add(new JPanel());
+<<<<<<< Updated upstream
       JButton but = new JButton("Print Prescription");
       JLabel lab = new JLabel();
       but.addActionListener(new ActionListener() { 
@@ -185,11 +254,14 @@ public void patientPrescribePanel(Container pane) {
       
       submitPanel.add(but);
       submitPanel.add(lab);
+=======
+      submitPanel.add(new JButton("Print Prescription"));
+>>>>>>> Stashed changes
       submitPanel.add(new JPanel());
-      
+
       // adding the submit panel to the notes and submit panel
       notesAndSubmit.add(submitPanel);
-      
+
       // adding notes and submit to the main prescribe panel
       prescribePanel.add(notesAndSubmit);
 
@@ -203,12 +275,11 @@ public void patientPrescribePanel(Container pane) {
       topBarPatientInformation(frame.getContentPane(), pat);
       patientPrescribePanel(frame.getContentPane());
 
-     
    }
-   public void createAndShowGUI(JFrame frame, Patient pat) {
-	     this.pat = pat; 
-	     createAndShowGUI(frame);
 
-	     
-	   }
+   public void createAndShowGUI(JFrame frame, Patient pat) {
+      this.pat = pat;
+      createAndShowGUI(frame);
+
+   }
 }

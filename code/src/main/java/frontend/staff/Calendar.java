@@ -155,6 +155,8 @@ public class Calendar {
    }
 
    static class tblCalendarRenderer extends DefaultTableCellRenderer {
+      private static final long serialVersionUID = 2660749466907368614L;
+
       public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused,
             int row, int column) {
          super.getTableCellRendererComponent(table, value, selected, focused, row, column);
