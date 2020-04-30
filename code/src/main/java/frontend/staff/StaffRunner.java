@@ -30,6 +30,10 @@ public class StaffRunner extends GenericRunner {
          g = new StaffScheduleScreen(this);
          frame.setTitle("Staff Scheduling Screen");
          break;
+      case PARAMS:
+         g = new StaffPatientRecordParameters(this);
+         frame.setTitle("Staff Patient Records Parameters");
+         break;
       case VIEWRECORDS:
          g = new StaffViewPatientRecords(this);
          frame.setTitle("Staff View Patient Records");

@@ -134,7 +134,7 @@ public class GenericStaffScreen implements IGenericStaff {
       button = new JButton("View Patient Records");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            r.displayFrameOpt(GenericEnum.VIEWRECORDS);
+            r.displayFrameOpt(GenericEnum.PARAMS);
          }
       });
       buttonPanel.add(button);
