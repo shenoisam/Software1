@@ -3,6 +3,7 @@ package frontend.staff;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -12,19 +13,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
+import backend.classes.Patient;
 import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 import frontend.patient.TestTableModel;
 
 public class StaffPatientRecordsView extends GenericStaffScreen{
    protected static ProviderService serv;
-
    StaffPatientRecordsView(StaffRunner r) {
       super(r);
       serv = new ProviderService();
+
    }
    
-   private void patientRecords (Container mainPane) {
+   private void patientRecords (Container mainPane, List<Patient> data) {
       JPanel records = new JPanel();
       records.setLayout(new BoxLayout(records, BoxLayout.PAGE_AXIS));
       
@@ -32,7 +34,7 @@ public class StaffPatientRecordsView extends GenericStaffScreen{
       String [] fields = {"PatientID"};
       String[] params = {};
       
-      TestTableModel ptModel = new TestTableModel(serv.getData(CShareObjects.TESTRESULT, fields, params));
+      PatientTableModel ptModel = new PatientTableModel(data);
       JTable testTable = new JTable();
       testTable.setModel(ptModel);
       JScrollPane scrollPane = new JScrollPane(testTable);
@@ -55,9 +57,9 @@ public class StaffPatientRecordsView extends GenericStaffScreen{
       mainPane.add(records);
    }
 
-   public void createAndShowGUI(Container pane) {
+   public void createAndShowGUI(Container pane, List<Patient> data) {
       topBarStaff(pane);
-      patientRecords(pane);
+      patientRecords(pane,data);
       staffSideBar(pane);
    }
 }
