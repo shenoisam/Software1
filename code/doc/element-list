@@ -1,1 +1,10 @@
+backend
+backend.classes
+backend.dao
+backend.factory
+backend.SQLConnection
+businesslayer
 frontend
+frontend.patient
+frontend.provider
+frontend.staff

@@ -34,16 +34,30 @@ public class GenericRunner {
    }
 
    /**
-    * provides a method
+    * provides a method to change screen. Overriden by the concrete runners 
+    * 
+    * 
+    * @param g A GenericEnum to show which screen to go to 
     * 
     */
-   public abstract void displayFrameOpt(GenericEnum g) {
+   public void displayFrameOpt(GenericEnum g) {
    }
 
+   /**
+    * returns the user that is logged in
+    * 
+    * @return the user that is logged in 
+    */
    public User getUser() {
       return user;
    }
 
+   
+   /**
+    * sets a user to be the logged in user
+    * 
+    * @param u the user that is logged in
+    */
    public void setUser(User u) {
       user = u;
    }

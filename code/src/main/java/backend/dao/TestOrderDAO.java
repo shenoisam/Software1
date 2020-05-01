@@ -10,11 +10,23 @@ import backend.classes.TestOrder;
 import backend.factory.FactoryObjects;
 import backend.factory.TestOrderObject;
 
+/**
+ * TestOrderDAO connects to the TestOrder table in the database
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class TestOrderDAO extends GenericDAO {
     public TestOrderDAO(){
     	
     }
 
+    /**
+     * Inserts into TestOrder
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		for(int i =0; i < fields.length;i++) {
@@ -26,10 +38,23 @@ public class TestOrderDAO extends GenericDAO {
 		this.insert("TestOrder", fields, params);
 		
 	}
+	
+	/**
+	 * deletes from the testorder table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("TestOrder", fields, params);
 	}
+	
+
+	/**
+	 * gets data from TestOrder
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	public List<TestOrder> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
@@ -51,6 +76,11 @@ public class TestOrderDAO extends GenericDAO {
 	}
 
 
+	/**
+	 * updates TestOrder
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {

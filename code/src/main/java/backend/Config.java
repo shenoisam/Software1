@@ -10,10 +10,21 @@ import java.util.*;
 import java.util.Properties;
  
 
-//Class adapted from: https://www.opencodez.com/java/read-config-file-in-java.htm
+/**
+ * generates a config object for database access 
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class Config
 {
    Properties configFile;
+   
+   /**
+    * constructor for the Config object
+    * 
+    */
    public Config()
    {
 	 configFile = new java.util.Properties();
@@ -40,6 +51,12 @@ public class Config
 	 }
    }
  
+   /**
+    * gets the property from the config file
+    * 
+    * @param key the key for the property
+    * @return the value of the property
+    */
    public String getProperty(String key)
    {
 	   	String value = this.configFile.getProperty(key);
