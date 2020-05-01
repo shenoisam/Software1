@@ -57,8 +57,9 @@ public class StaffRunner extends GenericRunner {
 	  frame.getContentPane().removeAll();
       frame.revalidate();
       frame.repaint();
-	 GenericStaffScreen g = new StaffPatientRecordsView(this, data);
-	 g.createAndShowGUI(this.frame);
+      StaffPatientRecordsView g = new StaffPatientRecordsView(this);
+     System.out.println("Data Size" + data.size());
+	 g.createAndShowGUI(this.frame,data);
      frame.setTitle("Staff View Patient Records");
      frame.pack();
      frame.revalidate();

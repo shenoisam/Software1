@@ -20,14 +20,13 @@ import frontend.patient.TestTableModel;
 
 public class StaffPatientRecordsView extends GenericStaffScreen{
    protected static ProviderService serv;
-   protected static List<Patient> data; 
-   StaffPatientRecordsView(StaffRunner r, List<Patient> data) {
+   StaffPatientRecordsView(StaffRunner r) {
       super(r);
       serv = new ProviderService();
-      this.data = data;
+
    }
    
-   private void patientRecords (Container mainPane) {
+   private void patientRecords (Container mainPane, List<Patient> data) {
       JPanel records = new JPanel();
       records.setLayout(new BoxLayout(records, BoxLayout.PAGE_AXIS));
       
@@ -58,9 +57,9 @@ public class StaffPatientRecordsView extends GenericStaffScreen{
       mainPane.add(records);
    }
 
-   public void createAndShowGUI(Container pane) {
+   public void createAndShowGUI(Container pane, List<Patient> data) {
       topBarStaff(pane);
-      patientRecords(pane);
+      patientRecords(pane,data);
       staffSideBar(pane);
    }
 }

@@ -12,10 +12,9 @@ public class PatientTableModel extends AbstractTableModel {
 	private String[] columnNames = {"FirstName", "Last Name", "Email"};
 
 	public PatientTableModel(List<Patient> list){
-		for(Patient p : pats) {
-			System.out.println(p.getFullName());
-		}
 		pats = list;
+		
+	
 	}
 	
 	@Override

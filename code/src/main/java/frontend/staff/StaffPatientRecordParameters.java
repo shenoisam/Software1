@@ -118,12 +118,12 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
         	 if (ndx > 0) {
         		 id =  docs.get(ndx).getDoctorID();
         	 }
-        	 List<Patient> data = serv.bigDataQuery( id , allDiagnosis.getSelectedItem().toString(), allPrescrips.getSelectedItem().toString());
-        	 if( data.size()< 1) {
-        	    data = new ArrayList<Patient>(); 
+        	 List<Patient> pat_Data = serv.bigDataQuery( id , allDiagnosis.getSelectedItem().toString(), allPrescrips.getSelectedItem().toString());
+        	 if( pat_Data.size()< 1) {
+        	    pat_Data = new ArrayList<Patient>(); 
         	 }
        
-             r.specialDisplay(data);
+             r.specialDisplay(pat_Data);
          }
       });
 
