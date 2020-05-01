@@ -10,11 +10,19 @@ import javax.swing.table.AbstractTableModel;
 import backend.classes.TestOrder;
 //import frontend.provider.TestResult;
 
+/**
+ * Displays the Patient Test Table
+ *
+ */
 public class PatientTestTableModel extends AbstractTableModel {
 	private List<TestResult> testOrders;
 	private String[] columnNames = {"Test Name", "Date of Test",
 									"Result"};
 
+	/**
+	 * 
+	 * @param tr
+	 */
 	public PatientTestTableModel(List<Object> tr){
 		testOrders = new ArrayList<TestResult>();
 		for(Object o : tr) {
@@ -36,6 +44,10 @@ public class PatientTestTableModel extends AbstractTableModel {
 		return 3;
 	}
 
+	/**
+	 * @param rowIndex
+	 * @param columnIndex
+	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		backend.classes.TestResult tOrder = testOrders.get(rowIndex);

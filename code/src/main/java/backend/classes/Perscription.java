@@ -3,6 +3,14 @@ package backend.classes;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 
+ * Prescription class that contains about a Prescription given to
+ * a Patient
+ * 
+ * @author mmorr
+ *
+ */
 public class Perscription {
 	private String PerscriptionName;
 	private double Dosage;
@@ -10,13 +18,13 @@ public class Perscription {
 	private String DoctorID;
 	private String PatientID;
 	
-	/*
+	/**
 	 * Prescription constructor
 	 * 
-	 * Parameters: receives list of header names and list of objects
-	 * 
-	 * list of objects contains all data fields for Prescription object
+	 * @param list of header names
+	 * @param  and list of objects that contains all data fields for Prescription object
 	 * (eg. Dosage, DoctorID, PatientID, etc.)
+	 * @return Prescription object
 	 * 
 	 * Constructor iterates through the object list, matching each element
 	 * with the corresponding header in the headerList, and fills the 

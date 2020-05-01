@@ -36,6 +36,10 @@ import backend.classes.PatientDiagnosis;
 import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 
+/**
+ * Displays Billing Table for the Staff view
+ *
+ */
 public class BillingTable extends JPanel {
    private JTable table;
    private Object[][] data = {};

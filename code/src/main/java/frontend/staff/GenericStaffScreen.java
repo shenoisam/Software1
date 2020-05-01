@@ -18,6 +18,10 @@ import backend.classes.Staff;
 import backend.dao.StaffDAO;
 import frontend.GenericEnum;
 
+/**
+ * Displays the GUI for the generic staff screen
+ *
+ */
 public class GenericStaffScreen implements IGenericStaff {
 
 	static StaffRunner r; 

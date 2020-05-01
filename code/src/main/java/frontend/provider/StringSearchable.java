@@ -18,6 +18,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import backend.classes.*;
+
+/**
+ * 
+ * StringSearchable class that implements the Searchable
+ * interface
+ *
+ */
 public class StringSearchable implements Searchable<String, String> {
 
    private List<String> terms = new ArrayList<String>();
@@ -37,7 +44,6 @@ public class StringSearchable implements Searchable<String, String> {
 
    }
    
-
 
    @Override
    public Collection<String> search(String value) {

@@ -2,6 +2,10 @@ package frontend.staff;
 
 import java.util.Date;
 
+/**
+ * Contains the data for the schedule
+ *
+ */
 public class ScheduleData {
 	private String FirstName;
 	private String LastName;

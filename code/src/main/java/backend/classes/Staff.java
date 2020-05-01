@@ -7,16 +7,22 @@ import frontend.GenericRunner;
 import frontend.provider.ProviderRunner;
 import frontend.staff.StaffRunner;
 
+/**
+ * 
+ * Staff class that contains information about a Staff user
+ * 
+ * @author mmorr
+ *
+ */
 public class Staff extends HealthCareProvider {
     private String StaffID;
     private String title; 
     
-    /*
+    /**
 	 * Staff constructor
 	 * 
-	 * Parameters: receives list of header names and list of objects
-	 * 
-	 * list of objects contains all data fields for Staff object
+	 * @param list of header names
+	 * @param list of objects that contains all data fields for Staff object
 	 * (eg. StaffID, title)
 	 * 
 	 * Constructor iterates through the object list, matching each element

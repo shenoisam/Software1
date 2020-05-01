@@ -4,6 +4,14 @@ import java.util.List;
 import frontend.EHRRunner;
 import frontend.GenericRunner;
 
+/**
+ * 
+ * User class that contains information
+ * about a user of CShare
+ * 
+ * @author mmorr
+ *
+ */
 public class User {
 
 	protected String FirstName; 
@@ -15,13 +23,13 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
+	/**
 	 * User constructor
 	 * 
-	 * Parameters: receives list of header names and list of objects
-	 * 
-	 * list of objects contains all data fields for User object
+	 * @param list of header names 
+	 * @param list of objects that contains all data fields for User object
 	 * (eg. FirstName, LastName, etc.)
+	 * @return User object
 	 * 
 	 * Constructor iterates through the object list, matching each element
 	 * with the corresponding header in the headerList, and fills the 

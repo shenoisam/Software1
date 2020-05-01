@@ -4,6 +4,10 @@ import frontend.EHRRunner;
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 
+/**
+ * Runs the EHR from the staff view
+ *
+ */
 public class StaffRunner extends GenericRunner {
    public StaffRunner(EHRRunner r) {
       super(r);

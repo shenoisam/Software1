@@ -19,6 +19,11 @@ import backend.classes.Patient;
 import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
+/**
+ * PrivderFrontend class that displays manages the provider's
+ * GUI
+ *
+ */
 public class ProviderFrontend implements IProviderGeneric {
    static ProviderRunner p;
    protected static ProviderService serv;
@@ -29,6 +34,11 @@ public class ProviderFrontend implements IProviderGeneric {
       // TODO Auto-generated constructor stub
    }
 
+   /**
+    * 
+    * @param pane
+    * @param pat
+    */
    protected static void providerSideBar(Container pane, Patient pat) {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
@@ -92,6 +102,10 @@ public class ProviderFrontend implements IProviderGeneric {
       pane.add(sidePanel, BorderLayout.WEST);
    }
 
+   /**
+    * 
+    * @param buttonPanel
+    */
    protected static void topBarMenuItems(JPanel buttonPanel) {
       JButton button = new JButton("Home");
 
@@ -117,6 +131,11 @@ public class ProviderFrontend implements IProviderGeneric {
 
    }
 
+   /**
+    * 
+    * @param pane
+    * @param p
+    */
    protected static void topBarPatientInformation(Container pane, Patient p) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();

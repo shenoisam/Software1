@@ -2,22 +2,26 @@ package backend.classes;
 
 import java.util.List;
 
-/*
- * -Name
--Type -Insurance Code
+/**
+ * 
+ * Test class that contains information about a Test sent to
+ * a Lab
+ * 
+ * @author mmorr
+ *
  */
 public class Test {
 	private String Name;
 	private String Type;
 	private String InsuranceCode;
 	
-	/*
+	/**
 	 * Test constructor
 	 * 
-	 * Parameters: receives list of header names and list of objects
-	 * 
-	 * list of objects contains all data fields for Test object
+	 * @param list of header names 
+	 * @param list of objects that contains all data fields for Test object
 	 * (eg. Name, Type, etc.)
+	 * @return Test object
 	 * 
 	 * Constructor iterates through the object list, matching each element
 	 * with the corresponding header in the headerList, and fills the 

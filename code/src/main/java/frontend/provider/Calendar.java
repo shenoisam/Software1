@@ -11,6 +11,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+/**
+ * 
+ * Calendar class that stores date information
+ * and displays it in a Swing GUI
+ *
+ */
 public class Calendar {
    static JLabel lblMonth;
    static JButton btnPrev, btnNext;
@@ -112,6 +118,11 @@ public class Calendar {
       return pnlCalendar;
    }
 
+   /**
+    * 
+    * @param month
+    * @param year
+    */
    public static void refreshCalendar(int month, int year) {
       // Variables
       String[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September",

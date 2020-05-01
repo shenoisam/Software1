@@ -30,6 +30,10 @@ import backend.dao.AppointmentDAO;
 import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 
+/**
+ * Displays the office schedule from the staff view
+ *
+ */
 public class OfficeSchedule extends JPanel{
 	private JTable table;
 	private Object[][] data = {};

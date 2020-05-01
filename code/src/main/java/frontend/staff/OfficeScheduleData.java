@@ -1,5 +1,9 @@
 package frontend.staff;
 
+/**
+ * Contains the data to fill the office schedule
+ *
+ */
 public class OfficeScheduleData {
 	private String time;
 	private String appointmentName;

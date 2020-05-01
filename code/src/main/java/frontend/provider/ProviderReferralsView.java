@@ -26,16 +26,31 @@ import javax.swing.ScrollPaneConstants;
 import backend.classes.*;
 import businesslayer.CShareObjects;
 
+/**
+ * ProviderReferralsView class that
+ * displays the provider's view as they refer a doctor
+ *
+ */
 public class ProviderReferralsView extends ProviderFrontend{
 	
    // Have a list of doctors that we can update based on specility 
    List<Doctor> docs; 
    private Patient pat; 
+   
+   /**
+    * 
+    * @param p
+    */
    public ProviderReferralsView(ProviderRunner p) {
 		super(p);
 		docs = new ArrayList<Doctor>(); 
 	}
-
+   
+/**
+ * 
+ * @param providerRunner
+ * @param pat
+ */
 public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
 	// TODO Auto-generated constructor stub
 	this(providerRunner);
@@ -43,6 +58,10 @@ public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
 	
 }
 
+/**
+ * 
+ * @param pane
+ */
 public void patientReferralPanel(Container pane) {
       // creating the main referral panel
       JPanel referralPanel = new JPanel();
@@ -146,12 +165,20 @@ public void patientReferralPanel(Container pane) {
       pane.add(referralPanel);
    }
 
+/**
+ * 
+ * @param d
+ * @return
+ */
    private JCheckBox createDiagnosis(PatientDiagnosis d) {
 	   JCheckBox daignosis1 = new JCheckBox(d.getName());
 	   daignosis1.setSelected(false);
 	   return daignosis1;
    }
    
+   /**
+    * @param frame
+    */
    public void createAndShowGUI(JFrame frame) {
       // creating the panes within the screen
       providerSideBar(frame.getContentPane(), pat);
@@ -160,6 +187,10 @@ public void patientReferralPanel(Container pane) {
 
    }
    
+   /**
+    * @param frame
+    * @param pat
+    */
    public void createAndShowGUI(JFrame frame, Patient pat) {
 	   this.pat = pat; 
 	   createAndShowGUI(frame);

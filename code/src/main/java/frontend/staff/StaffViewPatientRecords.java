@@ -2,6 +2,10 @@ package frontend.staff;
 
 import java.awt.Container;
 
+/**
+ * Displays the patient records from the staff view
+ *
+ */
 public class StaffViewPatientRecords extends GenericStaffScreen{
 
    StaffViewPatientRecords(StaffRunner r) {
