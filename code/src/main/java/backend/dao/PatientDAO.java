@@ -155,6 +155,10 @@ public class PatientDAO extends GenericDAO{
 		    rmStr = rmStr + "AND Patient.ID = User.ID";
 	    }
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6913b62373a94826ffc677353d3c626ac56f8e0b
 	    if(fields.length > 0) {
 	    	rmStr = this.generateRmStr(fields, params);
 	    	rmStr = rmStr + "AND Patient.ID = User.ID";

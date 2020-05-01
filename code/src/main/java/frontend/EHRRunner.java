@@ -78,6 +78,7 @@ public class EHRRunner {
 			public void run() {
 				EHRRunner r = new EHRRunner(); 
 				r.displayLogin();
+
 			
 			    
 			}
