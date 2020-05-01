@@ -1,6 +1,7 @@
 package frontend.provider;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -33,28 +34,11 @@ public class PatientLookUpScreen {
 		
 		pList.stream().forEach(p -> names.add(p.getFullName() + ": " + p.getID()));
 		
-		JTextField textField = new JTextField();
+		StringSearchable searchable = new StringSearchable(names);
+	    AutocompleteJComboBox comboBox = new AutocompleteJComboBox(searchable);
+	    
+	    comboBox.setPreferredSize(new Dimension(50, 100));
 		
-		JButton search = new JButton("Search");
-		
-		JComboBox comboBox = new JComboBox(names.toArray());
-		
-		search.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String text = textField.getText();
-				
-				comboBox.removeAllItems();
-				
-				names.stream().filter(p -> p.contains(text)).forEach(p -> comboBox.addItem(p));
-				
-			}
-			
-		});
-		
-		panel.add(textField);
-		panel.add(search);
 		panel.add(comboBox);
 		
 		
