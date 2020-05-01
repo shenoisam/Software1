@@ -9,13 +9,29 @@ import java.util.Map;
 
 import backend.classes.*;
 
+/**
+ * Defines a facade that allows for connection to the database via DAOs. Same interface is used for accessing all 
+ * DAOS
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class ProviderService {
     Map<CShareObjects, GenericDAO> daos; 
 	public ProviderService(){
 		daos = new HashMap<CShareObjects, GenericDAO>(); 
 	}
 	
-	// This is such as bad way to do this
+	/*
+	 * This function gets data from the database. 
+	 * 
+	 * @param classname A CShareObjects value describing which class needs to be queried against 
+	 * @param fields A String [] containing the fields used for the query 
+	 * @param params A String [] containing the parameter values used for the query
+	 * @return a List containing the data type needed 
+	 * 
+	 */
 	public <T> List<T> getData(CShareObjects classname, String [] fields, String [] params){
 		if (!daos.containsKey(classname)) {
 			// Need to either build a factory or do something with this 
@@ -25,7 +41,7 @@ public class ProviderService {
 		return daos.get(classname).getData(fields, params);
 	}
 	
-	//Convert this to a factory maybe... Hacky way for now
+
 	private GenericDAO getDAOfromClassName(CShareObjects classname) {
 		GenericDAO g = null; 
 		switch (classname) {
@@ -45,6 +61,15 @@ public class ProviderService {
 		return g; 
 	}
 	
+	/*
+	 * Inserts into the database
+	 * 
+	 * @param classname A CShareObject pointing to the class where data needs to be inserted 
+	 * @param fields A String [] containing the fields that data will be inserted to 
+	 * @param params A String [] containing the parameters that will be inserted into the database
+	 * @return a boolean value indicating the success or failure of the database insertion
+	 * 
+	 */
 	public boolean insert(CShareObjects classname, String [] fields, String [] params) {
 		if (!daos.containsKey(classname)) {
 			// Need to either build a factory or do something with this 
@@ -60,6 +85,16 @@ public class ProviderService {
 		}
 		return success; 
 	}
+	
+	/*
+	 * Special query designed for population health information
+	 * 
+	 * @param DoctorID the id of the doctor that we are looking for 
+	 * @param Diagnosis a Diagnosis that we will use for population health parameters
+	 * @param PrescriptionName a prescription name used for population health parameters
+	 * @return a list of patient data
+	 * 
+	 */
     public List<Patient> bigDataQuery(String DoctorID, String Diagnosis, String PrescriptionName){
     	if (!daos.containsKey(CShareObjects.PATIENT)) {
 			// Need to either build a factory or do something with this 
@@ -74,6 +109,17 @@ public class ProviderService {
 		
 	
     }
+    
+	/*
+	 * Updates the documents in the database (Pretty much only used for patient) 
+	 * 
+	 * @param classname A CShareObject pointing to the class where data needs to be updated
+	 * @param fields A String [] containing the fields that data will need to be matched for update 
+	 * @param params A String [] containing the parameters that will need to be matched for update
+	 * @param setFields a String [] containing the fields that will be changed to a value 
+	 * @param sp a String [] containing the values that the matched documents will be changed to
+	 * 
+	 */
 	public void update(CShareObjects patient, String[] setFields, String[] sp, String[] fields, String[] params) {
 		if (!daos.containsKey(patient)) {
 			// Need to either build a factory or do something with this 
