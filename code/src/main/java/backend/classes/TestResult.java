@@ -13,6 +13,19 @@ public class TestResult {
 	private String PatientID;
 	private String Result;
 	
+	/*
+	 * TestResult constructor
+	 * 
+	 * Parameters: receives list of header names and list of objects
+	 * 
+	 * list of objects contains all data fields for TestResult object
+	 * (eg. TestName, TestDate, etc.)
+	 * 
+	 * Constructor iterates through the object list, matching each element
+	 * with the corresponding header in the headerList, and fills the 
+	 * TestResult object with the correct data
+	 * 
+	 */
 	public TestResult(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String res = "Result", tst = "Test", date = "DateVal", patID = "PatientID";

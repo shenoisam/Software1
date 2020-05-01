@@ -11,6 +11,19 @@ public class Staff extends HealthCareProvider {
     private String StaffID;
     private String title; 
     
+    /*
+	 * Staff constructor
+	 * 
+	 * Parameters: receives list of header names and list of objects
+	 * 
+	 * list of objects contains all data fields for Staff object
+	 * (eg. StaffID, title)
+	 * 
+	 * Constructor iterates through the object list, matching each element
+	 * with the corresponding header in the headerList, and fills the 
+	 * Staff object with the correct data
+	 * 
+	 */
     public Staff(List<String> headerList, List<Object> list) {
     	super(headerList, list);
     	if(headerList != null) {
