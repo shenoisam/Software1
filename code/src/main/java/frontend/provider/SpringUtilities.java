@@ -1,6 +1,6 @@
 package frontend.provider;
 
-/*
+/**
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +29,10 @@ package frontend.provider;
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * @author https://docs.oracle.com/javase/tutorial/uiswing/examples/layout/SpringGridProject/src/layout/SpringUtilities.java
+ * @version 1.4
+ * 
  */ 
 
 
@@ -46,6 +50,8 @@ public class SpringUtilities {
     /**
      * A debugging utility that prints to stdout the component's
      * minimum, preferred, and maximum sizes.
+     * 
+     * @param c component to get sizes of
      */
     public static void printSizes(Component c) {
         System.out.println("minimumSize = " + c.getMinimumSize());
@@ -66,6 +72,7 @@ public class SpringUtilities {
      * @param initialY y location to start the grid at
      * @param xPad x padding between cells
      * @param yPad y padding between cells
+     * @param parent container that is being altered
      */
     public static void makeGrid(Container parent,
                                 int rows, int cols,
@@ -169,6 +176,7 @@ public class SpringUtilities {
      * @param initialY y location to start the grid at
      * @param xPad x padding between cells
      * @param yPad y padding between cells
+     * @param parent container that is being altered
      */
     public static void makeCompactGrid(Container parent,
                                        int rows, int cols,

@@ -10,6 +10,19 @@ public class Perscription {
 	private String DoctorID;
 	private String PatientID;
 	
+	/*
+	 * Prescription constructor
+	 * 
+	 * Parameters: receives list of header names and list of objects
+	 * 
+	 * list of objects contains all data fields for Prescription object
+	 * (eg. Dosage, DoctorID, PatientID, etc.)
+	 * 
+	 * Constructor iterates through the object list, matching each element
+	 * with the corresponding header in the headerList, and fills the 
+	 * Prescription object with the correct data
+	 *  
+	 */
 	public Perscription(List<String> headerList, List<Object> list) {
 		// Test that headerList has values
 		if(headerList != null) {

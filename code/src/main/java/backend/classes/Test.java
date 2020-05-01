@@ -11,6 +11,19 @@ public class Test {
 	private String Type;
 	private String InsuranceCode;
 	
+	/*
+	 * Test constructor
+	 * 
+	 * Parameters: receives list of header names and list of objects
+	 * 
+	 * list of objects contains all data fields for Test object
+	 * (eg. Name, Type, etc.)
+	 * 
+	 * Constructor iterates through the object list, matching each element
+	 * with the corresponding header in the headerList, and fills the 
+	 * Test object with the correct data
+	 * 
+	 */
 	public Test(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String nm = "Name", type = "Type", ic = "InsuranceCode";

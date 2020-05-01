@@ -114,6 +114,7 @@ public class OfficeSchedule extends JPanel{
 			System.exit(1);
 		}*/
 		
+		// Retrieves a list of all appointments
 		List<Appointment> li = new ArrayList();
 		LocalDateTime date = LocalDateTime.now();
 	    String [] params = {};
@@ -121,11 +122,12 @@ public class OfficeSchedule extends JPanel{
 	    ProviderService serv = new ProviderService();
 	    li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
 	    
+	    // Retrieves a list of all doctors
 	    String[] doctorFields = {};
 	    String[] parameters = {};
 	    List<Doctor> docs = serv.getData(CShareObjects.DOCTOR, doctorFields, parameters);
 	    
-	    
+	    // Uses doctor names to generate headers for table
 	    List<String> headers = new ArrayList<String>(); 
 	    headers.add(" ");
 	    for(Doctor doc: docs) {
@@ -136,6 +138,7 @@ public class OfficeSchedule extends JPanel{
 	    int numApptTimes = 0;
     	Vector<LocalDateTime> times = new Vector<LocalDateTime>();
     	
+    	// Finds every appointment time slot across all doctors
     	for(Appointment a : li) {
     		if(!times.contains(a.getAppointmentDate())) {
     			numApptTimes++;
@@ -143,14 +146,24 @@ public class OfficeSchedule extends JPanel{
     		} 
     	}
     	
+    	// fills data array with correct patient ID 
+    	// corresponding with appointment time and doctor
     	data = new String[numApptTimes][headers.size()];
+    	
+    	// Iterates through every time slot
     	for(int i = 0; i < numApptTimes; i++) {
+    		// Fills first column of table with appt times
     		data[i][0] = times.get(i).toLocalTime().toString();
     		if(headers.size() > 1) {
+    			// Iterates through every doctor name
     			for(int j = 1; j < headers.size(); j++) {
+    				// If the doctor has no appointment at scheduled time, put <nopatient>
     				data[i][j] = "<no patient>";
+    				// Iterates through every appointment
     				for(int k = 0; k < li.size(); k++) {
+    					// Iterates through every doctor
     					for(int l = 0; l < docs.size(); l++) {
+    						// Checks if doctor has appt with specific patientID at specific time
     						if(li.get(k).getDoctorID().equals(docs.get(l).getDoctorID())) {
     							data[i][j] = "Patient " + li.get(k).getPatientID();
     						}
