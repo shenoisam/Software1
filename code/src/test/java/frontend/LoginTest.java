@@ -7,6 +7,10 @@ import org.junit.Test;
 import frontend.patient.PatientRunner;
 import frontend.provider.ProviderRunner;
 import frontend.staff.StaffRunner;
+<<<<<<< HEAD
+=======
+import 
+>>>>>>> master
 
 public class LoginTest {
 
