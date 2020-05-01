@@ -51,6 +51,7 @@ public class PatientDAO extends GenericDAO{
 		String [] params = {};
 		return generateList(this.query(select, table, rmStr, params)); 
 	}
+	
 	private List<Patient> generateList(List<List<Object>> stuff){
 		 List<Patient> finalList = new ArrayList<Patient>(); 
 		 List<String> headerRow = new ArrayList<String>(); 
@@ -82,9 +83,14 @@ public class PatientDAO extends GenericDAO{
 	    		fields[i] = "Patient.ID";
 	    	}
 	    }
-	    String rmStr = this.generateRmStr(fields, params);
+	    String rmStr = "";
+	    if(fields.length > 0) {
+	    	rmStr = this.generateRmStr(fields, params);
+	    	rmStr = rmStr + "AND Patient.ID = User.ID";
+	    }else {
+	    	rmStr = " WHERE Patient.ID = User.ID";
+	    }
 	
-		rmStr = rmStr + "AND Patient.ID = User.ID";
 		List<List<Object>> stuff = this.query("*", "Patient, User", rmStr, params);
 		return generateList(stuff);
 	}

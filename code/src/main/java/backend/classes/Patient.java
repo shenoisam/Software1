@@ -10,7 +10,7 @@ import frontend.patient.PatientRunner;
 
 public class Patient extends User {
 	private Date DOB;
-	private char gender; 
+	private String gender; 
 	private String PatientID; 
 	private String race; 
 	private String ethnicity; 
@@ -54,7 +54,7 @@ public class Patient extends User {
 				// Otherwise if it represents the gender
 				else if(headerList.get(i).contentEquals(patientGender) && dataList.get(i) != null) {
 					// Initialize the gender from the data list
-					this.gender = (char)dataList.get(i);
+					this.gender = (String) dataList.get(i);
 				}
 				// Otherwise if it represents the ID
 				else if(headerList.get(i).contentEquals(identification)&& dataList.get(i) != null) {

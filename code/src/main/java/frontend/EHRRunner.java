@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 import frontend.patient.PatientRunner;
+import frontend.provider.PatientLookUpScreen;
 import frontend.provider.ProviderRunner;
 import frontend.staff.StaffRunner;
 
@@ -24,6 +25,8 @@ public class EHRRunner {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(1000,650));
 		frame.setBounds(240,100,1000,650);
+		
+		
 		
 		r = null; 
 	}
@@ -75,7 +78,16 @@ public class EHRRunner {
 			public void run() {
 				EHRRunner r = new EHRRunner(); 
 				r.displayLogin();
-			    
+				
+				
+				JFrame frame = new JFrame("Login");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setPreferredSize(new Dimension(1000,650));
+				frame.setBounds(240,100,1000,650);
+				PatientLookUpScreen ps = new PatientLookUpScreen();
+				
+				ps.setMainPanel(frame.getContentPane());
+				frame.setVisible(true);
 			    
 			}
 		});
