@@ -155,7 +155,7 @@ public class PatientDAO extends GenericDAO{
 		    rmStr = rmStr + "AND Patient.ID = User.ID";
 	    }
 		
-	    String rmStr = "";
+
 	    if(fields.length > 0) {
 	    	rmStr = this.generateRmStr(fields, params);
 	    	rmStr = rmStr + "AND Patient.ID = User.ID";

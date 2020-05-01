@@ -80,14 +80,7 @@ public class EHRRunner {
 				r.displayLogin();
 				
 				
-				JFrame frame = new JFrame("Login");
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setPreferredSize(new Dimension(1000,650));
-				frame.setBounds(240,100,1000,650);
-				PatientLookUpScreen ps = new PatientLookUpScreen();
-				
-				ps.setMainPanel(frame.getContentPane());
-				frame.setVisible(true);
+			
 			    
 			}
 		});
