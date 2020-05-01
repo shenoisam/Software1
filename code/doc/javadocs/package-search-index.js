@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"backend"},{"l":"cshare"},{"l":"frontend"},{"l":"frontend.patient"},{"l":"frontend.provider"},{"l":"frontend.staff"}]
