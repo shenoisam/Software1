@@ -13,12 +13,12 @@ This repo contains code for the CShare EHR. This EHR was developed in order to a
 ## Authors
 This program was created by the following authors
 
-John Harrison 
-Jordan Hurt
-Mattew Morris 
-Alejandro Navarro
-Sam Shenoi 
-Katie Wokoek 
+*John Harrison 
+*Jordan Hurt
+*Mattew Morris 
+*Alejandro Navarro
+*Sam Shenoi 
+*Katie Wokoek 
 
 # Website 
 A website containing documentation, presentations, hours worked, and other fun stuff can be found at https://shenoisam.github.io/Software1/
