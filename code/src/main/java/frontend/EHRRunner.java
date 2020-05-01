@@ -59,7 +59,7 @@ public class EHRRunner {
 	
 	
 	/**
-	 * validates the user based on username and password  
+	 * validates the user based on username and password. Redirects to landing screen upon successful login 
 	 * 
 	 * 
 	 * @param user the username of the user 
@@ -82,6 +82,15 @@ public class EHRRunner {
 		 }
 	}
 	
+
+	/**
+	 * validates the user based on username and password. Redirects to landing screen upon successful login 
+	 * 
+	 * 
+	 * @param user the username of the user 
+	 * @param pass the password of the user 
+	 *
+	 */
 	public void displayLogin() {
 		LoginScreen s = new LoginScreen(this); 
 		
@@ -89,6 +98,14 @@ public class EHRRunner {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+
+	/**
+	 * logs out the user 
+	 * 
+	 * 
+	 *
+	 */
 	public void logout() {
 		  //Wherever we are, remove it all 
 		  frame.getContentPane().removeAll();
@@ -98,6 +115,15 @@ public class EHRRunner {
 		  //Create a log in screen
 		  this.displayLogin(); 
 	}
+	
+	
+
+	/**
+	 * main driver function of the program
+	 * 
+	 * @param args the arguments passed in from the command line
+	 *
+	 */
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
