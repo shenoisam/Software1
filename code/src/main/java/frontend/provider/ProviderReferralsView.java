@@ -110,7 +110,7 @@ public class ProviderReferralsView extends ProviderFrontend {
       notes.add(scroll);
       
       /** THIS IS NOT RETURNING THE TEXT INFORMATION CURRENTLY**/
-      addedNotes = scroll.getInputContext().toString();
+      //addedNotes = scroll.getInputContext().toString();
 
       // adding the notes to the notes and submit section
       leftPanel.add(notes);
@@ -171,9 +171,6 @@ public class ProviderReferralsView extends ProviderFrontend {
             Writer writer = null;
 
             try {
-               // open the file
-               // write to the file
-               // close the file
                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(save), "utf-8"));
                
                writer.write(referalLetter());
@@ -186,8 +183,36 @@ public class ProviderReferralsView extends ProviderFrontend {
             } 
          }
       });
+      
+      // creating the new referral button
+      JButton request = new JButton("Request Information");
+
+      request.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+            JPanel parent = new JPanel();
+            int result = fileChooser.showSaveDialog(parent);
+            File save = fileChooser.getSelectedFile();
+            Writer writer = null;
+
+            try {
+               writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(save), "utf-8"));
+               
+               writer.write(requestletter());
+               
+               writer.close();
+               
+            } catch (IOException e1) {
+               // TODO Auto-generated catch block
+               e1.printStackTrace();
+            } 
+         }
+      });
+
 
       refferButtonPanel.add(refer);
+      refferButtonPanel.add(request);
       refferButtonPanel.add(new JPanel());
 
       // adding the submit panel to the notes and submit panel
@@ -234,10 +259,19 @@ public class ProviderReferralsView extends ProviderFrontend {
             + " require treatment. \n\nI look forward to working with you directly in the treatment of " + pat.getFirstName() + ". "
             + "Please do not hesitate to contact me directly with any questions "
             + "or comments you may have concerning their care. " + "\n\nSincerely,\n\tDr." + p.getUser().getFirstName() + " " + p.getUser().getLastName()
-            +"\n\nAdditional Notes: None" + addedNotes + "\n";
+            +"\n\nAdditional Notes:\n" + addedNotes + "\n";
 
       return letter;
 
+   }
+   
+   private String requestletter() {
+      String letter = "Dear Dr. " + selectedDoctor + ",\n\n" + pat.getFullName() + " (DOB: " + pat.getDOB() + "), "
+                  + pat.getGender() + ", has an upcoming appointment with our office. I am writing the request information about "
+                  + pat.getFirstName() + "\'s diagnosis of " + referralReason + ". Please send this information to "
+                  + "my office at your earliest convenience.\n\nSincerely,\n\tDr. " + p.getUser().getFirstName() + " " + p.getUser().getLastName()
+                  +"\n\nAdditional Notes:\n" + addedNotes + "\n";
+      return letter;
    }
 
 }
