@@ -34,22 +34,22 @@ public class ProviderReferralsView extends ProviderFrontend {
    List<Doctor> docs;
    private Patient pat;
    private Doctor selectedDoctor;
-   private String referralReason;
+   private String referralReason = "";
    private String addedNotes;
    private List<PatientDiagnosis> diags;
-   private List<JCheckBox> cb; 
+   private List<JCheckBox> cb;
 
    public ProviderReferralsView(ProviderRunner p) {
       super(p);
       docs = new ArrayList<Doctor>();
-      cb = new ArrayList<JCheckBox>(); 
+      cb = new ArrayList<JCheckBox>();
    }
 
    public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
       // TODO Auto-generated constructor stub
       this(providerRunner);
       this.pat = pat;
-      cb = new ArrayList<JCheckBox>(); 
+      cb = new ArrayList<JCheckBox>();
 
    }
 
@@ -79,16 +79,19 @@ public class ProviderReferralsView extends ProviderFrontend {
       String[] fields = {};
       String[] params = {};
       docs = serv.getData(CShareObjects.DOCTOR, fields, params);
-      
-      /**** THIS IS WHERE I AM HAVING A HARD TIME WITH SETTING THE DOCTOR NAME TO BE DISPLAYED IN THE LETTER*/
-      
+
+      /****
+       * THIS IS WHERE I AM HAVING A HARD TIME WITH SETTING THE DOCTOR NAME TO BE
+       * DISPLAYED IN THE LETTER
+       */
+
       JComboBox<String> providers = new JComboBox<String>();
       providers.addItem("");
-      
+
       for (Doctor d : docs) {
          providers.addItem("Dr. " + d.getFullName() + ", " + d.getDoctorTitle());
       }
-        
+
       providerPanel.add(providers);
 
       // adding the provider panel to the left panel
@@ -132,6 +135,7 @@ public class ProviderReferralsView extends ProviderFrontend {
          reason.add(createDiagnosis(pd));
       }
       JCheckBox other = new JCheckBox("Other (input reason below)");
+      cb.add(other);
       other.setSelected(false);
       reason.add(other);
       JTextArea otherReason = new JTextArea(1, 5);
@@ -157,26 +161,29 @@ public class ProviderReferralsView extends ProviderFrontend {
 
       refer.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-        	addedNotes = notesEntered.getText();
-        	
-        	for(JCheckBox b: cb) {
-        		if(b.isSelected()) {
-        			System.out.println(b.getText());
-        			referralReason  += b.getText() + ",";
-        		}
-        	}
-        	
-        	 // CURRENTLY NOT RETURNING ANYTHING
-            int ndx = providers.getSelectedIndex();
-          
-            if(ndx > 0) {
-          	  ndx = ndx -1;
-          	  selectedDoctor = docs.get(ndx);    
-            }else {
-          	  selectedDoctor = docs.get(0);
+            addedNotes = notesEntered.getText();
+
+            for (JCheckBox b : cb) {
+               if (b.isSelected()) {
+                  if (b.getText().equals("Other (input reason below)")) {
+                     referralReason += otherReason.getText() + ", ";
+                  } else {
+                     referralReason += b.getText() + ", ";
+                  }
+               }
             }
             
-        	
+            referralReason = referralReason.substring(0, referralReason.length() - 2);
+
+            int ndx = providers.getSelectedIndex();
+
+            if (ndx > 0) {
+               ndx = ndx - 1;
+               selectedDoctor = docs.get(ndx);
+            } else {
+               selectedDoctor = docs.get(0);
+            }
+
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
             JPanel parent = new JPanel();
@@ -186,18 +193,18 @@ public class ProviderReferralsView extends ProviderFrontend {
 
             try {
                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(save), "utf-8"));
-               
+
                writer.write(referalLetter());
-               
+
                writer.close();
-               
+
             } catch (IOException e1) {
                // TODO Auto-generated catch block
                e1.printStackTrace();
-            } 
+            }
          }
       });
-      
+
       // creating the new referral button
       JButton request = new JButton("Request Information");
 
@@ -212,18 +219,17 @@ public class ProviderReferralsView extends ProviderFrontend {
 
             try {
                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(save), "utf-8"));
-               
+
                writer.write(requestletter());
-               
+
                writer.close();
-               
+
             } catch (IOException e1) {
                // TODO Auto-generated catch block
                e1.printStackTrace();
-            } 
+            }
          }
       });
-
 
       refferButtonPanel.add(refer);
       refferButtonPanel.add(request);
@@ -260,32 +266,38 @@ public class ProviderReferralsView extends ProviderFrontend {
    }
 
    private String referalLetter() {
-	   System.out.println(p.getUser().getFirstName());
-      String letter = "Dear Dr. " + selectedDoctor.getFullName() + ",\n\n" + pat.getFullName()  + ", was recently evaluated in our office. " + pat.getFirstName()
-            + " currently has a diagnosis of ";
-      
+      System.out.println(p.getUser().getFirstName());
+      String letter = "Dear Dr. " + selectedDoctor.getFullName() + ",\n\n" + pat.getFullName()
+            + ", was recently evaluated in our office. " + pat.getFirstName() + " currently has a diagnosis of ";
+
       // this lists all of the diagnosises
       for (PatientDiagnosis d : diags) {
-         letter += d.getName() + " ";
+         letter += d.getName();
+         if (d == diags.get(diags.size() - 1)) {
+            letter += ".";
+         } else {
+            letter += ", ";
+         }
       }
-      
-      letter += "\n\nWe are referring this patient for "
-            + referralReason + ". We have discussed possible treatment options should " + pat.getFirstName()
-            + " require treatment. \n\nI look forward to working with you directly in the treatment of " + pat.getFirstName() + ". "
-            + "Please do not hesitate to contact me directly with any questions "
-            + "or comments you may have concerning their care. " + "\n\nSincerely,\n\tDr." + p.getUser().getFirstName() + " " + p.getUser().getLastName()
-            +"\n\nAdditional Notes:\n" + addedNotes + "\n";
+
+      letter += "\n\nWe are referring this patient for " + referralReason
+            + ". We have discussed possible treatment options should " + pat.getFirstName()
+            + " require treatment. \n\nI look forward to working with you directly in the treatment of "
+            + pat.getFirstName() + ". " + "Please do not hesitate to contact me directly with any questions "
+            + "or comments you may have concerning their care. " + "\n\nSincerely,\n\tDr." + p.getUser().getFirstName()
+            + " " + p.getUser().getLastName() + "\n\nAdditional Notes:\n" + addedNotes + "\n";
 
       return letter;
 
    }
-   
+
    private String requestletter() {
-      String letter = "Dear Dr. " + selectedDoctor + ",\n\n" + pat.getFullName() + " (DOB: " + pat.getDOB() + "), "
-                  + pat.getGender() + ", has an upcoming appointment with our office. I am writing the request information about "
-                  + pat.getFirstName() + "\'s diagnosis of " + referralReason + ". Please send this information to "
-                  + "my office at your earliest convenience.\n\nSincerely,\n\tDr. " + p.getUser().getFirstName() + " " + p.getUser().getLastName()
-                  +"\n\nAdditional Notes:\n" + addedNotes + "\n";
+      String letter = "Dear Dr. " + selectedDoctor.getFullName() + ",\n\n" + pat.getFullName() + " (DOB: "
+            + pat.getDOB() + "), " + pat.getGender()
+            + ", has an upcoming appointment with our office. I am writing the request information about "
+            + pat.getFirstName() + "\'s diagnosis of " + referralReason + ". Please send this information to "
+            + "my office at your earliest convenience.\n\nSincerely,\n\tDr. " + p.getUser().getFirstName() + " "
+            + p.getUser().getLastName() + "\n\nAdditional Notes:\n" + addedNotes + "\n";
       return letter;
    }
 
