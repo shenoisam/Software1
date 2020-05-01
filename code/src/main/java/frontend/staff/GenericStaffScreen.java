@@ -20,7 +20,13 @@ import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class GenericStaffScreen implements IGenericStaff {
-
+	/**
+	 * Defines a Staff Screen interface
+	 * 
+	 * 
+	 * @author katiewokoek
+	 *
+	 */
 	static StaffRunner r; 
 	static ProviderService serv; 
 	GenericStaffScreen(StaffRunner r){
@@ -28,7 +34,12 @@ public class GenericStaffScreen implements IGenericStaff {
 		this.r = r; 
 		
 	}
-   
+	/** 
+		 * gets appointments based solely on fields in Appointment table (Date, DoctorID, PatientID) 
+		 * does not perform any joining with the user table or any other table. 
+		 * 
+		 * @param buttonPanel the panel the menu items will be attached to
+		 */
    protected static void topBarMenuItems(JPanel buttonPanel) {
       JButton button = new JButton("Home");
 
@@ -52,6 +63,11 @@ public class GenericStaffScreen implements IGenericStaff {
       buttonPanel.add(button, BorderLayout.EAST);
    }
 
+   /** 
+	 * creates the top bar of the staff menu
+	 * 
+	 * @param pane the Container the top bar of staff will be attached to
+	 */
    protected static void topBarStaff(Container pane) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();
@@ -113,6 +129,11 @@ public class GenericStaffScreen implements IGenericStaff {
       pane.add(topPanel, BorderLayout.NORTH);
    }
 
+   /** 
+	 * creates side bar of staff view
+	 * 
+	 * @param pane the Container that the staff bar will be attached to
+	 */
    protected static void staffSideBar(Container pane) {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
@@ -161,7 +182,10 @@ public class GenericStaffScreen implements IGenericStaff {
       pane.add(sidePanel, BorderLayout.WEST);
 
    }
-
+   
+   /** 
+	 * implemented method, not used
+	 */
    public void createAndShowGUI(Container pane) {
       // TODO Auto-generated method stub
 

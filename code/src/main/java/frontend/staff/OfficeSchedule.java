@@ -31,18 +31,34 @@ import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 
 public class OfficeSchedule extends JPanel{
+	/**
+	 * Defines a Office Schedule class to create and display an office schedule
+	 * 
+	 * 
+	 * @author katiewokoek
+	 *
+	 */
 	private JTable table;
 	private Object[][] data = {};
 	String []colNames = {};
 	private static final long serialVersionUID = 1L;
 	private boolean DEBUG = false;
 	int rowCount = 0, colCount = 0;
+	
+	/**
+	 * initializes Office schedule object
+	 */
 	public OfficeSchedule () {
 		super(new BorderLayout());
 		readData();
 		
 	}
 	
+	/**
+	 * creates and displays office schedule
+	 * 
+	 * @see StaffHomescreen#showOfficeSchedule
+	 */
 	public void readData() {
 		/*BufferedReader reader;
 		
