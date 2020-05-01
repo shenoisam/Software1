@@ -16,13 +16,17 @@ import javax.swing.JPanel;
 
 import backend.classes.Staff;
 import backend.dao.StaffDAO;
+import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class GenericStaffScreen implements IGenericStaff {
 
 	static StaffRunner r; 
+	static ProviderService serv; 
 	GenericStaffScreen(StaffRunner r){
+		serv = new ProviderService();
 		this.r = r; 
+		
 	}
    
    protected static void topBarMenuItems(JPanel buttonPanel) {
@@ -137,7 +141,7 @@ public class GenericStaffScreen implements IGenericStaff {
       button = new JButton("View Patient Records");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            r.displayFrameOpt(GenericEnum.VIEWRECORDS);
+            r.displayFrameOpt(GenericEnum.PARAMS);
          }
       });
       buttonPanel.add(button);
