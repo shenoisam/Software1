@@ -20,5 +20,5 @@ This program was created by the following authors
 * Sam Shenoi 
 * Katie Wokoek 
 
-# Website 
+## Website 
 A website containing documentation, presentations, hours worked, and other fun stuff can be found at https://shenoisam.github.io/Software1/
