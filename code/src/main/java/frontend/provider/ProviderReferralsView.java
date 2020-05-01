@@ -1,9 +1,6 @@
 package frontend.provider;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +20,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -83,6 +77,8 @@ public class ProviderReferralsView extends ProviderFrontend {
       String[] params = {};
       docs = serv.getData(CShareObjects.DOCTOR, fields, params);
       
+      /**** THIS IS WHERE I AM HAVING A HARD TIME WITH SETTING THE DOCTOR NAME TO BE DISPLAYED IN THE LETTER*/
+      
       JComboBox<String> providers = new JComboBox<String>();
       providers.addItem("");
       
@@ -90,11 +86,11 @@ public class ProviderReferralsView extends ProviderFrontend {
          providers.addItem("Dr. " + d.getFullName() + ", " + d.getDoctorTitle());
       }
         
-      //JComboBox providers = new JComboBox(docs.toArray());
-      
       providerPanel.add(providers);
 
+      // CURRENTLY NOT RETURNING ANYTHING
       selectedDoctor = providers.getSelectedItem().toString();
+    
 
       // adding the provider panel to the left panel
       leftPanel.add(providerPanel);
@@ -113,7 +109,8 @@ public class ProviderReferralsView extends ProviderFrontend {
       scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
       notes.add(scroll);
       
-      //addedNotes = scroll.getInputContext().toString();
+      /** THIS IS NOT RETURNING THE TEXT INFORMATION CURRENTLY**/
+      addedNotes = scroll.getInputContext().toString();
 
       // adding the notes to the notes and submit section
       leftPanel.add(notes);
@@ -144,7 +141,9 @@ public class ProviderReferralsView extends ProviderFrontend {
       JTextArea otherReason = new JTextArea(1, 5);
       otherReason.setEditable(true);
       reason.add(otherReason);
-
+      
+      /** NEED TO ADD SELECTING THE REFERRAL REASON FROM THE VARIBLE LENGTH CHECK MARKBOXES ANE/PR THE OTHER BOX*/
+      
       // adding invisible panels for formating
       reason.add(new JPanel());
       reason.add(new JPanel());
@@ -225,8 +224,9 @@ public class ProviderReferralsView extends ProviderFrontend {
             + pat.getGender() + ", was recently evaluated in our office. " + pat.getFirstName()
             + " currently has a diagnosis of ";
       
+      // this lists all of the diagnosises
       for (PatientDiagnosis d : diags) {
-         letter += d.getName();
+         letter += d.getName() + " ";
       }
       
       letter += "\n\nWe are referring this patient for "
@@ -234,7 +234,7 @@ public class ProviderReferralsView extends ProviderFrontend {
             + " require treatment. \n\nI look forward to working with you directly in the treatment of " + pat.getFirstName() + ". "
             + "Please do not hesitate to contact me directly with any questions "
             + "or comments you may have concerning their care. " + "\n\nSincerely,\n\tDr." + p.getUser().getFirstName() + " " + p.getUser().getLastName()
-            +"\n\nAdditional Notes: " + addedNotes + "\n";
+            +"\n\nAdditional Notes: None" + addedNotes + "\n";
 
       return letter;
 
