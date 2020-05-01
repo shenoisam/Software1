@@ -125,7 +125,7 @@ public abstract class GenericDAO {
 	    for(int i = 0; i < params.length; i++) {
 	    	p.setString(i +1, params[i]);
 	    }
-	   
+	    System.out.println(p);
 	    p.executeUpdate(); 
 	
 		
@@ -219,7 +219,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < num; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		  
+		    System.out.println(p.toString());
 		    
 		    ResultSet rs = p.executeQuery();
 		   
