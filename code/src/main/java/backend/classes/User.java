@@ -15,6 +15,19 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	/*
+	 * User constructor
+	 * 
+	 * Parameters: receives list of header names and list of objects
+	 * 
+	 * list of objects contains all data fields for User object
+	 * (eg. FirstName, LastName, etc.)
+	 * 
+	 * Constructor iterates through the object list, matching each element
+	 * with the corresponding header in the headerList, and fills the 
+	 * User object with the correct data
+	 * 
+	 */
 	public User(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String fname = "FirstName", lname = "LastName", email = "Email", id = "ID";

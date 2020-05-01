@@ -11,6 +11,19 @@ public class TestOrder {
 	private String PatientID; 
 	private Test test;
 	
+	/*
+	 * TestOrder constructor
+	 * 
+	 * Parameters: receives list of header names and list of objects
+	 * 
+	 * list of objects contains all data fields for TestOrder object
+	 * (eg. TestName, PatientID, etc.)
+	 * 
+	 * Constructor iterates through the object list, matching each element
+	 * with the corresponding header in the headerList, and fills the 
+	 * TestOrder object with the correct data
+	 * 
+	 */
 	public TestOrder(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String docID = "DoctorID", tst = "Test", date = "DateVal", pID = "PatientID";
