@@ -92,8 +92,11 @@ public class GenericStaffScreen implements IGenericStaff {
       welcome.setFont(welcome.getFont().deriveFont(25f));
       labelPanel.add(welcome);
       JLabel staffName = new JLabel();
-      staffName.setText("Staff");
-      staffName.setFont(staffName.getFont().deriveFont(25f));
+      
+      System.out.println(r.getUser().getFirstName());
+      
+      staffName.setText(r.getUser().getFirstName());
+      staffName.setFont(staffName.getFont().deriveFont(23f));
       labelPanel.add(staffName);
       namePanel.add(labelPanel);
       
