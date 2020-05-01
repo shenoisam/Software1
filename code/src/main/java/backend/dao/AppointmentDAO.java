@@ -39,9 +39,10 @@ public class AppointmentDAO extends GenericDAO {
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
 		 String rmStr;
-		 if(fields.length > 0 && params.length > 0) {
+
+		 if(fields.length > 0 && params.length >0 ) {
 			 rmStr = this.generateRmStr(fields, params);
-		 } else {
+		 }else {
 			 rmStr = "";
 		 }
 		 

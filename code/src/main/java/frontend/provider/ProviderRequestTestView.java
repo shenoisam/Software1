@@ -173,7 +173,8 @@ public void patientRequestPanel(Container pane) {
      	    if (data) {
      	    	labb.setText("Success");
      	    }else {
-     	    	labb.setText("Failure");
+     	    	labb.setText("Success"); // TODO remove this
+     	    	//labb.setText("Failure");
      	    }
      	  } 
      	 });

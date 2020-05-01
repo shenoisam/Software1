@@ -16,13 +16,17 @@ import javax.swing.JPanel;
 
 import backend.classes.Staff;
 import backend.dao.StaffDAO;
+import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
 public class GenericStaffScreen implements IGenericStaff {
 
 	static StaffRunner r; 
+	static ProviderService serv; 
 	GenericStaffScreen(StaffRunner r){
+		serv = new ProviderService();
 		this.r = r; 
+		
 	}
    
    protected static void topBarMenuItems(JPanel buttonPanel) {
@@ -88,8 +92,11 @@ public class GenericStaffScreen implements IGenericStaff {
       welcome.setFont(welcome.getFont().deriveFont(25f));
       labelPanel.add(welcome);
       JLabel staffName = new JLabel();
-      staffName.setText("Staff");
-      staffName.setFont(staffName.getFont().deriveFont(25f));
+      
+      System.out.println(r.getUser().getFirstName());
+      
+      staffName.setText(r.getUser().getFirstName());
+      staffName.setFont(staffName.getFont().deriveFont(23f));
       labelPanel.add(staffName);
       namePanel.add(labelPanel);
       
@@ -134,7 +141,7 @@ public class GenericStaffScreen implements IGenericStaff {
       button = new JButton("View Patient Records");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            r.displayFrameOpt(GenericEnum.VIEWRECORDS);
+            r.displayFrameOpt(GenericEnum.PARAMS);
          }
       });
       buttonPanel.add(button);

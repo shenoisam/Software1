@@ -10,7 +10,7 @@ import frontend.patient.PatientRunner;
 
 public class Patient extends User {
 	private Date DOB;
-	private char gender; 
+	private String gender; 
 	private String PatientID; 
 	private String race; 
 	private String ethnicity; 
@@ -19,7 +19,7 @@ public class Patient extends User {
 	public Patient(String id) {
 		PatientID = id;
 	}
-	public Patient(String id, java.sql.Date date, char gen,String r, String eth, boolean m) {
+	public Patient(String id, java.sql.Date date, String gen,String r, String eth, boolean m) {
 		// TODO Auto-generated constructor stub
 		PatientID = id;
 		DOB = date; 
@@ -54,7 +54,7 @@ public class Patient extends User {
 				// Otherwise if it represents the gender
 				else if(headerList.get(i).contentEquals(patientGender) && dataList.get(i) != null) {
 					// Initialize the gender from the data list
-					this.gender = (char)dataList.get(i);
+					this.gender = (String)dataList.get(i);
 				}
 				// Otherwise if it represents the ID
 				else if(headerList.get(i).contentEquals(identification)&& dataList.get(i) != null) {
@@ -95,11 +95,11 @@ public class Patient extends User {
 		DOB = dOB;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

@@ -127,8 +127,6 @@ public class OfficeSchedule extends JPanel{
     		} 
     	}
     	
-    	System.out.println(numApptTimes + " " + times.size());
-    	
     	data = new String[numApptTimes][headers.size()];
     	for(int i = 0; i < numApptTimes; i++) {
     		data[i][0] = times.get(i).toLocalTime().toString();
