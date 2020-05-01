@@ -8,10 +8,29 @@ import backend.NotImplementedException;
 import backend.classes.Appointment;
 import backend.classes.Patient;
 
+/**
+ * PatientDAO accesses the patient table
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class PatientDAO extends GenericDAO{
+	
+	/**
+	 * default constructor for the PatientDAO
+	 * 
+	 */
 	public PatientDAO(){
 		super();
 	}
+	
+	/**
+	 * get a Patient by id
+	 * 
+	 * @param id the id of the patient 
+	 * @return the Patient
+	 */
 	public Patient getPatient(String id) {
 		Patient s = null; 
 		String [] params = {id};
@@ -28,6 +47,15 @@ public class PatientDAO extends GenericDAO{
 		return s; 		
 				
 	}
+	
+	/**
+	 * logs in a patient by email and password
+	 * 
+	 * 
+	 * @param email the email of the patient
+	 * @param password the password of the patient
+	 * @return the Patient
+	 */
 	public Patient getPatient(String email, String password) {
 		Patient s = null; 
 		String [] params = {email, password};
@@ -42,6 +70,12 @@ public class PatientDAO extends GenericDAO{
 		return s; 		
 				
 	}
+	
+	/**
+	 * gets all patients from database
+	 * 
+	 * @return a list of all patients
+	 */
 	public List<Patient> getAllPatients() {
 		String select = "Firstname, LastName, DOB, Gender, Race, Ethnicity, MaritalStatus";
 		String table = "Patient, User";
@@ -66,6 +100,17 @@ public class PatientDAO extends GenericDAO{
 		 return finalList;
 	}
 	
+	/**
+	 * defines a custom query to find patients meeting poplulation health parameters
+	 * 
+	 * 
+	 * @param DoctorID DoctorID population health parameter
+	 * @param Diagnosis Diagnosis population health parameter
+	 * @param PrescriptionName Prescription population health parameter
+	 * @param start starting age range
+	 * @param end ending age range 
+	 * @return
+	 */
 	public List<Patient> bigData(String DoctorID, String Diagnosis, String PrescriptionName, int start, int end) {
 		String query = "SELECT * FROM PATIENT, USER WHERE Patient.ID = User.ID ";
 		String di, dy, dz; 
@@ -131,16 +176,33 @@ public class PatientDAO extends GenericDAO{
 	
 	}
 
+	 /**
+     * Inserts into patient
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		this.insert("Patient", fields, params);
 		
 	}
+	
+	/**
+	 * deletes from the patient table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {
 		this.delete("Patient", fields, params);
 		
 	}
+	
+	/**
+	 * gets data from Patient
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	@Override
 	public List<Patient> getData(String[] fields, String[] params) {
 		String rmStr = "";
@@ -170,6 +232,11 @@ public class PatientDAO extends GenericDAO{
 		return generateList(stuff);
 	}
 
+	/**
+	 * updates Patient
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {
