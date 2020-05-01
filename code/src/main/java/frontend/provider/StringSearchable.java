@@ -1,5 +1,5 @@
 /**
- * This interface was taken from https://www.algosome.com/articles/java-jcombobox-autocomplete.html
+ * This interface was taken from  https://www.algosome.com/articles/java-jcombobox-autocomplete.html
  * 
  * Implementation of the Searchable interface that searches a List of String
  * objects.
@@ -9,7 +9,7 @@
  * 
  * for very large Lists.
  * 
- * @author G. Cope
+ * @author G. Cope, https://www.algosome.com/articles/java-jcombobox-autocomplete.html
  *
  */
 package frontend.provider;
@@ -34,6 +34,7 @@ public class StringSearchable implements Searchable<String, String> {
     * Constructs a new object based upon the parameter terms.
     * 
     * @param testNames The inventory of terms to search.
+    * @param <T> templeted type
     * 
     */
    public <T> StringSearchable(List<T> testNames) {
@@ -44,7 +45,6 @@ public class StringSearchable implements Searchable<String, String> {
 
    }
    
-
    @Override
    public Collection<String> search(String value) {
       List<String> founds = new ArrayList<String>();

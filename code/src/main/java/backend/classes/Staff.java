@@ -21,6 +21,7 @@ public class Staff extends HealthCareProvider {
     /**
 	 * Staff constructor
 	 * 
+<<<<<<< HEAD
 	 * @param list of header names
 	 * @param list of objects that contains all data fields for Staff object
 	 * (eg. StaffID, title)
@@ -29,6 +30,7 @@ public class Staff extends HealthCareProvider {
 	 * with the corresponding header in the headerList, and fills the 
 	 * Staff object with the correct data
 	 * 
+	 * author: matthew morris
 	 */
     public Staff(List<String> headerList, List<Object> list) {
     	super(headerList, list);

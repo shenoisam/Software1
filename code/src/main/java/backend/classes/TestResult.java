@@ -33,6 +33,7 @@ public class TestResult {
 	 * with the corresponding header in the headerList, and fills the 
 	 * TestResult object with the correct data
 	 * 
+	 * author: matthew morris
 	 */
 	public TestResult(List<String> headerList, List<Object> list) {
 		if(headerList != null) {

@@ -17,7 +17,7 @@ public class Perscription {
 	private int NumberRefills;
 	private String DoctorID;
 	private String PatientID;
-	
+
 	/**
 	 * Prescription constructor
 	 * 
@@ -26,10 +26,7 @@ public class Perscription {
 	 * (eg. Dosage, DoctorID, PatientID, etc.)
 	 * @return Prescription object
 	 * 
-	 * Constructor iterates through the object list, matching each element
-	 * with the corresponding header in the headerList, and fills the 
-	 * Prescription object with the correct data
-	 *  
+	 * author: matthew morris
 	 */
 	public Perscription(List<String> headerList, List<Object> list) {
 		// Test that headerList has values

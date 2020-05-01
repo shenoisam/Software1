@@ -35,6 +35,7 @@ public class User {
 	 * with the corresponding header in the headerList, and fills the 
 	 * User object with the correct data
 	 * 
+	 * author: matthew morris
 	 */
 	public User(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
