@@ -11,6 +11,16 @@ public class TestOrder {
 	private String PatientID; 
 	private Test test;
 	
+	/*
+	 * TestOrder constructor
+	 * 
+	 * Receives a List of strings (the list of column headers)
+	 * and a List of Objects (the data in the table)
+	 * 
+	 * Generates a TestOrder object containing data from the Object list
+	 * 
+	 * author: matthew morris
+	 */
 	public TestOrder(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String docID = "DoctorID", tst = "Test", date = "DateVal", pID = "PatientID";

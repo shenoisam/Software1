@@ -13,6 +13,16 @@ public class TestResult {
 	private String PatientID;
 	private String Result;
 	
+	/*
+	 * TestResult constructor
+	 * 
+	 * Receives a List of strings (the list of column headers)
+	 * and a List of Objects (the data in the table)
+	 * 
+	 * Generates a TestResult object containing data from the Object list
+	 * 
+	 * author: matthew morris
+	 */
 	public TestResult(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String res = "Result", tst = "Test", date = "DateVal", patID = "PatientID";

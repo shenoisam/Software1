@@ -98,6 +98,7 @@ public class OfficeSchedule extends JPanel{
 			System.exit(1);
 		}*/
 		
+		// Retrieves all Appointment Objects from the database
 		List<Appointment> li = new ArrayList();
 		LocalDateTime date = LocalDateTime.now();
 	    String [] params = {};
@@ -105,18 +106,19 @@ public class OfficeSchedule extends JPanel{
 	    ProviderService serv = new ProviderService();
 	    li = serv.getData(CShareObjects.APPOINTMENT, fields, params);
 	    
+	    // Retrieves all Doctor Objects from the database
 	    String[] doctorFields = {};
 	    String[] parameters = {};
 	    List<Doctor> docs = serv.getData(CShareObjects.DOCTOR, doctorFields, parameters);
 	    
-	    
+	    // Generates list of headers for table using doctor names
 	    List<String> headers = new ArrayList<String>(); 
 	    headers.add(" ");
 	    for(Doctor doc: docs) {
 	    	headers.add("Dr. " + doc.getLastName());
 	    }
 	    
-	    
+	    // Finds total number of appointment time slots
 	    int numApptTimes = 0;
     	Vector<LocalDateTime> times = new Vector<LocalDateTime>();
     	
@@ -127,6 +129,7 @@ public class OfficeSchedule extends JPanel{
     		} 
     	}
     	
+    	// Fills data array with correct appointment/patient data
     	data = new String[numApptTimes][headers.size()];
     	for(int i = 0; i < numApptTimes; i++) {
     		data[i][0] = times.get(i).toLocalTime().toString();

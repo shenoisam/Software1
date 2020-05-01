@@ -11,6 +11,16 @@ public class Staff extends HealthCareProvider {
     private String StaffID;
     private String title; 
     
+    /*
+	 * Staff constructor
+	 * 
+	 * Receives a List of strings (the list of column headers)
+	 * and a List of Objects (the data in the table)
+	 * 
+	 * Generates a Staff object containing data from the Object list
+	 * 
+	 * author: matthew morris
+	 */
     public Staff(List<String> headerList, List<Object> list) {
     	super(headerList, list);
     	if(headerList != null) {

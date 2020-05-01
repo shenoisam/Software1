@@ -10,6 +10,17 @@ public class Perscription {
 	private String DoctorID;
 	private String PatientID;
 	
+	
+	/*
+	 * Prescription constructor
+	 * 
+	 * Receives a List of strings (the list of column headers)
+	 * and a List of Objects (the data in the table)
+	 * 
+	 * Generates a Prescription object containing data from the Object list
+	 * 
+	 * author: matthew morris
+	 */
 	public Perscription(List<String> headerList, List<Object> list) {
 		// Test that headerList has values
 		if(headerList != null) {

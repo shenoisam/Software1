@@ -15,6 +15,16 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	/*
+	 * User constructor
+	 * 
+	 * Receives a List of strings (the list of column headers)
+	 * and a List of Objects (the data in the table)
+	 * 
+	 * Generates a User object containing data from the Object list
+	 * 
+	 * author: matthew morris
+	 */
 	public User(List<String> headerList, List<Object> list) {
 		if(headerList != null) {
     		final String fname = "FirstName", lname = "LastName", email = "Email", id = "ID";
