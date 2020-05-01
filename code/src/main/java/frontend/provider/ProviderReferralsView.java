@@ -33,20 +33,23 @@ public class ProviderReferralsView extends ProviderFrontend {
    // Have a list of doctors that we can update based on specility
    List<Doctor> docs;
    private Patient pat;
-   private String selectedDoctor;
+   private Doctor selectedDoctor;
    private String referralReason;
    private String addedNotes;
    private List<PatientDiagnosis> diags;
+   private List<JCheckBox> cb; 
 
    public ProviderReferralsView(ProviderRunner p) {
       super(p);
       docs = new ArrayList<Doctor>();
+      cb = new ArrayList<JCheckBox>(); 
    }
 
    public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
       // TODO Auto-generated constructor stub
       this(providerRunner);
       this.pat = pat;
+      cb = new ArrayList<JCheckBox>(); 
 
    }
 
@@ -88,10 +91,6 @@ public class ProviderReferralsView extends ProviderFrontend {
         
       providerPanel.add(providers);
 
-      // CURRENTLY NOT RETURNING ANYTHING
-      selectedDoctor = providers.getSelectedItem().toString();
-    
-
       // adding the provider panel to the left panel
       leftPanel.add(providerPanel);
 
@@ -108,9 +107,6 @@ public class ProviderReferralsView extends ProviderFrontend {
       JScrollPane scroll = new JScrollPane(notesEntered);
       scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
       notes.add(scroll);
-      
-      /** THIS IS NOT RETURNING THE TEXT INFORMATION CURRENTLY**/
-      //addedNotes = scroll.getInputContext().toString();
 
       // adding the notes to the notes and submit section
       leftPanel.add(notes);
@@ -141,9 +137,7 @@ public class ProviderReferralsView extends ProviderFrontend {
       JTextArea otherReason = new JTextArea(1, 5);
       otherReason.setEditable(true);
       reason.add(otherReason);
-      
-      /** NEED TO ADD SELECTING THE REFERRAL REASON FROM THE VARIBLE LENGTH CHECK MARKBOXES ANE/PR THE OTHER BOX*/
-      
+
       // adding invisible panels for formating
       reason.add(new JPanel());
       reason.add(new JPanel());
@@ -163,6 +157,26 @@ public class ProviderReferralsView extends ProviderFrontend {
 
       refer.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
+        	addedNotes = notesEntered.getText();
+        	
+        	for(JCheckBox b: cb) {
+        		if(b.isSelected()) {
+        			System.out.println(b.getText());
+        			referralReason  += b.getText() + ",";
+        		}
+        	}
+        	
+        	 // CURRENTLY NOT RETURNING ANYTHING
+            int ndx = providers.getSelectedIndex();
+          
+            if(ndx > 0) {
+          	  ndx = ndx -1;
+          	  selectedDoctor = docs.get(ndx);    
+            }else {
+          	  selectedDoctor = docs.get(0);
+            }
+            
+        	
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
             JPanel parent = new JPanel();
@@ -227,6 +241,7 @@ public class ProviderReferralsView extends ProviderFrontend {
 
    private JCheckBox createDiagnosis(PatientDiagnosis d) {
       JCheckBox daignosis1 = new JCheckBox(d.getName());
+      cb.add(daignosis1);
       daignosis1.setSelected(false);
       return daignosis1;
    }
@@ -245,8 +260,8 @@ public class ProviderReferralsView extends ProviderFrontend {
    }
 
    private String referalLetter() {
-      String letter = "Dear Dr. " + selectedDoctor + ",\n\n" + pat.getFullName() + " (DOB: " + pat.getDOB() + "), "
-            + pat.getGender() + ", was recently evaluated in our office. " + pat.getFirstName()
+	   System.out.println(p.getUser().getFirstName());
+      String letter = "Dear Dr. " + selectedDoctor.getFullName() + ",\n\n" + pat.getFullName()  + ", was recently evaluated in our office. " + pat.getFirstName()
             + " currently has a diagnosis of ";
       
       // this lists all of the diagnosises

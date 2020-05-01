@@ -1,0 +1,12 @@
+Dear Dr. Sam Shenoi,
+
+Test2 User2 (DOB: null), null, was recently evaluated in our office. Test2 currently has a diagnosis of Breast Cancer 
+
+We are referring this patient for nullBreast Cancer,Breast Cancer,. We have discussed possible treatment options should Test2 require treatment. 
+
+I look forward to working with you directly in the treatment of Test2. Please do not hesitate to contact me directly with any questions or comments you may have concerning their care. 
+
+Sincerely,
+	Dr.Sam Shenoi
+
+Additional Notes: None
