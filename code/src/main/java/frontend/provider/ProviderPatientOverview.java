@@ -11,9 +11,11 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileReader;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -66,14 +68,17 @@ public class ProviderPatientOverview extends ProviderFrontend{
       patientInformation.setLayout(new GridLayout(3, 2));
 
       // creating the image panel
-      JPanel imagePanel = new JPanel();
+      /*JPanel imagePanel = new JPanel();
       imagePanel.setBackground(Color.white);
 
       // getting the image from a file
       BufferedImage image = null;
       String workingDir = System.getProperty("user.dir");
       try {
-         image = ImageIO.read(new File(workingDir + "/src/main/resources/person-icon.jpg"));
+    	 
+         image = ImageIO.read( new File(ProviderPatientOverview.class.getClassLoader().getResource("person-icon.jpg").getFile()));
+        		 
+        		 
       } catch (Exception e) {
          e.printStackTrace();
          System.exit(1);
@@ -92,7 +97,7 @@ public class ProviderPatientOverview extends ProviderFrontend{
 
       // adding the panel to the patient information panel
       patientInformation.add(imagePanel);
-
+   */
       // creating the diagnosis section
       JPanel diagnosis = new JPanel();
       diagnosis.setBorder(BorderFactory.createTitledBorder("Diagnosis"));

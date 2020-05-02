@@ -31,12 +31,12 @@ public class SQLConnectionPool implements ConnectionPool {
      */
 	public static SQLConnectionPool create() {
 		 // Get all of the database configuration information from the config object
-		 Config m = new Config(); 
+		 //Config m = new Config(); 
 		 List<Connection> p  = new ArrayList<Connection>();
 		 
 		 //Create 10 connections to start off with
 		 for (int i =0; i < INITIAL_POOL_SIZE; i++) {
-			 p.add(SQLConnection.setUpConnection(m.getProperty("db"),m.getProperty("host"),Integer.parseInt(m.getProperty("port")),"CShareAdmin","password"));
+			 p.add(SQLConnection.setUpConnection("CShare","localhost",3306,"CShareAdmin","password"));
 		 } 
 		 return new SQLConnectionPool(p);
 		 

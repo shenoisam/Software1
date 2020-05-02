@@ -38,6 +38,11 @@ public class ProviderReferralsView extends ProviderFrontend{
    // Have a list of doctors that we can update based on specility 
    List<Doctor> docs; 
    private Patient pat; 
+   List<PatientDiagnosis> diags; 
+   List<JCheckBox> cb;
+   String addedNotes; 
+   String referralReason;
+   Doctor selectedDoctor;
    
    /**
     * 
@@ -268,14 +273,11 @@ public void patientReferralPanel(Container pane) {
       daignosis1.setSelected(false);
       return daignosis1;
    }
-<<<<<<< HEAD
+
    
    /**
     * @param frame
     */
-=======
-
->>>>>>> master
    public void createAndShowGUI(JFrame frame) {
       // creating the panes within the screen
       providerSideBar(frame.getContentPane(), pat);
@@ -283,15 +285,11 @@ public void patientReferralPanel(Container pane) {
       patientReferralPanel(frame.getContentPane());
 
    }
-<<<<<<< HEAD
-   
+
    /**
     * @param frame
     * @param pat
     */
-=======
-
->>>>>>> master
    public void createAndShowGUI(JFrame frame, Patient pat) {
       this.pat = pat;
       createAndShowGUI(frame);
