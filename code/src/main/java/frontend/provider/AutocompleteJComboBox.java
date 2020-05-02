@@ -46,16 +46,13 @@ public class AutocompleteJComboBox extends JComboBox {
          final JTextComponent tc = (JTextComponent) c;
          tc.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
             public void changedUpdate(DocumentEvent arg0) {
             }
 
-            @Override
             public void insertUpdate(DocumentEvent arg0) {
                update();
             }
 
-            @Override
             public void removeUpdate(DocumentEvent arg0) {
                update();
             }
@@ -66,8 +63,7 @@ public class AutocompleteJComboBox extends JComboBox {
                // and JComboBox will result in an IllegalStateException due to editing
                // the component when it is locked.
                SwingUtilities.invokeLater(new Runnable() {
-            	   @Override
-                  public void run() {
+            	   public void run() {
 
                      ArrayList<String> founds = new ArrayList<String>(searchable.search(tc.getText()));
                      Set<String> foundSet = new HashSet<String>();
@@ -105,14 +101,12 @@ public class AutocompleteJComboBox extends JComboBox {
          // popup.
 
          tc.addFocusListener(new FocusListener() {
-        	 @Override
-            public void focusGained(FocusEvent arg0) {
+        	 public void focusGained(FocusEvent arg0) {
                if (tc.getText().length() > 0) {
                   setPopupVisible(true);
                }
             }
-        	 @Override
-            public void focusLost(FocusEvent arg0) {
+        	 public void focusLost(FocusEvent arg0) {
 
             }
          });

@@ -75,8 +75,15 @@ public class ProviderHomescreen extends ProviderFrontend {
       });
       buttonPanel.add(button);
 
-      button = new JButton("This one is used just blank");
-      button.setVisible(false);
+      button = new JButton("Patient Lookup");
+      button.setVisible(true);
+      
+      button.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              p.displayFrameOpt(GenericEnum.LOOKUP);
+           }
+        });
+      
       buttonPanel.add(button);
       sidePanel.add(buttonPanel);
 
@@ -237,7 +244,13 @@ public class ProviderHomescreen extends ProviderFrontend {
       diagnosis.add(new JLabel("Diagnosis:"));
 
       if (d.size() > 0) {
-         diagnosis.add(new JLabel(d.stream().map(e -> e.getName()).reduce(",", String::concat)));
+    	 String w = ""; 
+    	 for(Diagnosis z : d) {
+    		 w += z.getName() + " , ";
+    	
+    	 }
+ 
+         diagnosis.add(new JLabel(w));
       } else {
          diagnosis.add(new JLabel("None"));
       }

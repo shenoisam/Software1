@@ -33,6 +33,8 @@ import businesslayer.ProviderService;
 /**
  * Displays the office schedule from the staff view
  *
+ * @author katiewokoek
+ *
  */
 public class OfficeSchedule extends JPanel{
 	/**
@@ -179,8 +181,9 @@ public class OfficeSchedule extends JPanel{
     		}
     	}
     	
-		
-		table = new JTable(new ScheduleTable(data, colNames));
+        
+	
+		table = new JTable(new ScheduleTable(data, headers.toArray(new String [2])));
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		JScrollPane scroller = new JScrollPane(table);
 		add(scroller, BorderLayout.CENTER);

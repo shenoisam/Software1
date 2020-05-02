@@ -14,7 +14,7 @@ public class Patient extends User {
 	private String PatientID; 
 	private String race; 
 	private String ethnicity; 
-	private boolean married;
+	private String married;
 
 	public Patient(String id) {
 		PatientID = id;
@@ -54,6 +54,7 @@ public class Patient extends User {
 				// Otherwise if it represents the gender
 				else if(headerList.get(i).contentEquals(patientGender) && dataList.get(i) != null) {
 					// Initialize the gender from the data list
+
 					this.gender = (String)dataList.get(i);
 				}
 				// Otherwise if it represents the ID
@@ -74,7 +75,7 @@ public class Patient extends User {
 				// Otherwise if it represents marital status
 				else if(headerList.get(i).contentEquals(maritalStatus)&& dataList.get(i) != null) {
 					// Initialize the marital status from the data list
-					this.married = (boolean)dataList.get(i);
+					this.married = (String)dataList.get(i);
 				}
 			}
 		}
