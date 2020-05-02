@@ -75,8 +75,15 @@ public class ProviderHomescreen extends ProviderFrontend {
       });
       buttonPanel.add(button);
 
-      button = new JButton("This one is used just blank");
-      button.setVisible(false);
+      button = new JButton("Patient Lookup");
+      button.setVisible(true);
+      
+      button.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              p.displayFrameOpt(GenericEnum.LOOKUP);
+           }
+        });
+      
       buttonPanel.add(button);
       sidePanel.add(buttonPanel);
 

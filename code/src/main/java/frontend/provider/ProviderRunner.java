@@ -54,6 +54,8 @@ public class ProviderRunner extends GenericRunner {
       case PREFERRAL:
          p = new ProviderReferralsView(this);
          break;
+      case LOOKUP:
+    	  p = new PatientLookUpScreen(this); break;
       default:
          System.out.println("DEFAULTING");
          p = new ProviderHomescreen(this);

@@ -54,6 +54,7 @@ public class Patient extends User {
 				// Otherwise if it represents the gender
 				else if(headerList.get(i).contentEquals(patientGender) && dataList.get(i) != null) {
 					// Initialize the gender from the data list
+
 					this.gender = (String)dataList.get(i);
 				}
 				// Otherwise if it represents the ID

@@ -2,6 +2,7 @@ package backend.dao;
 
 import static org.junit.Assert.*;
 
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import org.junit.runners.MethodSorters;
 
 import backend.SQLConnection.SQLConnectionPoolFactory;
 import backend.classes.Patient;
+import frontend.provider.PatientLookUpScreen;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +25,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.FixMethodOrder;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JFrame;
 
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PatientDAOTest {
@@ -140,6 +144,7 @@ public class PatientDAOTest {
 		for(Patient pat : pats) {
 			System.out.println("Patient: " + pat.toString());
 		}
+
 	}
 	
 	
