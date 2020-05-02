@@ -3,6 +3,7 @@
   <groupId>edu.baylor.cs3471.cshare</groupId>
   <artifactId>cshare</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
   <dependencies>
 	  <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 	<dependency>
@@ -17,8 +18,11 @@
 		<artifactId>junit-jupiter-api</artifactId>
 		<version>5.2.0</version>
 	</dependency>
+	
+	
   </dependencies>
- 
+  
+  
 </project>
 
 

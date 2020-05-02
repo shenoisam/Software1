@@ -19,18 +19,36 @@ import backend.classes.TestOrder;
 import businesslayer.CShareObjects;
 import frontend.patient.TestTableModel;
 
+/**
+ * ProviderViewTest class that displays information about
+ * a Test
+ *
+ */
 public class ProviderViewTest extends ProviderFrontend {
    private Patient pat;
 
+   /**
+    * 
+    * @param p
+    */
    public ProviderViewTest(ProviderRunner p) {
       super(p);
    }
 
+   /**
+    * 
+    * @param providerRunner
+    * @param pat
+    */
    public ProviderViewTest(ProviderRunner providerRunner, Patient pat) {
       super(providerRunner);
       this.pat = pat;
    }
 
+   /**
+    * 
+    * @param mainPane
+    */
    protected void viewTestPanel(Container mainPane) {
       JPanel viewTest = new JPanel();
       viewTest.setLayout(new BoxLayout(viewTest, BoxLayout.PAGE_AXIS));

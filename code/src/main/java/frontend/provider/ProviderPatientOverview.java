@@ -27,15 +27,29 @@ import backend.classes.*;
 
 import businesslayer.CShareObjects;
 
-public class ProviderPatientOverview extends ProviderFrontend {
+/**
+ * ProviderPatientOverview class that displays
+ * patient information to a provider
+ *
+ */
+public class ProviderPatientOverview extends ProviderFrontend{
+
 
    static Patient pat;
+
 
    public ProviderPatientOverview(ProviderRunner p) {
       super(p);
       pat = new Patient();
       // TODO Auto-generated constructor stub
    }
+
+
+   /**
+    * 
+    * @param providerRunner
+    * @param pat
+    */
 
    public ProviderPatientOverview(ProviderRunner providerRunner, Patient pat) {
       super(providerRunner);

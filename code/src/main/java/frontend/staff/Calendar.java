@@ -1,6 +1,6 @@
 /*
  * Class derived from Java Hungry: Calendar Implementation: Swing GUI Based Java Program
- * link: https://javahungry.blogspot.com/2013/06/calendar-implementation-gui-based.html
+ * @see https://javahungry.blogspot.com/2013/06/calendar-implementation-gui-based.html
  */
 
 package frontend.staff;
@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+/**
+ * Displays the calendar from the Staff view
+ */
 public class Calendar {
    static JLabel lblMonth;
    static JButton btnPrev, btnNext;

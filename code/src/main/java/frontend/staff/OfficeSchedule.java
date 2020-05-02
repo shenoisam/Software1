@@ -30,19 +30,39 @@ import backend.dao.AppointmentDAO;
 import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 
+/**
+ * Displays the office schedule from the staff view
+ *
+ */
 public class OfficeSchedule extends JPanel{
+	/**
+	 * Defines a Office Schedule class to create and display an office schedule
+	 * 
+	 * 
+	 * @author katiewokoek
+	 *
+	 */
 	private JTable table;
 	private Object[][] data = {};
 	String []colNames = {};
 	private static final long serialVersionUID = 1L;
 	private boolean DEBUG = false;
 	int rowCount = 0, colCount = 0;
+	
+	/**
+	 * initializes Office schedule object
+	 */
 	public OfficeSchedule () {
 		super(new BorderLayout());
 		readData();
 		
 	}
 	
+	/**
+	 * creates and displays office schedule
+	 * 
+	 * @see StaffHomescreen#showOfficeSchedule
+	 */
 	public void readData() {
 		/*BufferedReader reader;
 		
@@ -98,6 +118,7 @@ public class OfficeSchedule extends JPanel{
 			System.exit(1);
 		}*/
 		
+
 		// Retrieves a list of all appointments
 		List<Appointment> li = new ArrayList();
 		LocalDateTime date = LocalDateTime.now();
@@ -111,6 +132,7 @@ public class OfficeSchedule extends JPanel{
 	    String[] parameters = {};
 	    List<Doctor> docs = serv.getData(CShareObjects.DOCTOR, doctorFields, parameters);
 	    
+	    // Generates list of headers for table using doctor names
 	    // Uses doctor names to generate headers for table
 	    List<String> headers = new ArrayList<String>(); 
 	    headers.add(" ");
@@ -118,7 +140,7 @@ public class OfficeSchedule extends JPanel{
 	    	headers.add("Dr. " + doc.getLastName());
 	    }
 	    
-	    
+	    // Finds total number of appointment time slots
 	    int numApptTimes = 0;
     	Vector<LocalDateTime> times = new Vector<LocalDateTime>();
     	

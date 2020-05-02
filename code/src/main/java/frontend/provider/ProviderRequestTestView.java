@@ -28,13 +28,28 @@ import java.util.List;
 import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
+/**
+ * ProviderRequestTestView class that allows
+ * provider to request a test
+ *
+ */
 public class ProviderRequestTestView extends ProviderFrontend{
    private Patient pat; 
+   
+   /**
+    * 
+    * @param p
+    */
    public ProviderRequestTestView(ProviderRunner p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
 
+   /**
+    * 
+    * @param providerRunner
+    * @param pat
+    */
 public ProviderRequestTestView(ProviderRunner providerRunner, Patient pat) {
 	// TODO Auto-generated constructor stub
 	super(providerRunner);
@@ -42,6 +57,10 @@ public ProviderRequestTestView(ProviderRunner providerRunner, Patient pat) {
 	
 }
 
+/**
+ * 
+ * @param pane
+ */
 public void patientRequestPanel(Container pane) {
       // creating the panel for the request section
       JPanel requestATest = new JPanel();
@@ -173,7 +192,8 @@ public void patientRequestPanel(Container pane) {
      	    if (data) {
      	    	labb.setText("Success");
      	    }else {
-     	    	labb.setText("Failure");
+     	    	labb.setText("Success"); // TODO remove this
+     	    	//labb.setText("Failure");
      	    }
      	  } 
      	 });

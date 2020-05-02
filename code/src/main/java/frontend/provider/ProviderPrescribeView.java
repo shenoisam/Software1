@@ -26,20 +26,37 @@ import javax.swing.ScrollPaneConstants;
 import backend.classes.Patient;
 import businesslayer.CShareObjects;
 import frontend.GenericEnum;
-
+/**
+ * ProviderPrescribeView Class that displays the 
+ * provider's view as they prescribe a patient
+ *
+ */
 public class ProviderPrescribeView extends ProviderFrontend {
    private Patient pat;
 
+   /**
+    * 
+    * @param p
+    */
    public ProviderPrescribeView(ProviderRunner p) {
       super(p);
    }
 
+   /**
+    * 
+    * @param providerRunner
+    * @param pat
+    */
    public ProviderPrescribeView(ProviderRunner providerRunner, Patient pat) {
       // TODO Auto-generated constructor stub
       super(providerRunner);
       this.pat = pat;
    }
 
+   /**
+    * 
+    * @param pane
+    */
    public void patientPrescribePanel(Container pane) {
       // setting up the prescribe panel
       JPanel prescribePanel = new JPanel();
