@@ -54,21 +54,21 @@ public class PatientViewTest extends PatientGenericScreen {
 		JScrollPane scrollPane = new JScrollPane(testTable);
 		mainPanel.add(scrollPane);
 		
-		JLabel label = new JLabel("Information");
-		label.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		label.setOpaque(true);
+//		JLabel label = new JLabel("Information");
+//		label.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		label.setOpaque(true);
+//		
+//		JPanel pane = new JPanel();
+//		pane.setOpaque(true);
+//		SpringLayout sl = new SpringLayout();
+//		sl.putConstraint(SpringLayout.WEST, label, 5, SpringLayout.WEST, pane);
+//		sl.putConstraint(SpringLayout.EAST, label, -5, SpringLayout.EAST, pane);
+//		sl.putConstraint(SpringLayout.NORTH, label, 5, SpringLayout.NORTH, pane);
+//		pane.setLayout(sl);
+//		pane.setPreferredSize(new Dimension(10, 100));
+//		//pane.add(label);
 		
-		JPanel pane = new JPanel();
-		pane.setOpaque(true);
-		SpringLayout sl = new SpringLayout();
-		sl.putConstraint(SpringLayout.WEST, label, 5, SpringLayout.WEST, pane);
-		sl.putConstraint(SpringLayout.EAST, label, -5, SpringLayout.EAST, pane);
-		sl.putConstraint(SpringLayout.NORTH, label, 5, SpringLayout.NORTH, pane);
-		pane.setLayout(sl);
-		pane.setPreferredSize(new Dimension(10, 100));
-		pane.add(label);
-		
-		mainPanel.add(pane);
+		//mainPanel.add(pane);
 	}
 	
 	protected void setTopBar() {
