@@ -31,7 +31,11 @@ import javax.swing.ScrollPaneConstants;
 import backend.classes.*;
 
 import businesslayer.CShareObjects;
-
+/**
+ * ProviderPatientOverview class that displays
+ * patient information to a provider
+ *
+ */
 public class ProviderPatientOverview extends ProviderFrontend{
 
    static Patient pat; 
@@ -42,7 +46,11 @@ public class ProviderPatientOverview extends ProviderFrontend{
 		// TODO Auto-generated constructor stub
 	}
 
-
+   /**
+    * 
+    * @param providerRunner
+    * @param pat
+    */
    public ProviderPatientOverview(ProviderRunner providerRunner, Patient pat) {
 	   super(providerRunner);
 	   this.pat = pat;

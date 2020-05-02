@@ -28,8 +28,17 @@ import backend.classes.Notes;
 import backend.classes.Perscription;
 import businesslayer.CShareObjects;
 
+/**
+ * Displays the Patient's home screen
+ *
+ */
 public class PatientHome extends PatientGenericScreen{
 
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 */
 	public PatientHome(JFrame f, PatientRunner p) {
 		super(f, "Patient Home", p);
 		setTopBar();

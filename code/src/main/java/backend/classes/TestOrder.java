@@ -4,6 +4,16 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 
+ * TestOrder class that contains information
+ * about a TestOrder such as the test itself,
+ * the date it was ordered, and the doctor
+ * who ordered it
+ * 
+ * @author mmorr
+ *
+ */
 public class TestOrder {
 	private String DoctorID; 
 	private String TestName; 
@@ -11,18 +21,19 @@ public class TestOrder {
 	private String PatientID; 
 	private Test test;
 	
-	/*
+	/**
 	 * TestOrder constructor
 	 * 
-	 * Parameters: receives list of header names and list of objects
-	 * 
-	 * list of objects contains all data fields for TestOrder object
+	 * @param list of header names
+	 * @param list of objects that contains all data fields for TestOrder object
 	 * (eg. TestName, PatientID, etc.)
+	 * @return TestOrder class
 	 * 
 	 * Constructor iterates through the object list, matching each element
 	 * with the corresponding header in the headerList, and fills the 
 	 * TestOrder object with the correct data
 	 * 
+	 * author: matthew morris
 	 */
 	public TestOrder(List<String> headerList, List<Object> list) {
 		if(headerList != null) {

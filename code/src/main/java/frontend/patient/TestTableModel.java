@@ -8,11 +8,19 @@ import javax.swing.table.AbstractTableModel;
 import backend.classes.TestOrder;
 import backend.classes.TestResult;
 
+/**
+ * Displays the table containing test data
+ *
+ */
 public class TestTableModel extends AbstractTableModel {
 	private List<TestResult> testOrders;
 	private String[] columnNames = {"Test Name", "Date of Test",
 									"Result"};
 
+	/**
+	 * 
+	 * @param list
+	 */
 	public TestTableModel(List<TestResult> list){
 		testOrders = list;
 	}
@@ -29,6 +37,11 @@ public class TestTableModel extends AbstractTableModel {
 		return 3;
 	}
 
+	/**
+	 * @param rowIndex
+	 * @param columnIndex
+	 * @return Object
+	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		TestResult tOrder = testOrders.get(rowIndex);
@@ -43,6 +56,10 @@ public class TestTableModel extends AbstractTableModel {
 		return null;
 	}
 	
+	/**
+	 * @param col
+	 * @return String
+	 */
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}

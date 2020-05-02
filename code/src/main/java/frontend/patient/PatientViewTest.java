@@ -20,8 +20,17 @@ import backend.classes.Patient;
 import backend.classes.TestResult;
 import businesslayer.CShareObjects;
 
+/**
+ * Displays the Test window from the Patient view
+ *
+ */
 public class PatientViewTest extends PatientGenericScreen {
 
+	/**
+	 * 
+	 * @param frame
+	 * @param p
+	 */
 	public PatientViewTest(JFrame frame, PatientRunner p) {
 		super(frame, "Patient View Test", p);
 		setTopBar();

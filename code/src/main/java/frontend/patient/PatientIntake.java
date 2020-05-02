@@ -27,8 +27,18 @@ import javax.swing.SwingConstants;
 import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
+/**
+ * Displays the patient intake form
+ * for the patient to fill out
+ *
+ */
 public class PatientIntake extends PatientGenericScreen {
 	
+	/**
+	 * 
+	 * @param frame
+	 * @param p
+	 */
 	public PatientIntake(JFrame frame, PatientRunner  p) {
 		super(frame, "Patient Intake",p);
 		setTopBar();

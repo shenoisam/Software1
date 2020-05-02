@@ -5,12 +5,24 @@ import frontend.EHRRunner;
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 
+/**
+ * ProviderRunner class that runs the EHR from
+ * the provider view
+ *
+ */
 public class ProviderRunner extends GenericRunner {
 
+	/**
+	 * 
+	 * @param r
+	 */
    public ProviderRunner(EHRRunner r) {
       super(r);
    }
 
+   /**
+    * @param opt
+    */
    public void displayFrameOpt(GenericEnum opt) {
 
       // Remove everything from the frame
@@ -54,6 +66,11 @@ public class ProviderRunner extends GenericRunner {
 
    }
 
+   /**
+    * 
+    * @param opt
+    * @param pat
+    */
    public void displayFrameOpt(GenericEnum opt, Patient pat) {
 
       // Remove everything from the frame
