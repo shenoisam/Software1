@@ -195,6 +195,7 @@ public class PatientIntake extends PatientGenericScreen {
 		sl.putConstraint(SpringLayout.NORTH, submitPatient, 5, SpringLayout.SOUTH, allergies);
 		sl.putConstraint(SpringLayout.WEST, submitPatient, 5, SpringLayout.WEST, intakePanel);
 		
+		
 		intakePanel.add(submitPatient);
 		
 		mainPanel.add(intakePanel);

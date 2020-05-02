@@ -4,10 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-<<<<<<< HEAD
-=======
+
 import java.awt.GridLayout;
->>>>>>> 6913b62373a94826ffc677353d3c626ac56f8e0b
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
@@ -41,50 +40,54 @@ public class PatientLookUpScreen extends ProviderFrontend {
 	
 	public void setMainPanel(Container pane) {
 		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setLayout(new BorderLayout());
 		
 		
-		List<Patient> pList = null;
-		pList = new PatientDAO().getData(new String[] {}, new String[] {});
+		JPanel searchPanel = new JPanel();
+		SpringLayout sl = new SpringLayout();
+		searchPanel.setLayout(sl);
+		
+		final List<Patient> pList = new PatientDAO().getData(new String[] {}, new String[] {});
 		List<String> names = new ArrayList<String>();
 		
-		pList.stream().forEach(p -> names.add(p.getFullName() + ": " + p.getID()));
+		pList.stream().forEach(p -> names.add(p.getFullName()));
 		
 		StringSearchable searchable = new StringSearchable(names);
 	    AutocompleteJComboBox comboBox = new AutocompleteJComboBox(searchable);
 	    
-	    comboBox.setPreferredSize(new Dimension(50, 100));
-		
-<<<<<<< HEAD
-=======
-		JButton search = new JButton("Search");
-		
-		JComboBox comboBox = new JComboBox(names.toArray());
-		
-		search.addActionListener(new ActionListener() {
+	    JButton searchButton = new JButton("Select");
+	    
+	    searchButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = textField.getText();
+				// TODO Auto-generated method stub
+				String name = (String) comboBox.getSelectedItem();
+				Patient patient;
 				
-				comboBox.removeAllItems();
-				
-				names.stream().filter(p -> p.contains(text)).forEach(p -> comboBox.addItem(p));
-				
-			
-				// On click, patient needs to be loaded to this screen
-			    //p.displayFrameOpt(GenericEnum.POVERVIEW, pList.get(comboBox.getSelectedIndex()));
-			         
-			
+				for(Patient p : pList) {
+					if(p.getFullName().equals(name)) {
+						patient = p;
+						
+						break;
+					}
+				}
 				
 			}
-			
-		});
+	    	
+	    });
+	    
+	    sl.putConstraint(SpringLayout.NORTH, searchButton, 5, SpringLayout.NORTH, searchPanel);
+	    sl.putConstraint(SpringLayout.WEST, searchButton, 5, SpringLayout.WEST, searchPanel);
+	    
+	    sl.putConstraint(SpringLayout.NORTH, comboBox, 5, SpringLayout.NORTH, searchPanel);
+	    sl.putConstraint(SpringLayout.WEST, comboBox, 5, SpringLayout.EAST, searchButton);
+	    sl.putConstraint(SpringLayout.EAST, searchPanel, 5, SpringLayout.EAST, comboBox);
+	    
+	    searchPanel.add(searchButton);
+		searchPanel.add(comboBox);
 		
-		panel.add(textField);
-		panel.add(search);
->>>>>>> 6913b62373a94826ffc677353d3c626ac56f8e0b
-		panel.add(comboBox);
+		panel.add(searchPanel);
 		
 		
 		pane.add(panel);		
