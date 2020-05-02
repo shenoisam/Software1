@@ -166,6 +166,13 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       pane.add(middleOfScreen);
    }
 
+   /**
+    * 
+    * creates and shows this page
+    * 
+    * @param pane the container for this panel to be displayed on 
+    * 
+    */
    public void createAndShowGUI(Container pane) {
       topBarStaff(pane);
       showSchedule(pane);

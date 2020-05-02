@@ -19,6 +19,14 @@ import javax.swing.text.DefaultFormatterFactory;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.calendar.SingleDaySelectionModel;
 
+
+/**
+ * Defines a date time picker
+ * 
+ * 
+ * @see https://stackoverflow.com/questions/27053276/date-and-time-picker-in-java
+ *
+ */
 public class DateTimePicker extends JXDatePicker {
     private JSpinner timeSpinner;
     private JPanel timePanel;
