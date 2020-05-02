@@ -45,7 +45,6 @@ public class StringSearchable implements Searchable<String, String> {
 
    }
    
-   @Override
    public Collection<String> search(String value) {
       List<String> founds = new ArrayList<String>();
 

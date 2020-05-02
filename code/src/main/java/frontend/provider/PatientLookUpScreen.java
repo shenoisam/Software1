@@ -50,28 +50,23 @@ public class PatientLookUpScreen extends ProviderFrontend {
 		final List<Patient> pList = new PatientDAO().getData(new String[] {}, new String[] {});
 		List<String> names = new ArrayList<String>();
 		
-		pList.stream().forEach(p -> names.add(p.getFullName()));
+		for(Patient z : pList) {
+			names.add(z.getFullName());
+		}
+		
 		
 		StringSearchable searchable = new StringSearchable(names);
-	    AutocompleteJComboBox comboBox = new AutocompleteJComboBox(searchable);
+	    final AutocompleteJComboBox comboBox = new AutocompleteJComboBox(searchable);
 	    
 	    JButton searchButton = new JButton("Select");
 	    
 	    searchButton.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String name = (String) comboBox.getSelectedItem();
-				Patient patient;
-				
-				for(Patient p : pList) {
-					if(p.getFullName().equals(name)) {
-						patient = p;
-						
-						break;
-					}
-				}
+				int ndx =  comboBox.getSelectedIndex();
+				Patient patient = pList.get(ndx);
+				p.displayFrameOpt(GenericEnum.POVERVIEW,patient);
 				
 			}
 	    	

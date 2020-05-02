@@ -33,6 +33,8 @@ import businesslayer.ProviderService;
 /**
  * Displays the office schedule from the staff view
  *
+ * @author katiewokoek
+ *
  */
 public class OfficeSchedule extends JPanel{
 	/**
