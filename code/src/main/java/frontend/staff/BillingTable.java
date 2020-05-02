@@ -41,6 +41,15 @@ import businesslayer.ProviderService;
  *
  */
 public class BillingTable extends JPanel {
+
+	/**
+	 * Defines a class specific for creating the 
+	 * Billing table
+	 * 
+	 * 
+	 * @author katiewokoek
+	 *
+	 */
    private JTable table;
    private Object[][] data = {};
    String[] colNames = {};
@@ -56,7 +65,7 @@ public class BillingTable extends JPanel {
       File file = new File("data.csv");
 
    }
-   /*
+   /** 
     * String [] fields = {"PatientID"};
       String [] params = {pat.getID()};
       List<PatientDiagnosis> pds =  serv.getData(CShareObjects.PATIENTDIAGNOSIS,fields , params);
@@ -70,6 +79,12 @@ public class BillingTable extends JPanel {
     	  text = text + diag.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";
       }
     */
+   
+   /**
+	 * reads data into schedule table
+	 * 
+	 * @see StaffBillingTable#billingPanel
+	 */
    public void readData() {
       /*String workingDir = System.getProperty("user.dir");
       try (BufferedReader reader = new BufferedReader(
@@ -231,7 +246,7 @@ public class BillingTable extends JPanel {
       add(scroller, BorderLayout.CENTER);
    }
 
-   public void rewriteFile() {
+   /*public void rewriteFile() {
       String workingDir = System.getProperty("user.dir");
       BufferedWriter writer = null;
       Path path = Paths.get(workingDir + "/src/main/java/frontend/data.csv");
@@ -296,5 +311,5 @@ public class BillingTable extends JPanel {
 
       }
 
-   }
+   }*/
 }

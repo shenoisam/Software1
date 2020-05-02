@@ -25,6 +25,15 @@ import backend.dao.PatientDAO;
  *
  */
 public class ProvidersSchedule extends JPanel {
+	
+	/**
+	 * Defines a schedule for the provider
+	 * 
+	 * 
+	 * @author katiewokoek
+	 *
+	 */
+	
    private JTable table;
    private Object[][] data = {};
    String[] colNames = {"Date", "Doctor", "Patient"};
@@ -32,12 +41,20 @@ public class ProvidersSchedule extends JPanel {
    private boolean DEBUG = false;
    int rowCount = 0, colCount = 0;
 
+   /**
+	 * initializes a new ProviderSchedule instance
+	 */
    public ProvidersSchedule() {
       super(new BorderLayout());
       readData();
 
    }
 
+   /**
+	 * reads data into a new table and displays it
+	 * 
+	 * @see StaffScheduleScreen#showSchedule
+	 */
    public void readData() {
      /* String workingDir = System.getProperty("user.dir");
       try {

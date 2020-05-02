@@ -1,6 +1,6 @@
 /*
  * Class derived from Java Hungry: Calendar Implementation: Swing GUI Based Java Program
- * link: https://javahungry.blogspot.com/2013/06/calendar-implementation-gui-based.html
+ * @see https://javahungry.blogspot.com/2013/06/calendar-implementation-gui-based.html
  */
 
 package frontend.staff;
