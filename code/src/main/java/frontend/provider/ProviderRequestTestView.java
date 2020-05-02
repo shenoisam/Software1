@@ -83,7 +83,7 @@ public void patientRequestPanel(Container pane) {
       JPanel datePicker = new JPanel();
       datePicker.setLayout(new GridLayout(3,1));
       JLabel dateLabel = new JLabel();
-      dateLabel.setText("Date of Request");
+      //dateLabel.setText("Date of Request");
       datePicker.add(dateLabel);
       
       // creating boxes for the date to be entered
