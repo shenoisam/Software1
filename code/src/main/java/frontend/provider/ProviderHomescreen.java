@@ -237,7 +237,13 @@ public class ProviderHomescreen extends ProviderFrontend {
       diagnosis.add(new JLabel("Diagnosis:"));
 
       if (d.size() > 0) {
-         diagnosis.add(new JLabel(d.stream().map(e -> e.getName()).reduce(",", String::concat)));
+    	 String w = ""; 
+    	 for(Diagnosis z : d) {
+    		 w += z.getName() + " , ";
+    	
+    	 }
+ 
+         diagnosis.add(new JLabel(w));
       } else {
          diagnosis.add(new JLabel("None"));
       }

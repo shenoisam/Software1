@@ -214,6 +214,8 @@ public class PatientDAO extends GenericDAO{
 		    }
 		    rmStr = this.generateRmStr(fields, params);
 		    rmStr = rmStr + "AND Patient.ID = User.ID";
+	    }else {
+	    	rmStr = " WHERE Patient.ID = User.ID";
 	    }
 
 		List<List<Object>> stuff = this.query("*", "Patient, User", rmStr, params);

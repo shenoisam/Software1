@@ -3,6 +3,9 @@ package frontend.staff;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -10,6 +13,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import businesslayer.CShareObjects;
+import frontend.GenericEnum;
+
+import java.util.List;
+import backend.classes.*;
 
 /**
  * displays the staff schedule
@@ -55,12 +64,15 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       /**
        * TODO NEED TO ADD DATA TO THE THING TO GET THE REAL PATIENTS FROM THE DATABASE
        */
+      
+      String [] fields = {};
+      String [] params = {};
+      final List<Patient> pats = serv.getData(CShareObjects.PATIENT, fields, params);
       // creating the drop down menu
-      JComboBox<String> patients = new JComboBox<String>();
-      patients.addItem("DUMMY");
-      patients.addItem("DUMMY");
-      patients.addItem("DUMMY");
-      patients.addItem("DUMMY");
+      final JComboBox<String> patients = new JComboBox<String>();
+      for(Patient pat : pats) {
+    	  patients.addItem(pat.getFullName());
+      }
 
       patientName.add(patients);
 
@@ -71,15 +83,12 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       providerName.setBorder(BorderFactory.createTitledBorder("Provider's Name"));
 
       // creating drop down menu for providers name
-      /**
-       * TODO NEED TO ADD DATA TO THE THING TO GET THE REAL providers FROM THE
-       * DATABASE
-       */
-      JComboBox<String> providers = new JComboBox<String>();
-      providers.addItem("DUMMY");
-      providers.addItem("DUMMY");
-      providers.addItem("DUMMY");
-      providers.addItem("DUMMY");
+   
+      final JComboBox<String> providers = new JComboBox<String>();
+      final List<Doctor> docs = serv.getData(CShareObjects.DOCTOR, fields, params);
+      for(Doctor pat : docs) {
+    	  providers.addItem(pat.getFullName());
+      }
 
       providerName.add(providers);
 
@@ -99,17 +108,28 @@ public class StaffScheduleScreen extends GenericStaffScreen {
       /**
        * TODO NEED TO ADD DATA TO THE THING TO GET THE REAL DATES FROM THE DATABASE
        */
-      JComboBox<String> datesAndTimes = new JComboBox<String>();
-      datesAndTimes.addItem("DUMMY");
-      datesAndTimes.addItem("DUMMY");
-      datesAndTimes.addItem("DUMMY");
-      datesAndTimes.addItem("DUMMY");
-
-      date.add(datesAndTimes);
+  
+      final DateTimePicker picker = new DateTimePicker();
+      date.add(picker);
 
       makingApptPanel.add(date);
 
       JButton name = new JButton("Schedule");
+      
+      name.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              LocalDateTime lt = LocalDateTime.ofInstant(picker.getDate().toInstant(), picker.getTimeFormat().getCalendar().getTimeZone().toZoneId());
+              String [] fields = {"DateVal" , "DoctorID", " PatientID"};
+              Doctor d = docs.get(providers.getSelectedIndex());
+              Patient pat = pats.get(patients.getSelectedIndex());
+              String [] params = {lt.toString(),d.getID(), pat.getID()};
+              
+              boolean b = serv.insert(CShareObjects.APPOINTMENT, fields, params);
+              if(b) {
+            	  System.out.println("Success");
+              }
+           }
+        });;
 
       /**
        * TODO CREATE ACTION FOR THIS BUTTON THAT SENDS EVERYTHING TO THE DATABASE
