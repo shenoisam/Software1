@@ -6,6 +6,11 @@ import frontend.EHRRunner;
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 import backend.classes.*;
+
+/**
+ * Runs the EHR from the staff view
+ *
+ */
 public class StaffRunner extends GenericRunner {
    public StaffRunner(EHRRunner r) {
       super(r);

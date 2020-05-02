@@ -11,6 +11,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * displays the staff schedule
+ *
+ */
 public class StaffScheduleScreen extends GenericStaffScreen {
 
    StaffScheduleScreen(StaffRunner r) {
