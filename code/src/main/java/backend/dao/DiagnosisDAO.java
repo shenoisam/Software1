@@ -15,20 +15,15 @@ import backend.classes.Diagnosis;
  */
 public class DiagnosisDAO extends GenericDAO{
 
+	/**
+	 * the default constructor for DiagnosisDAO  
+	 * 
+	 */
 	public DiagnosisDAO(){
 		super();
 	}
 	
-	/*
-	 * updates the Diagnosis table 
-	 * 
-	 * @see GenericDAO#updateTable
-	 */
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	/*
 	 * inserts into the Diagnosis table 
@@ -42,7 +37,7 @@ public class DiagnosisDAO extends GenericDAO{
 	}
 	
 	
-	/*
+	/**
 	 * deletes from the Diagnosis table 
 	 * 
 	 * @see GenericDAO#deleteFromTable
@@ -74,6 +69,18 @@ public class DiagnosisDAO extends GenericDAO{
 		}
 		return d;
 		
+		
+	}
+
+	/**
+	 * updates the Diagnosis table 
+	 * 
+	 * @see GenericDAO#updateTable
+	 */
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
 		
 	}
 

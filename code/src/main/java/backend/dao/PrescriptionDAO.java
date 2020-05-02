@@ -8,7 +8,13 @@ import backend.classes.PatientDiagnosis;
 import backend.classes.Perscription;
 import backend.factory.FactoryObjects;
 import backend.factory.PerscriptionObject;
-
+/**
+ * PrescriptionDAO connects to the Prescription table in the database
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class PrescriptionDAO extends GenericDAO {
     public PrescriptionDAO(){
     	
@@ -19,6 +25,11 @@ public class PrescriptionDAO extends GenericDAO {
 		
 	}*/
 
+    /**
+     * Inserts into Prescription
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		for(int i =0; i < fields.length;i++) {
@@ -29,11 +40,23 @@ public class PrescriptionDAO extends GenericDAO {
 		this.insert("Prescription", fields, params);
 		
 	}
+	
+	/**
+	 * deletes from the prescription table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Prescription", fields, params);
 	}
 	
+
+	/**
+	 * gets data from Prescription
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	public List<Perscription> getData(String [] fields, String [] params) {
 		 String rmStr  = "";
 		 if (fields.length > 0) {rmStr = this.generateRmStr(fields, params);}
@@ -55,6 +78,11 @@ public class PrescriptionDAO extends GenericDAO {
 		 return finalList;
 	}
 	
+	/**
+	 * updates Prescription
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {

@@ -29,13 +29,14 @@ public class AppointmentDAO extends GenericDAO {
 		super();
 	}
 	
-	/*
+	/**
 	 * gets appointments based solely on fields in Appointment table (Date, DoctorID, PatientID) 
 	 * does not perform any joining with the user table or any other table. 
 	 * 
-	 * @param fields the fields to be used to search for. Can be either (Date, DoctorID, or PatientID) or a subset of those. 
-	 * @param params the values to be matched against the fields. Must be in the same order and orientation as the fields array.
-	 * @return returns a List of appointments representing the rows returned from the table 
+	 * 
+	 * @param	fields the fields to be used to search for. Can be either (Date, DoctorID, or PatientID) or a subset of those. 
+	 * @param	params the values to be matched against the fields. Must be in the same order and orientation as the fields array.
+	 * @return	returns a List of appointments representing the rows returned from the table 
 	 */
 	 public List<Appointment> getData(String[] fields, String[] params) {
 		 String rmStr;
@@ -88,10 +89,11 @@ public class AppointmentDAO extends GenericDAO {
 	 }
 	 
 
-	/*
+	/**
 	 * gets all appointments that fall on a singular date for any doctor or patient 
 	 * 
-	 * @params date the date to be checked against 
+	 * 
+	 * @param date the date to be checked against 
 	 * @return returns the a List of Appointments representing the rows returned from the table 
 	 */
 	public List<Appointment> getAllAppointmentsByDate(Date date) {
@@ -107,7 +109,7 @@ public class AppointmentDAO extends GenericDAO {
 		return generateList(data);
 	}
 	
-	/*
+	/**
 	 * gets all appointments that fall on a singular date for any doctor or patient 
 	 * 
 	 * @params date the date to be checked against 
@@ -139,7 +141,7 @@ public class AppointmentDAO extends GenericDAO {
 		 return finalList;
 	}
 	
-	/*
+	/**
 	 * gets all appointments that fall within a date range
 	 * 
 	 * @params date1 the lower bound of the date range 
@@ -163,7 +165,7 @@ public class AppointmentDAO extends GenericDAO {
 		return data;
 	}
 	
-	/*
+	/**
 	 * updates the Appointment table 
 	 * 
 	 * @see GenericDAO#updateTable
@@ -175,7 +177,7 @@ public class AppointmentDAO extends GenericDAO {
 		
 	}
 
-	/*
+	/**
 	 * inserts into the Appointment table 
 	 * 
 	 * @see GenericDAO#insertIntoTable
@@ -193,7 +195,7 @@ public class AppointmentDAO extends GenericDAO {
 		
 	}
 
-	/*
+	/**
 	 * deletes from the Appointment table 
 	 * 
 	 * @see GenericDAO#deleteFromTable

@@ -10,11 +10,19 @@ import backend.factory.FactoryObjects;
 import backend.factory.NotesObject;
 
 public class NotesDAO extends GenericDAO {
+	
+	/**
+	 * generic constructor for the NotesDAO
+	 */
     public NotesDAO(){
     	
     }
 
-
+    /**
+     * Inserts into notes
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		for(int i =0; i < fields.length;i++) {
@@ -25,11 +33,23 @@ public class NotesDAO extends GenericDAO {
 		this.insert("Notes", fields, params);
 		
 	}
+	
+	/**
+	 * deletes from the notes table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Notes", fields, params);
 	}
 	
+	
+	/**
+	 * gets data from notes table
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	public List<Notes> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
@@ -50,6 +70,12 @@ public class NotesDAO extends GenericDAO {
 		 return finalList;
 	}
 
+	
+	/**
+	 * updates Notes Table
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {

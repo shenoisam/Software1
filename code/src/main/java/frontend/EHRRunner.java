@@ -13,13 +13,18 @@ import backend.*;
 import backend.classes.User;
 import backend.dao.UserDAO;
 
+/**
+ * Defines the main runner of the program
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class EHRRunner {
 	private GenericRunner r; 
 	protected JFrame frame; 
 	
 	EHRRunner(){
-		
-	    
 	    frame = new JFrame("Login");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(1000,650));
@@ -28,16 +33,39 @@ public class EHRRunner {
 		r = null; 
 	}
 	
+	
+	/**
+	 * gets the frame
+	 * 
+	 * 
+	 * @return the JFrame
+	 *
+	 */
 	public JFrame getFrame() {
 		return this.frame;
 	}
 	
 
+	/**
+	 * sets the generic runner used 
+	 * 
+	 * 
+	 * @param w the GenericRunner
+	 *
+	 */
 	public void setR(GenericRunner w) {
 		r = w; 
 	}
 	
 	
+	/**
+	 * validates the user based on username and password. Redirects to landing screen upon successful login 
+	 * 
+	 * 
+	 * @param user the username of the user 
+	 * @param pass the password of the user 
+	 *
+	 */
 	public void validateUser(String user,String pass) {
 		 // Display the home screen depending on the user
 		 User u = null; 
@@ -54,6 +82,15 @@ public class EHRRunner {
 		 }
 	}
 	
+
+	/**
+	 * validates the user based on username and password. Redirects to landing screen upon successful login 
+	 * 
+	 * 
+	 * @param user the username of the user 
+	 * @param pass the password of the user 
+	 *
+	 */
 	public void displayLogin() {
 		LoginScreen s = new LoginScreen(this); 
 		
@@ -61,6 +98,14 @@ public class EHRRunner {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+
+	/**
+	 * logs out the user 
+	 * 
+	 * 
+	 *
+	 */
 	public void logout() {
 		  //Wherever we are, remove it all 
 		  frame.getContentPane().removeAll();
@@ -70,6 +115,15 @@ public class EHRRunner {
 		  //Create a log in screen
 		  this.displayLogin(); 
 	}
+	
+	
+
+	/**
+	 * main driver function of the program
+	 * 
+	 * @param args the arguments passed in from the command line
+	 *
+	 */
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

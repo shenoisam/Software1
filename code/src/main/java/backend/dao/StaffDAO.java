@@ -12,6 +12,13 @@ import backend.classes.Doctor;
 import backend.classes.Patient;
 import backend.classes.Staff;
 
+/**
+ * StaffDAO connects to the Staff table in the database
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class StaffDAO extends GenericDAO{
 	
 	public StaffDAO(){
@@ -49,20 +56,35 @@ public class StaffDAO extends GenericDAO{
 		return s; 		
 				
 	}
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
+	 /**
+     * Inserts into Staff
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		this.insert("Staff", fields, params);
 		
 	}
+	
+	/**
+	 * deletes from the staff table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Staff", fields, params);
 	}
+	
+
+	/**
+	 * gets data from Staff
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	@Override
 	public List<Staff> getData(String[] fields, String[] params) {
 	    for (int i = 0; i < fields.length; i++) {
@@ -87,6 +109,18 @@ public class StaffDAO extends GenericDAO{
 				}
 			}
 			return d; 
+	}
+	
+	/**
+	 * updates Staff
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
+	@Override
+	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

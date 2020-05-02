@@ -76,7 +76,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
       List<Diagnosis> diags = serv.getData(CShareObjects.DIAGNOSIS,fields,params);
        allDiagnosis.addItem("");
       for (Diagnosis d : diags) {
-    	  System.out.println(d.getName());
+    	  
     	  allDiagnosis.addItem(	d.getName());
       }
       diagnosis.add(allDiagnosis);
@@ -118,6 +118,7 @@ public class StaffPatientRecordParameters extends GenericStaffScreen {
         	 if (ndx > 0) {
         		 id =  docs.get(ndx).getDoctorID();
         	 }
+        	 System.out.println(allDiagnosis.getSelectedItem().toString());
         	 List<Patient> pat_Data = serv.bigDataQuery( id , allDiagnosis.getSelectedItem().toString(), allPrescrips.getSelectedItem().toString());
         	 if( pat_Data.size()< 1) {
         	    pat_Data = new ArrayList<Patient>(); 

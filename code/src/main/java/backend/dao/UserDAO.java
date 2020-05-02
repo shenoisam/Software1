@@ -11,12 +11,13 @@ import backend.classes.Staff;
 import backend.classes.User;
 
 /**
- * Defines a class that allows for saving and accessing of user information 
+ * UserDAO connects to the User table in the database
  * 
  * 
  * @author samshenoi
  *
  */
+
 public class UserDAO extends GenericDAO{
 	
 	public UserDAO(){
@@ -42,28 +43,44 @@ public class UserDAO extends GenericDAO{
 		return u; 
 	}
 
-	@Override
-	public void updateTable(String[] fields, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
 
+	 /**
+     * Inserts into User
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		this.insert("User", fields, params);
 		
 	}
+	/**
+	 * deletes from the user table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("User", fields, params);
 	}
 
+
+	/**
+	 * gets data from User
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	@Override
 	public <T> List<T> getData(String[] fields, String[] params) {
 		
 		return null;
 	}
 
+	/**
+	 * updates User
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {

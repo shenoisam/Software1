@@ -127,7 +127,7 @@ public abstract class GenericDAO {
 	    for(int i = 0; i < params.length; i++) {
 	    	p.setString(i +1, params[i]);
 	    }
-	   
+	    System.out.println(p);
 	    p.executeUpdate(); 
 	
 		
@@ -221,7 +221,7 @@ public abstract class GenericDAO {
 		    for(int i =0; i < num; i++) {
 		    	p.setString(i +1, params[i]);
 		    }
-		  
+		    System.out.println(p.toString());
 		    
 		    ResultSet rs = p.executeQuery();
 		   
@@ -260,7 +260,7 @@ public abstract class GenericDAO {
 	
 	
 	
-	/*
+	/**
 	 * inserts a row into a table in the database
 	 * 
 	 * @param fields the fields in question for this specific table 
@@ -269,7 +269,7 @@ public abstract class GenericDAO {
 	 */
 	public abstract void insertIntoTable(String [] fields, String [] params) throws SQLException;
 	
-	/*
+	/**
 	 * deletes a row in the database based on given parameters
 	 * 
 	 * @param fields the fields in question for this specific table 
@@ -280,7 +280,7 @@ public abstract class GenericDAO {
 	public abstract  <T> List<T> getData(String [] fields, String [] params);
 
 	
-	/*
+	/**
 	 * updates a table in the database
 	 * 
 	 * @param fields the fields in question for this specific table the rmStr 

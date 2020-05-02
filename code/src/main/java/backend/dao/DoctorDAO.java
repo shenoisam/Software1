@@ -7,12 +7,27 @@ import java.util.List;
 import backend.classes.Diagnosis;
 import backend.classes.Doctor;
 
-
+/**
+ * The doctorDAO defines a database access object that connects to the doctor table
+ * 
+ * 
+ * @author samshenoi
+ *
+ */
 public class DoctorDAO extends GenericDAO{
 	//SQLConnectionPool p; 
 	public DoctorDAO(){
 		super();
 	}
+	
+	
+	/**
+	 * gets a doctor from the database based on id
+	 * 
+	 * 
+	 * @param id the id of the doctor
+	 * @return the doctor associated with this id
+	 */
 	public Doctor getDoctor(String id) {
 		Doctor s = null; 
 		String [] params = {id};
@@ -27,6 +42,15 @@ public class DoctorDAO extends GenericDAO{
 		return s; 		
 				
 	}
+	
+	/**
+	 * gets a doctor from the database based on their email and password
+	 * 
+	 * 
+	 * @param email the email of the doctor
+	 * @param password the password of the doctor
+	 * @return the logged in doctor
+	 */
 	public Doctor getDoctor(String email, String password) {
 		Doctor s = null; 
 		String [] params = {email, password};
@@ -43,15 +67,34 @@ public class DoctorDAO extends GenericDAO{
 	}
 
 	
+	/**
+	 * inserts into the doctor table
+	 * 
+	 * @see  GenericDAO#insertIntoTable(String[], String[])
+	 */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		this.insert("Doctor", fields, params);
 		
 	}
+	
+	
+	/**
+	 * deletes from table 
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("Doctor", fields, params);
 	}
+	
+	
+	/**
+	 * gets data from the tabl e
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	@Override
 	public List<Doctor> getData(String[] fields, String[] params) {
 	    for (int i = 0; i < fields.length; i++) {
@@ -85,6 +128,11 @@ public class DoctorDAO extends GenericDAO{
 		return d;
 	}
 
+	/**
+	 * updates that doctor 
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {

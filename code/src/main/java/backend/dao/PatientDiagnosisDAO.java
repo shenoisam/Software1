@@ -8,24 +8,46 @@ import backend.classes.Notes;
 import backend.classes.PatientDiagnosis;
 import backend.factory.FactoryObjects;
 import backend.factory.PatientDiagnosisObject;
-
+/**
+ * PatientDiagnosisDAO accesses patient diagnosis
+ * 
+ * @author samshenoi
+ *
+ */
 public class PatientDiagnosisDAO extends GenericDAO {
+	/**
+	 *  default constructor
+	 */
     public PatientDiagnosisDAO(){
     	
     }
 
-
+    /**
+     * Inserts into PatientDiagnosis
+     * 
+     * @see GenericDAO#insertIntoTable(String[], String[])
+     */
 	@Override
 	public void insertIntoTable(String[] fields, String[] params) throws SQLException {
 		this.insert("PatientDiagnosis", fields, params);
 		
 	}
+	
+	/**
+	 * deletes from the patient diagnosis table
+	 * 
+	 * @see GenericDAO#deleteFromTable(String[], String[])
+	 */
 	@Override
 	public void deleteFromTable(String[] fields, String[] params) throws SQLException {		
 		this.delete("PatientDiagnosis", fields, params);
 	}
 	
-	
+	/**
+	 * gets data from PatientDiagnosis
+	 * 
+	 * @see GenericDAO#getData(String[], String[])
+	 */
 	public List<PatientDiagnosis> getData(String [] fields, String [] params) {
 		 String rmStr = this.generateRmStr(fields, params);
 		 
@@ -48,7 +70,11 @@ public class PatientDiagnosisDAO extends GenericDAO {
 
 
 
-
+	/**
+	 * updates PatientDiagnosis
+	 * 
+	 * @see GenericDAO#updateTable(String[], String[], String[], String[])
+	 */
 	@Override
 	public void updateTable(String[] setFields, String[] setParams, String[] fields, String[] params)
 			throws SQLException {

@@ -9,7 +9,7 @@ import backend.dao.AppointmentDAO;
 import backend.dao.GenericDAO;
 
 /*
- * -Date -User ID 1 -User ID 2
+ * this class defines an appointment object
  */
 public class Appointment{
 	private LocalDateTime AppointmentDate;
@@ -22,6 +22,13 @@ public class Appointment{
 	//private Patient patient; 
 	//private Doctor doctor; 
 
+	/**
+	 * constructor of the Appointment
+	 * 
+	 * 
+	 * @param headerList
+	 * @param list
+	 */
 	public Appointment(List<String> headerList, List<Object> list){
 		// If there are values to read in
 		if(headerList != null) {

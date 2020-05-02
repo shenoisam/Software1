@@ -24,7 +24,11 @@ public class SQLConnectionPool implements ConnectionPool {
     	this.pool = start; 
     	usedConnections = new ArrayList<Connection>();
     }
-    
+    /**
+     * returns a singlar SQLConnectionPool object. Connects to the database
+     * 
+     * @return the SQLConnectionPool object
+     */
 	public static SQLConnectionPool create() {
 		 // Get all of the database configuration information from the config object
 		 Config m = new Config(); 
@@ -38,12 +42,23 @@ public class SQLConnectionPool implements ConnectionPool {
 		 
 	}
 	
+	/**
+	 * returns 1 of 10 database connections. Ensures that only a limited number of connections are created 
+	 * 
+	 * @return a Connection object
+	 */
 	public Connection getConnection() {
 		Connection con = pool.remove(pool.size() -1);
 		usedConnections.add(con);
 		return con;
 	}
-
+	
+    /**
+     * releases a connection back into the pool 
+     * 
+     *  @param connection a connection to be released back into the pool
+     *  @return returns a boolean value indicating success or failure
+     */
 	public boolean releaseConnection(Connection connection) {
 		pool.add(connection);
 		return usedConnections.remove(connection);
