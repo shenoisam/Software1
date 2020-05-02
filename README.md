@@ -9,6 +9,9 @@ This repo contains code for the CShare EHR. This EHR was developed in order to a
 2. Set up mysql. Mysql is a depedency to run this program. Please have mysql installed on your computer localy to run this program
 3. Run the sql script. In the code/ directory, there is a file called sqlScript.sql . Please run this file after connecting to your mysql database. It creates a user called CShareAdmin and a CShare database in mysql which the program will then use to connect. 
 4. Run the program. You can run the program either by running the EHRRunner class or using the provided jar file. 
+4.1 To run as a jar file please enter the following command 
+`java -jar CShare.jar` 
+
 
 ## Authors
 This program was created by the following authors
