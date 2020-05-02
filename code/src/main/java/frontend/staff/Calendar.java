@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+/**
+ * Displays the calendar from the Staff view
+ */
 public class Calendar {
    static JLabel lblMonth;
    static JButton btnPrev, btnNext;

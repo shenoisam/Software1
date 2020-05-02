@@ -4,11 +4,23 @@ import frontend.EHRRunner;
 import frontend.GenericEnum;
 import frontend.GenericRunner;
 
+/**
+ * Runs the EHR from the Patient view
+ *
+ */
 public class PatientRunner extends GenericRunner{
 	
+	/**
+	 * 
+	 * @param r
+	 */
 	public PatientRunner(EHRRunner r){
 		super(r);
 	}
+	
+	/**
+	 * @param opt
+	 */
 	public void displayFrameOpt(GenericEnum opt) {
 		   //Remove everything from the frame
 		   frame.getContentPane().removeAll();

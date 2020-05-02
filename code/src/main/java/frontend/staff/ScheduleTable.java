@@ -2,6 +2,11 @@ package frontend.staff;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * Contains the GUI for displaying the schedule table from the staff
+ * view
+ *
+ */
 public class ScheduleTable extends AbstractTableModel {
 
    private static final long serialVersionUID = 1L;

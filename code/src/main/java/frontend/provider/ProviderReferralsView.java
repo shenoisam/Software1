@@ -28,32 +28,44 @@ import javax.swing.ScrollPaneConstants;
 import backend.classes.*;
 import businesslayer.CShareObjects;
 
-public class ProviderReferralsView extends ProviderFrontend {
-
-   // Have a list of doctors that we can update based on specility
-   List<Doctor> docs;
-   private Patient pat;
-   private Doctor selectedDoctor;
-   private String referralReason = "";
-   private String addedNotes;
-   private List<PatientDiagnosis> diags;
-   private List<JCheckBox> cb;
-
+/**
+ * ProviderReferralsView class that
+ * displays the provider's view as they refer a doctor
+ *
+ */
+public class ProviderReferralsView extends ProviderFrontend{
+	
+   // Have a list of doctors that we can update based on specility 
+   List<Doctor> docs; 
+   private Patient pat; 
+   
+   /**
+    * 
+    * @param p
+    */
    public ProviderReferralsView(ProviderRunner p) {
-      super(p);
-      docs = new ArrayList<Doctor>();
-      cb = new ArrayList<JCheckBox>();
-   }
+		super(p);
+		docs = new ArrayList<Doctor>(); 
+	}
+   
+/**
+ * 
+ * @param providerRunner
+ * @param pat
+ */
+public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
+	// TODO Auto-generated constructor stub
+	this(providerRunner);
+	this.pat = pat; 
+	
+}
 
-   public ProviderReferralsView(ProviderRunner providerRunner, Patient pat) {
-      // TODO Auto-generated constructor stub
-      this(providerRunner);
-      this.pat = pat;
-      cb = new ArrayList<JCheckBox>();
+/**
+ * 
+ * @param pane
+ */
+public void patientReferralPanel(Container pane) {
 
-   }
-
-   public void patientReferralPanel(Container pane) {
       // creating the main referral panel
       JPanel referralPanel = new JPanel();
       referralPanel.setLayout(new GridLayout(1, 2));
@@ -245,13 +257,25 @@ public class ProviderReferralsView extends ProviderFrontend {
       pane.add(referralPanel);
    }
 
+/**
+ * 
+ * @param d
+ * @return
+ */
    private JCheckBox createDiagnosis(PatientDiagnosis d) {
       JCheckBox daignosis1 = new JCheckBox(d.getName());
       cb.add(daignosis1);
       daignosis1.setSelected(false);
       return daignosis1;
    }
+<<<<<<< HEAD
+   
+   /**
+    * @param frame
+    */
+=======
 
+>>>>>>> master
    public void createAndShowGUI(JFrame frame) {
       // creating the panes within the screen
       providerSideBar(frame.getContentPane(), pat);
@@ -259,7 +283,15 @@ public class ProviderReferralsView extends ProviderFrontend {
       patientReferralPanel(frame.getContentPane());
 
    }
+<<<<<<< HEAD
+   
+   /**
+    * @param frame
+    * @param pat
+    */
+=======
 
+>>>>>>> master
    public void createAndShowGUI(JFrame frame, Patient pat) {
       this.pat = pat;
       createAndShowGUI(frame);

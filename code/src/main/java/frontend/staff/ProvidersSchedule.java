@@ -20,6 +20,10 @@ import backend.dao.AppointmentDAO;
 import backend.dao.DoctorDAO;
 import backend.dao.PatientDAO;
 
+/**
+ * displays the schedule from the provider view
+ *
+ */
 public class ProvidersSchedule extends JPanel {
    private JTable table;
    private Object[][] data = {};

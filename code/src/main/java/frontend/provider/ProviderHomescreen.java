@@ -31,9 +31,18 @@ import backend.classes.PatientDiagnosis;
 import businesslayer.CShareObjects;
 import frontend.GenericEnum;
 
+/**
+ * ProviderHomeScreen class that displays the 
+ * health care provider's home screen view
+ *
+ */
 public class ProviderHomescreen extends ProviderFrontend {
    private static List<Appointment> li;
 
+   /**
+    * 
+    * @param p
+    */
    public ProviderHomescreen(ProviderRunner p) {
       super(p);
       LocalDateTime date = LocalDateTime.now();
@@ -43,6 +52,10 @@ public class ProviderHomescreen extends ProviderFrontend {
 
    }
 
+   /**
+    * 
+    * @param pane
+    */
    private static void sideBarWithCalander(Container pane) {
       // creating the whole side panel
       JPanel sidePanel = new JPanel();
@@ -83,6 +96,10 @@ public class ProviderHomescreen extends ProviderFrontend {
       pane.add(sidePanel, BorderLayout.WEST);
    }
 
+   /**
+    * 
+    * @param pane
+    */
    private static void topBarProviderHomescreen(Container pane) {
       // creating the top panel to store all the information
       JPanel topPanel = new JPanel();
@@ -133,6 +150,10 @@ public class ProviderHomescreen extends ProviderFrontend {
       pane.add(topPanel, BorderLayout.NORTH);
    }
 
+   /**
+    * 
+    * @param pane
+    */
    private static void listOfAppointments(Container pane) {
       // creating the panel for the appointment list
       JPanel appointmentList = new JPanel();
@@ -186,6 +207,13 @@ public class ProviderHomescreen extends ProviderFrontend {
       pane.add(appointmentList);
    }
 
+   /**
+    * 
+    * @param a
+    * @param pat
+    * @param d
+    * @return
+    */
    private static JPanel appointment(Appointment a, Patient pat, List<Diagnosis> d) {
       // creating the individual appointment panel
       JPanel appointment = new JPanel();
@@ -244,6 +272,9 @@ public class ProviderHomescreen extends ProviderFrontend {
       return appointment;
    }
 
+   /**
+    * @param frame
+    */
    public void createAndShowGUI(JFrame frame) {
       // creating the frame for the screen
       /*

@@ -9,6 +9,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Displays the homescreen from the staff view
+ *
+ */
 public class StaffHomescreen extends GenericStaffScreen {
 
    StaffHomescreen(StaffRunner r) {

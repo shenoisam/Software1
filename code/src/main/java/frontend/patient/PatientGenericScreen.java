@@ -17,6 +17,10 @@ import businesslayer.CShareObjects;
 import businesslayer.ProviderService;
 import frontend.GenericEnum;
 
+/**
+ * Contains the GUI for the patient's generic screen
+ *
+ */
 public abstract class PatientGenericScreen {
 	protected JFrame frame;
 	protected JPanel topPanel;
@@ -27,6 +31,12 @@ public abstract class PatientGenericScreen {
 	protected ProviderService serv;
 	protected Appointment a;
 	
+	/**
+	 * 
+	 * @param f
+	 * @param title
+	 * @param po
+	 */
 	public PatientGenericScreen(JFrame f, String title, PatientRunner po) {
 		this.p = po; 
 		frame = f;

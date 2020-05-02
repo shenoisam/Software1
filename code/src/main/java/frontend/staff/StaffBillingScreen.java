@@ -11,7 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 
-
+/**
+ * Displays the Staff billing screen GUI
+ *
+ */
 public class StaffBillingScreen extends GenericStaffScreen {
 
    StaffBillingScreen(StaffRunner r) {
