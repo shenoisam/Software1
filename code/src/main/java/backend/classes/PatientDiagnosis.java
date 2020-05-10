@@ -9,6 +9,7 @@ public class PatientDiagnosis {
 	private String Name; 
 	private Date DiagnosisDate; 
 
+
 	public PatientDiagnosis(List<String> headerList, List<Object> dataList) {
 		// Check that the headerList is not null
 		if(headerList != null) {
@@ -47,10 +48,7 @@ public class PatientDiagnosis {
 				}
 			}
 		}
-		// Otherwise print an error about initializing from empty values
-		else {
-			System.out.println("Error: initializing from empty set of values");
-		}
+		
 	}
 
 	public String getPatientID() {

@@ -109,15 +109,8 @@ public class ProviderPatientOverview extends ProviderFrontend{
       String[] fields = { "PatientID" };
       String[] params = { pat.getID() };
       List<PatientDiagnosis> pds = serv.getData(CShareObjects.PATIENTDIAGNOSIS, fields, params);
-      String text = "";
-      String[] fields2 = { "Name" };
-      String[] params2 = new String[1];
-      for (PatientDiagnosis z : pds) {
-         params2[0] = z.getName();
-
-         List<Diagnosis> diag = serv.getData(CShareObjects.DIAGNOSIS, fields2, params2);
-         text = text + diag.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";
-      }
+      String text = pds.stream().map(e -> e.getName()).reduce("\n", String::concat) + "\n";;
+     
       /******* End data retrieval ********/
 
       display.setText(text);
